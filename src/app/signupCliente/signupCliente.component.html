@@ -1,0 +1,54 @@
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <h1>Sign Up</h1>
+    <div class="label">
+        <label for="username">Username: </label>
+    </div>
+    <div class="field">
+        <input id="username" formControlName="username">
+
+    </div>
+
+
+
+    <div class="label">
+        <label for="email">Email: </label>
+    </div>
+
+    <div class="field">
+        <input id="email" formControlName="email">
+    </div>
+
+    <div class="label">
+        <label for="nomed">Nome: </label>
+    </div>
+
+    <div class="field">
+        <input id="nome" formControlName="nome">
+    </div>
+
+     <div class="label">
+        <label for="cognome">Cognome: </label>
+    </div>
+
+    <div class="field">
+        <input id="cognome" formControlName="cognome">
+    </div>
+
+     <div class="label">
+        <label for="numeroTelefonico">Numero di Telefono: </label>
+    </div>
+
+    <div class="field">
+        <input id="numeroTelefonico" formControlName="numeroTelefonico">
+    </div>
+        <div class="label">
+        <label for="cognome">Password: </label>
+    </div>
+
+    <div class="field">
+        <input id="password" formControlName="password" type="password">
+    </div>
+
+
+    <button type="submit">Confirm</button>
+</form>
