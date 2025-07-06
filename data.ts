@@ -1,3 +1,5 @@
+import Instant, {EPOCH} from "ts-time/Instant";
+
 export type Cliente = {
     username: string;
     email: string;
@@ -18,7 +20,10 @@ export type Immobile = {
     numeroVisualizzazioni: number;
     tipologiaContratto: string;
     speseCondominiali: number; 
-    superficie: number;
+    offerte: Offerte[];
+    agenteImmobiliare: AgenteImmobiliare;
+    isVenduto: boolean;
+    istanteCreazione: Instant;
     immagini: string[];
 }
 
@@ -30,3 +35,5 @@ export type AgenteImmobiliare = {
     cognome: string;
     telefono: string;
 }
+
+export type Offerte = {}
