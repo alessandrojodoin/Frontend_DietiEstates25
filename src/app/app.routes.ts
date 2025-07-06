@@ -1,16 +1,13 @@
 import { Routes } from '@angular/router';
-<<<<<<< Updated upstream
+import { HomeComponent } from './homepage/home/home.component';
 import { SignupClienteComponent } from './signupCliente/signupCliente.component';
 
 export const routes: Routes = [{
         path: "signup-cliente",
         title: "Sign Up",
         component: SignupClienteComponent
-    },];
-=======
-import { HomeComponent } from './homepage/home/home.component';
+    },
+    {path: '', component: HomeComponent},];
 
-export const routes: Routes = [
-    {path: '', component: HomeComponent},
-];
->>>>>>> Stashed changes
+
+
