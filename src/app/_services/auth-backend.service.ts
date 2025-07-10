@@ -35,4 +35,10 @@ export class AuthRestService {
     return this.http.post<string>(url, signupCredentials, this.jsonHttpOptions);
   }
 
+   login(loginCredentials: {username: string, password: string}){
+    console.log("login http request")
+    const url = `${this.url}/auth`;
+    return this.http.post<string>(url, loginCredentials, this.jsonHttpOptions);
+  }
+
 }
