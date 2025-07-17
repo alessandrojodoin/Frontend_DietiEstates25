@@ -10,14 +10,15 @@
         <div class="profile-menu" (click)="toggleDropdown()">
             <span class="profile-username">Profilo</span>
             <span class="profile-arrow">
-                <span *ngIf="dropdownOpen">&#9650;</span><!-- Up arrow -->
-                <span *ngIf="!dropdownOpen">&#9660;</span><!-- Down arrow -->
+                <span *ngIf="dropdownOpen">&#9650;</span>
+                <span *ngIf="!dropdownOpen">&#9660;</span>
             </span>
-            <span class="profile-icon">&#128100;</span>
+            <span class="profile-icon">👤</span>
             <div class="dropdown" *ngIf="dropdownOpen">
                 <div class="dropdown-header">Riepilogo Attività</div>
                 <ul>
-                    <li>Immobili Visualizzati</li>
+                    <li>Immobili Visualizzati</li> <!--devo fare i routes e mettere un route a pezzo + sistemare
+                                                    per mostrare il login prima del profilo -->
                     <li>Offerte Fatte</li>
                     <li>Prenotazioni Effettuate</li>
                 </ul>
@@ -29,4 +30,4 @@
             </div>
         </div>
     </nav>
-</header>c
+</header>
