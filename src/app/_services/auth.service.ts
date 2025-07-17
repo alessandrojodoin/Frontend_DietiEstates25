@@ -1,7 +1,7 @@
 import { inject, Injectable, Injector } from '@angular/core';
 import { AuthRestService } from './auth-backend.service';
 import { jwtDecode } from 'jwt-decode';
-import { catchError, EMPTY, throwError } from 'rxjs';
+import { catchError, EMPTY, lastValueFrom, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
 
@@ -65,18 +65,24 @@ export class AuthService {
   }
 
   login(loginCredentials: {username: string, password: string}){
-    const rest = this.injector.get(AuthRestService);
-    const request = rest.login(loginCredentials);
-    request.pipe(catchError((error) => EMPTY)).subscribe({
-      next: (token: any) => {
-        this.setToken(token);
-      },
-      error: (error: any) => {
-      },
-      complete: () => {}
 
+    return new Promise((resolve) => {
+      const rest = this.injector.get(AuthRestService);
+      const request = rest.login(loginCredentials);
+
+
+      request.pipe(catchError((error) => EMPTY)).subscribe({
+        next: (token: any) => {
+          this.setToken(token);
+          resolve(null);
+        },
+        error: (error: any) => {
+        },
+        complete: () => {}
+
+      })
     })
-    return request;
+    
 
   }
 

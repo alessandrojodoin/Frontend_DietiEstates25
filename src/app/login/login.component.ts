@@ -32,26 +32,41 @@ export class LoginComponent {
     if(this.loginForm.invalid){
       this.toastr.error("Please make sure you have filled all of the fields", "Error");
     }
-    else{
+     else{
 
       this.authService.login({
         username: this.loginForm.value.username as string,
         password: this.loginForm.value.password as string
-      }).subscribe({
-        next: () =>{
-          this.toastr.success("Logged in succesfully!", "Success");
-          this.router.navigate(["/"]);
-        },
-        error: (error: any) =>{
-          if(error instanceof HttpErrorResponse){
+      })
+      .then( () =>{
+        this.toastr.success("Logged in succesfully!", "Success");
+         this.router.navigate(["/"]);
+      })
+      .catch((error) => {
+        if(error instanceof HttpErrorResponse){
             this.toastr.error(error.error.message);
-          }
         }
       })
-
-
     }
   }
+
+
+    /* else{
+
+      this.authService.login({
+        username: this.loginForm.value.username as string,
+        password: this.loginForm.value.password as string
+      })
+      .then( () =>{
+        this.toastr.success("Logged in succesfully!", "Success");
+         this.router.navigate(["/"]);
+      })
+      .catch((error) => {
+        if(error instanceof HttpErrorResponse){
+            this.toastr.error(error.error.message);
+        }
+      })
+    }*/
 
   
 }
