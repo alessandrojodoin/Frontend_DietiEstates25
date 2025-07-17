@@ -7,5 +7,26 @@
                 </span>
             </a>
         </div>
+        <div class="profile-menu" (click)="toggleDropdown()">
+            <span class="profile-username">Profilo</span>
+            <span class="profile-arrow">
+                <span *ngIf="dropdownOpen">&#9650;</span><!-- Up arrow -->
+                <span *ngIf="!dropdownOpen">&#9660;</span><!-- Down arrow -->
+            </span>
+            <span class="profile-icon">&#128100;</span>
+            <div class="dropdown" *ngIf="dropdownOpen">
+                <div class="dropdown-header">Riepilogo Attività</div>
+                <ul>
+                    <li>Immobili Visualizzati</li>
+                    <li>Offerte Fatte</li>
+                    <li>Prenotazioni Effettuate</li>
+                </ul>
+                <hr>
+                <div class="dropdown-logout">
+                    <span>Logout</span>
+                    <span class="logout-icon">&#128682;</span>
+                </div>
+            </div>
+        </div>
     </nav>
-</header>
+</header>c

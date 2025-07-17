@@ -1,14 +1,71 @@
-header {
-  width: 100%;
-  background: #0883c7;
-  min-height: 60px;
-}
-
 .navbar {
   display: flex;
   align-items: center;
   height: 60px;
   padding-left: 24px;
+  background: #0883c7;
+  color: #fff;
+  justify-content: space-between;
+}
+
+.profile-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 32px;
+}
+
+.profile-username {
+  font-size: 1.2rem;
+  margin-right: 6px;
+}
+
+.profile-arrow {
+  font-size: 1rem;
+  margin-right: 6px;
+}
+
+.profile-icon {
+  font-size: 1.5rem;
+}
+
+.dropdown {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  background: #bcd1e2;
+  color: #222;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  min-width: 220px;
+  padding: 8px 12px;
+  z-index: 100;
+}
+
+.dropdown-header {
+  font-weight: 500;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #222;
+  padding-bottom: 2px;
+}
+
+.dropdown ul {
+  list-style: disc inside;
+  margin: 0;
+  padding-left: 16px;
+}
+
+.dropdown-logout {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.logout-icon {
+  font-size: 1.2rem;
+  margin-left: 6px;
 }
 
 .logo .name {
@@ -17,3 +74,4 @@ header {
   font-weight: 500;
   text-decoration: none;
 }
+
