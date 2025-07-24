@@ -3,10 +3,12 @@ import { AuthRestService } from './auth-backend.service';
 import { jwtDecode } from 'jwt-decode';
 import { catchError, EMPTY, lastValueFrom, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UserType } from '../../types';
 
 
 type AuthState = {
   user: string | null,
+  userType: UserType | null
   token: string | null,
   readonly isTokenValid: boolean
 }
@@ -22,6 +24,7 @@ export class AuthService {
 
   authState: AuthState = {
     user: null,
+    userType: null,
     token: null,
     get isTokenValid(){
       try{
@@ -49,6 +52,7 @@ export class AuthService {
     if(this.authState.token !== null){
       const decodedToken: any = jwtDecode(this.authState.token);
       this.authState.user = decodedToken.user as string;
+      this.authState.userType = decodedToken.userType as UserType
     }
 
   }
@@ -58,6 +62,7 @@ export class AuthService {
     this.authState.token = token;
     const decodedToken: any = jwtDecode(token);
     this.authState.user = decodedToken.user as string;
+    this.authState.userType = decodedToken.userType as UserType
   }
 
   private getToken(): string | null{
@@ -71,8 +76,9 @@ export class AuthService {
       const request = rest.login(loginCredentials);
 
 
-      request.pipe(catchError((error) => EMPTY)).subscribe({
+      request.subscribe({
         next: (token: any) => {
+          console.log("Hello??????????????????????????")
           this.setToken(token);
           resolve(null);
         },
@@ -82,6 +88,8 @@ export class AuthService {
 
       })
     })
+
+  
     
 
   }
@@ -93,6 +101,14 @@ export class AuthService {
   getUsername(): string {
     if(this.authState.user){
       return this.authState.user;
+    }
+    else return "";
+   
+  }
+
+  getUserType(): string {
+    if(this.authState.userType){
+      return this.authState.userType;
     }
     else return "";
    

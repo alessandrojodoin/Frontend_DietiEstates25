@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { catchError, EMPTY, map } from 'rxjs';
+import { catchError, EMPTY, map, shareReplay } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +38,10 @@ export class AuthRestService {
    login(loginCredentials: {username: string, password: string}){
     console.log("login http request")
     const url = `${this.url}/auth`;
-    return this.http.post<string>(url, loginCredentials, this.jsonHttpOptions);
+    return this.http.post(url, loginCredentials, {
+    headers: { 'Content-Type': 'application/json' },
+    responseType: 'text'
+  });
   }
 
 }
