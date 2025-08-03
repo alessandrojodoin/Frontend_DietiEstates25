@@ -1,0 +1,14 @@
+.map-wrapper {
+  height: 100vh; // or 100%, if its parent also has a set height
+  width: 100%;
+  display: flex;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+gmp-map {
+  height: 400px;
+}

@@ -20,7 +20,7 @@ export class ImmobiliService {
 getImmobiliById(id: number) {
   const url = 1;
   return this.http.get<Immobile[]>(url).pipe(
-    map(immobili => immobili.map(immobile => ({
+    map(immobili => immobili.map(immobile: any => ({
       ...immobile,
       istanteCreazione: Instant.parse(immobile.istanteCreazione),
     }))),
