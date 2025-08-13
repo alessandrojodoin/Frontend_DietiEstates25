@@ -1,15 +1,31 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 //import {GoogleMaps} from  'google.maps'
 
 @Component({
   selector: 'app-crea-immobile-page1',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './crea-immobile-page1.component.html',
   styleUrl: './crea-immobile-page1.component.scss'
 })
 export class CreaImmobilePage1Component {
+
+    locationForm = new FormGroup({
+      indirizzo: new FormControl('',
+        [Validators.required,
+        Validators.minLength(1)]
+      ),
+      citta: new FormControl('',
+        [Validators.required,
+        Validators.minLength(1)]
+      ),
+      provincia: new FormControl('',
+        [Validators.required,
+        Validators.minLength(1)]
+      ),
+    })
 
   currentMarker: google.maps.Marker | null = null;
 
@@ -65,16 +81,21 @@ export class CreaImmobilePage1Component {
        // Create a new InfoWindow.
 
 
-      
 
 
   });
 
 }
 
-ngAfterViewInit(){
-  this.initMap();
-}
+  ngAfterViewInit(){
+    this.initMap();
+  }
+
+  onSubmit(){
+        
+  }
+      
+
 
 
 }

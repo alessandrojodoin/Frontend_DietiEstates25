@@ -7,3 +7,29 @@
   <div id="map" map-id="7e09b66dcfaa788fb9c8f8bd"></div>
 </div>
 
+<form [formGroup]="locationForm" (ngSubmit)="onSubmit()">
+    <div class="label">
+        <label for="indirizzo">Indirizzo: </label>
+    </div>
+    <div class="field">
+        <input id="indirizzo" formControlName="indirizzo">
+
+    </div>
+
+    <div class="label">
+        <label for="citta">Citta': </label>
+    </div>
+
+    <div class="field">
+        <input id="citta" formControlName="citta">
+    </div>
+
+    <div class="label">
+        <label for="provincia">Provincia: </label>
+    </div>
+
+    <div class="field">
+        <input id="provincia" formControlName="provincia">
+    </div>
+    <button type="submit">Confirm</button>
+</form>
