@@ -1,0 +1,23 @@
+/*@use '@angular/material' as mat;
+@use '@angular/material/sidenav' as matSidenav;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:mat-drawer-content {
+  @include mat.sidenav-overrides((
+    container-background-color: orange,
+    container-text-color: red,
+  ));
+}*/
+
+.app-visualizzazione-attivita{
+    width: 70%;
+    
+}
+
+.app-sidebar{
+    width: 30%;
+      
+}
+p{
+    justify-content: center;
+}
