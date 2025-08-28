@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <h1>Login</h1>
     <div class="label">
@@ -16,4 +17,5 @@
         <input id="password" formControlName="password" type="password">
     </div>
     <button type="submit">Confirm</button>
+    <button mat-raised-button color="primary" class="custom-button">Conferma</button>
 </form>
