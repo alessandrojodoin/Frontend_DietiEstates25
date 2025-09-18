@@ -1,47 +1,55 @@
 import { Component } from '@angular/core';
+import { ImageThumbnailComponent } from "../image-thumbnail/image-thumbnail.component";
 
 @Component({
   selector: 'app-crea-immobile-page3',
   standalone: true,
-  imports: [],
+  imports: [ImageThumbnailComponent],
   templateUrl: './crea-immobile-page3.component.html',
   styleUrl: './crea-immobile-page3.component.scss'
 })
 export class CreaImmobilePage3Component {
 
-  handleFiles(files: any) {
+ /* handleFiles(files: any) {
     for (const file of files) {
       if (!file.type.startsWith("image/")) {
         continue;
       }
 
-      const img = document.createElement("img") as any;
-      img.classList.add("obj");
-      img.file = file;
-      document.body.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+      const img = document.createElement("app-image-thumbnail") as any;
+      document.body.appendChild(img); 
 
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if(e.target != null)
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
     }
-  }
+  }*/
+  files = [];
+
   ngOnInit(){
 
-    const caricaFile = document.getElementById("caricaFile");
+    const caricaFile: any = document.getElementById("caricaFile");
     const caricaFotoButton = document.getElementById("caricaFotoButton");
     if(caricaFotoButton != null)
-    caricaFotoButton.addEventListener(
+      caricaFotoButton.addEventListener(
        "click",
       (e) => {
         if (caricaFile) {
           caricaFile.click();
+
         }
       },
       false,
     );
+
+    if(caricaFile != null)
+    caricaFile.addEventListener(
+       "change",
+      (e: any) => {
+        if (caricaFile) {
+          this.files = this.files.concat(Array.from(caricaFile.files));
+        }
+      },
+      false,
+    );
+
 
 
   }
