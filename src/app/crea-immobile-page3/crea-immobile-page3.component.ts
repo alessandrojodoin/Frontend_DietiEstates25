@@ -21,7 +21,8 @@ export class CreaImmobilePage3Component {
 
     }
   }*/
-  files: any[] = [];
+  
+  images: {file: any}[] = [];
 
   ngOnInit(){
 
@@ -44,7 +45,11 @@ export class CreaImmobilePage3Component {
        "change",
       (e: any) => {
         if (caricaFile) {
-          this.files = this.files.concat(Array.from(caricaFile.files));
+          Array.from(caricaFile.files).forEach((file) => {
+            this.images.push({file: file});
+            e.target.value = null
+
+          })
         }
       },
       false,
@@ -54,11 +59,11 @@ export class CreaImmobilePage3Component {
 
   }
 
-  deleteImage(file: any){
+  deleteImage(image: any){
 
-    const fileIndex = this.files.indexOf(file);
+    const fileIndex = this.images.indexOf(image);
     if(fileIndex > -1){
-      this.files.splice(fileIndex, 1);
+      this.images.splice(fileIndex, 1);
     }
     else{
       console.log("Immagine non trovata");

@@ -8,12 +8,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ImageThumbnailComponent {
   imageSrc: string | undefined = undefined;
-  imageFile: Object | undefined = undefined;
+  _image: Object | undefined = undefined;
 
   @Input()
-  set imageSource(file: File) {
+  set image(image: any) {
+    this._image = image;
+    const file = image.file;
     if (!file?.type.startsWith('image/')) return;
-    this.imageFile = file;
+
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -26,7 +28,7 @@ export class ImageThumbnailComponent {
   @Output() imageDeleted = new EventEmitter<Object>();
 
   deleteImage(){
-    this.imageDeleted.emit(this.imageFile);
+    this.imageDeleted.emit(this._image);
   }
 
 }
