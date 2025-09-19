@@ -27,7 +27,7 @@ export const routes: Routes = [
     {
         path: "create-immobile",
         title: "Carica Immobile",
-        component: CreaImmobilePage3Component
+        component: CreaImmobilePage1Component
     },
     {
         path: "riepilogo-attivita",

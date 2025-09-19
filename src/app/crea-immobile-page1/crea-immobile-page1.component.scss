@@ -1,7 +1,12 @@
 .map-wrapper {
-  height: 100vh; // or 100%, if its parent also has a set height
   width: 100%;
   display: flex;
+  height: 400px;
+  max-width: 800px;
+  margin: 0 auto; // Centra la mappa
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 40px;
 }
 
 #map {
@@ -11,4 +16,109 @@
 
 gmp-map {
   height: 400px;
+}
+
+.titolo{
+  font-size: 40px;
+  margin-bottom: 1px;
+  margin-top: 2px;
+}
+
+.sottotitolo{
+  margin-top: 1px;
+  font-size: 22px;
+  text-indent: 70px;
+}
+
+.title-step-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  margin-bottom: 12px;
+}
+
+
+// (pallini + linee)
+.step-indicator {
+  display: flex;
+  align-items: center;
+
+}
+
+.step-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #999;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #999;
+  transition: all 0.2s ease;
+}
+
+.step-circle.active {
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+
+.step-circle.completed {
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+
+.step-line {
+  width: 40px;
+  height: 2px;
+  background-color: #999;
+  margin: 0 0px;
+}
+
+.step-circle.completed + .step-line {
+  background-color: #000;
+}
+
+.step-indicator .step-circle:nth-of-type(1) {
+  background-color: #00B4D8;
+  color: black;
+  border: 2px solid black;
+}
+
+
+.input-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center; /* allinea verticalmente label e input */
+  gap: 6px; /* spazio tra label e input */
+  min-width: 250px; /* larghezza minima per ogni gruppo */
+}
+
+
+.form-group input {
+  flex: 1;
+  padding: 4px 8px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  font-size: 16px;
 }

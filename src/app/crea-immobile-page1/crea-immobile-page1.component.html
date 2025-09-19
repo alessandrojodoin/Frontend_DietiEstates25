@@ -1,5 +1,20 @@
-<p>crea-immobile-page1 works!</p>
+<!DOCTYPE html>
 
+<div class="title-step-row">
+  <p class="titolo">Carica Immobile</p>
+
+  <div class="step-indicator">
+    <div class="step-circle">1</div>
+    <div class="step-line"></div>
+    <div class="step-circle">2</div>
+    <div class="step-line"></div>
+    <div class="step-circle">3</div>
+    <div class="step-line"></div>
+    <div class="step-circle">4</div>
+  </div>
+</div>
+
+<p class="sottotitolo">Informazioni geografiche</p>
 
 
 <div class="map-wrapper">
@@ -7,29 +22,28 @@
   <div id="map" map-id="7e09b66dcfaa788fb9c8f8bd"></div>
 </div>
 
+
 <form [formGroup]="locationForm" (ngSubmit)="onSubmit()">
-    <div class="label">
-        <label for="indirizzo">Indirizzo: </label>
-    </div>
-    <div class="field">
-        <input id="indirizzo" formControlName="indirizzo">
 
-    </div>
-
-    <div class="label">
-        <label for="citta">Citta': </label>
+  <div class="input-row">
+    <div class="form-group">
+      <label for="indirizzo">Indirizzo:</label>
+      <input id="indirizzo" formControlName="indirizzo" />
     </div>
 
-    <div class="field">
-        <input id="citta" formControlName="citta">
+    <div class="form-group">
+      <label for="citta">Città:</label>
+      <input id="citta" formControlName="citta" />
     </div>
 
-    <div class="label">
-        <label for="provincia">Provincia: </label>
+    <div class="form-group">
+      <label for="provincia">Provincia:</label>
+      <input id="provincia" formControlName="provincia" />
     </div>
+  </div>
 
-    <div class="field">
-        <input id="provincia" formControlName="provincia">
-    </div>
+  <div class="button-container">
     <button type="submit">Confirm</button>
+  </div>
+  
 </form>
