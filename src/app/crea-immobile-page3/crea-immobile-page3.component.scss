@@ -1,3 +1,16 @@
 #caricaFile {
   display: none;
 }
+
+#imageContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2%;
+  background-color: #464646;
+}
+
+#caricaFotoButton{
+  width: 100%;
+  height: 100%;
+  background-color: #6A6868;
+}
