@@ -1,6 +1,6 @@
 <div class="links">
-    <a [routerLink]="['./']" fragment="Immobili">Immobili Visualizzati</a>
-    <a [routerLink]="['./']" fragment="Offerte">Offerte Fatte</a>
-    <a [routerLink]="['./']" fragment="Prenotazioni">Prenotazioni Effettuate</a>
+    <a [class.selected]= "sidebar == 'Immobili'" [routerLink]="['./']" fragment="Immobili" (click)="onImmobiliVisuClick()" >Immobili Visualizzati</a>
+    <a [class.selected]= "sidebar == 'Offerte'" [routerLink]="['./']" fragment="Offerte" (click)="offerteFatte()">Offerte Fatte</a>
+    <a [class.selected]= "sidebar == 'Prenotazioni'" [routerLink]="['./']" fragment="Prenotazioni" (click)="prenotazioniEffettuate()">Prenotazioni Effettuate</a>
 </div>
     
