@@ -2,9 +2,14 @@
 
 <input type="file" id="caricaFile" multiple accept="image/*" />
 
+
+
 @for(file of files; track file){
 
     <app-image-thumbnail [imageSource]="file"></app-image-thumbnail>
 
 }
+
 <button id="caricaFotoButton" type="button">Aggiungi una foto</button>
+
+
