@@ -6,7 +6,7 @@
 
 @for(file of files; track file){
 
-    <app-image-thumbnail [imageSource]="file"></app-image-thumbnail>
+    <app-image-thumbnail [imageSource]="file" (imageDeleted)="deleteImage($event)"></app-image-thumbnail>
 
 }
 

@@ -21,7 +21,7 @@ export class CreaImmobilePage3Component {
 
     }
   }*/
-  files = [];
+  files: any[] = [];
 
   ngOnInit(){
 
@@ -52,6 +52,17 @@ export class CreaImmobilePage3Component {
 
 
 
+  }
+
+  deleteImage(file: any){
+
+    const fileIndex = this.files.indexOf(file);
+    if(fileIndex > -1){
+      this.files.splice(fileIndex, 1);
+    }
+    else{
+      console.log("Immagine non trovata");
+    }
   }
 
 }
