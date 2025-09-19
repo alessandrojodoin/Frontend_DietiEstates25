@@ -26,13 +26,13 @@
   border-right: 1px solid #222;
   font-weight: 500;
   cursor: pointer;
-  text-decoration: underline;
   font-size: 1rem;
 }
 
-.tab:last-child {
-  border-right: none;
-  text-decoration: none;
+.tab.selected {
+  text-decoration: underline;
+  font-weight: bold;
+  background: #74B3EF;
 }
 
 .search-bar-row {

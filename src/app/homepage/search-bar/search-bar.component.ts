@@ -5,14 +5,18 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './search-bar.component.html',
-  styleUrl: './search-bar.component.scss'
+  styleUrls: ['./search-bar.component.scss'] 
 })
 export class SearchBarComponent {
 
+  selected: 'compra' | 'affitta' = 'compra';
+
   homelessBuys() {
+    this.selected = 'compra';
   }
 
   homelessRents() {
+    this.selected = 'affitta';
   }
 
 }
