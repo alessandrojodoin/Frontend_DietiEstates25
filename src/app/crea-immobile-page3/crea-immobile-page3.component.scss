@@ -1,3 +1,84 @@
+
+.titolo{
+  font-size: 40px;
+  margin-bottom: 0px;
+  margin-top: 2px;
+}
+
+.sottotitolo{
+  margin-top: 0px;
+  font-size: 22px;
+  text-indent: 70px;
+}
+
+.title-step-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  margin-bottom: 12px;
+}
+
+
+// (pallini + linee)
+.step-indicator {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-right: 150px;
+}
+
+.step-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #999;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #999;
+  transition: all 0.2s ease;
+  
+}
+
+.step-circle.active {
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+
+.step-circle.completed {
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+
+.step-line {
+  width: 40px;
+  height: 2px;
+  background-color: #999;
+  margin: 0 0px;
+}
+
+.step-circle.completed + .step-line {
+  background-color: #000;
+}
+
+.step-indicator .step-circle:nth-child(1), .step-circle:nth-child(3), .step-circle:nth-child(5){
+  background-color: #00B4D8;
+  color: black;
+  border: 2px solid black;
+}
+
+.step-line:nth-of-type(2), .step-line:nth-of-type(4) {
+  background-color: black;
+}
+
+
+
+
 #caricaFile {
   display: none;
 }

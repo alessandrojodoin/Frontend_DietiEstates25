@@ -4,7 +4,10 @@ import { SignupClienteComponent } from './signupCliente/signupCliente.component'
 import { LoginComponent } from './login/login.component';
 import { CreaImmobileComponent } from './crea-immobile/crea-immobile.component';
 import { CreaImmobilePage1Component } from './crea-immobile-page1/crea-immobile-page1.component';
+import { CreaImmobilePage2Component } from './crea-immobile-page2/crea-immobile-page2.component';
 import { CreaImmobilePage3Component } from './crea-immobile-page3/crea-immobile-page3.component';
+import { CreaImmobilePage4Component } from './crea-immobile-page4/crea-immobile-page4.component';
+
 import { RiepilogoAttivitaComponent } from './riepilogo-attivita/riepilogo-attivita.component';
 import { LogoutComponent } from './logout/logout.component';
 
@@ -27,7 +30,7 @@ export const routes: Routes = [
     {
         path: "create-immobile",
         title: "Carica Immobile",
-        component: CreaImmobilePage1Component
+        component: CreaImmobilePage4Component
     },
     {
         path: "riepilogo-attivita",
