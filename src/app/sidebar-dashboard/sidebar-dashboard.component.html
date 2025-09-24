@@ -1,0 +1,8 @@
+<div class="links">
+    <a [class.selected]= "sidebar == 'Immobili'" [routerLink]="['./']" fragment="Immobili" (click)="onImmobiliVisuClick()" >Immobili</a>
+    <a [class.selected]= "sidebar == 'Offerte'" [routerLink]="['./']" fragment="Offerte" (click)="offerte()">Offerte</a>
+    <a [class.selected]= "sidebar == 'Prenotazioni'" [routerLink]="['./']" fragment="Prenotazioni" (click)="prenotazioni()">Prenotazioni</a>
+    <a [class.selected]= "sidebar == 'Vendite'" [routerLink]="['./']" fragment="Vendite" (click)="venditeEffettuate()">Vendite</a>
+    <a [class.selected]= "sidebar == 'Storico'" [routerLink]="['./']" fragment="Storico" (click)="storico()">Storico</a>
+</div>
+    
