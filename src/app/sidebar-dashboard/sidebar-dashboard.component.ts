@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-dashboard',
@@ -10,17 +10,37 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class SidebarDashboardComponent {
   sidebar: string = 'Immobili';
+
+    constructor(private route: ActivatedRoute) {}
+  
+    ngOnInit(): void {
+      this.route.fragment.subscribe(fragment => {
+        console.log('Fragment is:', fragment);
+  
+        if (fragment === 'Immobili') {
+          this.onImmobiliVisuClick();
+        } else if (fragment === 'Offerte') {
+          this.offerteRicevute();
+        } else if (fragment === 'Prenotazioni') {
+          this.prenotazioniRicevute();
+        } else if (fragment === 'Vendite') {
+          this.venditeEffettuate();
+        } else if (fragment === 'Storico') {
+          this.storico();
+        }
+      });
+    }
   
  
   onImmobiliVisuClick() {
     this.sidebar = 'Immobili';
   }
 
-  offerte() {
+  offerteRicevute() {
     this.sidebar = 'Offerte';
   }
 
-  prenotazioni() {
+  prenotazioniRicevute() {
     this.sidebar = 'Prenotazioni';
   }
 

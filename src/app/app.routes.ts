@@ -11,6 +11,7 @@ import { CreaImmobilePage4Component } from './crea-immobile-page4/crea-immobile-
 import { RiepilogoAttivitaComponent } from './riepilogo-attivita/riepilogo-attivita.component';
 import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ImmobiliListUtenteComponent } from './immobili-list-utente/immobili-list-utente.component';
 
 export const routes: Routes = [
     {
@@ -84,7 +85,7 @@ export const routes: Routes = [
         path: "dashboard",
         title: "Dashboard",
         component: DashboardComponent
-    },
+    }
     
     
     

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { skip } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,8 +11,24 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class SidebarComponent {
 
-  sidebar: string = 'Immobili';
-  
+  private router = inject(Router);
+  sidebar: String = 'Immobili';
+
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.fragment.subscribe(fragment => {
+      console.log('Fragment is:', fragment);
+
+      if (fragment === 'Immobili') {
+        this.onImmobiliVisuClick();
+      } else if (fragment === 'Offerte') {
+        this.offerteFatte();
+      } else if (fragment === 'Prenotazioni') {
+        this.prenotazioniEffettuate();
+      }
+    });
+  }
  
   onImmobiliVisuClick() {
     this.sidebar = 'Immobili';

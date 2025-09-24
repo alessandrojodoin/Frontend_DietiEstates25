@@ -1,6 +1,9 @@
 <div class="links">
-    <a [class.selected]= "sidebar == 'Immobili'" [routerLink]="['./']" fragment="Immobili" (click)="onImmobiliVisuClick()" >Immobili Visualizzati</a>
-    <a [class.selected]= "sidebar == 'Offerte'" [routerLink]="['./']" fragment="Offerte" (click)="offerteFatte()">Offerte Fatte</a>
-    <a [class.selected]= "sidebar == 'Prenotazioni'" [routerLink]="['./']" fragment="Prenotazioni" (click)="prenotazioniEffettuate()">Prenotazioni Effettuate</a>
+    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Immobili'" [routerLink]="['./']" fragment="Immobili" (click)="onImmobiliVisuClick()" >Immobili Visualizzati</button>
+    <span class="divider"></span>
+    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Offerte'" [routerLink]="['./']" fragment="Offerte" (click)="offerteFatte()">Offerte Fatte</button>
+    <span class="divider"></span>
+    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Prenotazioni'" [routerLink]="['./']" fragment="Prenotazioni" (click)="prenotazioniEffettuate()">Prenotazioni Effettuate</button>
+    <span class="divider"></span>
 </div>
     

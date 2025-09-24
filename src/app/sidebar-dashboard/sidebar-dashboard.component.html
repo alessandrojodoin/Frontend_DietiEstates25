@@ -1,8 +1,13 @@
 <div class="links">
-    <a [class.selected]= "sidebar == 'Immobili'" [routerLink]="['./']" fragment="Immobili" (click)="onImmobiliVisuClick()" >Immobili</a>
-    <a [class.selected]= "sidebar == 'Offerte'" [routerLink]="['./']" fragment="Offerte" (click)="offerte()">Offerte</a>
-    <a [class.selected]= "sidebar == 'Prenotazioni'" [routerLink]="['./']" fragment="Prenotazioni" (click)="prenotazioni()">Prenotazioni</a>
-    <a [class.selected]= "sidebar == 'Vendite'" [routerLink]="['./']" fragment="Vendite" (click)="venditeEffettuate()">Vendite</a>
-    <a [class.selected]= "sidebar == 'Storico'" [routerLink]="['./']" fragment="Storico" (click)="storico()">Storico</a>
+    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Immobili'" [routerLink]="['./']" fragment="Immobili" (click)="onImmobiliVisuClick()" >Immobili</button>
+    <span class="divider"></span>
+    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Offerte'" [routerLink]="['./']" fragment="Offerte" (click)="offerteRicevute()">Offerte</button>
+    <span class="divider"></span>
+    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Prenotazioni'" [routerLink]="['./']" fragment="Prenotazioni" (click)="prenotazioniRicevute()">Prenotazioni</button>
+    <span class="divider"></span>
+    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Vendite'" [routerLink]="['./']" fragment="Vendite" (click)="venditeEffettuate()">Vendite</button>
+    <span class="divider"></span>
+    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Storico'" [routerLink]="['./']" fragment="Storico" (click)="storico()">Storico</button>
+    <span class="divider"></span>
 </div>
     

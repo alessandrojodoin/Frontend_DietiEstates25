@@ -6,15 +6,39 @@
     width: 100%;
 }
 
-.selected {
-    text-decoration: underline;
-    font-weight: bold;
-    background-color: #74B3EF;
+.link-btn {
+  font-size: 20px;
+  background: none;
+  border: none;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 30px 8px;
 }
 
 
+.link-btn.selected {
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: #74B3EF;
+}
 
-host{
+.selector{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.divider {
+  display: inline-block;
+  width: 220px;
+  height: 1px;
+  background-color: #000000;
+  margin: 0px;
+}
+
+/*host{
     width: 220px;
     height: 100vh;
     background-color: #B1D3FF;
@@ -27,7 +51,7 @@ host{
     position: sticky;
     top: 0;
     z-index: 1000;
-}
+}*/
 
 .app-name{
     font-size: 2em;
