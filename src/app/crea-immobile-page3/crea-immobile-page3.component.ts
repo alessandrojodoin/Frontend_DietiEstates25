@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ImageThumbnailComponent } from "../image-thumbnail/image-thumbnail.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crea-immobile-page3',
@@ -70,4 +71,12 @@ export class CreaImmobilePage3Component {
     }
   }
 
+
+  constructor(private router: Router){}
+  onSubmit(){
+    this.router.navigate(['/create-immobile-page4']);
+  }
+  onAnnulla(){
+        this.router.navigate(['/create-immobile-page2']);
+      }
 }

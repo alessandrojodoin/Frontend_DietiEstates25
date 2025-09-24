@@ -113,14 +113,27 @@ gmp-map {
   padding: 4px 8px;
 }
 
-.button-container {
+.button-row {
   display: flex;
-  justify-content: flex-end;
-  max-width: 1000px;
-  margin: 0 auto;
+  justify-content: space-between;
+  width: 70%; 
+  padding: 20px 20px;
+  margin-left: 15%;
 }
 
-.button-container button {
-  padding: 10px 20px;
+.button-row button {
+  padding: 10px 40px;
   font-size: 16px;
+  background-color: #2490CA;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  align-items: center;
+  cursor: pointer;
 }
+.flip-arrow {
+  display: inline-block;
+  transform: rotate(180deg);
+  justify-content: center;
+}
+

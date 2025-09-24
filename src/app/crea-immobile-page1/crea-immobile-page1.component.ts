@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 //import {GoogleMaps} from  'google.maps'
 
@@ -83,16 +84,23 @@ export class CreaImmobilePage1Component {
 
 
 
-  });
+    });
 
-}
+  }
+
+  constructor(private router: Router){}
 
   ngAfterViewInit(){
     this.initMap();
   }
 
+
   onSubmit(){
-        
+        this.router.navigate(['/create-immobile-page2']);
+  }
+
+  onAnnulla(){
+        this.router.navigate(['']); //deve tornare alla home
   }
       
 

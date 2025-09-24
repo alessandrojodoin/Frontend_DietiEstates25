@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crea-immobile-page4',
@@ -20,8 +21,11 @@ export class CreaImmobilePage4Component {
          ),
        })
 
-
+       constructor(private router: Router){}
        onSubmit(): void{
 
        }
+       onAnnulla(){
+        this.router.navigate(['/create-immobile-page3']);
+      }
 }

@@ -28,8 +28,45 @@ export const routes: Routes = [
         title: "Login",
         component: LoginComponent
     },
-    {
+    {   
         path: "create-immobile",
+        title: "Carica Immobile",
+        component: CreaImmobilePage1Component
+    },
+    //crea immobile tasti in avanti
+    {
+        path: "create-immobile-page2",
+        title: "Carica Immobile",
+        component: CreaImmobilePage2Component
+    },
+    {
+        path: "create-immobile-page3",
+        title: "Carica Immobile",
+        component: CreaImmobilePage3Component
+    },
+    {
+        path: "create-immobile-page4",
+        title: "Carica Immobile",
+        component: CreaImmobilePage4Component
+    },
+    //crea immobile tasti indietro
+    {
+        path: "create-immobile-page1",
+        title: "Carica Immobile",
+        component: CreaImmobilePage1Component
+    },
+    {
+        path: "create-immobile-page2",
+        title: "Carica Immobile",
+        component: CreaImmobilePage2Component
+    },
+    {
+        path: "create-immobile-page3",
+        title: "Carica Immobile",
+        component: CreaImmobilePage3Component
+    },
+    {
+        path: "create-immobile-page4",
         title: "Carica Immobile",
         component: CreaImmobilePage4Component
     },
