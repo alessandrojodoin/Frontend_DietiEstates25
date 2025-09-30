@@ -99,8 +99,8 @@ export class CreaImmobilePage1Component {
         this.router.navigate(['/create-immobile-page2']);
   }
 
-  onAnnulla(){
-        this.router.navigate(['']); //deve tornare alla home
+  onAnnulla() {
+      this.router.navigate(['/']);
   }
       
 
