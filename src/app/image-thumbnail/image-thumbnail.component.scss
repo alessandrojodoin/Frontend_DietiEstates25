@@ -6,7 +6,7 @@ img {
 #backround{
 
     align-items: center;
-    background-color: #6A6868;
+    background-color: #e5e5e5;
     height: 100%;
     width: 100%;
     position: relative;
@@ -21,5 +21,19 @@ img {
     top: 0px;
     right: 0px;
     //visibility: hidden;
+    width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: red;
+  color: black;
+  font-size: 30px;                /* Dimensione del "-" */
+  font-weight: bold;              /* Più visibile */
+  cursor: pointer;                /* Cambia il cursore al passaggio */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 5px;
+  transition: background-color 0.2s;
 }
 
