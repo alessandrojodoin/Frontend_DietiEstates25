@@ -6,6 +6,11 @@
     width: 100%;
 }
 
+.flex-links {
+  display: flex;
+  flex-direction: column;
+}
+
 .link-btn {
   font-size: 20px;
   background: none;
@@ -15,6 +20,8 @@
   cursor: pointer;
   padding: 30px 8px;
 }
+
+
 
 
 .link-btn.selected {
