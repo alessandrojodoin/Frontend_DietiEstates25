@@ -1,9 +1,32 @@
 <div class="links">
-    <button class="link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Immobili'" [routerLink]="['./']" fragment="Immobili" (click)="onImmobiliVisuClick()" >🏠Immobili Visualizzati</button>
+    <button class="link-btn" [replaceUrl]="true" 
+            [class.selected]= "sidebar == 'Immobili'" 
+            [routerLink]="['./']" 
+            fragment="Immobili" 
+            (click)="onImmobiliVisuClick()" >
+            <span class="icon">🏠 </span>
+            <span class="text">Immobili <br> Visualizzati</span>
+    </button>
+
     <span class="divider"></span>
-    <button class="link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Offerte'" [routerLink]="['./']" fragment="Offerte" (click)="offerteFatte()">👤Offerte Fatte</button>
+
+    <button class="link-btn" [replaceUrl]="true" 
+            [class.selected]= "sidebar == 'Offerte'" 
+            [routerLink]="['./']" fragment="Offerte" 
+            (click)="offerteFatte()">
+            <span class="icon">👤 </span>
+            <span class="text">Offerte Fatte</span>
+    </button>
+
     <span class="divider"></span>
-    <button class="link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Prenotazioni'" [routerLink]="['./']" fragment="Prenotazioni" (click)="prenotazioniEffettuate()">📅Prenotazioni Effettuate</button>
+
+    <button class="link-btn" [replaceUrl]="true" 
+            [class.selected]= "sidebar == 'Prenotazioni'" 
+            [routerLink]="['./']" fragment="Prenotazioni" 
+            (click)="prenotazioniEffettuate()">
+            <span class="icon">📅 </span>
+            <span class="text">Prenotazioni Effettuate</span>
+    </button>
     <span class="divider"></span>
 </div>
 
