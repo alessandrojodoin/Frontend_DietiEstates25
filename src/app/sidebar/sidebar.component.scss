@@ -1,8 +1,9 @@
 @import "../variables.scss";
 
 .links{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    //flex-direction: column;
+    
     width: 100%;
     
 }
@@ -16,20 +17,41 @@
   text-decoration: none;
   cursor: pointer;
   padding: 30px 8px;
+
+  display: grid;
+  grid-template-columns: 20px 20px; // icona + testo
+  align-items: left;
+  gap: 8px; // spazio tra icona e testo
+  white-space: nowrap;
   
 }
 
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.link-btn.selected{
+  background-color: #74B3EF;
+  display: grid;
+  grid-template-columns: 20px 20px;
+  //grid-template-rows: 10px 10px;
+  grid-auto-flow: column;
+  
+  gap: 10px;
+}
 
 
 .link-btn.selected .text{
   font-weight: bold;
   text-decoration: underline;
-}
-
-.link-btn.selected{
-  background-color: #74B3EF;
-  
 }
 
 .selector{
@@ -50,6 +72,8 @@
   background-color: #000000;
   margin: 0px;
 }
+
+
 
 /*host{
     width: 220px;

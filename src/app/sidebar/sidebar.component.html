@@ -1,8 +1,7 @@
 <div class="links">
     <button class="link-btn" [replaceUrl]="true" 
             [class.selected]= "sidebar == 'Immobili'" 
-            [routerLink]="['./']" 
-            fragment="Immobili" 
+            [routerLink]="['./']" fragment="Immobili" 
             (click)="onImmobiliVisuClick()" >
             <span class="icon">🏠 </span>
             <span class="text">Immobili <br> Visualizzati</span>
@@ -25,7 +24,7 @@
             [routerLink]="['./']" fragment="Prenotazioni" 
             (click)="prenotazioniEffettuate()">
             <span class="icon">📅 </span>
-            <span class="text">Prenotazioni Effettuate</span>
+            <span class="text">Prenotazioni <br> Effettuate</span>
     </button>
     <span class="divider"></span>
 </div>
