@@ -1,13 +1,57 @@
 <div class="links">
-    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Immobili'" [routerLink]="['./']" fragment="Immobili" (click)="onImmobiliVisuClick()" >Immobili</button>
+    <button class= "link-btn" 
+        [replaceUrl]="true" 
+        [class.selected]= "sidebar == 'Immobili'" 
+        [routerLink]="['./']" fragment="Immobili" 
+        (click)="onImmobiliVisuClick()" >
+        <span class="icon">🏠 </span>
+        <span class="text">Immobili</span>
+    </button>
+
     <span class="divider"></span>
-    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Offerte'" [routerLink]="['./']" fragment="Offerte" (click)="offerteRicevute()">Offerte</button>
+    
+    <button class= "link-btn" 
+        [replaceUrl]="true" 
+        [class.selected]= "sidebar == 'Offerte'" 
+        [routerLink]="['./']" fragment="Offerte" 
+        (click)="offerteRicevute()">
+        <span class="icon">👤 </span>
+        <span class="text">Offerte</span>
+    </button>
+
     <span class="divider"></span>
-    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Prenotazioni'" [routerLink]="['./']" fragment="Prenotazioni" (click)="prenotazioniRicevute()">Prenotazioni</button>
+
+    <button class= "link-btn" 
+        [replaceUrl]="true" 
+        [class.selected]= "sidebar == 'Prenotazioni'" 
+        [routerLink]="['./']" fragment="Prenotazioni" 
+        (click)="prenotazioniRicevute()">
+        <span class="icon">📅 </span>
+        <span class="text">Prenotazioni</span>
+    </button>
+
     <span class="divider"></span>
-    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Vendite'" [routerLink]="['./']" fragment="Vendite" (click)="venditeEffettuate()">Vendite</button>
+
+    <button class= "link-btn" 
+        [replaceUrl]="true" 
+        [class.selected]= "sidebar == 'Vendite'" 
+        [routerLink]="['./']" fragment="Vendite" 
+        (click)="venditeEffettuate()">
+        <span class="icon" style="color: #006400">$ </span>
+        <span class="text">Vendite</span>
+    </button>
+
     <span class="divider"></span>
-    <button class= "link-btn" [replaceUrl]="true" [class.selected]= "sidebar == 'Storico'" [routerLink]="['./']" fragment="Storico" (click)="storico()">Storico</button>
+
+    <button class= "link-btn" 
+        [replaceUrl]="true" 
+        [class.selected]= "sidebar == 'Storico'" 
+        [routerLink]="['./']" fragment="Storico" 
+        (click)="storico()">
+        <span class="icon">📜 </span>
+        <span class="text">Storico</span>
+    </button>
+
     <span class="divider"></span>
 </div>
     

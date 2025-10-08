@@ -2,10 +2,7 @@
 
 .links{
     display: grid;
-    //flex-direction: column;
-    
     width: 100%;
-    
 }
 
 
@@ -22,7 +19,7 @@
   grid-template-columns: 20px 20px; // icona + testo
   align-items: left;
   gap: 8px; // spazio tra icona e testo
-  white-space: nowrap;
+  white-space: nowrap; //il testo non deve andare a capo
   
 }
 
@@ -42,9 +39,7 @@
   background-color: #74B3EF;
   display: grid;
   grid-template-columns: 20px 20px;
-  //grid-template-rows: 10px 10px;
   grid-auto-flow: column;
-  
   gap: 10px;
 }
 
@@ -62,7 +57,7 @@
 }
 
 .link-btn .icon{
-  font-size: 16px;
+  font-size: 30px;
 }
 
 .divider {
