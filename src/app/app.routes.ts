@@ -12,6 +12,8 @@ import { RiepilogoAttivitaComponent } from './registro-attivita/riepilogo-attivi
 import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard-agente/dashboard/dashboard.component';
 import { ImmobiliListUtenteComponent } from './registro-attivita/immobili-list-utente/immobili-list-utente.component';
+import { SummaryComponent } from './create-immobile/summary/summary.component';
+import { SuccessPopupComponent } from './create-immobile/success-popup/success-popup.component';
 
 export const routes: Routes = [
     {
@@ -53,6 +55,16 @@ export const routes: Routes = [
         path: "create-immobile-page4",
         title: "Carica Immobile",
         component: CreaImmobilePage4Component
+    },
+    {
+        path: 'summary',
+        title: 'Riepilogo Immobile',
+        component: SummaryComponent
+    },
+    {
+        path: 'success-popup',
+        title: 'Success',
+        component: SuccessPopupComponent
     },
     {
         path: "riepilogo-attivita",

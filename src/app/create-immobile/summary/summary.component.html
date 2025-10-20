@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<p class="titolo">Carica Immobile</p>
+<p class="sottotitolo">Riepilogo</p>
+
+<div class="button-row">
+    <button type="button" class="btn btn-secondary" (click)="onAnnulla()">
+    <span class="flip-arrow">&#10140;</span> Annulla</button>
+    <button type="button" class="btn btn-primary" (click)="openModal()">Confirm ✓</button>
+</div>
+
+<!-- Modal Bootstrap per Popup-->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="successModalLabel">Tutto pronto!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+      </div>
+
+      <div class="modal-body">
+        L'immobile è stato caricato con successo! <br>Puoi visualizzare l'inserzione <a>qui</a>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+      </div>
+
+    </div>
+  </div>
+</div>

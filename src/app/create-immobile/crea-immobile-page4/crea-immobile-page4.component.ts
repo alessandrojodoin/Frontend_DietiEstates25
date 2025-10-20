@@ -23,7 +23,7 @@ export class CreaImmobilePage4Component {
 
        constructor(private router: Router){}
        onSubmit(): void{
-
+        this.router.navigate(['/summary']);
        }
        onAnnulla(){
         this.router.navigate(['/create-immobile-page3']);
