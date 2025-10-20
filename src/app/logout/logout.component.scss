@@ -3,3 +3,20 @@ div{
     flex-flow: column;
     align-items: center;
 }
+
+.logout-message {
+  background-color: #e0f5eb;
+  border: 1px solid #9cd2b0;
+  color: #2f7d59; 
+  padding: 20px 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 100px auto; /* centra verticalmente */
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logout-message p {
+  margin: 10px 0;
+  font-size: 1.5em;
+}
