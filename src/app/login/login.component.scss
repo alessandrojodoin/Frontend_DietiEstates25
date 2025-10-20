@@ -1,62 +1,29 @@
 @import "../variables.scss";
 
 :host{
-
     display: flex;
     align-items: center;
     flex-flow: column;
- 
-
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 form{
     margin-top: 5%;
-    background-color: $primary-color;
+    background-color: #0884c79a;
     width: 80%;
     display: grid;
     grid-template-columns: 40% 60%;
-    grid-template-rows: 1fr 1em 1em 1fr;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas: "signup signup" "usernameLabel usernameField" "passwordLabel passwordField" "button button";
     border-radius: 20px;
     padding: 1em;
     row-gap: 1em;
     justify-items: center;
-
 }
 
 h1{
     grid-area: signup;
     text-align: center;
-
-}
-
-#username{
-    grid-area: usernameField;
-    height: 1.1em;
-}
-
-#password{
-    grid-area: passwordField;
-    height: 1.1em;
-}
-
-button{
-    grid-area: button;
-    font-size: larger;
-    font-weight: bold;
-    width: 5em;
-    height: 2em;
-    padding: 0.5em;
-
-}
-
-label[for="username"]{
-    grid-area: usernameLabel;
-}
-
-label[for="password"]{
-    grid-area: passwordLabel;
-
 }
 
 .label{
@@ -66,6 +33,36 @@ label[for="password"]{
     width: 100%;
     height: 100%;
     margin-right: 1em;
+    font-size: 20px;
+}
+
+.button-row {
+  grid-area: button;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%; 
+  padding: 20px 0px;
+}
+
+.button-row button {
+  padding: 10px 40px;
+  font-size: 16px;
+  background-color: #2490CA;
+  border-radius: 10px;
+  color: #fff;
+  border: none;
+  align-items: center;
+  cursor: pointer;
+  border: 3px solid #15638e;
+}
+
+label[for="username"]{
+    grid-area: usernameLabel;
+}
+
+label[for="password"]{
+    grid-area: passwordLabel;
+
 }
 
 .field{
@@ -78,4 +75,6 @@ label[for="password"]{
 
 input{
     width: 60%;
+    height: 1.5em; 
+    font-size: 1.1em;
 }
