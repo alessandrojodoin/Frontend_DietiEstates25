@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SuccessPopupComponent } from "../success-popup/success-popup.component";
 import { Modal } from 'bootstrap';
 
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [SuccessPopupComponent],
+  imports: [],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
 })
