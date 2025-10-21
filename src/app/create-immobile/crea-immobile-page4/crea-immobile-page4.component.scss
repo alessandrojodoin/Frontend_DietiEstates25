@@ -115,7 +115,7 @@ form {
   background-color: #2490CA;
   border-radius: 10px;
   color: #fff;
-  border: none;
+  border: 3px solid #15638e;
   align-items: center;
   cursor: pointer;
 }
@@ -125,3 +125,12 @@ form {
   justify-content: center;
 }
 
+.btn-primary, .btn-secondary {
+  box-shadow: 0 4px #2980b9;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-primary:active, .btn-secondary:active{
+  transform: translateY(4px);
+  box-shadow: 0 0 #2980b9;
+}

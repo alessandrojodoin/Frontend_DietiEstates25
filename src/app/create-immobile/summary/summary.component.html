@@ -5,7 +5,7 @@
 <div class="button-row">
     <button type="button" class="btn btn-secondary" (click)="onAnnulla()">
     <span class="flip-arrow">&#10140;</span> Annulla</button>
-    <button type="button" class="btn btn-primary" (click)="openModal()">Confirm ✓</button>
+    <button type="button" class="btn btn-primary" (click)="openModal()">Conferma ✓</button>
 </div>
 
 <!-- Modal Bootstrap per Popup-->
@@ -14,7 +14,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="successModalLabel">Tutto pronto!</h5>
+        <h5 class="modal-title" id="successModalLabel">Tutto pronto! ✅</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
       </div>
 
@@ -23,9 +23,11 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Torna alla home <span class="homeEmoji">⌂</span></button>
       </div>
 
     </div>
   </div>
 </div>
+
+<!--IDEA: da aggiungere popup nel caso in cui qualcosa va storto-->
