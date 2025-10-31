@@ -13,22 +13,26 @@ img {
     display: flex;
     align-content: center;
     justify-content: center;
+
+    &:hover #EliminaFotoButton {
+        opacity: 1;             // visibile solo al passaggio del mouse 
+    }
+
 }
 
-
 #EliminaFotoButton{
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    //visibility: hidden;
-    width: 40px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  opacity: 0;
+  width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: red;
+  background-color: darkred;
   color: black;
-  font-size: 30px;                /* Dimensione del "-" */
-  font-weight: bold;              /* Più visibile */
-  cursor: pointer;                /* Cambia il cursore al passaggio */
+  font-size: 30px;                // Dimensione del "-"
+  font-weight: bold;              // Più visibile
+  cursor: pointer;                // Cambia il cursore al passaggio
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,3 +41,6 @@ img {
   transition: background-color 0.2s;
 }
 
+#EliminaFotoButton:hover {
+  background-color: red; 
+}

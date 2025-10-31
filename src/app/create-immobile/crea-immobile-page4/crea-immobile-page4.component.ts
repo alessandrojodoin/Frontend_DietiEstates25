@@ -11,20 +11,19 @@ import { Router } from '@angular/router';
 })
 export class CreaImmobilePage4Component {
   ContrattoForm = new FormGroup({
-         NomeImmobile: new FormControl('',
-           [Validators.required,
-           Validators.minLength(1)]
-         ),
-         Descrizione: new FormControl('',
-           [Validators.required,
-           Validators.minLength(1)]
-         ),
-       })
+    Prezzo: new FormControl('', [Validators.required]),
+    SpeseAggiuntive: new FormControl('', [Validators.required]),
+    TipologiaContratto: new FormControl('', [Validators.required])
+  });
 
-       constructor(private router: Router){}
-       onSubmit(): void{
-        this.router.navigate(['/summary']);
-       }
+  constructor(private router: Router) {}
+
+  onSubmit(): void {
+    if (this.ContrattoForm.valid) {
+      console.log(this.ContrattoForm.value);
+      this.router.navigate(['/summary']);
+    }
+  }
        onAnnulla(){
         this.router.navigate(['/create-immobile-page3']);
       }

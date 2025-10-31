@@ -134,3 +134,9 @@ form {
   transform: translateY(4px);
   box-shadow: 0 0 #2980b9;
 }
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}

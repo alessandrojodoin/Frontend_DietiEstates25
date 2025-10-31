@@ -26,7 +26,7 @@
 
     <div class="form-group">
       <label for="Spese Aggiuntive">Spese Aggiuntive:</label>
-      <input id="Spese Aggiuntive" formControlName="Spese Aggiuntive" />
+      <input id="Spese Aggiuntive" formControlName="SpeseAggiuntive" />
     </div>
 
     <div class="form-group">   
@@ -39,7 +39,7 @@
 
   <div class="button-row">
     <button (click)="onAnnulla()" class="btn btn-secondary"><span class="flip-arrow">&#10140;</span> Indietro</button> 
-    <button type="submit" class="btn btn-primary">Avanti ➜</button>
+    <button type="submit" [disabled]="ContrattoForm.invalid" class="btn btn-primary">Avanti ➜</button>
   </div>
 
   
