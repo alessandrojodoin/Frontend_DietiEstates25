@@ -29,11 +29,181 @@
     </div>
 
     <div class="line"></div>
-    <p>Informazioni Generali</p>
+  <h2>Informazioni Generali</h2>
+
+   <div class="tag-container">
+
+    <!--Campi principali-->
+    <div class="tag-box">
+      <label for="locali">Numero di locali</label>
+      <input type="number" id="locali" name="locali" placeholder="Es. 3">
+    </div>
+
+    <div class="tag-box">
+      <label for="bagni">Numero di bagni</label>
+      <input type="number" id="bagni" name="bagni" placeholder="Es. 2">
+    </div>
+
+    <div class="tag-box">
+      <label for="piano">Piano</label>
+      <input type="text" id="piano" name="piano" placeholder="Es. 3° piano">
+    </div>
+
+    <div class="tag-box">
+      <label for="classe">Classe energetica</label>
+      <select id="classe" name="classe">
+        <option value="">Seleziona...</option>
+        <option>A4</option><option>A3</option><option>A2</option><option>A1</option>
+        <option>B</option><option>C</option><option>D</option>
+        <option>E</option><option>F</option><option>G</option>
+      </select>
+    </div>
+</div>
 
     <div class="line"></div>
-    <p>Tag Aggiuntivi</p>
+    <h2 class="section-title">Tag Aggiuntivi<br></h2>
 <!--TASTO ELIMINA TAG SOLO AL PASSAGGIO DEL MOUSE (vedi come per le foto)-->
+
+<div class="tag-container">
+    <!--Comfort-->
+    <div class="tag-box">
+      <label for="aria_cond">Aria condizionata</label>
+      <select id="aria_cond" name="aria_cond">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="camino">Camino</label>
+      <select id="camino" name="camino">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="wifi">Wi-Fi</label>
+      <select id="wifi" name="wifi">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="allarme">Impianto d’allarme</label>
+      <select id="allarme" name="allarme">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="video">Videosorveglianza</label>
+      <select id="video" name="video">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <!--Spazi esterni-->
+    <div class="tag-box">
+      <label for="balconi">Numero di balconi</label>
+      <input type="number" id="balconi" name="balconi" placeholder="Es. 2">
+    </div>
+
+    <div class="tag-box">
+      <label for="terrazzi">Numero di terrazzi</label>
+      <input type="number" id="terrazzi" name="terrazzi" placeholder="Es. 1">
+    </div>
+
+    <div class="tag-box">
+      <label for="giardino">Giardino</label>
+      <select id="giardino" name="giardino">
+        <option value="">Seleziona...</option>
+        <option>Privato</option>
+        <option>Condominiale</option>
+        <option>Assente</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="veranda">Veranda / Portico</label>
+      <select id="veranda" name="veranda">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="posto_auto">Posto auto</label>
+      <select id="posto_auto" name="posto_auto">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="garage">Garage</label>
+      <select id="garage" name="garage">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <!--Esposizione e contesto-->
+    <div class="tag-box">
+      <label for="esposizione">Collocazione</label>
+      <textarea id="esposizione" name="esposizione" placeholder="Es. Vicino al centro città..."></textarea>
+    </div>
+
+    <div class="tag-box">
+      <label for="arredato">Arredata</label>
+      <select id="arredato" name="arredato">
+        <option>No</option>
+        <option>Sì</option>
+        <option>Parzialmente</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="cucina">Cucina a vista</label>
+      <select id="cucina" name="cucina">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="mezzi">Vicinanza a mezzi pubblici</label>
+      <textarea id="mezzi" name="mezzi" placeholder="Es. Fermata autobus a 100m, metro linea 1..."></textarea>
+    </div>
+
+    <div class="tag-box">
+      <label for="ascensore">Ascensore</label>
+      <select id="ascensore" name="ascensore">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="disabili">Accesso disabili</label>
+      <select id="disabili" name="disabili">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+    <div class="tag-box">
+      <label for="animali">Animali ammessi</label>
+      <select id="animali" name="animali">
+        <option>No</option>
+        <option>Sì</option>
+      </select>
+    </div>
+
+  </div>
 
 
   <div class="button-row">

@@ -91,7 +91,7 @@ form {
   margin-top: 50px;
 }
 
-/* Ogni gruppo (label + input) */
+// Ogni gruppo (label + input)
 .form-group {
   display: flex;
   flex-direction: column;
@@ -110,6 +110,59 @@ form {
 
 input#Descrizione{
     height: 200px;
+}
+
+h2, .section-title {
+  color: #2a3b8f;
+  font-size: 1.5em;
+  margin: 30px 0 15px 0;
+  text-align: center;
+  width: 100%;
+}
+
+//TAG
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 15px;
+}
+
+.tag-box {
+  background-color: #e0f0ff;
+  border: 1px solid #b8d6f0;
+  border-radius: 8px;
+  padding: 15px;
+  flex: 1 1 220px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tag-box label {
+  display: block;
+  font-weight: bold;
+  color: #2a3b8f;
+  margin-bottom: 6px;
+}
+
+.tag-box input, .tag-box select, .tag-box textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #aacbe8;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.tag-box input:focus, .tag-box select:focus, .tag-box textarea:focus {
+  outline: none;
+  border-color: #2a84d2;
+  box-shadow: 0 0 4px rgba(42, 132, 210, 0.4);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
 }
 
 //bottoni
