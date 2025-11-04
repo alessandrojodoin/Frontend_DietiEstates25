@@ -50,6 +50,11 @@
     </div>
 
     <div class="tag-box">
+      <label for="superficie">Superficie in m²</label>
+      <input type="number" id="superficie" formControlName="superficie" placeholder="Es. 10.0000">
+    </div>
+
+    <div class="tag-box">
       <label for="classe">Classe energetica</label>
       <select id="classe" formControlName="classe">
         <option value="" disabled selected>Seleziona...</option>
@@ -62,7 +67,6 @@
 
     <div class="line"></div>
     <h2 class="section-title">Tag Aggiuntivi<br></h2>
-    <!--DA AGGIUNGERE BARRA DI RICERCA-->
 
 <!--TAG SELEZIONATI-->
 <div class="selected-tags">
@@ -82,13 +86,13 @@
 </div>
 
 
-<!--TAG OPZIONALI-->
+<!--TAG OPZIONALI-->   <!--DA AGGIUNGERE BARRA DI RICERCA-->
 <div class="optional-box">
   <!-- Search bar -->
   <input
     type="text"
     class="search-bar"
-    placeholder="Cerca un tag..."
+    placeholder="🔍Es 'wifi'..."
     [(ngModel)]="tagSearch"/>
 
   <div class="tag-container">
