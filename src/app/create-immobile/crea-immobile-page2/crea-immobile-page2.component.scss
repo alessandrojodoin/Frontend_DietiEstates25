@@ -186,6 +186,21 @@ h2.section-title {
   box-shadow: 0 0 4px rgba(42, 132, 210, 0.4);
 }
 
+//search bar
+.search-bar {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.search-bar:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
 //bottoni
 .add-btn {
   background-color: #47A6D8;

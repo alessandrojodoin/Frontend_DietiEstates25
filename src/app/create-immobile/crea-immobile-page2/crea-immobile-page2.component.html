@@ -36,22 +36,22 @@
     <!--Campi principali-->
     <div class="tag-box">
       <label for="locali">Numero di locali</label>
-      <input type="number" id="locali" name="locali" placeholder="Es. 3">
+      <input type="number" id="locali" formControlName="locali" placeholder="Es. 3">
     </div>
 
     <div class="tag-box">
       <label for="bagni">Numero di bagni</label>
-      <input type="number" id="bagni" name="bagni" placeholder="Es. 2">
+      <input type="number" id="bagni" formControlName="bagni" placeholder="Es. 2">
     </div>
 
     <div class="tag-box">
       <label for="piano">Piano</label>
-      <input type="text" id="piano" name="piano" placeholder="Es. 3° piano">
+      <input type="text" id="piano" formControlName="piano" placeholder="Es. 3° piano">
     </div>
 
     <div class="tag-box">
       <label for="classe">Classe energetica</label>
-      <select id="classe" name="classe">
+      <select id="classe" formControlName="classe">
         <option value="" disabled selected>Seleziona...</option>
         <option>A4</option><option>A3</option><option>A2</option><option>A1</option>
         <option>B</option><option>C</option><option>D</option>
@@ -62,6 +62,7 @@
 
     <div class="line"></div>
     <h2 class="section-title">Tag Aggiuntivi<br></h2>
+    <!--DA AGGIUNGERE BARRA DI RICERCA-->
 
 <!--TAG SELEZIONATI-->
 <div class="selected-tags">
@@ -83,6 +84,13 @@
 
 <!--TAG OPZIONALI-->
 <div class="optional-box">
+  <!-- Search bar -->
+  <input
+    type="text"
+    class="search-bar"
+    placeholder="Cerca un tag..."
+    [(ngModel)]="tagSearch"/>
+
   <div class="tag-container">
     <div class="tag-box" *ngFor="let tag of optionalTags">
       <label>{{ tag.nome | titlecase }}<button type="button" class="add-btn" (click)="addTag(tag)">+</button></label>
