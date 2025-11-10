@@ -8,6 +8,7 @@
             </a>
         </div>
         <div class="profile-menu" (click)="toggleDropdown()">
+             <ng-container *ngIf="auth.isUserAuthenticated(); else notLoggedIn">
             <span class="profile-username">Profilo</span>
             <span class="profile-arrow">
                 <span *ngIf="dropdownOpen">&#9650;</span>
@@ -17,10 +18,7 @@
             <div class="dropdown" *ngIf="dropdownOpen">
                 <div class="dropdown-header">Riepilogo Attività</div>
                 <ul>
-                    <!--devo fare i routes e mettere un route a pezzo + sistemare
-                            per mostrare il login prima del profilo -->
                     <li><a [routerLink]="['./riepilogo-attivita']" fragment="Immobili">Immobili Visualizzati</a></li>
-
                     <li><a [routerLink]="['./riepilogo-attivita']" fragment="Offerte">Offerte Fatte</a></li>
                     <li><a [routerLink]="['./riepilogo-attivita']" fragment="Prenotazioni">Prenotazioni Effettuate</a></li>
                 </ul>
@@ -30,6 +28,13 @@
                     <span class="logout-icon">⍈</span>
                 </div>
             </div>
+            </ng-container>
         </div>
+        <ng-template #notLoggedIn>
+            <div class="login-signup">
+                <a aria-label="Login" class="login" routerLink="/login">Login</a>
+                <a aria-label="Registrazione" class="registrazione" routerLink="/signup-cliente">Registrati</a>
+            </div>
+        </ng-template>
     </nav>
 </header>

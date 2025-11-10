@@ -19,6 +19,19 @@
   margin-right: 32px;
 }
 
+.login, .registrazione {
+    border: 1px solid #184f6d;
+    color: #fff;
+    border-radius: 4px;
+    padding: 3px 16px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
 .profile-username {
   font-size: 1.2rem;
   margin-right: 6px;

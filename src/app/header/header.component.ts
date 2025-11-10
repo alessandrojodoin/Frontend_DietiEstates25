@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from "@angular/router";
+import { AuthService } from "../_services/auth.service";
 
 
 @Component({
@@ -13,9 +14,12 @@ import { RouterLink } from "@angular/router";
 export class HeaderComponent {
 
   dropdownOpen = false;
+  auth = inject(AuthService);
 
 toggleDropdown() {
   this.dropdownOpen = !this.dropdownOpen;
 }
+
+
 
 }
