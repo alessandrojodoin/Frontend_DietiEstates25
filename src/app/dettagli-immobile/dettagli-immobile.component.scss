@@ -1,0 +1,201 @@
+$page-width: 920px;
+$blue-soft: #cfeaff;
+$blue-strong: #4aa4e0;
+$teal: #00a8c2;
+$muted: #666;
+$hr-color: #d7d7d7;
+$corner: 10px;
+
+.details-page {
+  max-width: $page-width;
+  margin: 22px auto;
+  padding: 12px 20px;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #111;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  .back-btn {
+    background: $teal;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .title { margin: 0; font-size: 20px; }
+}
+
+.gallery-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0 8px;
+
+  .thumb {
+    width: 80px;
+    height: 80px;
+    background: #e5e5e5;
+    border-radius: 6px;
+  }
+
+  .main-image {
+    position: relative;
+    width: 540px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .main-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #ddd;
+      border-radius: 6px;
+    }
+
+    .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      border: none;
+      background: transparent;
+      color: $muted;
+      font-size: 26px;
+      cursor: pointer;
+    }
+    .prev { left: -18px; }
+    .next { right: -18px; }
+  }
+}
+
+.descrizione {
+  h2 { margin: 8px 0 8px; font-size: 14px; }
+  .desc-bubble {
+    background: $blue-soft;
+    border: 2px solid $blue-strong;
+    padding: 14px;
+    border-radius: 12px;
+    line-height: 1.45;
+    font-size: 13px;
+    color: #222;
+  }
+}
+
+.sep {
+  border: 0;
+  height: 1px;
+  background: $hr-color;
+  margin: 18px 0;
+}
+
+.caratteristiche {
+  h3 { margin-bottom: 12px; font-size: 14px; }
+  .char-box {
+    background: lighten($blue-soft, 2%);
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid darken($blue-soft, 6%);
+    .char-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .char-item {
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      .icon-square {
+        width: 28px;
+        height: 28px;
+        background: #fff;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.05) inset;
+      }
+      .char-title { font-size: 12px; color: #0b3b5a; margin-bottom: 6px; }
+      .char-value { font-weight: 700; font-size: 16px; color: #0b3b5a; }
+    }
+  }
+}
+
+.prezzo-row {
+  h4 { margin-bottom: 10px; font-size: 13px; }
+  .price-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .price-left {
+      color: $muted;
+      font-size: 13px;
+      & > div { margin: 6px 0; }
+    }
+    .price-action {
+      .btn-teal {
+        background: $teal;
+        color: white;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.localita {
+  h4 { margin-bottom: 10px; font-size: 13px; }
+  .map-placeholder {
+    width: 100%;
+    height: 120px;
+    background: #c9f7d0; /* green block like screenshot */
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  .address { color: $muted; font-size: 13px; }
+}
+
+.contatti {
+  h4 { margin-bottom: 10px; font-size: 13px; }
+  .agent-line {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    color: $muted;
+    font-size: 13px;
+  }
+
+  .btn-visit {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    background: $teal;
+    color: #fff;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    cursor: pointer;
+    font-weight: 700;
+  }
+}
+
+/* small adjustments for narrow screens */
+@media (max-width: 980px) {
+  .details-page { padding: 12px; }
+  .gallery-row { flex-direction: column; gap: 12px; align-items: center; }
+  .main-image { width: 100%; }
+  .char-grid { grid-template-columns: repeat(2, 1fr); }
+  .btn-visit { position: fixed; right: 12px; bottom: 12px; }
+}

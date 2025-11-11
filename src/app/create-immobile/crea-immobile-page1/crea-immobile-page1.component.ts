@@ -71,7 +71,7 @@ export class CreaImmobilePage1Component {
       infoWindow.close();
 
       this.currentMarker?.setMap(null)
-
+      console.log(mapsMouseEvent.latLng.toJSON());
      
       this.currentMarker = new google.maps.Marker({
           position: mapsMouseEvent.latLng,

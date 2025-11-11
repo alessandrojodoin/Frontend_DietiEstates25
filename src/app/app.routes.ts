@@ -7,6 +7,8 @@ import { CreaImmobilePage1Component } from './create-immobile/crea-immobile-page
 import { CreaImmobilePage2Component } from './create-immobile/crea-immobile-page2/crea-immobile-page2.component';
 import { CreaImmobilePage3Component } from './create-immobile/crea-immobile-page3/crea-immobile-page3.component';
 import { CreaImmobilePage4Component } from './create-immobile/crea-immobile-page4/crea-immobile-page4.component';
+import { SearchResultMapComponent } from './search-result-map/search-result-map.component'; 
+import { DettagliImmobileComponent } from './dettagli-immobile/dettagli-immobile.component';
 
 import { RiepilogoAttivitaComponent } from './registro-attivita/riepilogo-attivita/riepilogo-attivita.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -74,7 +76,17 @@ export const routes: Routes = [
         path: "dashboard",
         title: "Dashboard",
         component: DashboardComponent
-    }
+    },
+    {
+        path: "search-result-map",
+        title: "Mappa Risultati Ricerca",
+        component: SearchResultMapComponent
+    },
+    {
+        path: "dettagli-immobile",
+        title: "Dettagli Immobile",
+        component: DettagliImmobileComponent
+    },
     
     
     
