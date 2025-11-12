@@ -20,9 +20,16 @@ export class SearchResultMapComponent implements AfterViewInit {
       tipoImmobile: "Appartamento",
       longitudine: 14.190889915493532,
       latitudine: 40.82852062332247,
-      indirizzo: "Via Roma 1, Napoli",
+      indirizzo: {
+        nome: "Via Roma 10, Napoli",
+        via: "via Roma 10",
+        citta: "Napoli",
+        provincia: "Napoli",
+      },
+      descrizione: "Appartamento accogliente situato nel cuore di Napoli, vicino a tutti i servizi principali.",
       tagDescrizione: ["balcone", "garage"],
       prezzo: 250000,
+      quadratura: 90,
       numeroVisualizzazioni: 150,
       tipologiaContratto: "Vendita",
       speseCondominiali: 50,
@@ -43,9 +50,16 @@ export class SearchResultMapComponent implements AfterViewInit {
       tipoImmobile: "Appartamento",
       longitudine: 14.3759,
       latitudine: 40.6279,
-      indirizzo: "Corso Italia 25, Sorrento",
+      indirizzo: {
+        nome: "Corso Italia 25, Sorrento",
+        via: "Corso Italia 25",
+        citta: "Sorrento",
+        provincia: "Napoli",
+      },
+      descrizione: "Appartamento luminoso con vista mare, dotato di ampio terrazzo e finiture moderne.",
       tagDescrizione: ["terrazzo", "vista mare"],
       prezzo: 400000,
+      quadratura: 90,
       numeroVisualizzazioni: 80,
       tipologiaContratto: "Vendita",
       speseCondominiali: 30,
@@ -97,7 +111,7 @@ export class SearchResultMapComponent implements AfterViewInit {
       const marker = new Marker({
         position: { lat: immobile.latitudine, lng: immobile.longitudine },
         map: this.map!,
-        title: immobile.indirizzo,
+        title: immobile.indirizzo.nome
       });
 
       marker.addListener("click", () => {

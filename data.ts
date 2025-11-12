@@ -14,9 +14,11 @@ export type Immobile = {
     tipoImmobile: string; 
     longitudine: number;
     latitudine: number;
-    indirizzo: string;
+    indirizzo: Indirizzo;
+    descrizione: string;
     tagDescrizione: string[];
     prezzo: number;
+    quadratura: number;
     numeroVisualizzazioni: number;
     tipologiaContratto: string;
     speseCondominiali: number; 
@@ -28,6 +30,14 @@ export type Immobile = {
 }
 
 
+export type Indirizzo = {
+    nome: string;
+    via: string;
+    citta: string;
+    provincia: string;
+}
+
+
 export type AgenteImmobiliare = {
     username: string;
     email: string;
@@ -35,5 +45,6 @@ export type AgenteImmobiliare = {
     cognome: string;
     telefono: string;
 }
+
 
 export type Offerte = {}

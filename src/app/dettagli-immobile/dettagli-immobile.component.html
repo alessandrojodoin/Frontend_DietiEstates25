@@ -1,7 +1,7 @@
 <div class="details-page">
 
   <header class="page-header">
-    <h1 class="title">Nome Immobile</h1>
+    <h1 class="title">{{ immobile.indirizzo.nome }}</h1>
   </header>
 
   <section class="gallery-row">
@@ -17,38 +17,24 @@
   </section>
 
   <section class="descrizione">
-    <h2>Descrizione Immobile</h2>
+    <h3>Descrizione </h3>
     <p class="desc-bubble">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      {{ immobile.descrizione }}
     </p>
   </section>
 
   <hr class="sep">
 
   <section class="caratteristiche">
-    <h3>Caratteristiche</h3>
+    <h2>Caratteristiche</h2>
     <div class="char-box">
       <div class="char-grid">
-        <div class="char-item">
-          <div class="icon-square"></div>
-          <div class="char-title">Numero Piani</div>
-          <div class="char-value">3</div>
-        </div>
-        <div class="char-item">
-          <div class="icon-square"></div>
-          <div class="char-title">Numero Piani</div>
-          <div class="char-value">3</div>
-        </div>
-        <div class="char-item">
-          <div class="icon-square"></div>
-          <div class="char-title">Numero Piani</div>
-          <div class="char-value">3</div>
-        </div>
-        <div class="char-item">
-          <div class="icon-square"></div>
-          <div class="char-title">Numero Piani</div>
-          <div class="char-value">3</div>
-        </div>
+          @for(tag of immobile.tagDescrizione; track tag){
+            <div class="char-item"></div>
+            <div class="icon-square"></div>
+            <div class="char-title">{{ tag }}</div>
+            <div class="char-value">????</div>
+          }
       </div>
     </div>
   </section>
@@ -56,12 +42,12 @@
   <hr class="sep">
 
   <section class="prezzo-row">
-    <h4>Informazioni sul prezzo</h4>
+    <h2>Informazioni sul prezzo</h2>
     <div class="price-info">
       <div class="price-left">
-        <div><strong>Prezzo:</strong> 3$</div>
-        <div><strong>Prezzo al m2:</strong> 3$</div>
-        <div class="condo"><strong>Spese Condominiali:</strong> Nessuna</div>
+        <div><strong>Prezzo:</strong> {{ immobile.prezzo | number:'1.0-0'}}€</div>
+        <div><strong>Prezzo al m²:</strong> {{ (immobile.prezzo / immobile.quadratura) | number:'1.0-0' }}€</div>
+        <div class="condo"><strong>Spese Condominiali:</strong> {{ immobile.speseCondominiali | number:'1.0-0'}}€</div>
       </div>
       <div class="price-action">
         <button class="btn-teal">💳 Proponi Prezzo</button>
@@ -72,12 +58,14 @@
   <hr class="sep">
 
   <section class="localita">
-    <h4>Località</h4>
-    <div class="map-placeholder" aria-hidden="true"></div>
+    <h2>Località</h2>
+    <div class="map-wrapper">
+      <div id="map" map-id="7e09b66dcfaa788fb9c8f8bd"></div>
+    </div>
     <div class="address">
-      <div><strong>Città:</strong> Napoli</div>
-      <div><strong>Provincia:</strong> Napoli</div>
-      <div><strong>Indirizzo:</strong> Via Lorem Ipsum 200</div>
+      <div><strong>Città:</strong> {{immobile.indirizzo.citta}}</div>
+      <div><strong>Provincia:</strong> {{ immobile.indirizzo.provincia }}</div>
+      <div><strong>Indirizzo:</strong> {{ immobile.indirizzo.via }}</div>
     </div>
   </section>
 
@@ -86,9 +74,9 @@
   <section class="contatti">
     <h4>Contatti Agente Immobiliare</h4>
     <div class="agent-line">
-      <div><strong>Nome:</strong> Rita Melograno</div>
-      <div><strong>Numero di telefono:</strong> 230030203203</div>
-      <div><strong>Email:</strong> rmelograno dietiestates25.it</div>
+      <div><strong>Nome:</strong> {{immobile.agenteImmobiliare.nome + " " + immobile.agenteImmobiliare.cognome }}</div>
+      <div><strong>Numero di telefono:</strong> {{immobile.agenteImmobiliare.telefono}}</div>
+      <div><strong>Email:</strong> {{ immobile.agenteImmobiliare.email }}</div>
     </div>
 
     <button class="btn-visit">📅 Prenota Visita</button>
