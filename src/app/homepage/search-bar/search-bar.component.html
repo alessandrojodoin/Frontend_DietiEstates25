@@ -11,6 +11,7 @@
         [class.selected]="selected === 'compra'"
       >Compra</button>
 
+
       <button
         role="tab"
         type="button"
@@ -20,6 +21,70 @@
         [class.selected]="selected === 'affitta'"
       >Affitta</button>
     </div>
+
+
+    <button
+      type="button"
+      (click)="openFilters()"
+      class="filter-btn"
+    >⚙️ Filtri</button>
+
+    <div class="popup-overlay" *ngIf="showFilters" (click)="closeFilters()">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+    <button (click)="closeFilters()">X</button>
+
+    <h2>Filtri di Ricerca</h2>
+      <div class="filter-option">
+        <label for="price-range">Fascia di Prezzo:</label>
+        <div class="price-range">
+          <input type="number" id="min-price" name="min-price" placeholder="Min">
+          <span> - </span>
+          <input type="number" id="max-price" name="max-price" placeholder="Max">
+        </div>
+      </div>
+      <div class="filter-option">
+        <label for="property-type">Tipo di Proprietà:</label>
+        <select id="property-type" name="property-type">
+          <option value="apartment">Appartamento</option>
+          <option value="house">Casa</option>
+          <option value="studio">Monolocale</option>
+        </select>
+      </div>
+      <div class="filter-option">
+        <label for="bagni">Numero di Bagni:</label>
+        <input type="number" id="bagni" name="bagni" min="1" max="10">
+      </div>
+      <div class="filter-option">
+        <label for="bedrooms">Numero di Camere da Letto:</label>
+        <input type="number" id="bedrooms" name="bedrooms" min="1" max="10">
+      </div>
+      <div class="filter-option">
+        <label for="area-size">Dimensione dell'Area (m²):</label>
+        <input type="number" id="area-size" name="area-size" min="10" max="1000">
+      </div>
+      <div class="filter-option">
+        <label for="extra-roba">Caratteristiche Aggiuntive:</label>
+        <select id="extra-roba" name="extra-roba">
+          <option value="Terrazzo">Terrazzo</option>
+          <option value="Balcone">Balcone</option>
+          <option value="Ascensore">Ascensore</option>
+        </select>
+      </div>
+
+
+
+    </div>
+    </div>
+
+
+    <button
+      type="button"
+      (click)="startSearch()"
+      class="search-btn"
+    >🔍 Cerca</button>
+
+
+
 
     </div>
     <div class="search-bar-row">

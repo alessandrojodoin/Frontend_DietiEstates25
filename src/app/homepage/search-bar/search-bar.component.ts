@@ -1,9 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss'] 
 })
@@ -18,5 +20,22 @@ export class SearchBarComponent {
   homelessRents() {
     this.selected = 'affitta';
   }
+
+
+  showFilters = false;
+
+  openFilters() {
+    this.showFilters = true;
+  }
+
+
+  closeFilters() {    
+    this.showFilters = false;
+  }
+
+  startSearch() {
+
+  }
+
 
 }

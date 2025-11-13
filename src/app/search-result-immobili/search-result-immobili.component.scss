@@ -1,0 +1,120 @@
+    // fallback defaults (in case variables.scss doesn't define them)
+$card-padding: 18px !default;
+$thumb-w: 260px !default;
+$thumb-h: 96px !default;
+$gap: 18px !default;
+/* increased radius for more rounded look */
+$card-radius: 18px !default;
+$bg: #eaf6ff !default; /* pale blue like screenshot */
+$thumb-color: #9de0f6 !default; /* blue block */
+$border-color: #bfcbd6 !default;
+$text-muted: #666 !default;
+$title-color: #0b3b5a !default;
+
+.immobili {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 16px;
+}
+
+/* Each card: rounded pale-blue rectangle with left thumbnail and right text */
+.immobile-card {
+  position: relative;
+  background: $bg;
+  border: 1px solid $border-color;
+  border-radius: $card-radius;
+  padding: $card-padding;
+  padding-left: calc(#{$thumb-w} + #{$gap} + #{$card-padding}); /* reserve space for thumb */
+  box-shadow: 0 2px 0 rgba(0,0,0,0.03) inset;
+  min-height: max(#{$thumb-h}, 120px);
+  display: block;
+  overflow: hidden;
+
+  /* add vertical spacing between cards (works even when cards are not inside .immobili) */
+  margin-bottom: 18px;
+
+  /* ensure last card doesn't add extra space */
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  /* left thumbnail drawn by pseudo-element so no HTML changes needed */
+  &::before{
+    content: "";
+    position: absolute;
+    left: $card-padding;
+    top: 50%;
+    transform: translateY(-50%);
+    width: $thumb-w;
+    height: $thumb-h;
+    background: linear-gradient(180deg, $thumb-color 0%, lighten($thumb-color,6%) 100%);
+    /* match the increased card rounding but slightly smaller so it sits nicely inside */
+    border-radius: ( $card-radius - 8px );
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.25) inset, 0 1px 0 rgba(0,0,0,0.03);
+  }
+
+  .immobile-details{
+    /* text sits to the right of the thumbnail (padding-left above) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+
+    .immobile-title{
+      margin: 0 0 6px 0;
+      font-size: 15px;
+      color: $title-color;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      max-width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .immobile-description{
+      margin: 0 0 8px 0;
+      font-size: 13px;
+      color: $text-muted;
+      max-height: 2.6em;
+      overflow: hidden;
+    }
+
+    .immobile-price,
+    .immobile-location,
+    .immobile-type,
+    .immobile-superficie {
+      margin: 2px 0;
+      font-size: 13px;
+      color: $text-muted;
+    }
+
+    .immobile-price {
+      font-weight: 600;
+      color: darken($text-muted, 10%);
+    }
+  }
+}
+
+/* responsive: stack thumb on narrow screens */
+@media (max-width: 680px) {
+  .immobile-card{
+    padding-left: $card-padding;
+    min-height: auto;
+    &::before {
+      position: relative;
+      left: 0;
+      top: 0;
+      transform: none;
+      margin-bottom: $gap;
+      display: block;
+      border-radius: 8px; /* keep mobile thumb rounded */
+    }
+
+    .immobile-details {
+      margin-top: $gap;
+    }
+  }
+}

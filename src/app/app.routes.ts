@@ -15,6 +15,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard-agente/dashboard/dashboard.component';
 import { ImmobiliListUtenteComponent } from './registro-attivita/immobili-list-utente/immobili-list-utente.component';
 import { SummaryComponent } from './create-immobile/summary/summary.component';
+import { SearchResultImmobiliComponent } from './search-result-immobili/search-result-immobili.component';
 
 export const routes: Routes = [
     {
@@ -86,6 +87,11 @@ export const routes: Routes = [
         path: "dettagli-immobile",
         title: "Dettagli Immobile",
         component: DettagliImmobileComponent
+    },
+    {
+        path: "search-result-immobili",
+        title: "Immobili",
+        component: SearchResultImmobiliComponent
     },
     
     
