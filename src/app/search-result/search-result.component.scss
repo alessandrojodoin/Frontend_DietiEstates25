@@ -1,0 +1,35 @@
+.results-layout { 
+    display: flex; 
+    width: 100%; 
+    height: 100vh; 
+    margin: 0; 
+    padding: 0; 
+    overflow: hidden; 
+} 
+
+
+.list-section { 
+    width: 40%; 
+    overflow-y: auto; 
+    background: #f6f9fc; 
+} 
+
+
+.map-section {
+  width: 60%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+.map-section app-search-result-map {
+  flex: 1 1 auto;
+  height: 100%;
+  width: 100%;
+  display: block;
+}

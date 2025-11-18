@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -96,14 +97,15 @@ export class CreaImmobilePage1Component {
 
 
   onSubmit(){
-        this.router.navigate(['/create-immobile-page2']);
+    //this.router.navigate(['/create-immobile-page2']);
+    this.goToPage.emit(2);
   }
+
 
   onAnnulla() {
       this.router.navigate(['/']);
   }
-      
 
-
+  @Output() goToPage = new EventEmitter<number>();
 
 }

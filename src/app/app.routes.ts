@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard-agente/dashboard/dashboard.compo
 import { ImmobiliListUtenteComponent } from './registro-attivita/immobili-list-utente/immobili-list-utente.component';
 import { SummaryComponent } from './create-immobile/summary/summary.component';
 import { SearchResultImmobiliComponent } from './search-result-immobili/search-result-immobili.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 export const routes: Routes = [
     {
@@ -36,28 +37,9 @@ export const routes: Routes = [
     {   
         path: "create-immobile",
         title: "Carica Immobile",
-        component: CreaImmobilePage1Component
+        component: CreaImmobileComponent
     },
-    {
-        path: "create-immobile-page1",
-        title: "Carica Immobile",
-        component: CreaImmobilePage1Component
-    },
-    {
-        path: "create-immobile-page2",
-        title: "Carica Immobile",
-        component: CreaImmobilePage2Component
-    },
-    {
-        path: "create-immobile-page3",
-        title: "Carica Immobile",
-        component: CreaImmobilePage3Component
-    },
-    {
-        path: "create-immobile-page4",
-        title: "Carica Immobile",
-        component: CreaImmobilePage4Component
-    },
+    
     {
         path: 'summary',
         title: 'Riepilogo Immobile',
@@ -79,20 +61,16 @@ export const routes: Routes = [
         component: DashboardComponent
     },
     {
-        path: "search-result-map",
-        title: "Mappa Risultati Ricerca",
-        component: SearchResultMapComponent
+        path: "search-result",
+        title: "Risultati Ricerca",
+        component: SearchResultComponent
     },
     {
         path: "dettagli-immobile",
         title: "Dettagli Immobile",
         component: DettagliImmobileComponent
     },
-    {
-        path: "search-result-immobili",
-        title: "Immobili",
-        component: SearchResultImmobiliComponent
-    },
+
     
     
     

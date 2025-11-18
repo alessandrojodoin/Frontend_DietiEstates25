@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -24,7 +24,13 @@ export class CreaImmobilePage4Component {
       this.router.navigate(['/summary']);
     }
   }
-       onAnnulla(){
-        this.router.navigate(['/create-immobile-page3']);
-      }
+
+  onAnnulla(){
+    //this.router.navigate(['/create-immobile-page3']);
+    this.goToPage.emit(3);
+  }
+
+
+  @Output() goToPage = new EventEmitter<number>();
+
 }

@@ -1,1 +1,15 @@
-<p>crea-immobile works!</p>
+@switch(page){
+        @case(1){
+            <app-crea-immobile-page1 (goToPage)="updatePage($event)"></app-crea-immobile-page1>
+        }
+        @case (2) {
+            <app-crea-immobile-page2 (goToPage)="updatePage($event)"></app-crea-immobile-page2>
+        }
+        @case(3){
+            <app-crea-immobile-page3 (goToPage)="updatePage($event)"></app-crea-immobile-page3>
+        }
+        @case(4){
+            <app-crea-immobile-page4 (goToPage)="updatePage($event)"></app-crea-immobile-page4>
+        }
+     }
+

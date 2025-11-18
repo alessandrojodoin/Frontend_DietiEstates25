@@ -1,59 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators, FormsModule  } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 
 interface TagOption {
   nome: string;
   tipo: 'select' | 'number' | 'textarea';
-  opzioni?: string[]; // solo per i select
-  placeholder?: string; // solo per number/textarea
+  opzioni?: string[];
+  placeholder?: string;
 }
 
 @Component({
   selector: 'app-crea-immobile-page2',
   standalone: true,
-  imports: [ReactiveFormsModule, TitleCasePipe, CommonModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, TitleCasePipe],
   templateUrl: './crea-immobile-page2.component.html',
-  styleUrl: './crea-immobile-page2.component.scss'
+  styleUrls: ['./crea-immobile-page2.component.scss']
 })
-export class CreaImmobilePage2Component{
+export class CreaImmobilePage2Component implements OnInit {
+
   tagSearch: string = '';
+  selectedTags: TagOption[] = [];
 
-filteredOptionalTags(): TagOption[] {
-  const search = this.tagSearch.trim().toLowerCase();
-
-  // Se non si è digitato nulla → mostra tutti i tag opzionali
-  if (!search) {
-    return this.optionalTags;
-  }
-
-  // Altrimenti mostra solo quelli che contengono il testo (case-insensitive)
-  return this.optionalTags.filter(tag =>
-    tag.nome.toLowerCase().includes(search)
-  );
-}
-
-
-   ImmobileForm = new FormGroup({
-         NomeImmobile: new FormControl('',
-           [Validators.required,
-           Validators.minLength(1)]
-         ),
-         Descrizione: new FormControl('',
-           [Validators.required,
-           Validators.minLength(1)]
-         ),
-         //DA AGGIUNGERE I TAG
-         locali: new FormControl('', Validators.required),
-         bagni: new FormControl('', Validators.required),
-         piano: new FormControl(''),
-         classe: new FormControl(''),
-         tagAggiuntivi: new FormGroup({})
-    })
-
-   selectedTags: TagOption[] = [];
-   optionalTags: TagOption[] = [
+  optionalTags: TagOption[] = [
     { nome: 'aria condizionata', tipo: 'select', opzioni: ['No', 'Sì'] },
     { nome: 'camino', tipo: 'select', opzioni: ['No', 'Sì'] },
     { nome: 'wifi', tipo: 'select', opzioni: ['No', 'Sì'] },
@@ -74,45 +43,81 @@ filteredOptionalTags(): TagOption[] {
     { nome: 'animali ammessi', tipo: 'select', opzioni: ['No', 'Sì'] },
   ];
 
+  ImmobileForm!: FormGroup;
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // Generazione dinamica del FormGroup
+    const controls: any = {
+      NomeImmobile: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      Descrizione: new FormControl('', [Validators.required, Validators.minLength(1)]),
+      locali: new FormControl('', Validators.required),
+      bagni: new FormControl('', Validators.required),
+      piano: new FormControl(''),
+      classe: new FormControl(''),
+      tagAggiuntivi: new FormGroup({})
+    };
+
+
+    // Genera dinamicamente i tag selezionabili
+    this.optionalTags.forEach(tag => {
+      const tagControls = controls.tagAggiuntivi as FormGroup;
+      if (tag.tipo === 'number') {
+        tagControls.addControl(tag.nome, new FormControl('', [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+$')]));
+      } else if (tag.tipo === 'textarea') {
+        tagControls.addControl(tag.nome, new FormControl('', [Validators.required, Validators.minLength(10)]));
+      } else if (tag.tipo === 'select') {
+        tagControls.addControl(tag.nome, new FormControl('', Validators.required));
+      }
+    });
+
+    this.ImmobileForm = new FormGroup(controls);
+  }
+
+
+  filteredOptionalTags(): TagOption[] {
+    const search = this.tagSearch.trim().toLowerCase();
+    return !search ? this.optionalTags : this.optionalTags.filter(tag => tag.nome.toLowerCase().includes(search));
+  }
+
+
   addTag(tag: TagOption) {
-    // Sposta il tag tra i selezionati
     this.selectedTags.push(tag);
     this.optionalTags = this.optionalTags.filter(t => t !== tag);
-
-    // aggiungi dinamicamente un controllo nel form
-  const tagControls = this.ImmobileForm.get('tagAggiuntivi') as FormGroup;
-  tagControls.addControl(tag.nome, new FormControl(''));
   }
+
+
+  removeTag(tag: TagOption) {
+    this.optionalTags.push(tag);
+    this.selectedTags = this.selectedTags.filter(t => t !== tag);
+  }
+
 
   handleTagSelection(tag: TagOption, event: Event) {
     const target = event.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
-    //console.log(`${tag.nome} = ${target.value}`);
     const tagControls = this.ImmobileForm.get('tagAggiuntivi') as FormGroup;
-  tagControls.get(tag.nome)?.setValue(target.value);
-  }
-
-  removeTag(tag: TagOption) {
-    // Sposta di nuovo tra gli opzionali
-    this.optionalTags.push(tag);
-    this.selectedTags = this.selectedTags.filter(t => t !== tag);
-
-    // rimuovi il controllo dal form
-  const tagControls = this.ImmobileForm.get('tagAggiuntivi') as FormGroup;
-  tagControls.removeControl(tag.nome);
+    tagControls.get(tag.nome)?.setValue(target.value);
   }
 
 
-  constructor(private router: Router){}
-
-  onSubmit(): void{
+  onSubmit(): void {
     if (this.ImmobileForm.valid) {
       console.log('Dati immobile:', this.ImmobileForm.value);
-      this.router.navigate(['/create-immobile-page3']);
+      //this.router.navigate(['/create-immobile-page3']);
+      this.goToPage.emit(3);
     }
+    
   }
 
-  onAnnulla(){
-    this.router.navigate(['/create-immobile-page1']);
+
+  onAnnulla(): void {
+    //this.router.navigate(['/create-immobile-page1']);
+    this.goToPage.emit(1);
   }
+
+
+  @Output() goToPage = new EventEmitter<number>();
+
 
 }

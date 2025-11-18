@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ImageThumbnailComponent } from "../image-thumbnail/image-thumbnail.component";
 import { Router } from '@angular/router';
 
@@ -74,9 +74,17 @@ export class CreaImmobilePage3Component {
 
   constructor(private router: Router){}
   onSubmit(){
-    this.router.navigate(['/create-immobile-page4']);
+    //this.router.navigate(['/create-immobile-page4']);
+    this.goToPage.emit(4);
   }
+
+
   onAnnulla(){
-        this.router.navigate(['/create-immobile-page2']);
-      }
+        //this.router.navigate(['/create-immobile-page2']);
+        this.goToPage.emit(2);
+  }
+
+
+    @Output() goToPage = new EventEmitter<number>();
+
 }
