@@ -44,6 +44,7 @@ export class CreaImmobilePage1Component {
 
     const myLatlng = { lat: 40.82852062332247, lng: 14.190889915493532  };
 
+
     const map = new google.maps.Map(document.getElementById("map")!, {
       zoom: 18,
       center: myLatlng,
@@ -51,11 +52,9 @@ export class CreaImmobilePage1Component {
       zoomControl: true,
     });
 
+
     //google.maps.event.trigger(map, 'resize');
     map.setClickableIcons(false);
-
-
-
 
 
     // Create the initial InfoWindow.
@@ -64,7 +63,9 @@ export class CreaImmobilePage1Component {
       position: myLatlng,
     });
 
+
     infoWindow.open(map);
+
 
     // Configure the click listener.
     map.addListener("click", (mapsMouseEvent: any) => {
@@ -83,13 +84,13 @@ export class CreaImmobilePage1Component {
        // Create a new InfoWindow.
 
 
-
-
     });
 
   }
 
+
   constructor(private router: Router){}
+  
 
   ngAfterViewInit(){
     this.initMap();
