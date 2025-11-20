@@ -20,16 +20,22 @@
 }
 
 .login, .registrazione {
-    border: 1px solid #184f6d;
+    border: 2px solid #184f6d;
     color: #fff;
     border-radius: 4px;
-    padding: 3px 16px;
+    padding: 6px 20px;
     text-align: center;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     margin-left: 10px;
     text-decoration: none;
+}
+
+.login:hover, .registrazione:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* colore leggermente più chiaro */
+  border-color: #0f3a5a; /* bordo leggermente più scuro */
+  transition: background-color 0.3s, border-color 0.3s; /* effetto smooth */
 }
 
 .profile-username {
