@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule, TitleCasePipe } from '@angular/common';
+import { CreaImmobileService } from '../../_services/crea-immobile.service';
 
 interface TagOption {
   nome: string;
@@ -19,7 +20,8 @@ interface TagOption {
 })
 export class CreaImmobilePage2Component implements OnInit {
 
-  tagSearch: string = '';
+  creaImmobileService = inject(CreaImmobileService)
+  tagSearch = new FormControl('');
   selectedTags: TagOption[] = [];
 
   optionalTags: TagOption[] = [
@@ -77,9 +79,19 @@ export class CreaImmobilePage2Component implements OnInit {
 
 
   filteredOptionalTags(): TagOption[] {
-    const search = this.tagSearch.trim().toLowerCase();
-    return !search ? this.optionalTags : this.optionalTags.filter(tag => tag.nome.toLowerCase().includes(search));
+    if (!this.optionalTags || this.optionalTags.length === 0) {
+      return []; // evita rendering prematuro
+    }
+
+    const search = this.tagSearch.value?.toLowerCase() ?? "";
+
+    if (!search.trim()) return this.optionalTags;
+
+    return this.optionalTags.filter(tag =>
+      tag.nome.toLowerCase().includes(search)
+    );
   }
+
 
 
   addTag(tag: TagOption) {

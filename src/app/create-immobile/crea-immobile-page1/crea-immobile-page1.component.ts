@@ -1,7 +1,8 @@
 import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CreaImmobileService } from '../../_services/crea-immobile.service';
 
 
 //import {GoogleMaps} from  'google.maps'
@@ -14,6 +15,8 @@ import { Router } from '@angular/router';
   styleUrl: './crea-immobile-page1.component.scss'
 })
 export class CreaImmobilePage1Component {
+
+  creaImmobileService = inject(CreaImmobileService)
 
     locationForm = new FormGroup({
       indirizzo: new FormControl('',
@@ -124,12 +127,26 @@ export class CreaImmobilePage1Component {
 
   onSubmit(){
     //this.router.navigate(['/create-immobile-page2']);
+    this.updateImmobile();
     this.goToPage.emit(2);
   }
 
 
   onAnnulla() {
       this.router.navigate(['/']);
+  }
+
+
+  updateImmobile() {
+    this.creaImmobileService.immobile.indirizzo = {
+      nome: this.locationForm.value.indirizzo!,
+      via: this.locationForm.value.indirizzo!,
+      citta: this.locationForm.value.citta!,
+      provincia: this.locationForm.value.provincia!,
+    }
+    this.creaImmobileService.immobile.latitudine = this.currentMarker?.getPosition()?.lat();
+    this.creaImmobileService.immobile.longitudine = this.currentMarker?.getPosition()?.lng();
+ 
   }
 
   @Output() goToPage = new EventEmitter<number>();
