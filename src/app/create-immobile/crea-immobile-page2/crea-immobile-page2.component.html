@@ -97,9 +97,13 @@
     [formControl]="tagSearch"/>
 
   <div class="tag-container">
-    <div class="tag-box" *ngFor="let tag of filteredOptionalTags()">
-      <label>{{ tag.nome | titlecase }}<button type="button" class="add-btn" (click)="addTag(tag)">+</button></label>
-    </div>
+    @for(tag of optionalTags; track tag){
+      @if ( tag.nome.toLowerCase().includes(this.tagSearch.value?.toLowerCase() ?? "")){
+        <div class="tag-box">
+          <label>{{ tag.nome | titlecase }}<button type="button" class="add-btn" (click)="addTag(tag)">+</button></label>
+        </div>
+      }
+    }
   </div>
 </div>
 

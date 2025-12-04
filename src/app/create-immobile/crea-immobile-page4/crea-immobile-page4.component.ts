@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CreaImmobileService } from '../../_services/crea-immobile.service';
 
 @Component({
   selector: 'app-crea-immobile-page4',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrl: './crea-immobile-page4.component.scss'
 })
 export class CreaImmobilePage4Component {
+  creaImmobileService = inject(CreaImmobileService);
+
   ContrattoForm = new FormGroup({
     Prezzo: new FormControl('', [Validators.required]),
     SpeseAggiuntive: new FormControl('', [Validators.required]),
@@ -32,5 +35,15 @@ export class CreaImmobilePage4Component {
 
 
   @Output() goToPage = new EventEmitter<number>();
+
+  updateImmobile() {
+    const prezzo = Number(this.ContrattoForm.value.Prezzo);
+    const SpeseAggiuntive = Number(this.ContrattoForm.value.SpeseAggiuntive);
+
+    this.creaImmobileService.immobile.prezzo = Number.isNaN(prezzo) ? undefined : prezzo;
+    this.creaImmobileService.immobile.speseCondominiali = Number.isNaN(SpeseAggiuntive) ? undefined : SpeseAggiuntive;
+    this.creaImmobileService.immobile.tipologiaContratto = this.ContrattoForm.value.TipologiaContratto!;
+  }
+
 
 }

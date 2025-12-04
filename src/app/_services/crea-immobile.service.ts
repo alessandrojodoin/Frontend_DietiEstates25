@@ -26,7 +26,7 @@ export class CreaImmobileService {
    quadratura: number | undefined;
    tipologiaContratto: string | undefined;
    speseCondominiali: number | undefined;
-   immagini: string[] | undefined;
+   immagini: any[] | undefined;
  } = {
    tipoImmobile: undefined,
    longitudine: undefined,

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { ImageThumbnailComponent } from "../image-thumbnail/image-thumbnail.component";
 import { Router } from '@angular/router';
+import { CreaImmobileService } from '../../_services/crea-immobile.service';
 
 @Component({
   selector: 'app-crea-immobile-page3',
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CreaImmobilePage3Component {
 
+  creaImmobileService = inject(CreaImmobileService);
  /* handleFiles(files: any) {
     for (const file of files) {
       if (!file.type.startsWith("image/")) {
@@ -87,4 +89,11 @@ export class CreaImmobilePage3Component {
 
     @Output() goToPage = new EventEmitter<number>();
 
-}
+
+  updateImmobile(){
+      this.creaImmobileService.immobile.immagini = this.images;
+  }
+
+
+
+  }
