@@ -57,12 +57,14 @@ export class CreaImmobilePage2Component implements OnInit {
       locali: new FormControl('', Validators.required),
       bagni: new FormControl('', Validators.required),
       piano: new FormControl(''),
+      superficie: new FormControl('', Validators.required),
       classe: new FormControl(''),
       tagAggiuntivi: new FormGroup({})
     };
 
 
     // Genera dinamicamente i tag selezionabili
+    /*
     this.optionalTags.forEach(tag => {
       const tagControls = controls.tagAggiuntivi as FormGroup;
       if (tag.tipo === 'number') {
@@ -73,7 +75,7 @@ export class CreaImmobilePage2Component implements OnInit {
         tagControls.addControl(tag.nome, new FormControl('', Validators.required));
       }
     });
-
+*/
     this.ImmobileForm = new FormGroup(controls);
   }
 
@@ -97,10 +99,26 @@ export class CreaImmobilePage2Component implements OnInit {
   addTag(tag: TagOption) {
     this.selectedTags.push(tag);
     this.optionalTags = this.optionalTags.filter(t => t !== tag);
+
+    const tagControls = this.ImmobileForm.get('tagAggiuntivi') as FormGroup;
+
+    let validators:any = [];
+    if (tag.tipo === 'number') validators = [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+$')];
+    if (tag.tipo === 'textarea') validators = [Validators.required, Validators.minLength(1)];
+    if (tag.tipo === 'select') validators = [Validators.required];
+
+    const defaultValue = tag.tipo === 'select' ? tag.opzioni![0] : '';
+
+    tagControls.addControl(tag.nome, new FormControl(defaultValue, validators));
+
+    console.log(this.ImmobileForm);
   }
 
 
   removeTag(tag: TagOption) {
+    const tagControls = this.ImmobileForm.get('tagAggiuntivi') as FormGroup;
+    tagControls.removeControl(tag.nome);
+
     this.optionalTags.push(tag);
     this.selectedTags = this.selectedTags.filter(t => t !== tag);
   }
@@ -131,5 +149,34 @@ export class CreaImmobilePage2Component implements OnInit {
 
   @Output() goToPage = new EventEmitter<number>();
 
+  updateImmobile(){
+    //this.creaImmobileService.immobile.nome;
+    this.creaImmobileService.immobile.descrizione= this.ImmobileForm.value.descrizione;
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "locali", valore: this.ImmobileForm.value.locali, tipo: "number"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "bagni", valore: this.ImmobileForm.value.bagni, tipo: "number"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "piano", valore: this.ImmobileForm.value.piano, tipo: "number"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "superficie", valore: this.ImmobileForm.value.superficie, tipo: "number"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "classe", valore: this.ImmobileForm.value.classe, tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "aria condizionata", valore: this.ImmobileForm.value["aria condizionata"], tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "camino", valore: this.ImmobileForm.value.camino, tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "wifi", valore: this.ImmobileForm.value.wifi, tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "impianto d’allarme", valore: this.ImmobileForm.value["impianto d’allarme"], tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "videosorveglianza", valore: this.ImmobileForm.value.videosorveglianza, tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "numero di balconi", valore: this.ImmobileForm.value["numero di balconi"], tipo: "number"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "numero di terrazzi", valore: this.ImmobileForm.value["numero di terrazzi"], tipo: "number"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "giardino", valore: this.ImmobileForm.value.giardino, tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "veranda / portico", valore: this.ImmobileForm.value["veranda / portico"], tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "posto auto", valore: this.ImmobileForm.value["posto auto"], tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "garage", valore: this.ImmobileForm.value.garage, tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "collocazione", valore: this.ImmobileForm.value.collocazione, tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "arredata", valore: this.ImmobileForm.value.arredata, tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "cucina a vista", valore: this.ImmobileForm.value["cucina a vista"], tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "vicinanza a mezzi pubblici", valore: this.ImmobileForm.value["vicinanza a mezzi pubblici"], tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "ascensore", valore: this.ImmobileForm.value["ascensore"], tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "accesso disabili", valore: this.ImmobileForm.value["accesso disabili"], tipo: "string"});
+    this.creaImmobileService.immobile.tagDescrizione?.push({nome: "animali ammessi", valore: this.ImmobileForm.value["animali ammessi"], tipo: "string"});
+
+    
+  }
 
 }
