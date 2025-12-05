@@ -31,7 +31,7 @@
 
     <div class="popup-overlay" *ngIf="showFilters" (click)="closeFilters()">
     <div class="popup-content" (click)="$event.stopPropagation()">
-    <button (click)="closeFilters()">X</button>
+    <button class="close-popup" (click)="closeFilters()">X</button>
 
     <h2>Filtri di Ricerca</h2>
       <div class="filter-option">

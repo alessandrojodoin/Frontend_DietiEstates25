@@ -72,7 +72,7 @@ button.selected{
     }
 }
 
-
+/* FILTRI */
 .popup-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -91,12 +91,53 @@ button.selected{
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.filter-option {
+.popup-content .filter-option {
   display: flex;
   flex-direction: column;
   gap: 6px;
   margin-bottom: 12px;
 }
+
+.popup-content .filter-option label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+/* Input e Select uniformi */
+.popup-content .filter-option input,
+.popup-content .filter-option select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #fff;
+  outline: none;
+  width: 100%;
+}
+
+.popup-content .close-popup {
+  background: #ffffff;
+  color: black;
+  border: 2px solid #2490CA;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  float: right;
+  margin-bottom: 10px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.popup-content .close-popup:hover {
+  background: #d93030;
+}
+
+.popup-content .close-popup:active {
+  transform: scale(0.95);
+}
+
 
 .price-range {
   display: flex;
