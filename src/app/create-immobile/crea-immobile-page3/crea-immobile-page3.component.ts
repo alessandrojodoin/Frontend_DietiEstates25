@@ -58,7 +58,7 @@ export class CreaImmobilePage3Component {
       false,
     );
 
-
+    this.images = this.creaImmobileService.immobile.immagini;
 
   }
 
@@ -77,12 +77,14 @@ export class CreaImmobilePage3Component {
   constructor(private router: Router){}
   onSubmit(){
     //this.router.navigate(['/create-immobile-page4']);
+    this.updateImmobile();
     this.goToPage.emit(4);
   }
 
 
   onAnnulla(){
         //this.router.navigate(['/create-immobile-page2']);
+        this.updateImmobile();
         this.goToPage.emit(2);
   }
 

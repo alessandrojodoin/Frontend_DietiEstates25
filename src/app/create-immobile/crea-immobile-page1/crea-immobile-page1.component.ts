@@ -122,6 +122,23 @@ export class CreaImmobilePage1Component {
 
   ngAfterViewInit(){
     this.initMap();
+
+
+    this.locationForm.value.indirizzo = this.creaImmobileService.immobile.indirizzo?.nome;
+    this.locationForm.value.indirizzo = this.creaImmobileService.immobile.indirizzo?.citta;
+    this.locationForm.value.indirizzo = this.creaImmobileService.immobile.indirizzo?.provincia;
+    //posizione mappa DA AGGIUNGERE???
+    
+    this.locationForm.patchValue({
+      indirizzo: this.creaImmobileService.immobile.indirizzo?.nome,
+      citta: this.creaImmobileService.immobile.indirizzo?.citta,
+      provincia: this.creaImmobileService.immobile.indirizzo?.provincia
+    });
+
+
+
+    console.log(this.creaImmobileService.immobile);
+
   }
 
 
@@ -133,6 +150,7 @@ export class CreaImmobilePage1Component {
 
 
   onAnnulla() {
+      this.updateImmobile();
       this.router.navigate(['/']);
   }
 

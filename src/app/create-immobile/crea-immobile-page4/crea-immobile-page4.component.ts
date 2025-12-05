@@ -21,15 +21,31 @@ export class CreaImmobilePage4Component {
 
   constructor(private router: Router) {}
 
+  ngOnInit(){
+    this.ContrattoForm.value.Prezzo= this.creaImmobileService.immobile?.prezzo?.toString();
+    this.ContrattoForm.value.SpeseAggiuntive = this.creaImmobileService.immobile?.speseCondominiali?.toString();
+    this.ContrattoForm.value.TipologiaContratto = this.creaImmobileService.immobile?.tipologiaContratto;
+
+    this.ContrattoForm.patchValue({
+      Prezzo: this.creaImmobileService.immobile?.prezzo?.toString() ?? '',
+      SpeseAggiuntive: this.creaImmobileService.immobile?.speseCondominiali?.toString() ?? '',
+      TipologiaContratto: this.creaImmobileService.immobile?.tipologiaContratto ?? ''
+    })
+
+   console.log(this.creaImmobileService.immobile); 
+  }
+
   onSubmit(): void {
     if (this.ContrattoForm.valid) {
       console.log(this.ContrattoForm.value);
+      this.updateImmobile();
       this.router.navigate(['/summary']);
     }
   }
 
   onAnnulla(){
     //this.router.navigate(['/create-immobile-page3']);
+    this.updateImmobile();
     this.goToPage.emit(3);
   }
 
