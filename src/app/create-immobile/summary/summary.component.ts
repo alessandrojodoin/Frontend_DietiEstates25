@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Modal } from 'bootstrap';
 
@@ -15,9 +15,10 @@ export class SummaryComponent {
   constructor(private router: Router){}
 
   onAnnulla(){
-      this.router.navigate(['/create-immobile-page4']); /*potrebbe tornare alle home ma magari si è semplicemente accorto 
-       da appunto il riepilogo, che ha sbagliato a digitare qualcosa, perciò meglio tornare alla pag precedente*/
+    this.goToPage.emit(4);
   }
+
+  @Output() goToPage = new EventEmitter<number>();
 
 
   openModal(): void {

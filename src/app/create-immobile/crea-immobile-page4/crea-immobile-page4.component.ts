@@ -39,7 +39,7 @@ export class CreaImmobilePage4Component {
     if (this.ContrattoForm.valid) {
       console.log(this.ContrattoForm.value);
       this.updateImmobile();
-      this.router.navigate(['/summary']);
+      this.goToPage.emit(5);
     }
   }
 

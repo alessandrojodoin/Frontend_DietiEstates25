@@ -5,11 +5,12 @@ import { CreaImmobilePage3Component } from "../crea-immobile-page3/crea-immobile
 import { CreaImmobilePage4Component } from "../crea-immobile-page4/crea-immobile-page4.component";
 import { Immobile } from '../../../../data';
 import { Indirizzo } from '../../../../data';
+import { SummaryComponent } from "../summary/summary.component";
 
 @Component({
   selector: 'app-crea-immobile',
   standalone: true,
-  imports: [CreaImmobilePage1Component, CreaImmobilePage2Component, CreaImmobilePage3Component, CreaImmobilePage4Component],
+  imports: [CreaImmobilePage1Component, CreaImmobilePage2Component, CreaImmobilePage3Component, CreaImmobilePage4Component, SummaryComponent],
   templateUrl: './crea-immobile.component.html',
   styleUrl: './crea-immobile.component.scss'
 })
