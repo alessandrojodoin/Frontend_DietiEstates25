@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Modal } from 'bootstrap';
+import { CreaImmobileService } from '../../_services/crea-immobile.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ import { Modal } from 'bootstrap';
   styleUrl: './summary.component.scss'
 })
 export class SummaryComponent {
+  private ilMioPisello = inject(CreaImmobileService)
   modalInstance!: Modal;
   constructor(private router: Router){}
 
@@ -22,6 +24,7 @@ export class SummaryComponent {
 
 
   openModal(): void {
+    this.ilMioPisello.passaDatiImmobile();
     const modalElement = document.getElementById('successModal');
     if (modalElement) {
       this.modalInstance = new Modal(modalElement);
@@ -32,6 +35,7 @@ export class SummaryComponent {
         this.router.navigate(['/']);
       }, { once: true }); //Solo una volta
     
-    }
+    }  
   }
+
 }

@@ -14,6 +14,48 @@ export class ImmobiliService {
   private url = "http://localhost:8080/api/1.0";
 
 
+  immobileExample = {
+    "immobile": {
+        "tipoImmobile": "affitto",
+        "latitudine": "40.898804999999996",
+        "longitudine": "14.312139741946309",
+        "indirizzo": "Corso Umberto 2000",
+        "citta": "Napoli",
+        "provincia": "Napoli",
+        "tags": [
+            {
+                "nome": "hello",
+                "type": "NoValue"
+            }
+        ]
+    },
+    "tipologiaContratto": "Affitto",
+    "speseCondominiali": 320,
+    "prezzo": 2000
+  }
+
+  private getAuthHeaders() {
+    const token = this.authService.getToken();
+    if (token) {
+      return {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${token}`
+        }),
+        responseType: 'json' as const,
+      }
+    } else {
+      return {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'authorization': ``
+        }),
+        responseType: 'json' as const,
+      }
+    }
+  }
+
+
   private jsonHttpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -30,9 +72,33 @@ export class ImmobiliService {
     }),
     responseType: 'text' as const,
   };
+
   
 
-  constructor() { }
+  createImmobile(immobile: {tipoImmobile: string, latitudine: string, longitudine: string, indirizzo: string, citta: string,
+                  provincia: string, tags: Array<{nome: string, type: string, valore?: string}>,
+                  tipologiaContratto: string, speseCondominiali: number, prezzo: number}) 
+                {
+
+    let datiImmobile = {
+      immobile: {
+        tipoImmobile: immobile.tipoImmobile,
+        latitudine: immobile.latitudine,
+        longitudine: immobile.longitudine,
+        indirizzo: immobile.indirizzo,
+        citta: immobile.citta,
+        provincia: immobile.provincia,
+        tags: immobile.tags
+      },
+      tipologiaContratto: immobile.tipologiaContratto,
+      speseCondominiali: immobile.speseCondominiali,
+      prezzo: immobile.prezzo
+    }
+
+    const url = `${this.url}/immobile`;
+    const headers = this.getAuthHeaders();
+    return this.http.post<string>(url, datiImmobile, headers);
+  }
 
   
 

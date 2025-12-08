@@ -65,7 +65,7 @@ export class AuthService {
     this.authState.userType = decodedToken.userType as UserType
   }
 
-  private getToken(): string | null{
+  getToken(): string | null{
     return localStorage.getItem("token");
   }
 
