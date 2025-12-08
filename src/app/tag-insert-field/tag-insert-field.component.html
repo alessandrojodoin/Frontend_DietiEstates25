@@ -1,0 +1,19 @@
+<div>
+     {{tag!.name}}
+      
+     @switch(tag!.type){
+        @case("Int"){
+            <input [formControlName]="formControlName">
+        }
+        @case ("String") {
+            <input [formControlName]="formControlName">
+        }
+        @case("Float"){
+            <input [formControlName]="formControlName">
+        }
+        @case("Boolean"){
+            <input type="checkbox" [formControlName]="formControlName">
+
+        }
+     }
+</div>

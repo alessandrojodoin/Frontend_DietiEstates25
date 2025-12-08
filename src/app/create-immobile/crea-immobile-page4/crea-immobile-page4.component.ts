@@ -59,6 +59,7 @@ export class CreaImmobilePage4Component {
     this.creaImmobileService.immobile.prezzo = Number.isNaN(prezzo) ? undefined : prezzo;
     this.creaImmobileService.immobile.speseCondominiali = Number.isNaN(SpeseAggiuntive) ? undefined : SpeseAggiuntive;
     this.creaImmobileService.immobile.tipologiaContratto = this.ContrattoForm.value.TipologiaContratto!;
+    this.creaImmobileService.immobile.tipoImmobile = this.ContrattoForm.value.TipologiaContratto!;
   }
 
 

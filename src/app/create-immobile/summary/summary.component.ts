@@ -12,7 +12,7 @@ import { CreaImmobileService } from '../../_services/crea-immobile.service';
   styleUrl: './summary.component.scss'
 })
 export class SummaryComponent {
-  private ilMioPisello = inject(CreaImmobileService)
+  private creaImmobileService = inject(CreaImmobileService)
   modalInstance!: Modal;
   constructor(private router: Router){}
 
@@ -24,7 +24,8 @@ export class SummaryComponent {
 
 
   openModal(): void {
-    this.ilMioPisello.passaDatiImmobile();
+    this.creaImmobileService.passaDatiImmobile();
+    console.log(this.creaImmobileService.immobile)
     const modalElement = document.getElementById('successModal');
     if (modalElement) {
       this.modalInstance = new Modal(modalElement);

@@ -83,7 +83,7 @@ export class CreaImmobileService {
       return {
         nome: tag.nome,
         type: 'Boolean',
-        value: tag.valore === 'Sì' ? true : false
+        value: tag.valore === 'Sì' ? "true" : "false"
       }
     }
     else if(tag.nome === 'numero di balconi' || tag.nome === 'numero di terrazzi' || tag.nome === 'locali' || tag.nome === 'bagni' 

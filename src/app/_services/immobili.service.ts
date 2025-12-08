@@ -76,7 +76,7 @@ export class ImmobiliService {
   
 
   createImmobile(immobile: {tipoImmobile: string, latitudine: string, longitudine: string, indirizzo: string, citta: string,
-                  provincia: string, tags: Array<{nome: string, type: string, valore?: string}>,
+                  provincia: string, tags: Array<{nome: string, type: string, valore?: any}>,
                   tipologiaContratto: string, speseCondominiali: number, prezzo: number}) 
                 {
 
