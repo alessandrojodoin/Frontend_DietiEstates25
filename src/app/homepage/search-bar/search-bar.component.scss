@@ -157,3 +157,36 @@ button.selected{
   }
 }
 
+.filter-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+  
+}
+
+.filter-buttons button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #0883c7;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.filter-buttons button:hover {
+  background: #2490ca;
+}
+
+.ok-filter-btn{
+  background-color: #2490CA;  
+  color: white;
+  border-radius: 5px;
+  //box-shadow: 0 4px #2980b9;
+  //transition: all 0.1s ease-in-out;
+  justify-content: space-between;
+  padding: 10px 10px;
+  align-items: center;
+  margin-left: 90%;
+}

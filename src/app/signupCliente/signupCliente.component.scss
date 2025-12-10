@@ -32,6 +32,11 @@ form{
     justify-items: center;
 }
 
+form input{
+  border: 1px solid #aacbe8;
+  border-radius: 5px;
+}
+
 h1{
     grid-area: signup;
     text-align: center;

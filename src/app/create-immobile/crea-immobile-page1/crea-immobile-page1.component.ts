@@ -9,10 +9,6 @@ import { Province } from '../../../assets/province';
 
 
 //import {GoogleMaps} from  'google.maps'
-interface Provincia {
-  sigla: string;
-  nome: string;
-}
 
 
 @Component({
@@ -23,9 +19,8 @@ interface Provincia {
   styleUrl: './crea-immobile-page1.component.scss'
 })
 export class CreaImmobilePage1Component {
-  provinceList: Provincia[]= [];
+  provinceList: any[] = [];
   comuniList: any[] = [];
-  allComuni: any[] = [];
 
   creaImmobileService = inject(CreaImmobileService)
 
