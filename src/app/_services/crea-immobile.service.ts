@@ -66,6 +66,7 @@ export class CreaImmobileService {
     }).subscribe({
       next: (response) => {
         console.log("Immobile creato con successo. ID:", response);
+        this.immobiliService.caricaFoto(this.immobile.immagini, Number(response))
       },
       error: (error) => {
         console.error("Errore durante la creazione dell'immobile:", error);

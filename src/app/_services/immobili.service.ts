@@ -95,21 +95,36 @@ export class ImmobiliService {
       prezzo: immobile.prezzo
     }
 
+
     const url = `${this.url}/immobile`;
     const headers = this.getAuthHeaders();
     return this.http.post<string>(url, datiImmobile, headers);
+
   }
 
-  
+  //ex caricaFotoPenxsnrello, Alessandro e' stronzo e me lo ha fatto togliere (AIUTO MI MINACCIA)
+  caricaFoto(immagini: any[], immobileId: number){ 
+    const url = `${this.url}/immobile/${immobileId}/image`;
+    const headers = this.getAuthHeaders();
+
+    for (let imageObj of immagini) {
+
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(imageObj);
+
+    reader.onload = () => {
+      const arrayBuffer = reader.result as ArrayBuffer;
+      const byteArray = Array.from(new Uint8Array(arrayBuffer));
+      this.http.post(url, byteArray, headers).subscribe()
+    };
+
+    }
 
 
-
-
-
-
-
-
+  }
 
 
 
 }
+
+
