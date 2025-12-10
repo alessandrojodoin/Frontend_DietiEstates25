@@ -106,12 +106,23 @@ gmp-map {
   align-items: center; /* allinea verticalmente label e input */
   gap: 6px; /* spazio tra label e input */
   min-width: 250px; /* larghezza minima per ogni gruppo */
+  max-width: 250px;
 }
 
 
-.form-group input {
-  flex: 1;
-  padding: 4px 8px;
+.form-group select {
+  width: 100%; /* occupa tutta la larghezza del gruppo */
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+
+.form-group option{
+  max-width: 150px;
 }
 
 .button-row {

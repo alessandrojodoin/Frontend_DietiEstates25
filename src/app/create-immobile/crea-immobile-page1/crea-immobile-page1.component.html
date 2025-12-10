@@ -31,15 +31,23 @@
       <input id="indirizzo" formControlName="indirizzo"/>
     </div>
 
+
     <div class="form-group">
-      <label for="citta">Città:</label>
-      <input id="citta" formControlName="citta" />
+      <label for="province">Provincia:</label>
+      <select formControlName="provincia">
+        <option *ngFor="let p of provinceList" [value]="p.sigla">{{ p.nome }} ({{ p.sigla }})</option>
+      </select>
+      
     </div>
 
     <div class="form-group">
-      <label for="provincia">Provincia:</label>
-      <input id="provincia" formControlName="provincia" />
+      <label for="citta">Comune:</label>
+      <select formControlName="citta">
+        <option *ngFor="let c of comuniList" [value]="c.nome">{{ c.nome }}</option>
+      </select>
+      
     </div>
+    
   </div>
 
   <div class="button-row">

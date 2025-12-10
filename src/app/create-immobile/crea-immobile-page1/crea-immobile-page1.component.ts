@@ -3,18 +3,29 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreaImmobileService } from '../../_services/crea-immobile.service';
+import { CommonModule } from '@angular/common';
+import { Comuni } from '../../../assets/comuni';
+import { Province } from '../../../assets/province';
 
 
 //import {GoogleMaps} from  'google.maps'
+interface Provincia {
+  sigla: string;
+  nome: string;
+}
+
 
 @Component({
   selector: 'app-crea-immobile-page1',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './crea-immobile-page1.component.html',
   styleUrl: './crea-immobile-page1.component.scss'
 })
 export class CreaImmobilePage1Component {
+  provinceList: Provincia[]= [];
+  comuniList: any[] = [];
+  allComuni: any[] = [];
 
   creaImmobileService = inject(CreaImmobileService)
 
@@ -139,6 +150,14 @@ export class CreaImmobilePage1Component {
 
     console.log(this.creaImmobileService.immobile);
 
+  Province.province.forEach(item => {
+    this.provinceList.push({ ...item });
+  });
+
+  Comuni.comuni.forEach(item => {
+    this.comuniList.push({ ...item });
+  });
+ 
   }
 
 
@@ -166,6 +185,7 @@ export class CreaImmobilePage1Component {
     this.creaImmobileService.immobile.longitudine = this.currentMarker?.getPosition()?.lng();
  
   }
+
 
   @Output() goToPage = new EventEmitter<number>();
 
