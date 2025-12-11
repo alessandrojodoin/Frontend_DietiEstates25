@@ -22,6 +22,9 @@ export class CreaImmobilePage1Component {
   provinceList: any[] = [];
   comuniList: any[] = [];
   allComuni: { [sigla: string]: string[] } = Comuni.comuni;
+  provinciaNonSelezionata = false;
+  mostraFeedback = false;
+  filteredComuni: string[] = [];
 
 
   creaImmobileService = inject(CreaImmobileService)
@@ -180,6 +183,28 @@ filterComuniByProvincia(siglaProvincia: string) {
   this.comuniList = (this.allComuni[siglaProvincia] || []).map(c => ({ nome: c, sigla: siglaProvincia }));
 }
 
+onInputComune(event: any) {
+  const val = event.target.value.toLowerCase();
+  this.filteredComuni = this.comuniList.filter(c => c.toLowerCase().includes(val));
+}
+selectComune(c: string) {
+  this.locationForm.patchValue({ citta: c });
+  this.filteredComuni = [];
+}
+
+checkProvincia() {
+  if (!this.locationForm.value.provincia) {
+    this.mostraFeedback = true;
+
+    // Nasconde il messaggio dopo 3 secondi
+    setTimeout(() => {
+      this.mostraFeedback = false;
+    }, 3000);
+
+    return false; // eventualmente impedisce la selezione del comune
+  }
+  return true;
+}
 
 
   onSubmit(){
