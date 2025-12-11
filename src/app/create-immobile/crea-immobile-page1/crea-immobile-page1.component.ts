@@ -21,6 +21,8 @@ import { Province } from '../../../assets/province';
 export class CreaImmobilePage1Component {
   provinceList: any[] = [];
   comuniList: any[] = [];
+  allComuni: { [sigla: string]: string[] } = Comuni.comuni;
+
 
   creaImmobileService = inject(CreaImmobileService)
 
@@ -145,15 +147,39 @@ export class CreaImmobilePage1Component {
 
     console.log(this.creaImmobileService.immobile);
 
+  this.locationForm.patchValue({
+    indirizzo: this.creaImmobileService.immobile.indirizzo?.nome,
+    citta: this.creaImmobileService.immobile.indirizzo?.citta,
+    provincia: this.creaImmobileService.immobile.indirizzo?.provincia
+  });
+
   Province.province.forEach(item => {
     this.provinceList.push({ ...item });
   });
 
-  Comuni.comuni.forEach(item => {
-    this.comuniList.push({ ...item });
+  // Inizializza comuni filtrati se la provincia è già presente
+  const prov = this.locationForm.value.provincia;
+  if (prov) {
+    this.filterComuniByProvincia(prov);
+  }
+
+   // Aggiorna i comuni quando cambia la provincia
+  this.locationForm.get('provincia')?.valueChanges.subscribe(sigla => {
+    if(sigla)
+      this.filterComuniByProvincia(sigla);
+    this.locationForm.patchValue({ citta: '' });
   });
+
+  /*Comuni.comuni.forEach(item => {
+    this.comuniList.push({ ...item });
+  });*/
  
   }
+
+filterComuniByProvincia(siglaProvincia: string) {
+  this.comuniList = (this.allComuni[siglaProvincia] || []).map(c => ({ nome: c, sigla: siglaProvincia }));
+}
+
 
 
   onSubmit(){
