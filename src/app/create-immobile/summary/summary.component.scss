@@ -55,3 +55,82 @@
 .homeEmoji{
   font-size: 22px;
 }
+
+/* Contenitore principale del riepilogo */
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra il contenuto orizzontalmente */
+  text-align: center;  /* centra testo e paragrafi */
+  margin: 40px auto;
+  width: 80%;
+  background-color: #f8f9fa; /* sfondo leggero */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+/* Sezioni interne */
+section h5 {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #15638e;
+}
+
+/* Lista dei tag */
+ul {
+  list-style: none; /* rimuove i bullet points */
+  padding: 0;
+  margin: 10px 0;
+}
+
+ul li {
+  padding: 5px 0;
+  font-size: 18px;
+}
+
+/* Pulsanti centrati */
+.button-row {
+  display: flex;
+  justify-content: center; /* centra i pulsanti */
+  gap: 20px; /* distanza tra i pulsanti */
+  margin-top: 30px;
+}
+
+.button-row button {
+  padding: 10px 40px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-primary {
+  background-color: #2490CA;
+  color: white;
+  border: none;
+  box-shadow: 0 4px #15638e;
+}
+
+.btn-primary:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 #15638e;
+}
+
+.btn-secondary {
+  background-color: #ccc;
+  color: black;
+  border: none;
+  box-shadow: 0 4px #999;
+}
+
+.btn-secondary:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 #999;
+}
+
+.flip-arrow {
+  display: inline-block;
+  transform: rotate(180deg);
+}

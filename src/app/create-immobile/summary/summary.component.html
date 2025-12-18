@@ -1,33 +1,68 @@
-<!DOCTYPE html>
 <p class="titolo">Carica Immobile</p>
 <p class="sottotitolo">Riepilogo</p>
 
+<!-- RIEPILOGO -->
+<section>
+  <h5>📍 Posizione</h5>
+  <p>{{ immobile.indirizzo?.via }}, {{ immobile.indirizzo?.citta }}</p>
+
+  <h5>🏠 Dettagli</h5>
+  <!--<p>Titolo: {{immobile.nome}}</p>-->
+  <p>Descrizione: {{ immobile.descrizione }}</p>
+  <p>Superficie: {{ immobile.quadratura }} m²</p><!--Risulta UNDEFINED-->
+  
+
+  <h5>✨Riepilogo Tag</h5>
+<ul>
+  <li *ngFor="let tag of riepilogoTags">
+    {{ tag.nome | titlecase }}: {{ tag.valore }}  <!--compare qui la superficie-->
+  </li>
+</ul>
+
+<h5>📝Informazioni Contrattuali</h5>
+<p>Tipologia contratto: {{ immobile.tipologiaContratto }}</p>
+<p>Spese Aggiuntive: {{ immobile.speseCondominiali }}€</p>
+<p>Prezzo: {{ immobile.prezzo }}€</p>
+
+</section>
+
+<!-- ERRORE -->
+<p class="text-danger" *ngIf="error">{{ error }}</p>
+
 <div class="button-row">
-    <button type="button" class="btn btn-secondary" (click)="onAnnulla()">
-    <span class="flip-arrow">&#10140;</span> Annulla</button>
-    <button type="button" class="btn btn-primary" (click)="openModal()">Conferma ✓</button>
+  <button class="btn btn-secondary" (click)="onAnnulla()">
+    <span class="flip-arrow">&#10140;</span> Annulla
+  </button>
+
+  <button class="btn btn-primary"
+          [disabled]="isSubmitting"
+          (click)="conferma()">
+    Conferma ✓
+  </button>
 </div>
 
-<!-- Modal Bootstrap per Popup-->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+<!-- MODAL BOOTSTRAP -->
+<div class="modal fade" id="successModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="successModalLabel">Tutto pronto! ✅</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+        <h5 class="modal-title">Tutto pronto! ✅</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
 
       <div class="modal-body">
-        L'immobile è stato caricato con successo! <br>Puoi visualizzare l'inserzione <a>qui</a>
+        L'immobile è stato caricato con successo!
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Torna alla home <span class="homeEmoji">⌂</span></button>
+        <button type="button"
+                class="btn btn-primary"
+                data-bs-dismiss="modal">
+          Torna alla home ⌂
+        </button>
       </div>
 
     </div>
   </div>
 </div>
-
-<!--IDEA: da aggiungere popup nel caso in cui qualcosa va storto-->

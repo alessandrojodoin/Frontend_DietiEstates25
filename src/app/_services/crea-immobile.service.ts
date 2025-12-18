@@ -49,7 +49,7 @@ export class CreaImmobileService {
    immagini: [],
  }; 
 
-  passaDatiImmobile() {
+  /*passaDatiImmobile() {
     this.immobiliService.createImmobile({
       tipoImmobile: this.immobile.tipoImmobile!,
       latitudine: '40.82852062332247',
@@ -74,6 +74,43 @@ export class CreaImmobileService {
     });
 
   }
+*/
+reset() {
+  this.immobile = {
+    tipoImmobile: undefined,
+    longitudine: undefined,
+    latitudine: undefined,
+    indirizzo: undefined,
+    descrizione: undefined,
+    tagDescrizione: [],
+    prezzo: undefined,
+    quadratura: undefined,
+    tipologiaContratto: undefined,
+    speseCondominiali: undefined,
+    immagini: [],
+  };
+}
+
+  passaDatiImmobile() {
+  return this.immobiliService.createImmobile({
+    tipoImmobile: this.immobile.tipoImmobile!,
+    latitudine: '40.82852062332247',
+    longitudine: '14.190889915493532',
+    indirizzo: `${this.immobile.indirizzo?.via}, ${this.immobile.indirizzo?.citta}, ${this.immobile.indirizzo?.provincia}`,
+    citta: this.immobile.indirizzo!.citta,
+    provincia: this.immobile.indirizzo!.provincia,
+    tags: this.immobile.tagDescrizione.map(t => this.convertTag(t)),
+    tipologiaContratto: this.immobile.tipologiaContratto!,
+    speseCondominiali: this.immobile.speseCondominiali!,
+    prezzo: this.immobile.prezzo!
+  });
+}
+
+getRiepilogoTags(): {nome: string, valore: any}[] {
+  return this.immobile.tagDescrizione
+             .filter(tag => tag.valore !== undefined && tag.valore !== null && tag.valore !== '')
+             .map(tag => ({nome: tag.nome, valore: tag.valore}));
+}
 
 
   convertTag(tag: TagDescrittivo): any {
