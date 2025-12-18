@@ -48,6 +48,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
       immagini: ["img1.jpg", "img2.jpg"]
     }
 
+
     ngOnInit() {
       const immobileID= this.immobile.id;
       }
@@ -55,7 +56,9 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
     async ngAfterViewInit() {
       await this.initMap();
       this.updateMap();
+      
   }
+
 
   async initMap() {
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
@@ -75,6 +78,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
       zoomControl: true,
     });
   }
+
 
   async updateMap() {
     if (!this.map) return;
