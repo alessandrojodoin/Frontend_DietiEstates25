@@ -103,16 +103,81 @@ gmp-map {
 
 .form-group {
   display: flex;
-  align-items: center; /* allinea verticalmente label e input */
-  gap: 6px; /* spazio tra label e input */
-  min-width: 250px; /* larghezza minima per ogni gruppo */
+  align-items: center; 
+  gap: 6px; 
+  min-width: 250px; 
+  max-width: 250px;
 }
 
 
-.form-group input {
-  flex: 1;
-  padding: 4px 8px;
+.form-group select {
+  width: 100%; 
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border 0.2s;
 }
+
+.form-group input{
+  width: 100%; 
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+
+.form-group option{
+  max-width: 150px;
+}
+
+.feedback-provincia {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 0, 0, 0.9);
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feedback-provincia.show {
+  opacity: 1;
+}
+
+.dropdown {
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+  background-color: #fff;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 1000;
+}
+
+.dropdown li {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #f0f0f0;
+}
+
 
 .button-row {
   display: flex;

@@ -31,16 +31,34 @@
       <input id="indirizzo" formControlName="indirizzo"/>
     </div>
 
-    <div class="form-group">
-      <label for="citta">Città:</label>
-      <input id="citta" formControlName="citta" />
-    </div>
 
     <div class="form-group">
-      <label for="provincia">Provincia:</label>
-      <input id="provincia" formControlName="provincia" />
+      <label for="province">Provincia:</label>
+      <select formControlName="provincia">
+        <option *ngFor="let p of provinceList" [value]="p.sigla">{{ p.nome }} ({{ p.sigla }})</option>
+      </select>
+      
     </div>
+
+    
+    <div class="form-group">
+  <label for="citta">Comune:</label>
+  <input type="text" list="comuniList" formControlName="citta" placeholder="Scrivi o seleziona un comune..." />
+  <datalist id="comuniList">
+    <option *ngFor="let c of comuniList" [value]="c.nome"></option>
+  </datalist>
+
+  
+  <small class="text-danger" *ngIf="provinciaNonSelezionata">
+    Seleziona prima una provincia!
+  </small>
+
+</div>
+
+    
   </div>
+
+  
 
   <div class="button-row">
     <button (click)="onAnnulla()" class="btn btn-secondary"><span class="flip-arrow">&#10140;</span> Annulla</button> 
@@ -49,3 +67,7 @@
 
   
 </form>
+
+<div class="feedback-provincia" [class.show]="mostraFeedback">
+  Seleziona prima una provincia!
+</div>

@@ -3,18 +3,29 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CreaImmobileService } from '../../_services/crea-immobile.service';
+import { CommonModule } from '@angular/common';
+import { Comuni } from '../../../assets/comuni';
+import { Province } from '../../../assets/province';
 
 
 //import {GoogleMaps} from  'google.maps'
 
+
 @Component({
   selector: 'app-crea-immobile-page1',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './crea-immobile-page1.component.html',
   styleUrl: './crea-immobile-page1.component.scss'
 })
 export class CreaImmobilePage1Component {
+  provinceList: any[] = [];
+  comuniList: any[] = [];
+  allComuni: { [sigla: string]: string[] } = Comuni.comuni;
+  provinciaNonSelezionata = false;
+  mostraFeedback = false;
+  filteredComuni: string[] = [];
+
 
   creaImmobileService = inject(CreaImmobileService)
 
@@ -139,7 +150,61 @@ export class CreaImmobilePage1Component {
 
     console.log(this.creaImmobileService.immobile);
 
+  this.locationForm.patchValue({
+    indirizzo: this.creaImmobileService.immobile.indirizzo?.nome,
+    citta: this.creaImmobileService.immobile.indirizzo?.citta,
+    provincia: this.creaImmobileService.immobile.indirizzo?.provincia
+  });
+
+  Province.province.forEach(item => {
+    this.provinceList.push({ ...item });
+  });
+
+  // Inizializza comuni filtrati se la provincia è già presente
+  const prov = this.locationForm.value.provincia;
+  if (prov) {
+    this.filterComuniByProvincia(prov);
   }
+
+   // Aggiorna i comuni quando cambia la provincia
+  this.locationForm.get('provincia')?.valueChanges.subscribe(sigla => {
+    if(sigla)
+      this.filterComuniByProvincia(sigla);
+    this.locationForm.patchValue({ citta: '' });
+  });
+
+  /*Comuni.comuni.forEach(item => {
+    this.comuniList.push({ ...item });
+  });*/
+ 
+  }
+
+filterComuniByProvincia(siglaProvincia: string) {
+  this.comuniList = (this.allComuni[siglaProvincia] || []).map(c => ({ nome: c, sigla: siglaProvincia }));
+}
+
+onInputComune(event: any) {
+  const val = event.target.value.toLowerCase();
+  this.filteredComuni = this.comuniList.filter(c => c.toLowerCase().includes(val));
+}
+selectComune(c: string) {
+  this.locationForm.patchValue({ citta: c });
+  this.filteredComuni = [];
+}
+
+checkProvincia() {
+  if (!this.locationForm.value.provincia) {
+    this.mostraFeedback = true;
+
+    // Nasconde il messaggio dopo 3 secondi
+    setTimeout(() => {
+      this.mostraFeedback = false;
+    }, 3000);
+
+    return false; // eventualmente impedisce la selezione del comune
+  }
+  return true;
+}
 
 
   onSubmit(){
@@ -166,6 +231,7 @@ export class CreaImmobilePage1Component {
     this.creaImmobileService.immobile.longitudine = this.currentMarker?.getPosition()?.lng();
  
   }
+
 
   @Output() goToPage = new EventEmitter<number>();
 
