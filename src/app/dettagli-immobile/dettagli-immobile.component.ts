@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { Immobile } from '../../../data';
+import { ImmobiliService } from '../_services/immobili.service';
 
 import Instant from 'ts-time/Instant';
 import { CommonModule } from '@angular/common';
@@ -16,9 +17,11 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   map: google.maps.Map | null = null;
   markers: any[] = [];
   currentMarker: any = null;
+  
+  immobiliService = inject(ImmobiliService);
 
   immobile: Immobile =     {
-      id: 2,
+      id: 1,
       tipoImmobile: "Appartamento",
       longitudine: 14.3759,
       latitudine: 40.6279,
@@ -49,9 +52,16 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
     }
 
 
-    ngOnInit() {
-      const immobileID= this.immobile.id;
-      }
+  ngOnInit() {
+      const immobileID = this.immobile.id;
+      this.immobiliService.getImmobile(immobileID).subscribe({
+        next: (data) => {
+          this.immobile = data;
+        }
+      });
+
+
+  }
 
     async ngAfterViewInit() {
       await this.initMap();

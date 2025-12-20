@@ -102,61 +102,24 @@ export class ImmobiliService {
 
   }
 
+
   //ex caricaFotoPenxsnrello, Alessandro e' stronzo e me lo ha fatto togliere (AIUTO MI MINACCIA)
-/*caricaFoto(immagini: any[], immobileId: number){ 
+  caricaFoto(immagini: { file: File }[], immobileId: number) {
     const url = `${this.url}/immobile/${immobileId}/image`;
-    const headers = this.getAuthHeaders();
+    const headers = this.getAuthHeaders().headers; 
 
-    for (let imageObj of immagini) {
+    for (const imageObj of immagini) {
+      const file: File = imageObj.file;
 
-    const reader = new FileReader();
-    console.log("Penesrnello");
-    console.log(imageObj);
-    reader.readAsArrayBuffer(imageObj);
-
-    reader.onload = () => {
-      const arrayBuffer = reader.result as ArrayBuffer;
-      const byteArray = Array.from(new Uint8Array(arrayBuffer));
-      this.http.post(url, byteArray, headers).subscribe()
-    };
-
+      this.http.post(url, file, {
+        headers,
+        responseType: 'text'
+      }).subscribe({
+        next: () => console.log('Upload OK'),
+        error: err => console.error(err)
+      });
     }
-
-
   }
-  */
-
-/*caricaFoto(immagini: { file: File }[], immobileId: number) {
-  const url = `${this.url}/immobile/${immobileId}/image`;
-  const headers = this.getAuthHeaders(); // NON settare Content-Type
-
-  for (const imageObj of immagini) {
-    const file: File = imageObj.file;
-
-    // 🔥 manda direttamente il Blob
-    this.http.post(url, file, headers).subscribe({
-      next: () => console.log('Immagine caricata'),
-      error: err => console.error(err)
-    });
-  }
-}*/
-
-caricaFoto(immagini: { file: File }[], immobileId: number) {
-  const url = `${this.url}/immobile/${immobileId}/image`;
-  const headers = this.getAuthHeaders().headers; 
-
-  for (const imageObj of immagini) {
-    const file: File = imageObj.file;
-
-    this.http.post(url, file, {
-      headers,
-      responseType: 'text'
-    }).subscribe({
-      next: () => console.log('Upload OK'),
-      error: err => console.error(err)
-    });
-  }
-}
 
 
   getFotoImmobile(immobileId: number, imageId: number) {
@@ -168,35 +131,16 @@ caricaFoto(immagini: { file: File }[], immobileId: number) {
         responseType: 'blob'
       });
       
-    }
-
-
-
-
-
-
-
-
-
-
-/*
-  async caricaFoto(immagini: any[], immobileId: number) {
-
-  const url = `${this.url}/immobile/${immobileId}/image`;
-  const headers = this.getAuthHeaders();
-
-  for (const imageObj of immagini) {
-
-    const file: File = imageObj.file;
-
-    const arrayBuffer = await file.arrayBuffer();
-
-    const byteArray = Array.from(new Uint8Array(arrayBuffer));
-
-    this.http.post(url, byteArray, headers).subscribe();
   }
-}*/
 
+
+  getImmobile(immobileId: number){
+    console.log("getImmobile http request")
+    const url = `${this.url}/immobile/${immobileId}`;
+    return this.http.get<Immobile>(url, {
+      responseType: 'json'
+  });
+  }
 
 
 
