@@ -142,6 +142,12 @@ export class ImmobiliService {
   });
   }
 
+  getImageList(immobileId: number) {
+    const url = `${this.url}/immobile/${immobileId}/imageIds`;
+    return this.http.get<number[]>(url, {
+      responseType: 'json'
+    });
+  }
 
 
 }

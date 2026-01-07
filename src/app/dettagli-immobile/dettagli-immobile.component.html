@@ -5,6 +5,12 @@
   </header>
 
   <section class="gallery-row">
+    @for(imageId of imageIds; track imageId){
+      <div class="thumb" aria-hidden="true">
+        <img [src]="'http://localhost:8080/api/1.0/immobile/' + this.immobile.id + '/image/' + imageId" >
+      </div>
+    }
+
     <div class="thumb left-thumb" aria-hidden="true"></div>
 
     <div class="main-image">

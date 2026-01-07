@@ -19,7 +19,8 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   currentMarker: any = null;
   
   immobiliService = inject(ImmobiliService);
-
+  imageIds: number[] = [];
+  
   immobile: Immobile =     {
       id: 1,
       tipoImmobile: "Appartamento",
@@ -60,7 +61,12 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
         }
       });
 
-
+      this.immobiliService.getImageList(immobileID).subscribe({
+        next: (imageIds) => {
+          console.log('Image IDs:', imageIds);
+          this.imageIds = imageIds;
+        }
+      });
   }
 
     async ngAfterViewInit() {
