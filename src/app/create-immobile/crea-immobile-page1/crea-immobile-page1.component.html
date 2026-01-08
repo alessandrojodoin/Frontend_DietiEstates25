@@ -42,16 +42,13 @@
 
     
     <div class="form-group">
-  <label for="citta">Comune:</label>
-  <input type="text" list="comuniList" formControlName="citta" placeholder="Scrivi o seleziona un comune..." />
-  <datalist id="comuniList">
-    <option *ngFor="let c of comuniList" [value]="c.nome"></option>
-  </datalist>
+      <label for="citta">Comune:</label>
+      <input type="text" list="comuniList" formControlName="citta" placeholder="Scrivi o seleziona un comune..." />
+      <datalist id="comuniList">
+        <option *ngFor="let c of comuniList" [value]="c.nome"></option>
+      </datalist>
 
-  
-  <small class="text-danger" *ngIf="provinciaNonSelezionata">
-    Seleziona prima una provincia!
-  </small>
+      <small class="text-danger" *ngIf="provinciaNonSelezionata">Seleziona prima una provincia!</small>
 
 </div>
 
