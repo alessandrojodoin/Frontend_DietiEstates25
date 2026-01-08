@@ -24,6 +24,7 @@ export class CreaImmobileService {
 
 
  immobile: {
+   nome: string | undefined;
    tipoImmobile: string | undefined;
    longitudine: number | undefined;
    latitudine: number | undefined;
@@ -36,6 +37,7 @@ export class CreaImmobileService {
    speseCondominiali: number | undefined;
    immagini: any[];
  } = {
+   nome: undefined,
    tipoImmobile: undefined,
    longitudine: undefined,
    latitudine: undefined,
@@ -77,6 +79,7 @@ export class CreaImmobileService {
 */
 reset() {
   this.immobile = {
+    nome: undefined,
     tipoImmobile: undefined,
     longitudine: undefined,
     latitudine: undefined,
@@ -93,10 +96,12 @@ reset() {
 
   passaDatiImmobile() {
   return this.immobiliService.createImmobile({
+    nome: this.immobile.nome!,
+    descrizione: this.immobile.descrizione!,
     tipoImmobile: this.immobile.tipoImmobile!,
     latitudine: '40.82852062332247',
     longitudine: '14.190889915493532',
-    indirizzo: `${this.immobile.indirizzo?.via}, ${this.immobile.indirizzo?.citta}, ${this.immobile.indirizzo?.provincia}`,
+    via: this.immobile.indirizzo!.via,
     citta: this.immobile.indirizzo!.citta,
     provincia: this.immobile.indirizzo!.provincia,
     tags: this.immobile.tagDescrizione.map(t => this.convertTag(t)),

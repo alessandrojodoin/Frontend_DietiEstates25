@@ -10,6 +10,7 @@ export type Cliente = {
 
 
 export type Immobile = {
+    nome: string;
     id: number;
     tipoImmobile: string; 
     longitudine: number;

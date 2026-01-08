@@ -1,22 +1,21 @@
 <div class="details-page">
 
   <header class="page-header">
-    <h1 class="title">{{ immobile.indirizzo.nome }}</h1>
+    <h1 class="title">{{ immobile.nome }}</h1>
   </header>
 
   <section class="gallery-row">
-    @for(imageId of imageIds; track imageId){
-      <div class="thumb" aria-hidden="true">
-        <img [src]="'http://localhost:8080/api/1.0/immobile/' + this.immobile.id + '/image/' + imageId" >
-      </div>
-    }
+
+
+
 
     <div class="thumb left-thumb" aria-hidden="true"></div>
 
     <div class="main-image">
-      <div class="main-placeholder" aria-hidden="true"></div>
-      <button class="nav prev" aria-hidden="true">‹</button>
-      <button class="nav next" aria-hidden="true">›</button>
+      <img [src]="'http://localhost:8080/api/1.0/immobile/' + this.immobile.id + '/image/' + imageIds[currentlyDisplayedImageIndex]" >
+
+      <button class="nav prev"  (click)="previousImage()"  aria-hidden="true">‹</button>
+      <button class="nav next" (click)="nextImage()" aria-hidden="true">›</button>
     </div>
     <div class="thumb right-thumb" aria-hidden="true"></div>
   </section>
