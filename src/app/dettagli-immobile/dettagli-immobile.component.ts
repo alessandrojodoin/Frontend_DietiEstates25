@@ -61,12 +61,17 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
         next: (data) => {
           console.log(data)
           this.immobile = this.immobiliService.convertRESTImmobile(data);
-          this.initMap().then(() => {
+          /*this.initMap().then(() => {
 
            this.updateMap();
 
   
-          })
+          })*/
+         this.map?.setCenter({
+          lat: this.immobile.latitudine,
+          lng: this.immobile.longitudine
+         })
+         this.updateMap();
         }
       });
 
@@ -79,7 +84,8 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   }
 
     async ngAfterViewInit() {
-      
+      await this.initMap();
+      this.updateMap;
       
   }
 

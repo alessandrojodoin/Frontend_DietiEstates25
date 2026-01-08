@@ -165,8 +165,8 @@ export class ImmobiliService {
       isVenduto: RESTImmobile.isVenduto,
       istanteCreazione: RESTImmobile.istanteCreazione,
       tipoImmobile: RESTImmobile.immobile.tipoImmobile,
-      longitudine: RESTImmobile.immobile.longitudine,
-      latitudine: RESTImmobile.immobile.latitudine,
+      longitudine: Number(RESTImmobile.immobile.longitudine),
+      latitudine: Number(RESTImmobile.immobile.latitudine),
       indirizzo: {
         via: RESTImmobile.immobile.indirizzo.via,
         citta: RESTImmobile.immobile.indirizzo.citta,
