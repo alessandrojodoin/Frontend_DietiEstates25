@@ -6,10 +6,9 @@
 
   <section class="gallery-row">
 
-
-
-
-    <div class="thumb left-thumb" aria-hidden="true"></div>
+    <div class="thumb left-thumb" aria-hidden="true">
+      <img [src]="'http://localhost:8080/api/1.0/immobile/' + this.immobile.id + '/image/' + imageIds[((currentlyDisplayedImageIndex - 1 + this.imageIds.length) % this.imageIds.length)]" >
+    </div>
 
     <div class="main-image">
       <img [src]="'http://localhost:8080/api/1.0/immobile/' + this.immobile.id + '/image/' + imageIds[currentlyDisplayedImageIndex]" >
@@ -17,7 +16,9 @@
       <button class="nav prev"  (click)="previousImage()"  aria-hidden="true">‹</button>
       <button class="nav next" (click)="nextImage()" aria-hidden="true">›</button>
     </div>
-    <div class="thumb right-thumb" aria-hidden="true"></div>
+    <div class="thumb right-thumb" aria-hidden="true">
+      <img [src]="'http://localhost:8080/api/1.0/immobile/' + this.immobile.id + '/image/' + imageIds[((currentlyDisplayedImageIndex + 1 + this.imageIds.length) % this.imageIds.length)]" >
+    </div>
   </section>
 
   <section class="descrizione">
@@ -30,14 +31,24 @@
   <hr class="sep">
 
   <section class="caratteristiche">
-    <h2>Caratteristiche</h2>
+    <h2>Caratteristiche</h2><br>
     <div class="char-box">
       <div class="char-grid">
           @for(tag of immobile.tagDescrizione; track tag){
             <div class="char-item"></div>
             <div class="icon-square"></div>
-            <div class="char-title">{{ tag }}</div>
-            <div class="char-value">????</div>
+            <div class="char-title">
+              
+                  {{ tag.nome | titlecase }}:   <!--compare qui la superficie-->
+                
+            </div>
+            @if(tag.type === 'Boolean' && tag.valore === "true"){
+              <div class="char-value">Sì</div>
+            } @else if(tag.type === 'Boolean' && tag.valore === "false"){
+              <div class="char-value">No</div>
+            } @else {
+              <div class="char-value">{{ tag.valore }}</div>
+            }
           }
       </div>
     </div>

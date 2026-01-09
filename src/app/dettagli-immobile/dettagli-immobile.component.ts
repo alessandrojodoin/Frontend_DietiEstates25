@@ -4,6 +4,7 @@ import { ImmobiliService } from '../_services/immobili.service';
 
 import Instant from 'ts-time/Instant';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dettagli-immobile',
@@ -19,6 +20,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   currentMarker: any = null;
   
   immobiliService = inject(ImmobiliService);
+  activatedRoute = inject(ActivatedRoute);
   imageIds: number[] = [];
   currentlyDisplayedImageIndex: number = 0;
   
@@ -56,7 +58,8 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
 
 
   ngOnInit() {
-      const immobileID = this.immobile.id;
+    console.log(this.activatedRoute.snapshot.params['id']);
+      const immobileID = this.activatedRoute.snapshot.params['id'];
       this.immobiliService.getImmobile(immobileID).subscribe({
         next: (data) => {
           console.log(data)
@@ -138,10 +141,10 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
     };
 
     nextImage(){
-      this.currentlyDisplayedImageIndex = (this.currentlyDisplayedImageIndex + 1) % this.imageIds.length;
+      this.currentlyDisplayedImageIndex = (this.currentlyDisplayedImageIndex + 1  + this.imageIds.length) % this.imageIds.length;
     }
 
     previousImage(){
-      this.currentlyDisplayedImageIndex = (this.currentlyDisplayedImageIndex - 1) % this.imageIds.length;
+      this.currentlyDisplayedImageIndex = (this.currentlyDisplayedImageIndex - 1  + this.imageIds.length) % this.imageIds.length;
     }
 }

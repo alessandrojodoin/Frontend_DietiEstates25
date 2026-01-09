@@ -74,6 +74,19 @@ $corner: 10px;
     .prev { left: -18px; }
     .next { right: -18px; }
   }
+
+  .main-image > :first-child {
+    border-radius: 6px;
+    width: 540px;
+    height: 220px;
+  }
+  
+  .thumb > img {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    
+  }
 }
 
 .descrizione {
@@ -96,16 +109,30 @@ $corner: 10px;
 }
 
 .caratteristiche {
+  width: 100%;
+
+  h2 {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
   .char-box {
+    margin: 0 auto;        // <<< centra il box
+    width: 100%;
+    max-width: 600px;      // controllo visivo
     background: lighten($blue-soft, 2%);
     border-radius: 12px;
     padding: 18px;
     border: 1px solid darken($blue-soft, 6%);
-    .char-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
+  }
+
+  .char-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    justify-content: center;
+    gap: 10px;
+  }
+
     .char-item {
       background: transparent;
       display: flex;
@@ -125,7 +152,7 @@ $corner: 10px;
       .char-value { font-weight: 700; font-size: 16px; color: #0b3b5a; }
     }
   }
-}
+
 
 .prezzo-row {
   .price-info {

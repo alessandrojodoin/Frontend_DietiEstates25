@@ -17,7 +17,7 @@ export type Immobile = {
     latitudine: number;
     indirizzo: Indirizzo;
     descrizione: string;
-    tagDescrizione: string[];
+    tagDescrizione: any[];
     prezzo: number;
     quadratura: number;
     numeroVisualizzazioni: number;

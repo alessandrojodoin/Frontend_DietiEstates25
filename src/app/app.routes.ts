@@ -59,7 +59,7 @@ export const routes: Routes = [
         component: SearchResultComponent
     },
     {
-        path: "dettagli-immobile",
+        path: "dettagli-immobile/:id",
         title: "Dettagli Immobile",
         component: DettagliImmobileComponent
     },
