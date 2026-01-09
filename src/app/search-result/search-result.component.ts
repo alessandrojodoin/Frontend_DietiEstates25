@@ -15,6 +15,7 @@ export class SearchResultComponent {
 
     immobili: Immobile[] = [
     {
+      nome: "hi",
       id: 1,
       tipoImmobile: "Appartamento",
       longitudine: 14.190889915493532,
@@ -45,6 +46,7 @@ export class SearchResultComponent {
       immagini: ["img1.jpg", "img2.jpg"]
     },
     {
+      nome: "hello",
       id: 2,
       tipoImmobile: "Appartamento",
       longitudine: 14.3759,

@@ -20,8 +20,10 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   
   immobiliService = inject(ImmobiliService);
   imageIds: number[] = [];
+  currentlyDisplayedImageIndex: number = 0;
   
   immobile: Immobile =     {
+      nome: "testName",
       id: 1,
       tipoImmobile: "Appartamento",
       longitudine: 14.3759,
@@ -57,7 +59,19 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
       const immobileID = this.immobile.id;
       this.immobiliService.getImmobile(immobileID).subscribe({
         next: (data) => {
-          this.immobile = data;
+          console.log(data)
+          this.immobile = this.immobiliService.convertRESTImmobile(data);
+          /*this.initMap().then(() => {
+
+           this.updateMap();
+
+  
+          })*/
+         this.map?.setCenter({
+          lat: this.immobile.latitudine,
+          lng: this.immobile.longitudine
+         })
+         this.updateMap();
         }
       });
 
@@ -71,7 +85,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
 
     async ngAfterViewInit() {
       await this.initMap();
-      this.updateMap();
+      this.updateMap;
       
   }
 
@@ -122,4 +136,12 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
 
       this.markers.push(marker);
     };
+
+    nextImage(){
+      this.currentlyDisplayedImageIndex = (this.currentlyDisplayedImageIndex + 1) % this.imageIds.length;
+    }
+
+    previousImage(){
+      this.currentlyDisplayedImageIndex = (this.currentlyDisplayedImageIndex - 1) % this.imageIds.length;
+    }
 }

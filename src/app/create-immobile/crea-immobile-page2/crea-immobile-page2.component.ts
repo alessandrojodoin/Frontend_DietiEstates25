@@ -190,6 +190,7 @@ export class CreaImmobilePage2Component implements OnInit {
   updateImmobile(){
     //this.creaImmobileService.immobile.nome;
     this.creaImmobileService.immobile.descrizione= this.ImmobileForm.value.Descrizione;
+    this.creaImmobileService.immobile.nome = this.ImmobileForm.value.NomeImmobile;
      const fixedTags = [
     { nome: "locali", valore: this.ImmobileForm.value.locali, tipo: "number" },
     { nome: "bagni", valore: this.ImmobileForm.value.bagni, tipo: "number" },

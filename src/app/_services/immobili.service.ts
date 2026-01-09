@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { Immobile } from '../../../data';
+import { Immobile, Indirizzo } from '../../../data';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, catchError, EMPTY } from 'rxjs';
 import Instant from 'ts-time/Instant';
 import { AuthService } from './auth.service';
+import { RedirectCommand } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +76,7 @@ export class ImmobiliService {
 
   
 
-  createImmobile(immobile: {tipoImmobile: string, latitudine: string, longitudine: string, indirizzo: string, citta: string,
+  createImmobile(immobile: {tipoImmobile: string, latitudine: string, longitudine: string, nome: string, descrizione: string, via: string, citta: string,
                   provincia: string, tags: Array<{nome: string, type: string, valore?: any}>,
                   tipologiaContratto: string, speseCondominiali: number, prezzo: number}) 
                 {
@@ -85,11 +86,13 @@ export class ImmobiliService {
         tipoImmobile: immobile.tipoImmobile,
         latitudine: immobile.latitudine,
         longitudine: immobile.longitudine,
-        indirizzo: immobile.indirizzo,
+        via: immobile.via,
         citta: immobile.citta,
         provincia: immobile.provincia,
         tags: immobile.tags
       },
+      nome: immobile.nome,
+      descrizione: immobile.descrizione, 
       tipologiaContratto: immobile.tipologiaContratto,
       speseCondominiali: immobile.speseCondominiali,
       prezzo: immobile.prezzo
@@ -103,7 +106,6 @@ export class ImmobiliService {
   }
 
 
-  //ex caricaFotoPenxsnrello, Alessandro e' stronzo e me lo ha fatto togliere (AIUTO MI MINACCIA)
   caricaFoto(immagini: { file: File }[], immobileId: number) {
     const url = `${this.url}/immobile/${immobileId}/image`;
     const headers = this.getAuthHeaders().headers; 
@@ -147,6 +149,43 @@ export class ImmobiliService {
     return this.http.get<number[]>(url, {
       responseType: 'json'
     });
+  }
+
+
+  convertRESTImmobile(RESTImmobile: any){
+    let immobile: Immobile;
+    return immobile = {
+      nome: RESTImmobile.nome,
+      descrizione: RESTImmobile.descrizione,
+      id: RESTImmobile.id,
+      numeroVisualizzazioni: RESTImmobile.numeroVisualizzazioni,
+      tipologiaContratto: RESTImmobile.tipologiaContratto,
+      prezzo: RESTImmobile.prezzo,
+      speseCondominiali: RESTImmobile.speseCondominiali,
+      isVenduto: RESTImmobile.isVenduto,
+      istanteCreazione: RESTImmobile.istanteCreazione,
+      tipoImmobile: RESTImmobile.immobile.tipoImmobile,
+      longitudine: Number(RESTImmobile.immobile.longitudine),
+      latitudine: Number(RESTImmobile.immobile.latitudine),
+      indirizzo: {
+        via: RESTImmobile.immobile.indirizzo.via,
+        citta: RESTImmobile.immobile.indirizzo.citta,
+        provincia: RESTImmobile.immobile.indirizzo.provincia,
+        nome: ""
+      },
+      quadratura: 42,
+      tagDescrizione: RESTImmobile.immobile.tags,
+      offerte: [],
+      immagini: [],
+      agenteImmobiliare: {
+        nome: "Ciao",
+        email: "prova@prova",
+        cognome: "oaiC",
+        username: "Palbo",
+        telefono: "333-333-333-333"
+      }
+
+    }
   }
 
 
