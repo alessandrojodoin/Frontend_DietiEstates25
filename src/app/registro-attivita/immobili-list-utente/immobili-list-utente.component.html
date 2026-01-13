@@ -1,1 +1,10 @@
-<p>immobili-list-utente works!</p>
+
+
+@for(immobile of immobileList; track immobile){
+  <div class="immobile-card">
+    <h3>Indirizzo: {{ immobile.indirizzo }}</h3>
+    <p>Tipo di Immobile: {{ immobile.tipoImmobile }}</p>
+    <p>Prezzo: €{{ immobile.prezzo }}</p>
+  </div>
+}
+

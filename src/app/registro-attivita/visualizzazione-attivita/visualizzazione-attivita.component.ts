@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OfferteFatteComponent } from '../offerte-fatte/offerte-fatte.component';
+import { ImmobiliListUtenteComponent } from '../immobili-list-utente/immobili-list-utente.component';
 
 @Component({
   selector: 'app-visualizzazione-attivita',
   standalone: true,
-  imports: [CommonModule, OfferteFatteComponent],
+  imports: [CommonModule, OfferteFatteComponent, ImmobiliListUtenteComponent],
   templateUrl: './visualizzazione-attivita.component.html',
   styleUrl: './visualizzazione-attivita.component.scss'
 })

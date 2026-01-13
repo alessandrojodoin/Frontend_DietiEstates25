@@ -1,1 +1,10 @@
-<p>offerte-fatte works!</p>
+
+
+@for(offerta of OfferteList; track offerta){
+  <div class="offerta-card">
+    <h3>Indirizzo: {{ offerta.indirizzo }}</h3>
+    <p>Cifra Offerta: €{{ offerta.cifraOfferta }}</p>
+    <p>Data Offerta: {{ offerta.dataOfferta }}</p>
+    <p>Stato Offerta: {{ offerta.statoOfferta }}</p>
+  </div>
+}
