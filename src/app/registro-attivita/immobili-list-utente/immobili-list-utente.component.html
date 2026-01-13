@@ -1,10 +1,15 @@
-
-
 @for(immobile of immobileList; track immobile){
   <div class="immobile-card">
-    <h3>Indirizzo: {{ immobile.indirizzo }}</h3>
-    <p>Tipo di Immobile: {{ immobile.tipoImmobile }}</p>
-    <p>Prezzo: €{{ immobile.prezzo }}</p>
+
+    <div class="immobile-image">
+      <img alt="Foto immobile"> <!--AGGIUNGI FOTO-->
+    </div>
+
+    <div class="immobile-content">
+      <h3 class="immobile-indirizzo">{{ immobile.indirizzo }}</h3>
+      <p><strong>Tipo:</strong> {{ immobile.tipoImmobile }}</p>
+      <p class="immobile-prezzo">€{{ immobile.prezzo | number:'1.0-0' }}</p>
+    </div>
+
   </div>
 }
-

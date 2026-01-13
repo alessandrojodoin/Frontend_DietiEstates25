@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-offerte-fatte',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './offerte-fatte.component.html',
   styleUrl: './offerte-fatte.component.scss'
 })

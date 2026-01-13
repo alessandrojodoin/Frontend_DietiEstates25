@@ -1,10 +1,40 @@
-
+<h2>Le tue offerte</h2>
 
 @for(offerta of OfferteList; track offerta){
   <div class="offerta-card">
-    <h3>Indirizzo: {{ offerta.indirizzo }}</h3>
-    <p>Cifra Offerta: €{{ offerta.cifraOfferta }}</p>
-    <p>Data Offerta: {{ offerta.dataOfferta }}</p>
-    <p>Stato Offerta: {{ offerta.statoOfferta }}</p>
+
+    <div class="offerta-header">
+      <h3 class="indirizzo">{{ offerta.indirizzo }}</h3>
+      <button class="btn-annulla">- Annulla</button>
+    </div>
+
+    <div class="offerta-body">
+      <div class="offerta-box">
+        Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+      </div>
+    </div>
+
+    <div class="offerta-footer">
+
+  <span class="data">📅 {{ offerta.dataOfferta }}</span>
+
+  <span class="stato"
+        [ngClass]="{
+          'stato-attesa': offerta.statoOfferta === 'In attesa',
+          'stato-accettata': offerta.statoOfferta === 'Accettata',
+          'stato-rifiutata': offerta.statoOfferta === 'Rifiutata'
+        }">
+    {{ offerta.statoOfferta }}
+  </span>
+
+  @if(offerta.statoOfferta === 'Rifiutata'){
+    <button class="btn-controproposta">
+      Fai una controproposta
+    </button>
+  }
+
+</div>
+
+
   </div>
 }

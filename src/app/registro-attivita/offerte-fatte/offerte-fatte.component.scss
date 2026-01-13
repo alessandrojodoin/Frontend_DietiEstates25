@@ -1,0 +1,136 @@
+.offerta-card {
+  background: #DDECFF;
+  border: 1px solid #c3dbf5;
+  border-radius: 14px;
+  padding: 16px 18px 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.offerta-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.offerta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.indirizzo {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0b3b5a;
+}
+
+.btn-annulla {
+  background: transparent;
+  border: 1px solid #e74c3c;
+  color: #e74c3c;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.btn-annulla:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-annulla:active {
+  transform: scale(0.95);
+}
+
+.offerta-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.offerta-box {
+  background: #9DCFFF;
+  color: #0b3b5a;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(157,207,255,0.35);
+}
+
+
+.offerta-footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;   // centra lo stato
+  margin-top: 6px;
+  min-height: 36px;
+}
+
+.offerta-footer .data {
+  position: absolute;
+  left: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+
+.stato {
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.stato-attesa {
+  background: #FFF3CD;
+  color: #B8860B;
+  border: 1px solid #FFE69C;
+}
+.stato-accettata {
+  background: #D1F2E5;
+  color: #1E7F4D;
+  border: 1px solid #A8E6CF;
+}
+.stato-rifiutata {
+  background: #FADBD8;
+  color: #B03A2E;
+  border: 1px solid #F5B7B1;
+}
+
+
+.btn-controproposta {
+  position: absolute;
+  right: 0;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 10px rgba(231,76,60,0.25);
+}
+
+.btn-controproposta:hover {
+  background: darken(#e74c3c, 6%);
+}
+
+.btn-controproposta:active {
+  transform: scale(0.95);
+}

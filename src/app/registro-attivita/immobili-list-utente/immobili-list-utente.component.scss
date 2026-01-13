@@ -1,0 +1,62 @@
+.immobile-card {
+  background: #DDECFF;
+  border: 1px solid #c3dbf5;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.immobile-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.immobile-image {
+  width: 120px;
+  height: 90px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #cfe3fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.immobile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.immobile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.immobile-indirizzo {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0b3b5a;
+}
+
+.immobile-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.immobile-prezzo {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0b3b5a;
+}

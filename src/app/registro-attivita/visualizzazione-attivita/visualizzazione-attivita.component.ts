@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OfferteFatteComponent } from '../offerte-fatte/offerte-fatte.component';
 import { ImmobiliListUtenteComponent } from '../immobili-list-utente/immobili-list-utente.component';
+import { PrenotazioniEffettuateComponent } from '../prenotazioni-effettuate/prenotazioni-effettuate.component';
 
 @Component({
   selector: 'app-visualizzazione-attivita',
   standalone: true,
-  imports: [CommonModule, OfferteFatteComponent, ImmobiliListUtenteComponent],
+  imports: [CommonModule, OfferteFatteComponent, ImmobiliListUtenteComponent, PrenotazioniEffettuateComponent],
   templateUrl: './visualizzazione-attivita.component.html',
   styleUrl: './visualizzazione-attivita.component.scss'
 })
