@@ -65,10 +65,29 @@
         <div class="condo"><strong>Spese Condominiali:</strong> {{ immobile.speseCondominiali | number:'1.0-0'}}€</div>
       </div>
       <div class="price-action">
-        <button class="btn-teal">💳 Proponi Prezzo</button>
+        <button class="btn-teal" (click)="showOffer = true">💳 Proponi Prezzo</button>
       </div>
+      <!--PROVA PROVA-->
     </div>
   </section>
+
+    <div class="popup-overlay" *ngIf="showOffer" (click)="closeOfferta()">
+  <div class="popup-content" (click)="$event.stopPropagation()">
+    <button class="close-popup" (click)="closeOfferta()">X</button>
+    <h2>Offerta</h2>
+
+    <div class="offer-option">
+      <label>Fai qui la tua offerta:</label>
+      <div class="offer-price">
+        <input type="number" placeholder="Fai un'offerta...">
+      </div>
+    </div>
+
+   
+    <button class="ok-offer-btn" (click)="applyOfferta()">Invia Offerta</button>
+  </div>
+</div>
+
 
   <hr class="sep">
 

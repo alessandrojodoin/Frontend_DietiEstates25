@@ -28,6 +28,10 @@ export class AuthRestService {
 
   constructor() { }
 
+  getUserData(username: string) {
+    const url = `${this.url}/users?username=${username}`;
+    return this.http.get<string>(url, this.jsonHttpOptions);
+  }
 
    signup(signupCredentials: {username: string, password: string, email: string, nome: string,
      cognome: string, numeroTelefonico: string}){

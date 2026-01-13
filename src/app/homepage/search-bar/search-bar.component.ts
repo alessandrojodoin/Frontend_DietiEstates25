@@ -55,7 +55,7 @@ export class SearchBarComponent {
 
 
   startSearch() {
-    console.log("Penesrnellodisearch");
+    console.log("Penesrnellodisearch");   //DA TOGLIERE
    
   }
 

@@ -23,7 +23,13 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   activatedRoute = inject(ActivatedRoute);
   imageIds: number[] = [];
   currentlyDisplayedImageIndex: number = 0;
-  
+
+  showOffer: boolean = false;
+  applyOffer: boolean = false;
+  tempOffers = {
+    price: null as number | null,
+  };
+
   immobile: Immobile =     {
       nome: "testName",
       id: 1,
@@ -147,4 +153,24 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
     previousImage(){
       this.currentlyDisplayedImageIndex = (this.currentlyDisplayedImageIndex - 1  + this.imageIds.length) % this.imageIds.length;
     }
+
+    closeOfferta(){
+      this.showOffer = false;
+      this.applyOffer = false;
+    }
+
+    applyOfferta(){
+
+    this.showOffer = false;
+    this.immobiliService.createOffer(this.immobile.id, this.tempOffers.price!).subscribe({
+      next: (data: any) => {
+        console.log('Offerta creata con successo:', data);
+
+    //    this.applyOffer = true;
+      },
+      error: (error: any) => {
+        console.error('Errore nella creazione dell\'offerta:', error);
+      }
+    });
+  }
 }

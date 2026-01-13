@@ -7,6 +7,10 @@ import { UserType } from '../../types';
 
 
 type AuthState = {
+  nome: string | null,
+  cognome: string | null,
+  email: string | null,
+  numeroTelefonico: string | null,
   user: string | null,
   userType: UserType | null
   token: string | null,
@@ -23,6 +27,10 @@ export class AuthService {
   private injector = inject(Injector);
 
   authState: AuthState = {
+    nome: null,
+    cognome: null,
+    email: null,
+    numeroTelefonico: null,
     user: null,
     userType: null,
     token: null,
@@ -54,7 +62,6 @@ export class AuthService {
       this.authState.user = decodedToken.user as string;
       this.authState.userType = decodedToken.userType as UserType
     }
-
   }
 
   private setToken(token: string){
@@ -78,6 +85,21 @@ export class AuthService {
 
       request.subscribe({
         next: (token: any) => {
+
+          rest.getUserData(loginCredentials.username).subscribe({
+            next: (userData: any) => {
+              console.log('User data retrieved:', userData);
+              this.authState.user = userData.username;
+              this.authState.nome = userData.nome;
+              this.authState.cognome = userData.cognome;
+              this.authState.email = userData.email;
+              this.authState.numeroTelefonico = userData.numeroTelefonico;
+            },
+            error: (error: any) => {
+              console.error('Error retrieving user data:', error);
+            }
+          });
+
           this.setToken(token);
           resolve(null);
         },
@@ -86,10 +108,7 @@ export class AuthService {
         complete: () => {}
 
       })
-    })
-
-  
-    
+    })  
 
   }
 
