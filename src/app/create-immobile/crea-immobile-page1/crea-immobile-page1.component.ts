@@ -27,7 +27,7 @@ export class CreaImmobilePage1Component {
   filteredComuni: string[] = [];
 
 
-  creaImmobileService = inject(CreaImmobileService)
+  creaImmobileService = inject(CreaImmobileService);
 
     locationForm = new FormGroup({
       indirizzo: new FormControl('',

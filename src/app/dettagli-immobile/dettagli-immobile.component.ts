@@ -5,6 +5,7 @@ import { ImmobiliService } from '../_services/immobili.service';
 import Instant from 'ts-time/Instant';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { OfferteServiceService } from '../_services/offerte-service.service';
 
 @Component({
   selector: 'app-dettagli-immobile',
@@ -21,6 +22,8 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   
   immobiliService = inject(ImmobiliService);
   activatedRoute = inject(ActivatedRoute);
+  offerteService= inject(OfferteServiceService);
+
   imageIds: number[] = [];
   currentlyDisplayedImageIndex: number = 0;
 
@@ -162,7 +165,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
     applyOfferta(){
 
     this.showOffer = false;
-    this.immobiliService.createOffer(this.immobile.id, this.tempOffers.price!).subscribe({
+    this.offerteService.createOffer(this.immobile.id, this.tempOffers.price!).subscribe({
       next: (data: any) => {
         console.log('Offerta creata con successo:', data);
 

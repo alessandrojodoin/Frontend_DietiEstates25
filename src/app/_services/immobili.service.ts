@@ -191,16 +191,8 @@ export class ImmobiliService {
   }
 
 
-  //Per offerte su un immobile...
-  createOffer(immobileId: number, offerPrice: number) {
 
-    const authState = this.authService.authState; 
-    const url = `${this.url}/immobile`;
-    const headers = this.getAuthHeaders();
-    return this.http.post<string>(url, { nome: authState.nome, cognome: authState.cognome, email: authState.email,
-      numeroTelefonico: authState.numeroTelefonico, immobileId: immobileId, offerPrice: offerPrice }, headers);
 
-}
 
 
 }
