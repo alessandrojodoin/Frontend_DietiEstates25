@@ -6,7 +6,7 @@ import { CreaImmobileService } from '../../_services/crea-immobile.service';
 
 interface TagOption {
   nome: string;
-  tipo: 'select' | 'number' | 'textarea';
+  tipo: 'select' | 'number' ;
   opzioni?: string[];
   placeholder?: string;
 }
@@ -36,10 +36,9 @@ export class CreaImmobilePage2Component implements OnInit {
     { nome: 'veranda / portico', tipo: 'select', opzioni: ['No', 'Sì'] },
     { nome: 'posto auto', tipo: 'select', opzioni: ['No', 'Sì'] },
     { nome: 'garage', tipo: 'select', opzioni: ['No', 'Sì'] },
-    { nome: 'collocazione', tipo: 'textarea', placeholder: 'Es. Vicino al centro città...' },
+    { nome: 'vicinanza a centro storico', tipo: 'select', opzioni: ['No', 'Sì'] },
     { nome: 'arredata', tipo: 'select', opzioni: ['No', 'Sì', 'Parzialmente'] },
     { nome: 'cucina a vista', tipo: 'select', opzioni: ['No', 'Sì'] },
-    { nome: 'vicinanza a mezzi pubblici', tipo: 'textarea', placeholder: 'Es. Fermata autobus a 100m...' },
     { nome: 'ascensore', tipo: 'select', opzioni: ['No', 'Sì'] },
     { nome: 'accesso disabili', tipo: 'select', opzioni: ['No', 'Sì'] },
     { nome: 'animali ammessi', tipo: 'select', opzioni: ['No', 'Sì'] },
@@ -98,7 +97,6 @@ export class CreaImmobilePage2Component implements OnInit {
         const tagControls = this.ImmobileForm.get('tagAggiuntivi') as FormGroup;
         let validators: any[] = [];
         if (opt.tipo === 'number') validators = [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+$')];
-        if (opt.tipo === 'textarea') validators = [Validators.required, Validators.minLength(1)];
         if (opt.tipo === 'select') validators = [Validators.required];
 
         const defaultValue = tag.valore;
@@ -139,7 +137,6 @@ export class CreaImmobilePage2Component implements OnInit {
 
   let validators: any = [];
   if (tag.tipo === 'number') validators = [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+$')];
-  if (tag.tipo === 'textarea') validators = [Validators.required, Validators.minLength(1)];
   if (tag.tipo === 'select') validators = [Validators.required];
 
   const defaultValue = tag.tipo === 'select' ? tag.opzioni![0] : '';
@@ -201,7 +198,7 @@ export class CreaImmobilePage2Component implements OnInit {
 
   fixedTags.forEach(tag => {
     let tipoTag: "string" | "number";
-      if(tag.tipo == "textarea" || tag.tipo == "select")
+      if(tag.tipo == "select")
           tipoTag = "string";
       else
           tipoTag= "number";
@@ -215,7 +212,7 @@ export class CreaImmobilePage2Component implements OnInit {
   });
     this.selectedTags.forEach(element => {
       let tipoTag: "string" | "number";
-      if(element.tipo == "textarea" || element.tipo == "select")
+      if(element.tipo == "select")
           tipoTag = "string";
       else
           tipoTag= "number";

@@ -80,7 +80,6 @@
     </select>
 
     <input *ngIf="tag.tipo === 'number'" type="number" [placeholder]="tag.placeholder" (input)="handleTagSelection(tag, $event)">
-    <textarea *ngIf="tag.tipo === 'textarea'" [placeholder]="tag.placeholder" (input)="handleTagSelection(tag, $event)"></textarea>
 
     <button type="button" class="remove-btn" (click)="removeTag(tag)">-</button>
   </div>
