@@ -16,7 +16,7 @@
 
     <div class="offerta-footer">
 
-  <span class="data">📅 {{ offerta.dataOfferta }}</span>
+  <span class="data">📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}</span>
 
   <span class="stato"
         [ngClass]="{

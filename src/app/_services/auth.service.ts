@@ -56,21 +56,46 @@ export class AuthService {
   }
 
   constructor() {
-    this.authState.token = localStorage.getItem("token");
-    if(this.authState.token !== null){
-      const decodedToken: any = jwtDecode(this.authState.token);
-      this.authState.user = decodedToken.user as string;
-      this.authState.userType = decodedToken.userType as UserType
-    }
+  console.log("AuthService constructor called");
+  this.authState.token = this.getToken();
+
+  if (this.authState.token !== null) {
+    console.log("Token found in localStorage:", this.authState.token);
+    const decodedToken: any = jwtDecode(this.authState.token);
+    this.authState.user = decodedToken.username as string;
+    this.authState.userType = decodedToken.userType as UserType;
+
+    console.log("Decoded token:", decodedToken);
+    
+    const rest = this.injector.get(AuthRestService);
+    rest.getUserData(this.getUsername()).subscribe({
+      next: (userData: any) => {
+          console.log('User data retrieved:', userData);
+          this.authState.user = userData.username;
+          this.authState.nome = userData.nome;
+          this.authState.cognome = userData.cognome;
+          this.authState.email = userData.email;
+          this.authState.numeroTelefonico = userData.numeroTelefonico;
+      },
+      error: (error: any) => {
+        console.error('Error retrieving user data:', error);
+      }
+    });
   }
+}
+
+
 
   private setToken(token: string){
     localStorage.setItem("token", token);
+
     this.authState.token = token;
     const decodedToken: any = jwtDecode(token);
     this.authState.user = decodedToken.user as string;
     this.authState.userType = decodedToken.userType as UserType
   }
+
+
 
   getToken(): string | null{
     return localStorage.getItem("token");
@@ -85,6 +110,7 @@ export class AuthService {
 
       request.subscribe({
         next: (token: any) => {
+          this.setToken(token);
 
           rest.getUserData(loginCredentials.username).subscribe({
             next: (userData: any) => {
@@ -100,7 +126,7 @@ export class AuthService {
             }
           });
 
-          this.setToken(token);
+          
           resolve(null);
         },
         error: (error: any) => {

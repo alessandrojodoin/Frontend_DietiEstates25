@@ -26,19 +26,21 @@ export class OfferteFatteComponent {
 
 async conversioneBackToFront(offerteFromBack: any[]) {
   let OfferteConvertite: any[] = [];
+  console.log("Offerte from back:", offerteFromBack);
 
   for (let offerta of offerteFromBack) {
     let cifraOfferta= offerta.cifraInCentesimi;
     let statoOfferta= offerta.risultatoOfferta;
     let dataOfferta= offerta.dataOfferta;
     const immobileData = await firstValueFrom(
-      this.immobileService.getImmobile(offerta.immobileId)
+      this.immobileService.getImmobile(offerta.idListino)
       
     );
     let id= immobileData.id;
     let indirizzo= immobileData.nome;
 
     OfferteConvertite.push({id, indirizzo, cifraOfferta, dataOfferta, statoOfferta});
+
 
   }
   return OfferteConvertite;

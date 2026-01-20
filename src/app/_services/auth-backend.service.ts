@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { catchError, EMPTY, map, shareReplay } from 'rxjs';
+import { response } from 'express';
 @Injectable({
   providedIn: 'root'
 })
@@ -29,8 +30,9 @@ export class AuthRestService {
   constructor() { }
 
   getUserData(username: string) {
-    const url = `${this.url}/users?username=${username}`;
-    return this.http.get<string>(url, this.jsonHttpOptions);
+    const url = `${this.url}/auth/users?username=${username}`;
+    return this.http.get<string>(url, {responseType: 'json'});
+    
   }
 
    signup(signupCredentials: {username: string, password: string, email: string, nome: string,
