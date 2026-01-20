@@ -1,11 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { VenditeEffettuateAgenteComponent } from '../vendite-effettuate-agente/vendite-effettuate-agente.component';
+import { StoricoAgenteComponent } from '../storico-agente/storico-agente.component';
+import { PrenotazioniRicevuteComponent } from '../prenotazioni-ricevute/prenotazioni-ricevute.component';
+import { OfferteRicevuteComponent } from '../offerte-ricevute/offerte-ricevute.component';
+import { ImmobiliListAgenteComponent } from '../immobili-list-agente/immobili-list-agente.component';
 
 @Component({
   selector: 'app-visualizzazione-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, VenditeEffettuateAgenteComponent, StoricoAgenteComponent, PrenotazioniRicevuteComponent, OfferteRicevuteComponent, ImmobiliListAgenteComponent],
   templateUrl: './visualizzazione-dashboard.component.html',
   styleUrl: './visualizzazione-dashboard.component.scss'
 })

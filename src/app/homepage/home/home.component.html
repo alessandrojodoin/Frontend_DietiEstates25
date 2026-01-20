@@ -1,8 +1,20 @@
+
+
 <div class="homepage-body">
   <div class="container">
     <div class="main-content">
+      @if(auth.getUserType() === 'Cliente'){
       <h2 class="search-title">Cosa cerchi oggi?</h2>
+      } @else if(auth.getUserType() === 'AgenteImmobiliare'){
+        <h2 class="search-title">Da dove iniziamo?</h2>
+      }
+      
       <app-search-bar></app-search-bar>
+      
     </div>
+    @if(auth.getUserType() === 'AgenteImmobiliare'){
+        <button class="btn-crea-immobile" [routerLink]="['/create-immobile']">Crea nuova inserzione +</button><br>
+        <button class="btn-dashboard" [routerLink]="['/dashboard']">Dashboard</button>
+      }
   </div>
 </div>

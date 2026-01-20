@@ -7,34 +7,73 @@
                 </span>
             </a>
         </div>
+
         <div class="profile-menu" (click)="toggleDropdown()">
-             <ng-container *ngIf="auth.isUserAuthenticated(); else notLoggedIn">
-            <span class="profile-username">Profilo</span>
-            <span class="profile-arrow">
-                <span *ngIf="dropdownOpen">&#9650;</span>
-                <span *ngIf="!dropdownOpen">&#9660;</span>
-            </span>
-            <span class="profile-icon">👤</span>
-            <div class="dropdown" *ngIf="dropdownOpen">
-                <div class="dropdown-header">Riepilogo Attività</div>
-                <ul>
-                    <li><a [routerLink]="['./riepilogo-attivita']" fragment="Immobili">Immobili Visualizzati</a></li>
-                    <li><a [routerLink]="['./riepilogo-attivita']" fragment="Offerte">Offerte Fatte</a></li>
-                    <li><a [routerLink]="['./riepilogo-attivita']" fragment="Prenotazioni">Prenotazioni Effettuate</a></li>
-                </ul>
-                <hr>
-                <div class="dropdown-logout">
-                    <span><a [routerLink]="['./logout']">Logout</a></span>
-                    <span class="logout-icon">⍈</span>
-                </div>
-            </div>
-            </ng-container>
+
+  @if (auth.isUserAuthenticated()) {
+
+    @if (auth.getUserType() === 'Cliente') {
+
+      <span class="profile-username">Profilo</span>
+      <span class="profile-arrow">
+        <span *ngIf="dropdownOpen">&#9650;</span>
+        <span *ngIf="!dropdownOpen">&#9660;</span>
+      </span>
+      <span class="profile-icon">👤</span>
+
+      <div class="dropdown" *ngIf="dropdownOpen">
+        <div class="dropdown-header">Riepilogo Attività</div>
+        <ul>
+          <li><a [routerLink]="['/riepilogo-attivita']" fragment="Immobili">Immobili Visualizzati</a></li>
+          <li><a [routerLink]="['/riepilogo-attivita']" fragment="Offerte">Offerte Fatte</a></li>
+          <li><a [routerLink]="['/riepilogo-attivita']" fragment="Prenotazioni">Prenotazioni Effettuate</a></li>
+        </ul>
+
+        <hr>
+        <div class="dropdown-logout">
+          <a [routerLink]="['/logout']">Logout ⍈</a>
         </div>
-        <ng-template #notLoggedIn>
-            <div class="login-signup">
-                <a aria-label="Login" class="login" routerLink="/login">Login</a>
-                <a aria-label="Registrazione" class="registrazione" routerLink="/signup-cliente">Registrati</a>
-            </div>
-        </ng-template>
+      </div>
+
+    } @else if (auth.getUserType() === 'AgenteImmobiliare') {
+
+      <span>Operazioni</span>
+      <span class="profile-arrow">
+        <span *ngIf="dropdownOpen">&#9650;</span>
+        <span *ngIf="!dropdownOpen">&#9660;</span>
+      </span>
+
+      <div class="dropdown" *ngIf="dropdownOpen">
+        <a [routerLink]="['/create-immobile']">Crea nuova inserzione +</a>
+        <hr>
+
+        <div class="dropdown-header">Dashboard</div>
+        <ul>
+          <li><a [routerLink]="['/dashboard']" fragment="Immobili">Immobili</a></li>
+          <li><a [routerLink]="['/dashboard']" fragment="Offerte">Offerte</a></li>
+          <li><a [routerLink]="['/dashboard']" fragment="Prenotazioni">Prenotazioni</a></li>
+          <li><a [routerLink]="['/dashboard']" fragment="Vendite">Vendite</a></li>
+          <li><a [routerLink]="['/dashboard']" fragment="Storico">Storico</a></li>
+        </ul>
+
+        <hr>
+        <div class="dropdown-logout">
+          <a [routerLink]="['/logout']">Logout ⍈</a>
+        </div>
+      </div>
+
+    }
+
+  } @else {
+
+    <div class="login-signup">
+      <a class="login" routerLink="/login">Login</a>
+      <a class="registrazione" routerLink="/signup-cliente">Registrati</a>
+    </div>
+
+  }
+
+</div>
+
     </nav>
 </header>

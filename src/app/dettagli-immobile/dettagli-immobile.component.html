@@ -55,7 +55,7 @@
   </section>
 
   <hr class="sep">
-
+@if(auth.getUserType() === 'Cliente'){
   <section class="prezzo-row">
     <h2>Informazioni sul prezzo</h2>
     <div class="price-info">
@@ -88,7 +88,7 @@
   </div>
 </div>
 
-
+}
   <hr class="sep">
 
   <section class="localita">
@@ -112,8 +112,9 @@
       <div><strong>Numero di telefono:</strong> {{immobile.agenteImmobiliare.telefono}}</div>
       <div><strong>Email:</strong> {{ immobile.agenteImmobiliare.email }}</div>
     </div>
-
+@if(auth.getUserType() === 'Cliente'){
     <button class="btn-visit">📅 Prenota Visita</button>
+}
   </section>
 
 </div>

@@ -2,15 +2,22 @@
 <h2>Visualizzazione Dashboard</h2>
 
 <div *ngIf="currentSection === 'Immobili'">
-
-  <p>sono un immobile</p>
+  <app-immobili-list-agente></app-immobili-list-agente>
 </div>
 
 <div *ngIf="currentSection === 'Offerte'">
-
-  <p>Non hai offerte</p>
+  <app-offerte-ricevute></app-offerte-ricevute>
 </div>
 
 <div *ngIf="currentSection === 'Prenotazioni'">
-  <p>nesssuno ti vuole</p>
+  <app-prenotazioni-ricevute></app-prenotazioni-ricevute>
+</div>
+
+
+<div *ngIf="currentSection === 'Vendite'">
+  <app-vendite-effettuate-agente></app-vendite-effettuate-agente>
+</div>
+
+<div *ngIf="currentSection === 'Storico'">
+  <app-storico-agente></app-storico-agente>
 </div>
