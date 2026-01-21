@@ -1,1 +1,41 @@
-<p>offerte-ricevute works!</p>
+<h2>Le tue offerte</h2>
+
+@for(immobile of ImmobiliList; track immobile){
+<div class="immobile-card"> 
+
+
+@if(immobile.offerte!= []){
+  @for(offerta of immobile.offerte; track offerta){
+  <div class="offerta-card">
+
+<h3>Indirizzo: {{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})</h3>
+
+<p>Recapito telefonico: {{offerta.telefono}}</p>
+<p>Email Offerente: {{offerta.emailOfferente}}</p>
+<p>Nome Offerente: {{offerta.nomeOfferente}}</p>
+<p>Cognome Offerente: {{offerta.cognomeOfferente}}</p>
+
+    <div class="offerta-body">
+      <div class="offerta-box">
+        Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+      </div>
+    </div>
+
+<button>Accetta</button>
+<button>Rifiuta</button>
+
+    <div class="offerta-footer">
+
+  <span class="data">📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}</span>
+
+</div>
+
+
+  </div>
+}
+}
+  
+
+</div>
+
+}

@@ -51,4 +51,10 @@ export class OfferteServiceService {
     const headers = this.getAuthHeaders();
     return this.http.get<any[]>(url, headers);
   }
+
+  getOffersForImmobile(immobileId: number) {
+    const url = `${this.url}/offerte?immobileId=${immobileId}`;
+    const headers = this.getAuthHeaders();
+    return this.http.get<any[]>(url, headers);
+  }
 }

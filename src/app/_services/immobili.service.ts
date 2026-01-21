@@ -137,6 +137,18 @@ export class ImmobiliService {
       
   }
 
+  getImmobiliList(){
+    const url = `${this.url}/immobili`;
+    return this.http.get<Immobile[]>(url, {
+      responseType: 'json'
+    });
+  }
+
+  getImmobiliListByAgente(agenteUsername: string){
+    const url = `${this.url}/immobile?agenteImmobiliare=${agenteUsername}`;
+    const headers = this.getAuthHeaders();
+    return this.http.get<Immobile[]>(url, headers);
+  }
 
   getImmobile(immobileId: number){
     console.log("getImmobile http request")
