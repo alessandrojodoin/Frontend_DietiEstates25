@@ -1,5 +1,12 @@
 <h2>Le tue offerte</h2>
 
+@if (loading) {
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <p>Caricamento offerte in corso...</p>
+  </div>
+} @else {
+
 @for(immobile of ImmobiliList; track immobile){
   @if(immobile.offerte?.length){
     
@@ -44,4 +51,5 @@
 
     }
   }
+}
 }

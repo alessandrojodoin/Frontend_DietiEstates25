@@ -1,6 +1,14 @@
 <div class="immobili-list-container">
   <h2>I tuoi Immobili</h2>
 
+  
+@if (loading) {
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <p>Caricamento immobili in corso...</p>
+  </div>
+} @else {
+
   <div class="immobili-list">
     <div
       class="immobile-card"
@@ -39,4 +47,6 @@
       </div>
     </div>
   </div>
+}
 </div>
+

@@ -16,6 +16,7 @@ export class ImmobiliListAgenteComponent {
   immobiliService = inject(ImmobiliService);
   auth = inject(AuthService);
   immobiliList: any[] = [];
+  loading= false;
 
 
   
@@ -37,8 +38,11 @@ export class ImmobiliListAgenteComponent {
 
 
 
-  ngOnInit(): void {
-    this.caricaImmobili();
+ async ngOnInit() {
+    this.loading = true;
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await this.caricaImmobili();
+    this.loading = false;
   }
 
 }

@@ -18,10 +18,15 @@ export class OfferteRicevuteComponent {
   immobileService = inject(ImmobiliService)
   authService = inject(AuthService);
   ImmobiliList: any[] = [];
+  loading = false;
 
 
-  ngOnInit() {
-    this.caricaOfferte();
+ async ngOnInit() {
+   this.loading = true;
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+   await this.caricaOfferte();
+     this.loading = false;
     console.log(this.ImmobiliList);
   }
   
@@ -76,30 +81,28 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
 }
 
 public async caricaOfferte() {
-  const immobili =
-    await this.immobileService
-      .getImmobiliListByAgente(this.authService.getUsername())
-      .toPromise();
+  const immobili = await firstValueFrom(
+    this.immobileService.getImmobiliListByAgente(
+      this.authService.getUsername()
+    )
+  );
 
   if (!immobili || immobili.length === 0) {
+    this.ImmobiliList = [];
     return;
   }
 
   await Promise.all(
     immobili.map(async (immobile: any) => {
-      const offerte = await this.offerteService
-        .getOffersForImmobile(immobile.id)
-        .toPromise();
-
-      immobile.offerte = offerte;
+      immobile.offerte = await firstValueFrom(
+        this.offerteService.getOffersForImmobile(immobile.id)
+      );
     })
   );
 
-  this.ImmobiliList =
-    await this.ImmobiliListBackToFront(immobili);
-
-  console.log(this.ImmobiliList);
+  this.ImmobiliList = await this.ImmobiliListBackToFront(immobili);
 }
+
 
 
 }
