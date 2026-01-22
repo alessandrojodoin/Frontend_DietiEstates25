@@ -1,136 +1,108 @@
 .offerta-card {
+  position: relative;
   background: #DDECFF;
-  border: 1px solid #c3dbf5;
-  border-radius: 14px;
-  padding: 16px 18px 14px;
-  margin-bottom: 18px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  margin-bottom: 20px;  
+  border-radius: 16px;
+  padding: 18px;
+  padding-bottom: 44px;
 }
+
+.data {
+  position: absolute;
+  left: 18px;
+  bottom: 12px;
+  font-size: 13px;
+  color: #555;
+  z-index: 2;
+}
+
 
 .offerta-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
-.offerta-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
 .indirizzo {
   margin: 0;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 17px;
+  font-weight: 800;
   color: #0b3b5a;
-}
-
-.btn-annulla {
-  background: transparent;
-  border: 1px solid #e74c3c;
-  color: #e74c3c;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, transform 0.1s;
-}
-
-.btn-annulla:hover {
-  background: #e74c3c;
-  color: white;
-}
-
-.btn-annulla:active {
-  transform: scale(0.95);
+  margin-bottom: 10px;
 }
 
 .offerta-body {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  justify-content: center;
+  padding-right: 200px; //uguale a offerta-info
 }
 
 .offerta-box {
-  background: #9DCFFF;
+  background: #ffffff;
   color: #0b3b5a;
-  padding: 14px 28px;
+  padding: 12px 26px;
   border-radius: 12px;
   font-size: 22px;
   font-weight: 800;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 10px rgba(157,207,255,0.35);
-}
-
-
-.offerta-footer {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;   // centra lo stato
-  margin-top: 6px;
-  min-height: 36px;
-}
-
-.offerta-footer .data {
-  position: absolute;
-  left: 0;
-  font-size: 13px;
-  color: #666;
-}
-
-
-.stato {
-  font-weight: 800;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  letter-spacing: 0.3px;
-  min-width: 110px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 180px;
   text-align: center;
 }
 
-.stato-attesa {
-  background: #FFF3CD;
-  color: #B8860B;
-  border: 1px solid #FFE69C;
-}
-.stato-accettata {
-  background: #D1F2E5;
-  color: #1E7F4D;
-  border: 1px solid #A8E6CF;
-}
-.stato-rifiutata {
-  background: #FADBD8;
-  color: #B03A2E;
-  border: 1px solid #F5B7B1;
+
+
+.offerta-inner {
+  background: #9DCFFF; 
+  border-radius: 14px;
+  padding: 10px;  
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px; 
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
 }
 
 
-.btn-controproposta {
-  position: absolute;
-  right: 0;
+.offerta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 200px; //uguale a offerta-info
+}
+
+
+.offerta-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #08324d;
+}
+
+.azioni {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.5);
+}
+
+
+.btn-accetta {
+  background: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-rifiuta {
   background: #e74c3c;
   color: white;
   border: none;
-  padding: 7px 14px;
+  padding: 8px 18px;
   border-radius: 8px;
-  font-size: 13px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
-  box-shadow: 0 4px 10px rgba(231,76,60,0.25);
-}
-
-.btn-controproposta:hover {
-  background: darken(#e74c3c, 6%);
-}
-
-.btn-controproposta:active {
-  transform: scale(0.95);
 }

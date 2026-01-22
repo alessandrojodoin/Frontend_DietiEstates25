@@ -12,9 +12,17 @@
       <app-search-bar></app-search-bar>
       
     </div>
+  
     @if(auth.getUserType() === 'AgenteImmobiliare'){
-        <button class="btn-crea-immobile" [routerLink]="['/create-immobile']">Crea nuova inserzione +</button><br>
-        <button class="btn-dashboard" [routerLink]="['/dashboard']">Dashboard</button>
-      }
+  <div class="actions">
+    <button class="btn-crea-immobile" [routerLink]="['/create-immobile']">
+      Crea nuova inserzione +
+    </button>
+    <button class="btn-dashboard" [routerLink]="['/dashboard']">
+      Vai alla Dashboard 
+    </button>
+  </div>
+}
+
   </div>
 </div>
