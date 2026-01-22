@@ -3,6 +3,7 @@
 <div class="homepage-body">
   <div class="container">
     <div class="main-content">
+
       @if(auth.getUserType() === 'Cliente'){
       <h2 class="search-title">Cosa cerchi oggi?</h2>
       } @else if(auth.getUserType() === 'AgenteImmobiliare'){
@@ -13,7 +14,7 @@
       
     </div>
   
-    @if(auth.getUserType() === 'AgenteImmobiliare'){
+    @if(auth.isUserAuthenticated() && auth.getUserType() === 'AgenteImmobiliare'){
   <div class="actions">
     <button class="btn-crea-immobile" [routerLink]="['/create-immobile']">
       Crea nuova inserzione +
