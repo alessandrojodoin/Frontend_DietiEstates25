@@ -167,7 +167,7 @@ export class ImmobiliService {
 
 
   convertRESTImmobile(RESTImmobile: any){
-    let immobile: Immobile;
+    let immobile;
     return immobile = {
       nome: RESTImmobile.nome,
       descrizione: RESTImmobile.descrizione,

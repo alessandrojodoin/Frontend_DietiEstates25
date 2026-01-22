@@ -1,1 +1,42 @@
-<p>immobili-list-agente works!</p>
+<div class="immobili-list-container">
+  <h2>Immobili Gestiti</h2>
+
+  <div class="immobili-list">
+    <div
+      class="immobile-card"
+      *ngFor="let immobile of immobiliList"
+    >
+      <!-- IMMAGINE -->
+      <div class="immobile-img">
+        <img
+          [src]="'http://localhost:8080/api/1.0/immobile/' + immobile.id + '/image/' + immobile.immagini[0]"
+          alt="immagine immobile"
+        />
+
+        <div class="badge-views">
+          Visualizzazioni: {{ immobile.numeroVisualizzazioni }}
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="immobile-info">
+        <div class="nome">
+          {{ immobile.nome }}
+        </div>
+
+        <div class="contratto">
+          {{ immobile.tipologiaContratto }}
+        </div>
+
+        <div class="prezzo">
+          <ng-container *ngIf="immobile.tipologiaContratto === 'AFFITTO'; else vendita">
+            ${{ immobile.prezzo }}/mese
+          </ng-container>
+          <ng-template #vendita>
+            ${{ immobile.prezzo }}
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
