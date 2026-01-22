@@ -1,41 +1,47 @@
 <h2>Le tue offerte</h2>
 
 @for(immobile of ImmobiliList; track immobile){
-<div class="immobile-card"> 
+  @if(immobile.offerte?.length){
+    
+    @for(offerta of immobile.offerte; track offerta){
 
+      <div class="offerta-card">
 
-@if(immobile.offerte!= []){
-  @for(offerta of immobile.offerte; track offerta){
-  <div class="offerta-card">
+        <!-- INDIRIZZO -->
+        <h3 class="indirizzo">
+          {{ immobile.indirizzo.via }},
+          {{ immobile.indirizzo.citta }}
+          ({{ immobile.indirizzo.provincia }})
+        </h3>
 
-<h3>Indirizzo: {{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})</h3>
+        <span class="data">
+          📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}
+        </span>
 
-<p>Recapito telefonico: {{offerta.telefono}}</p>
-<p>Email Offerente: {{offerta.emailOfferente}}</p>
-<p>Nome Offerente: {{offerta.nomeOfferente}}</p>
-<p>Cognome Offerente: {{offerta.cognomeOfferente}}</p>
+        <!-- INFO SU OFFERTA -->
+        <div class="offerta-inner">
 
-    <div class="offerta-body">
-      <div class="offerta-box">
-        Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+          <div class="offerta-info">
+            <p><strong>Nome:</strong> {{offerta.nomeOfferente}}</p>
+            <p><strong>Cognome:</strong> {{offerta.cognomeOfferente}}</p>
+            <p><strong>Telefono:</strong> {{offerta.telefono}}</p>
+            <p><strong>Email:</strong> {{offerta.emailOfferente}}</p>
+          </div>
+
+          <div class="offerta-body">
+            <div class="offerta-box">
+              Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+            </div>
+          </div>
+
+          <div class="azioni">
+            <button class="btn-accetta">Accetta</button>
+            <button class="btn-rifiuta">Rifiuta</button>
+          </div>
+
+        </div>
       </div>
-    </div>
 
-<button>Accetta</button>
-<button>Rifiuta</button>
-
-    <div class="offerta-footer">
-
-  <span class="data">📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}</span>
-
-</div>
-
-
-  </div>
-}
-}
-  
-
-</div>
-
+    }
+  }
 }

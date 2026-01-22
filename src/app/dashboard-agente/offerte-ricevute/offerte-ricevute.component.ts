@@ -60,11 +60,11 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
         let cifraOfferta= offerta.cifraInCentesimi;
         let statoOfferta= offerta.risultatoOfferta;
         let dataOfferta= offerta.dataOfferta;
-        let telefono= offerta.numeroTelefonico;
+        let telefono= offerta.telefono;
         let emailOfferente= offerta.emailOfferente;
         let nomeOfferente= offerta.nome;
         let cognomeOfferente= offerta.cognome;
-    
+
         offerte.push({cifraOfferta, dataOfferta, statoOfferta, telefono, emailOfferente, nomeOfferente, cognomeOfferente});
       }
     ImmobiliConvertiti.push({id, indirizzo, nome, offerte});
