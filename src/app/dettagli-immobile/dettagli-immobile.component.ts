@@ -95,6 +95,13 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
           this.imageIds = imageIds;
         }
       });
+
+  this.immobiliService.postVisualizzazione(immobileID).subscribe({
+     next: (data: any) => {
+        console.log("postVisualizzazione: ", data);
+    }
+  })
+
   }
 
     async ngAfterViewInit() {

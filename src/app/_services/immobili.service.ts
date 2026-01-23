@@ -165,6 +165,18 @@ export class ImmobiliService {
     });
   }
 
+  postVisualizzazione(immobileId: number | string) {
+  const url = `${this.url}/immobile/visualizzazione`;
+  const headers = this.getAuthHeaders();
+
+  return this.http.post(
+    url,
+    { id: Number(immobileId) },
+    headers
+  );
+}
+
+
 
   convertRESTImmobile(RESTImmobile: any){
     let immobile;
