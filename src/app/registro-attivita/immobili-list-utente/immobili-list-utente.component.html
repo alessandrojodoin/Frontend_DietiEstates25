@@ -1,15 +1,42 @@
-@for(immobile of immobileList; track immobile){
+@for(immobile of immobiliList; track immobile){
   <div class="immobile-card">
 
-    <div class="immobile-image">
-      <img alt="Foto immobile"> <!--AGGIUNGI FOTO-->
-    </div>
+   <div class="immobili-list">
+    <div
+      class="immobile-card"
+      *ngFor="let immobile of immobiliList"
+    >
+      <!-- IMMAGINE -->
+      <div class="immobile-img">
+        <img
+          [src]="'http://localhost:8080/api/1.0/immobile/' + immobile.id + '/image/' + immobile.immagini[0]"
+          alt="immagine immobile"
+        />
 
-    <div class="immobile-content">
-      <h3 class="immobile-indirizzo">{{ immobile.indirizzo }}</h3>
-      <p><strong>Tipo:</strong> {{ immobile.tipoImmobile }}</p>
-      <p class="immobile-prezzo">€{{ immobile.prezzo | number:'1.0-0' }}</p>
+       
+      </div>
+
+      <!-- INFO -->
+      <div class="immobile-info">
+        <div class="nome">
+          {{ immobile.nome }}
+        </div>
+
+        <div class="contratto">
+          {{ immobile.tipologiaContratto }}
+        </div>
+
+        <div class="prezzo">
+          <ng-container *ngIf="immobile.tipologiaContratto === 'AFFITTO'; else vendita">
+            ${{ immobile.prezzo }}/mese
+          </ng-container>
+          <ng-template #vendita>
+            ${{ immobile.prezzo }}
+          </ng-template>
+        </div>
+      </div>
     </div>
+  </div>
 
   </div>
 }

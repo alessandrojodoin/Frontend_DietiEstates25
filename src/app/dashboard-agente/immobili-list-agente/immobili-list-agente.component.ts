@@ -27,7 +27,7 @@ export class ImmobiliListAgenteComponent {
       for (let immobile of immobiliListTemp!) {
         this.immobiliList.push(this.immobiliService.convertRESTImmobile(immobile));
       }
-      console.log("penesrnello");
+      
       for (let immobile of this.immobiliList) {
         this.immobiliService.getImageList(immobile.id).subscribe((imagesIds: Number[]) => {
           immobile.immagini = imagesIds;

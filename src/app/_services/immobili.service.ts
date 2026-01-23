@@ -176,6 +176,11 @@ export class ImmobiliService {
   );
 }
 
+getImmobiliVisualizzati(){
+  const url = `${this.url}/immobile?cliente=${this.authService.getUsername()}`;
+  const headers = this.getAuthHeaders();
+    return this.http.get<Immobile[]>(url, headers);
+}
 
 
   convertRESTImmobile(RESTImmobile: any){

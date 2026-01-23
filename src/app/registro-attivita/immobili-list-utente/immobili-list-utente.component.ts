@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ImmobiliService } from '../../_services/immobili.service';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-immobili-list-utente',
@@ -9,16 +11,36 @@ import { Component } from '@angular/core';
   styleUrl: './immobili-list-utente.component.scss'
 })
 export class ImmobiliListUtenteComponent {
+  immobiliService= inject(ImmobiliService);
+  auth= inject(AuthService)
 
   
-  immobileList: {indirizzo: string,  tipoImmobile: string, prezzo: number}[] = [
-    {indirizzo: "Via Roma 10, Milano", tipoImmobile: "Appartamento", prezzo: 250000},
-    {indirizzo: "Corso Venezia 5, Torino", tipoImmobile: "Casa", prezzo: 300000},
-    {indirizzo: "Piazza Duomo 3, Firenze", tipoImmobile: "Villa", prezzo: 450000}
-  ];  
+  immobiliList: any[] = [];
+  
+  
+  async caricaImmobili() {
+    let immobiliListTemp;
+    immobiliListTemp = await this.immobiliService.getImmobiliVisualizzati().toPromise();
+
+      for (let immobile of immobiliListTemp!) {
+        this.immobiliList.push(this.immobiliService.convertRESTImmobile(immobile));
+      }
+      
+      for (let immobile of this.immobiliList) {
+        this.immobiliService.getImageList(immobile.id).subscribe((imagesIds: Number[]) => {
+          immobile.immagini = imagesIds;
+        });
+    };
+   
+  }
 
 
 
+ngOnInit(){
+
+  this.caricaImmobili();
+
+}
 
 
 }
