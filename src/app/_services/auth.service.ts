@@ -66,7 +66,7 @@ export class AuthService {
     this.authState.userType = decodedToken.userType as UserType;
 
     console.log("Decoded token:", decodedToken);
-    
+
     const rest = this.injector.get(AuthRestService);
     rest.getUserData(this.getUsername()).subscribe({
       next: (userData: any) => {
@@ -81,6 +81,7 @@ export class AuthService {
         console.error('Error retrieving user data:', error);
       }
     });
+    
   }
 }
 

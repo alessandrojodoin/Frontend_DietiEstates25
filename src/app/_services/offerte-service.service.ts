@@ -57,4 +57,16 @@ export class OfferteServiceService {
     const headers = this.getAuthHeaders();
     return this.http.get<any[]>(url, headers);
   }
+
+  accettaOfferta(offertaId: number){
+    const url = `${this.url}/offerte/${offertaId}/accettata`;
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(url, {}, headers);
+  }
+
+  rifiutaOfferta(offertaId: number){
+    const url = `${this.url}/offerte/${offertaId}/rifiutata`;
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(url, {}, headers);
+  }
 }

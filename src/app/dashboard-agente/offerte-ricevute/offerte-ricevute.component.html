@@ -42,8 +42,8 @@
           </div>
 
           <div class="azioni">
-            <button class="btn-accetta">Accetta</button>
-            <button class="btn-rifiuta">Rifiuta</button>
+            <button class="btn-accetta"  (click)="accetta(offerta.offertaId);  $event.stopPropagation()">Accetta</button>
+            <button class="btn-rifiuta" (click)="rifiuta(offerta.offertaId);  $event.stopPropagation()">Rifiuta</button>
           </div>
 
         </div>

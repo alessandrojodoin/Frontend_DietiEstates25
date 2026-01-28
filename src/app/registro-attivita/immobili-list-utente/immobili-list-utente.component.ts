@@ -19,6 +19,7 @@ export class ImmobiliListUtenteComponent {
   
   
   async caricaImmobili() {
+
     let immobiliListTemp;
     immobiliListTemp = await this.immobiliService.getImmobiliVisualizzati().toPromise();
 

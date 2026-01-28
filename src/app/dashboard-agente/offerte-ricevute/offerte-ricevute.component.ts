@@ -31,27 +31,6 @@ export class OfferteRicevuteComponent {
   }
   
 
-async conversioneBackToFront(offerteFromBack: any[]) {
-  let OfferteConvertite: any[] = [];
-
-  for (let offerta of offerteFromBack) {
-    let cifraOfferta= offerta.cifraInCentesimi;
-    let statoOfferta= offerta.risultatoOfferta;
-    let dataOfferta= offerta.dataOfferta;
-    const immobileData = await firstValueFrom(
-      this.immobileService.getImmobile(offerta.idListino)
-      
-    );
-    let id= immobileData.id;
-    let indirizzo= immobileData.nome;
-
-    OfferteConvertite.push({id, indirizzo, cifraOfferta, dataOfferta, statoOfferta});
-
-
-  }
-  return OfferteConvertite;
-}
-
 async ImmobiliListBackToFront(immobiliFromBack: any[]) {
   let ImmobiliConvertiti: any[] = [];
 
@@ -62,6 +41,7 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
     let offerte= [];
 
       for (let offerta of immobile.offerte) {
+        let offertaId= offerta.id;
         let cifraOfferta= offerta.cifraInCentesimi;
         let statoOfferta= offerta.risultatoOfferta;
         let dataOfferta= offerta.dataOfferta;
@@ -70,7 +50,7 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
         let nomeOfferente= offerta.nome;
         let cognomeOfferente= offerta.cognome;
 
-        offerte.push({cifraOfferta, dataOfferta, statoOfferta, telefono, emailOfferente, nomeOfferente, cognomeOfferente});
+        offerte.push({offertaId, cifraOfferta, dataOfferta, statoOfferta, telefono, emailOfferente, nomeOfferente, cognomeOfferente});
       }
     ImmobiliConvertiti.push({id, indirizzo, nome, offerte});
   
@@ -103,6 +83,28 @@ public async caricaOfferte() {
   this.ImmobiliList = await this.ImmobiliListBackToFront(immobili);
 }
 
+public accetta(offertaId : number){
+  console.log(offertaId);
+  this.offerteService.accettaOfferta(offertaId).subscribe({
+    next: (response) => {
+      console.log('Offerta accettata');
+    },
+    error: (err) => {
+      console.error('Errore accettazione offerta', err);
+    }
+  });
+}
 
+public rifiuta(offertaId : number){
+  console.log(offertaId);
+  this.offerteService.rifiutaOfferta(offertaId).subscribe({
+    next: (response) => {
+      console.log('Offerta rifiutata');
+    },
+    error: (err) => {
+      console.error('Errore nel rifiuto della offerta', err);
+    }
+  });
+}
 
 }
