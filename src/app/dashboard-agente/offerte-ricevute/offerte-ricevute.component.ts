@@ -4,14 +4,19 @@ import { ImmobiliService } from '../../_services/immobili.service';
 import { OfferteServiceService } from '../../_services/offerte-service.service';
 import { AuthService } from '../../_services/auth.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+type StatoPopup = 'chiedi' | 'controproposta' | 'successo';
+
 
 @Component({
   selector: 'app-offerte-ricevute',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './offerte-ricevute.component.html',
   styleUrl: './offerte-ricevute.component.scss'
 })
+
 export class OfferteRicevuteComponent {
   
   offerteService = inject(OfferteServiceService);
@@ -19,6 +24,14 @@ export class OfferteRicevuteComponent {
   authService = inject(AuthService);
   ImmobiliList: any[] = [];
   loading = false;
+  mostraPopup = false;
+  offertaSelezionataId: number | null = null;
+  controproposta = 0;
+  statoPopup: StatoPopup = 'chiedi';
+  selected: 'attesa' | 'accettate' = 'attesa'; // default: "in attesa"
+  
+
+
 
 
  async ngOnInit() {
@@ -83,6 +96,17 @@ public async caricaOfferte() {
   this.ImmobiliList = await this.ImmobiliListBackToFront(immobili);
 }
 
+offerteInAttesa() {
+  this.selected = 'attesa';
+  // opzionale: filtrare le offerte se vuoi solo quelle in attesa
+}
+
+offerteAccettate() {
+  this.selected = 'accettate';
+  // opzionale: filtrare le offerte se vuoi solo quelle accettate
+}
+
+
 public accetta(offertaId : number){
   console.log(offertaId);
   this.offerteService.accettaOfferta(offertaId).subscribe({
@@ -95,16 +119,56 @@ public accetta(offertaId : number){
   });
 }
 
-public rifiuta(offertaId : number){
-  console.log(offertaId);
-  this.offerteService.rifiutaOfferta(offertaId).subscribe({
-    next: (response) => {
+apriPopupRifiuto(offertaId: number) {
+  this.offertaSelezionataId = offertaId;
+  this.statoPopup = 'chiedi';
+  this.mostraPopup = true;
+}
+
+vaiAControproposta() {
+  this.statoPopup = 'controproposta';
+}
+
+tornaAllaDomanda() {
+  this.statoPopup = 'chiedi';
+  this.controproposta = 0;
+}
+
+chiudiPopup() {
+  this.mostraPopup = false;
+  this.offertaSelezionataId = null;
+  this.controproposta = 0;
+}
+
+confermaRifiuto() {
+  if (!this.offertaSelezionataId) return;
+
+  this.offerteService.rifiutaOfferta(this.offertaSelezionataId).subscribe({
+    next: () => {
       console.log('Offerta rifiutata');
+      this.chiudiPopup();
     },
-    error: (err) => {
-      console.error('Errore nel rifiuto della offerta', err);
-    }
+    error: err => console.error(err)
   });
 }
+
+inviaControproposta() {
+  if (!this.offertaSelezionataId || this.controproposta <= 0) return;
+
+  console.log('Controproposta:', this.controproposta);
+
+  this.offerteService
+    .contropropostaOfferta(this.offertaSelezionataId, this.controproposta)
+    .subscribe({
+      next: () => {
+        this.statoPopup = 'successo';
+      },
+      error: err => {
+        console.error('Errore invio controproposta', err);
+      }
+    });
+}
+
+
 
 }

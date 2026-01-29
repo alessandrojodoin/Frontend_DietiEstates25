@@ -69,4 +69,16 @@ export class OfferteServiceService {
     const headers = this.getAuthHeaders();
     return this.http.post<any>(url, {}, headers);
   }
+
+  contropropostaOfferta(offertaId: number, valoreOfferta: number) {
+  const url = `${this.url}/offerte/${offertaId}/controproposta`;
+
+  const body = {
+    controproposta: valoreOfferta
+  };
+
+  return this.http.post<any>(url, body, this.getAuthHeaders());
+}
+
+
 }
