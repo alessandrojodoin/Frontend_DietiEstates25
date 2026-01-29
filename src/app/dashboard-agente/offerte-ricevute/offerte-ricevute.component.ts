@@ -48,6 +48,8 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
   let ImmobiliConvertiti: any[] = [];
 
   for(let immobile of immobiliFromBack) {
+    if (ImmobiliConvertiti.find(i => i.id === immobile.id)) continue;
+
     let id= immobile.id;
     let indirizzo= immobile.immobile.indirizzo;
     let nome= immobile.nome;
@@ -98,12 +100,10 @@ public async caricaOfferte() {
 
 offerteInAttesa() {
   this.selected = 'attesa';
-  // opzionale: filtrare le offerte se vuoi solo quelle in attesa
 }
 
 offerteAccettate() {
   this.selected = 'accettate';
-  // opzionale: filtrare le offerte se vuoi solo quelle accettate
 }
 
 

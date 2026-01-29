@@ -1,25 +1,24 @@
 <div class="search-offerts">
-      <button
-        role="tab"
-        type="button"
-        (click)="offerteInAttesa()"
-        class="tab Attesa"
-        [attr.aria-selected]="selected === 'attesa'"
-        [class.selected]="selected === 'attesa'"
-      >Offerte In Attesa</button>
+  <button
+    role="tab"
+    type="button"
+    (click)="offerteInAttesa()"
+    class="tab Attesa"
+    [attr.aria-selected]="selected === 'attesa'"
+    [class.selected]="selected === 'attesa'">
+    Offerte In Attesa
+  </button>
 
-
-      <button
-        role="tab"
-        type="button"
-        (click)="offerteAccettate()"
-        class="tab Accettate"
-        [attr.aria-selected]="selected === 'accettate'"
-        [class.selected]="selected === 'accettate'"
-      >Offerte Accettate</button>
-    </div>
-
-
+  <button
+    role="tab"
+    type="button"
+    (click)="offerteAccettate()"
+    class="tab Accettate"
+    [attr.aria-selected]="selected === 'accettate'"
+    [class.selected]="selected === 'accettate'">
+    Offerte Accettate
+  </button>
+</div>
 
 @if (loading) {
   <div class="loader-container">
@@ -28,114 +27,74 @@
   </div>
 } @else {
 
-@for(immobile of ImmobiliList; track immobile){
-  @if(immobile.offerte?.length){
-    
-    @for(offerta of immobile.offerte; track offerta){
+  @for(immobile of ImmobiliList; track immobile) {
+    <div class="immobile-card">
+      <h2 class="indirizzo-immobile">
+        {{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})
+      </h2>
 
+      <div class="offerte-container">
+        @for(offerta of immobile.offerte; track offerta) {
+          <div class="offerta-card" [class.disabilitata]="offerta.disabilitata">
+            <div class="offerta-inner">
+              <div class="offerta-info">
+                <p><strong>Nome:</strong> {{offerta.nomeOfferente}}</p>
+                <p><strong>Cognome:</strong> {{offerta.cognomeOfferente}}</p>
+                <p><strong>Telefono:</strong> {{offerta.telefono}}</p>
+                <p><strong>Email:</strong> {{offerta.emailOfferente}}</p>
+              </div>
 
-      <div class="offerta-card"  [class.disabilitata]="offerta.disabilitata">
+              <div class="offerta-body">
+                <div class="offerta-box">
+                  Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+                </div>
+              </div>
+            </div>
 
-        <!-- INDIRIZZO -->
-        <h3 class="indirizzo">
-          {{ immobile.indirizzo.via }},
-          {{ immobile.indirizzo.citta }}
-          ({{ immobile.indirizzo.provincia }})
-        </h3>
+            <div class="data">
+              📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}
+            </div>
 
-        <span class="data">
-          📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}
-        </span>
-
-        <!-- INFO SU OFFERTA -->
-        <div class="offerta-inner">
-
-          <div class="offerta-info">
-            <p><strong>Nome:</strong> {{offerta.nomeOfferente}}</p>
-            <p><strong>Cognome:</strong> {{offerta.cognomeOfferente}}</p>
-            <p><strong>Telefono:</strong> {{offerta.telefono}}</p>
-            <p><strong>Email:</strong> {{offerta.emailOfferente}}</p>
-          </div>
-
-          <div class="offerta-body">
-            <div class="offerta-box">
-              Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+            <div class="azioni">
+              <button class="btn-accetta" (click)="accetta(offerta.offertaId); $event.stopPropagation()">Accetta</button>
+              <button class="btn-rifiuta" (click)="apriPopupRifiuto(offerta.offertaId); $event.stopPropagation()">Rifiuta</button>
             </div>
           </div>
-
-          <div class="azioni">
-            <button class="btn-accetta"  (click)="accetta(offerta.offertaId);  $event.stopPropagation()">Accetta</button>
-           <button class="btn-rifiuta"
-        (click)="apriPopupRifiuto(offerta.offertaId); $event.stopPropagation()">Rifiuta</button>
-
-          </div>
-
-        </div>
+        }
       </div>
-
-    }
-  }
-@if (mostraPopup) {
-  <div class="overlay">
-    <div class="popup">
-
-      <!-- STEP 1: domanda -->
-      @if (statoPopup === 'chiedi') {
-        <h3>Vuoi fare una controproposta?</h3>
-        
-
-        <div class="popup-actions">
-          <button class="btn-secondary" (click)="confermaRifiuto()">
-            No
-          </button>
-          <button class="btn-primary" (click)="vaiAControproposta()">
-            Sì
-          </button>
-        </div>
-      }
-
-      <!-- STEP 2: inserimento controproposta -->
-      @if (statoPopup === 'controproposta') {
-        <h3>Inserisci la controproposta</h3>
-
-        <input
-          type="number"
-          placeholder="Importo (€)"
-          [(ngModel)]="controproposta"
-        />
-
-        <div class="popup-actions">
-          <button class="btn-secondary" (click)="tornaAllaDomanda()">
-            Indietro
-          </button>
-          <button
-            class="btn-primary"
-            [disabled]="controproposta <= 0"
-            (click)="inviaControproposta()">
-            Invia
-          </button>
-        </div>
-      }
-
-      <!-- STEP 3: successo -->
-      @if (statoPopup === 'successo') {
-        <h3>✅ Controproposta inviata</h3>
-        <p>La controproposta è stata inviata con successo.</p>
-
-        <div class="popup-actions">
-          <button class="btn-primary" (click)="chiudiPopup()">
-            OK
-          </button>
-        </div>
-      }
-
     </div>
-  </div>
-}
-}
+  }
+
+  
+  @if (mostraPopup) {
+    <div class="overlay">
+      <div class="popup">
+        @if (statoPopup === 'chiedi') {
+          <h3>Vuoi fare una controproposta?</h3>
+          <div class="popup-actions">
+            <button class="btn-secondary" (click)="confermaRifiuto()">No</button>
+            <button class="btn-primary" (click)="vaiAControproposta()">Sì</button>
+          </div>
+        }
+
+        @if (statoPopup === 'controproposta') {
+          <h3>Inserisci la controproposta</h3>
+          <input type="number" placeholder="Importo (€)" [(ngModel)]="controproposta" />
+          <div class="popup-actions">
+            <button class="btn-secondary" (click)="tornaAllaDomanda()">Indietro</button>
+            <button class="btn-primary" [disabled]="controproposta <= 0" (click)="inviaControproposta()">Invia</button>
+          </div>
+        }
+
+        @if (statoPopup === 'successo') {
+          <h3>✅ Controproposta inviata</h3>
+          <p>La controproposta è stata inviata con successo.</p>
+          <div class="popup-actions">
+            <button class="btn-primary" (click)="chiudiPopup()">OK</button>
+          </div>
+        }
+      </div>
+    </div>
+  }
 
 }
-
-
-
-
