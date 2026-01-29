@@ -34,9 +34,6 @@
     @for(offerta of immobile.offerte; track offerta){
 
 
-       @if ((selected === 'attesa' && offerta.statoOfferta === 'InAttesa') ||
-           (selected === 'accettate' && offerta.statoOfferta === 'Accettata')) {
-
       <div class="offerta-card"  [class.disabilitata]="offerta.disabilitata">
 
         <!-- INDIRIZZO -->
@@ -140,5 +137,5 @@
 }
 
 
-}
+
 
