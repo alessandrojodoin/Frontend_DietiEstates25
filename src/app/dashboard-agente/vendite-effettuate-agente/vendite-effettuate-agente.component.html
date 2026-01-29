@@ -1,1 +1,50 @@
-<h2>Vendite Concluse</h2>
+<h2>Vendite Effettuate</h2>
+
+@if (loading) {
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <p>Caricamento offerte in corso...</p>
+  </div>
+} @else {
+
+@for(immobile of ImmobiliList; track immobile){
+  @if(immobile.offerte?.length){
+    
+    @for(offerta of immobile.offerte; track offerta){
+
+      <div class="offerta-card">
+
+        <!-- INDIRIZZO -->
+        <h3 class="indirizzo">
+          {{ immobile.indirizzo.via }},
+          {{ immobile.indirizzo.citta }}
+          ({{ immobile.indirizzo.provincia }})
+        </h3>
+
+        <span class="data">
+          📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}
+        </span>
+
+        <!-- INFO SU OFFERTA -->
+        <div class="offerta-inner">
+
+          <div class="offerta-info">
+            <p><strong>Nome:</strong> {{offerta.nomeOfferente}}</p>
+            <p><strong>Cognome:</strong> {{offerta.cognomeOfferente}}</p>
+            <p><strong>Telefono:</strong> {{offerta.telefono}}</p>
+            <p><strong>Email:</strong> {{offerta.emailOfferente}}</p>
+          </div>
+
+          <div class="offerta-body">
+            <div class="offerta-box">
+              Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    }
+  }
+}
+}
