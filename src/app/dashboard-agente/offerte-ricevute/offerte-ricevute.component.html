@@ -31,7 +31,9 @@
 
     
   @if(ImmobiliList.length === 0){
-    <p class="no-immobili">Qui verranno mostrate le offerte ricevute</p>
+    <div class="empty-state">
+      <p>Qui verranno mostrate le offerte ricevute</p>
+    </div>
   }
 
     @if((this.selected === 'attesa' && statoImmobile(immobile) === 'attesa' ) || (this.selected === 'accettate' && statoImmobile(immobile) === 'accettata')){

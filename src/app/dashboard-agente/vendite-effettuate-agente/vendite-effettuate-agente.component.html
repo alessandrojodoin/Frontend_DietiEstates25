@@ -8,7 +8,9 @@
 } @else {
 
 @if(ImmobiliList.length === 0){
-  <p class="no-immobili">Qui verranno mostrati i tuoi contratti conclusi.</p>
+  <div class="empty-state">
+      <p>Qui verranno mostrati i tuoi contratti conclusi.</p>
+  </div>
 }
 
 @for(immobile of ImmobiliList; track immobile){

@@ -1,6 +1,8 @@
 
 @if(immobiliList.length === 0){
-  <p class="no-immobili">Qui verranno mostrati gli immobili visualizzati.</p>
+  <div class="emmpty-state">
+    <p>Qui verranno mostrati gli immobili visualizzati.</p>
+  </div>
 }
 
 @for(immobile of immobiliList; track immobile){

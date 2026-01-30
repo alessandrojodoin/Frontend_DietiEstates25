@@ -2,7 +2,9 @@
 
 
 @if(OfferteList.length === 0){
-  <p class="no-immobili">Qui verranno mostrate le offerte inviate</p>
+  <div class="empty-state">
+    <p>Qui verranno mostrate le offerte inviate</p>
+  </div>
 }
 
 @for(offerta of OfferteList; track offerta){
