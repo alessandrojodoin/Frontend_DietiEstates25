@@ -45,7 +45,8 @@
 
       <div class="offerte-container">
         @for(offerta of immobile.offerte; track offerta) {
-          <div class="offerta-card" [class.disabilitata]="offerta.disabilitata">
+          <div class="offerta-card" [class.offerta-disabilitata]="
+    selected === 'accettate' && offerta.statoOfferta !== 'Accettata'">
             <div class="offerta-inner">
               <div class="offerta-info">
                 <p><strong>Nome:</strong> {{offerta.nomeOfferente}}</p>
@@ -65,10 +66,24 @@
               📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}
             </div>
 
-            <div class="azioni">
-              <button class="btn-accetta" (click)="accetta(offerta.offertaId); $event.stopPropagation()">Accetta</button>
-              <button class="btn-rifiuta" (click)="apriPopupRifiuto(offerta.offertaId); $event.stopPropagation()">Rifiuta</button>
-            </div>
+            <<div class="azioni">
+
+  <!-- STATO: IN ATTESA -->
+  @if (selected === 'attesa') {
+    
+    <button class="btn-accetta" (click)="accetta(offerta.offertaId); $event.stopPropagation()">Accetta</button>
+    <button class="btn-rifiuta" (click)="apriPopupRifiuto(offerta.offertaId); $event.stopPropagation()">Rifiuta</button>
+  }
+
+  <!-- STATO: ACCETTATA (solo quella vincente) -->
+  @if (selected === 'accettate' && offerta.statoOfferta === 'Accettata') {
+
+    <button class="btn-primary" (click)="concludiContratto(offerta.offertaId)">Concludi contratto</button>
+    <button class="btn-secondary" (click)="annullaAccettazione(offerta.offertaId)">Annulla accettazione</button>
+  }
+
+</div>
+
           </div>
         }
       </div>

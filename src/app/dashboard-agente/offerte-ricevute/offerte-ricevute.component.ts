@@ -111,17 +111,25 @@ offerteAccettate() {
 }
 
 
-public accetta(offertaId : number){
-  console.log(offertaId);
+public accetta(offertaId: number){
   this.offerteService.accettaOfferta(offertaId).subscribe({
-    next: (response) => {
+    next: async (response) => {
       console.log('Offerta accettata');
+
+      // Ricarico tutte le offerte dal backend
+      this.loading = true;
+      await this.caricaOfferte();
+      this.loading = false;
+
+      // seleziono automaticamente la tab "accettate" OPPURE METTERE UNA NOTIFICA
+      //this.selected = 'accettate';
     },
     error: (err) => {
       console.error('Errore accettazione offerta', err);
     }
   });
 }
+
 
 public statoImmobile(immobile: any){
   for(const offerta of immobile.offerte){
@@ -180,6 +188,24 @@ inviaControproposta() {
         console.error('Errore invio controproposta', err);
       }
     });
+}
+
+concludiContratto(offertaId: number) {
+  console.log('Concludi contratto per offerta:', offertaId);
+
+  // TODO: chiamata backend + service
+}
+
+annullaAccettazione(offertaId: number) {
+  for (const immobile of this.ImmobiliList) {
+    for (const offerta of immobile.offerte) {
+      if (offerta.offertaId === offertaId) {
+        offerta.statoOfferta = 'InAttesa';
+      }
+    }
+  }
+
+  //this.selected = 'attesa';
 }
 
 

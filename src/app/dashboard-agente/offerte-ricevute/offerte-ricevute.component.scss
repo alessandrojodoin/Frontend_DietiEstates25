@@ -289,3 +289,35 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+
+.offerta-disabilitata {
+  background: #e5e7eb;
+  opacity: 0.7;
+  filter: grayscale(0.85);
+  pointer-events: none;
+}
+
+.offerta-disabilitata .offerta-inner {
+  background: #f1f5f9;
+}
+
+.offerta-disabilitata .offerta-info p,
+.offerta-disabilitata .data {
+  color: #6b7280;
+}
+
+.offerta-disabilitata .offerta-box {
+  color: #374151;
+}
+
+
+.btn-primary {
+  background-color: #1e88e5;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
