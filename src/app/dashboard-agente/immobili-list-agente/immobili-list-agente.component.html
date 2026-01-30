@@ -34,7 +34,7 @@
       <!-- INFO -->
       <div class="immobile-info">
         <div class="nome">
-          {{ immobile.nome }}
+          <a [routerLink]="['/dettagli-immobile', immobile.id]">{{ immobile.nome }}</a>
         </div>
 
         <div class="contratto">

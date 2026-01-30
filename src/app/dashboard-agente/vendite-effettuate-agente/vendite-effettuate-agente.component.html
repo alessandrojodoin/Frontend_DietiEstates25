@@ -20,9 +20,7 @@
 
         <!-- INDIRIZZO -->
         <h3 class="indirizzo">
-          {{ immobile.indirizzo.via }},
-          {{ immobile.indirizzo.citta }}
-          ({{ immobile.indirizzo.provincia }})
+           <a [routerLink]="['/dettagli-immobile', immobile.id]">{{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})</a>
         </h3>
 
         <span class="data">

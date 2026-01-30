@@ -1,5 +1,5 @@
 
-@if(ImmobiliList.length === 0){
+@if(immobiliList.length === 0){
   <p class="no-immobili">Qui verranno mostrati gli immobili visualizzati.</p>
 }
 
@@ -25,7 +25,8 @@
       <!-- INFO -->
       <div class="immobile-info">
         <div class="nome">
-          {{ immobile.nome }}
+          <a [routerLink]="['/dettagli-immobile', immobile.id]">{{ immobile.nome }}</a>
+          
         </div>
 
         <div class="contratto">

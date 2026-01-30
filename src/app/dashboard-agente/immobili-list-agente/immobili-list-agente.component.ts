@@ -2,12 +2,13 @@ import { Component, inject } from '@angular/core';
 import { ImmobiliService } from '../../_services/immobili.service';
 import { AuthService } from '../../_services/auth.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-immobili-list-agente',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './immobili-list-agente.component.html',
   styleUrl: './immobili-list-agente.component.scss'
 })

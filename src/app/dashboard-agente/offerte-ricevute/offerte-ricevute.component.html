@@ -37,7 +37,8 @@
     @if((this.selected === 'attesa' && statoImmobile(immobile) === 'attesa' ) || (this.selected === 'accettate' && statoImmobile(immobile) === 'accettata')){
         <div class="immobile-card">
       <h2 class="indirizzo-immobile">
-        {{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})
+        <a [routerLink]="['/dettagli-immobile', immobile.id]">{{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})</a>
+        
       </h2>
 
       <div class="offerte-container">

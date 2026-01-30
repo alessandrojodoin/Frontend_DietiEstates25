@@ -6,6 +6,7 @@ import { AuthService } from '../../_services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Immobile } from '../../../../data';
+import { RouterLink } from '@angular/router';
 
 type StatoPopup = 'chiedi' | 'controproposta' | 'successo';
 type StatoImmobile = 'attesa' | 'accettata';
@@ -14,7 +15,7 @@ type StatoImmobile = 'attesa' | 'accettata';
 @Component({
   selector: 'app-offerte-ricevute',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './offerte-ricevute.component.html',
   styleUrl: './offerte-ricevute.component.scss'
 })

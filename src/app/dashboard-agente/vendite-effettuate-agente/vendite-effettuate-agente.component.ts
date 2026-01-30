@@ -4,11 +4,12 @@ import { ImmobiliService } from '../../_services/immobili.service';
 import { AuthService } from '../../_services/auth.service';
 import { firstValueFrom } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-vendite-effettuate-agente',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './vendite-effettuate-agente.component.html',
   styleUrl: './vendite-effettuate-agente.component.scss'
 })
