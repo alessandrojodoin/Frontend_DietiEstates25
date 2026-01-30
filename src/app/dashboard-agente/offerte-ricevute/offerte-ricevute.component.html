@@ -28,7 +28,9 @@
 } @else {
 
   @for(immobile of ImmobiliList; track immobile) {
-    <div class="immobile-card">
+
+    @if((this.selected === 'attesa' && statoImmobile(immobile) === 'attesa' ) || (this.selected === 'accettate' && statoImmobile(immobile) === 'accettata')){
+        <div class="immobile-card">
       <h2 class="indirizzo-immobile">
         {{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})
       </h2>
@@ -63,6 +65,8 @@
         }
       </div>
     </div>
+    }
+    
   }
 
   

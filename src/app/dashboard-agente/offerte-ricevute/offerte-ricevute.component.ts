@@ -5,8 +5,10 @@ import { OfferteServiceService } from '../../_services/offerte-service.service';
 import { AuthService } from '../../_services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Immobile } from '../../../../data';
 
 type StatoPopup = 'chiedi' | 'controproposta' | 'successo';
+type StatoImmobile = 'attesa' | 'accettata';
 
 
 @Component({
@@ -27,6 +29,7 @@ export class OfferteRicevuteComponent {
   mostraPopup = false;
   offertaSelezionataId: number | null = null;
   controproposta = 0;
+  
   statoPopup: StatoPopup = 'chiedi';
   selected: 'attesa' | 'accettate' = 'attesa'; // default: "in attesa"
   
@@ -117,6 +120,15 @@ public accetta(offertaId : number){
       console.error('Errore accettazione offerta', err);
     }
   });
+}
+
+public statoImmobile(immobile: any){
+  for(const offerta of immobile.offerte){
+    if(offerta.statoOfferta === 'Accettata'){
+      return 'accettata';
+    }
+  }
+  return 'attesa';
 }
 
 apriPopupRifiuto(offertaId: number) {
