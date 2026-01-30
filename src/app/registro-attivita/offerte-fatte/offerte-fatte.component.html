@@ -1,5 +1,10 @@
 <h2>Le tue offerte</h2>
 
+
+@if(OfferteList.length === 0){
+  <p class="no-immobili">Qui verranno mostrate le offerte inviate</p>
+}
+
 @for(offerta of OfferteList; track offerta){
   <div class="offerta-card">
 

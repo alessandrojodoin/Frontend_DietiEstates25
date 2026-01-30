@@ -7,6 +7,10 @@
   </div>
 } @else {
 
+@if(ImmobiliList.length === 0){
+  <p class="no-immobili">Qui verranno mostrati i tuoi contratti conclusi.</p>
+}
+
 @for(immobile of ImmobiliList; track immobile){
   @if(immobile.offerte?.length){
     
@@ -37,7 +41,7 @@
 
           <div class="offerta-body">
             <div class="offerta-box">
-              Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+              Prezzo: €{{ offerta.cifraOfferta | number:'1.0-0' }}
             </div>
           </div>
 
