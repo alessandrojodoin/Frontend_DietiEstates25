@@ -25,28 +25,67 @@
     <div class="spinner"></div>
     <p>Caricamento offerte in corso...</p>
   </div>
+
+  
 } @else {
-
-  @for(immobile of ImmobiliList; track immobile) {
-
-    
   @if(ImmobiliList.length === 0){
     <div class="empty-state">
       <p>Qui verranno mostrate le offerte ricevute</p>
     </div>
-  }
+  }@else{
+@for(immobile of ImmobiliList; track immobile) {
 
     @if((this.selected === 'attesa' && statoImmobile(immobile) === 'attesa' ) || (this.selected === 'accettate' && statoImmobile(immobile) === 'accettata')){
-        <div class="immobile-card">
+        
+             @if (mostraPopupOfferte) {
+  <div class="overlay">
+    <div class="popup">
 
+        <h3>Aggiungi Offerta</h3>
+
+        <form [formGroup]="offertaForm" ><!--(ngSubmit)="onSubmit()""-->
+
+          <label>Nome Offerente*:</label>
+          <input type="text" formControlName="nome" />
+
+          <label>Cognome Offerente*:</label>
+          <input type="text" formControlName="cognome" />
+
+          <label>Email Offerente*:</label>
+          <input type="email" formControlName="email" />
+
+          <label>Valore Offerta*:</label>
+          <input type="number" formControlName="valore" placeholder="Importo (€)" />
+
+          <div class="popup-actions">
+            <button type="button"
+                    class="btn-secondary"
+                    (click)="chiudiPopupOfferta()">
+              Indietro
+            </button>
+
+            <button type="submit"
+                    class="btn-primary"
+                    [disabled]="offertaForm.invalid">
+              + Aggiungi
+            </button>
+          </div>
+
+        </form>
+
+
+    </div>
+  </div>
+}
+<div class="immobile-card">
           <div class="immobile-header">
             <h2 class="indirizzo-immobile">
               <a [routerLink]="['/dettagli-immobile', immobile.id]">{{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})</a>
             </h2>
 
-            <button class="aggiungi-offerta">+ Aggiungi Offerta</button>
+            <button class="aggiungi-offerta" (click)="apriPopupOfferta(); $event.stopPropagation()">+ Aggiungi Offerta</button>
           </div>
-      
+     
 
       <div class="offerte-container">
         @for(offerta of immobile.offerte; track offerta) {
@@ -130,3 +169,7 @@
   }
 
 }
+
+  
+}
+  
