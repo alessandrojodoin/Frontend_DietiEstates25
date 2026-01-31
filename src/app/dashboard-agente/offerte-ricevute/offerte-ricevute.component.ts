@@ -9,7 +9,6 @@ import { Immobile } from '../../../../data';
 import { RouterLink } from '@angular/router';
 
 type StatoPopup = 'chiedi' | 'controproposta' | 'successo';
-type StatoImmobile = 'attesa' | 'accettata';
 
 
 @Component({
@@ -224,13 +223,15 @@ concludiContratto(offertaId: number) {
 }
 
 annullaAccettazione(offertaId: number) {
-  for (const immobile of this.ImmobiliList) {
-    for (const offerta of immobile.offerte) {
-      if (offerta.offertaId === offertaId) {
-        offerta.statoOfferta = 'InAttesa';
-      }
+  this.offerteService.annullaAccettazione(offertaId).subscribe({
+    next: async () =>{
+        this.loading = true;
+      await this.caricaOfferte();
+      this.loading = false;
     }
-  }
+  });
+        
+    
 
   //this.selected = 'attesa';
 }

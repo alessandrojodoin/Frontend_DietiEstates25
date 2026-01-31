@@ -45,6 +45,13 @@ export class OfferteServiceService {
 
   }
 
+annullaAccettazione(offertaId: number){
+    const url =  `${this.url}/offerte/${offertaId}/revisionata`;
+    const headers = this.getAuthHeaders();
+    return this.http.post<any>(url, {}, headers);
+}
+
+
   getOffersMadeByClient() {
     console.log("Getting offers made by client:", this.authService.getUsername());
     const url = `${this.url}/offerte?username=${this.authService.getUsername()}`;

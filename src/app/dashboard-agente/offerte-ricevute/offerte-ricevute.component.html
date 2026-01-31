@@ -115,7 +115,7 @@
            <!-- STATO: IN ATTESA -->
           @if (selected === 'attesa') {
     
-            <button class="btn-accetta" (click)="accetta(offerta.offertaId); $event.stopPropagation()">Accetta</button>
+            <button class="btn-accetta" (click)="accetta(offerta.offertaId); $event.stopPropagation()">Accetta ${{offerta.offertaId}}</button>
             <button class="btn-rifiuta" (click)="apriPopupRifiuto(offerta.offertaId); $event.stopPropagation()">Rifiuta</button>
           }
 
@@ -123,7 +123,7 @@
           @if (selected === 'accettate' && offerta.statoOfferta === 'Accettata') {
 
             <button class="btn-primary" (click)="concludiContratto(offerta.offertaId)">Concludi contratto</button>
-            <button class="btn-secondary" (click)="annullaAccettazione(offerta.offertaId)">Annulla accettazione</button>
+            <button class="btn-secondary" (click)="annullaAccettazione(offerta.offertaId)">Annulla accettazione ${{offerta.offertaId}}</button>
           }
 
         </div>
