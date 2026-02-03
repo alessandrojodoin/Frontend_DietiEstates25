@@ -35,6 +35,8 @@
   }@else{
 @for(immobile of ImmobiliList; track immobile) {
 
+
+
     @if((this.selected === 'attesa' && statoImmobile(immobile) === 'attesa' && !immobile.isVenduto) || (this.selected === 'accettate' && statoImmobile(immobile) === 'accettata' && !immobile.isVenduto)){
         
              @if (mostraPopupOfferte) {
@@ -91,7 +93,15 @@
      
 
       <div class="offerte-container">
+          @if(immobile.offerte.length === 0){
+            <div class="empty-state">
+              <p>Non hai ancora ricevuto offerte per questo immobile.</p>
+            </div>
+          }
+
         @for(offerta of immobile.offerte; track offerta) {
+
+        
           <div class="offerta-card" [class.offerta-disabilitata]="
     selected === 'accettate' && offerta.statoOfferta !== 'Accettata'">
             <div class="offerta-inner">
