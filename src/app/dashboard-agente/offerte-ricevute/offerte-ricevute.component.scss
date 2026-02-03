@@ -22,6 +22,48 @@
   }
 }
 
+.popup form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Label */
+.popup label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #08324d;
+  margin-bottom: 4px;
+}
+
+/* Input generici */
+.popup input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus */
+.popup input:focus {
+  outline: none;
+  border-color: #1e88e5;
+  box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.15);
+}
+
+/* Placeholder */
+.popup input::placeholder {
+  color: #9ca3af;
+}
+
+/* Campo non valido (Angular) */
+.popup input.ng-invalid.ng-touched {
+  border-color: #e53935;
+  background: #fff5f5;
+}
+
 
 
 .search-offerts {
