@@ -182,6 +182,16 @@ getImmobiliVisualizzati(){
     return this.http.get<Immobile[]>(url, headers);
 }
 
+postImmobileVenduto(immobileId: number){
+const url = `${this.url}/immobile/${immobileId}/venduto`;
+const headers = this.getAuthHeaders();
+ return this.http.post(
+    url,
+    { id: Number(immobileId) },
+    headers
+  );
+}
+
 
   convertRESTImmobile(RESTImmobile: any){
     let immobile;

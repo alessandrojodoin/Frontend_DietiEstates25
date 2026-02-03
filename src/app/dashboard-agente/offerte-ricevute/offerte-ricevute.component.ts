@@ -79,6 +79,7 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
     let id= immobile.id;
     let indirizzo= immobile.immobile.indirizzo;
     let nome= immobile.nome;
+    let isVenduto= immobile.isVenduto;
     let offerte= [];
 
       for (let offerta of immobile.offerte) {
@@ -93,7 +94,7 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
 
         offerte.push({offertaId, cifraOfferta, dataOfferta, statoOfferta, telefono, emailOfferente, nomeOfferente, cognomeOfferente});
       }
-    ImmobiliConvertiti.push({id, indirizzo, nome, offerte});
+    ImmobiliConvertiti.push({id, indirizzo, nome, isVenduto, offerte});
   
   }
 
@@ -221,10 +222,24 @@ inviaControproposta() {
     });
 }
 
-concludiContratto(offertaId: number) {
-  console.log('Concludi contratto per offerta:', offertaId);
+concludiContratto(immobileId: number) {
+  console.log('Concludi contratto per immobile:', immobileId);
+  this.immobileService.postImmobileVenduto(immobileId).subscribe({
+    next: async (response) => {
+      console.log('Immobile venduto');
+      
 
-  // TODO: chiamata backend + service
+      // Ricarico tutte le offerte dal backend
+      this.loading = true;
+      await this.caricaOfferte();
+      this.loading = false;
+
+     
+    },
+    error: (err) => {
+      console.error('Errore vendita immobile', err);
+    }
+  })
 }
 
 annullaAccettazione(offertaId: number) {
@@ -235,8 +250,6 @@ annullaAccettazione(offertaId: number) {
       this.loading = false;
     }
   });
-        
-    
 
   //this.selected = 'attesa';
 }
