@@ -76,17 +76,18 @@
     <button class="close-popup" (click)="closeOfferta()">X</button>
     <h2>Offerta</h2>
 
+<form [formGroup]="offertaValueForm">
     <div class="offer-option">
-      <label>Fai qui la tua offerta:</label>
+      <label for="value">Fai qui la tua offerta:</label>
       <div class="offer-price">
-        <input type="number" placeholder="Fai un'offerta...">
+        <input id="value" formControlName="value" placeholder="Fai un'offerta...">
       </div>
     </div>
-
-   
+</form>
+</div>
     <button class="ok-offer-btn" (click)="applyOfferta()">Invia Offerta</button>
   </div>
-</div>
+
 
 }
   <hr class="sep">
@@ -116,5 +117,4 @@
     <button class="btn-visit">📅 Prenota Visita</button>
 }
   </section>
-
 </div>

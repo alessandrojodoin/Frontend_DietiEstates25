@@ -7,11 +7,12 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { OfferteServiceService } from '../_services/offerte-service.service';
 import { AuthService } from '../_services/auth.service';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dettagli-immobile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './dettagli-immobile.component.html',
   styleUrl: './dettagli-immobile.component.scss'
 })
@@ -66,6 +67,13 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
       istanteCreazione: Instant.now(),
       immagini: ["img1.jpg", "img2.jpg"]
     }
+
+offertaValueForm = new FormGroup({
+      value: new FormControl('',
+        [Validators.required,
+        Validators.minLength(1)]
+      )
+    })
 
 
   ngOnInit() {
@@ -174,7 +182,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
     applyOfferta(){
 
     this.showOffer = false;
-    this.offerteService.createOffer(this.immobile.id, this.tempOffers.price!).subscribe({
+    this.offerteService.createOffer(this.immobile.id, Number(this.offertaValueForm.value.value!)).subscribe({
       next: (data: any) => {
         console.log('Offerta creata con successo:', data);
 
