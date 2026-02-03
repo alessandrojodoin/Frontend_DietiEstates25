@@ -2,13 +2,32 @@
 
 
 <div class="statistiche-container">
-Immobili Totali: {{ contrattiConclusi().totali }} 
-Immobili Venduti: {{ contrattiConclusi().venduti }}
-Immobili Affittati: {{ contrattiConclusi().affittati }}
-Totale Offerte Ricevute: {{ totaleOfferte() }}
-Totale Visualizzazioni Immobili: {{ totaleVisualizzazioni() }}
-Totale Prenotazioni Ricevute: eh niente
+  <div>
+    <p>Immobili Totali</p>
+    <span>{{ contrattiConclusi().totali }}</span>
+  </div>
+  <div>
+    <p>Immobili Venduti</p>
+    <span>{{ contrattiConclusi().venduti }}</span>
+  </div>
+  <div>
+    <p>Immobili Affittati</p>
+    <span>{{ contrattiConclusi().affittati }}</span>
+  </div>
+  <div>
+    <p>Totale Offerte Ricevute</p>
+    <span>{{ totaleOfferte() }}</span>
+  </div>
+  <div>
+    <p>Totale Visualizzazioni Immobili</p>
+    <span>{{ totaleVisualizzazioni() }}</span>
+  </div>
+  <div>
+    <p>Totale Prenotazioni Ricevute</p>
+    <span>eh niente</span>
+  </div>
 </div>
+
 
 
 <div class="exportCSV">

@@ -1,3 +1,52 @@
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0b3b5a;
+  margin-bottom: 16px;
+}
+
+.statistiche-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  background: #DDECFF; /* come le card degli immobili */
+  padding: 20px;
+  border-radius: 14px;
+  color: #08324d;
+  font-weight: 600;
+}
+
+.statistiche-container div {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.statistiche-container div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.statistiche-container div p {
+  margin: 0;
+  font-size: 14px;
+  color: #08324d;
+}
+
+.statistiche-container div span {
+  display: block;
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2490CA; /* evidenzia i numeri */
+}
+
+
+//TASTO PER ESPORTARE
 .exportCSV {
   display: flex;
   justify-content: flex-end; /* allineato a destra */
