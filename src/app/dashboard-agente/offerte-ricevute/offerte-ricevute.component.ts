@@ -48,6 +48,11 @@ offertaForm = new FormGroup({
         [Validators.required,
         Validators.minLength(1)]
       ),
+      numeroTelefonico: new FormControl('',
+        [Validators.required,
+          Validators.minLength(1),
+        Validators.maxLength(10)]
+      ),
       valoreOfferta: new FormControl('',
         [Validators.required,
         Validators.minLength(1)]
@@ -236,6 +241,18 @@ annullaAccettazione(offertaId: number) {
   //this.selected = 'attesa';
 }
 
+onSubmit(immobileId: number){
+  const valoreOfferta = Number(this.offertaForm.value.valoreOfferta);
 
+    this.offerteService.createExternalOffer(immobileId, this.offertaForm.value.nome!, this.offertaForm.value.cognome!, 
+                          this.offertaForm.value.email!, this.offertaForm.value.numeroTelefonico!, valoreOfferta).subscribe({
+      next: (data: any) => {
+        console.log('Offerta creata con successo:', data);
+      },
+      error: (error: any) => {
+        console.error('Errore nella creazione dell\'offerta:', error);
+      }
+    });
+}
 
 }

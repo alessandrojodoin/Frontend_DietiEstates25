@@ -59,6 +59,7 @@ export class AuthService {
   console.log("AuthService constructor called");
   this.authState.token = this.getToken();
 
+  
   if (this.authState.token !== null) {
     console.log("Token found in localStorage:", this.authState.token);
     const decodedToken: any = jwtDecode(this.authState.token);

@@ -43,19 +43,22 @@
 
         <h3>Aggiungi Offerta</h3>
 
-        <form [formGroup]="offertaForm" ><!--(ngSubmit)="onSubmit()""-->
+        <form [formGroup]="offertaForm" (ngSubmit)="onSubmit(immobile.id)">
 
-          <label>Nome Offerente*:</label>
-          <input type="text" formControlName="nome" />
+          <label for="nomeOfferente">Nome Offerente*:</label>
+          <input id="nomeOfferente" type="text" formControlName="nome" />
 
-          <label>Cognome Offerente*:</label>
-          <input type="text" formControlName="cognome" />
+          <label for="cognomeOfferente">Cognome Offerente*:</label>
+          <input id="cognomeOfferente" type="text" formControlName="cognome" />
 
-          <label>Email Offerente*:</label>
-          <input type="email" formControlName="email" />
+          <label for="emailOfferente">Email Offerente*:</label>
+          <input id="emailOfferente" type="email" formControlName="email" />
 
-          <label>Valore Offerta*:</label>
-          <input type="number" formControlName="valore" placeholder="Importo (€)" />
+          <label for="numeroTelefonico">Recapito Telefonico*:</label>
+          <input id="numeroTelefonico" type="text" formControlName="numeroTelefonico" />
+
+          <label for="valoreOfferta">Valore Offerta*:</label>
+          <input id="valoreOfferta" formControlName="valoreOfferta" placeholder="Importo (€)" />
 
           <div class="popup-actions">
             <button type="button"
@@ -115,7 +118,7 @@
            <!-- STATO: IN ATTESA -->
           @if (selected === 'attesa') {
     
-            <button class="btn-accetta" (click)="accetta(offerta.offertaId); $event.stopPropagation()">Accetta ${{offerta.offertaId}}</button>
+            <button class="btn-accetta" (click)="accetta(offerta.offertaId); $event.stopPropagation()">Accetta</button>
             <button class="btn-rifiuta" (click)="apriPopupRifiuto(offerta.offertaId); $event.stopPropagation()">Rifiuta</button>
           }
 
@@ -123,7 +126,7 @@
           @if (selected === 'accettate' && offerta.statoOfferta === 'Accettata') {
 
             <button class="btn-primary" (click)="concludiContratto(offerta.offertaId)">Concludi contratto</button>
-            <button class="btn-secondary" (click)="annullaAccettazione(offerta.offertaId)">Annulla accettazione ${{offerta.offertaId}}</button>
+            <button class="btn-secondary" (click)="annullaAccettazione(offerta.offertaId)">Annulla accettazione</button>
           }
 
         </div>

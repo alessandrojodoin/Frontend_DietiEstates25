@@ -45,6 +45,14 @@ export class OfferteServiceService {
 
   }
 
+  createExternalOffer(immobileId: number, nome: String, cognome: String, email: String, numeroTelefonico: String, offerPrice: number){
+    
+    const url= `${this.url}/offerte/offerteEsterne`;
+     const headers = this.getAuthHeaders();
+      return this.http.post<string>(url, { nome: nome, cognome: cognome, email: email,
+      numeroTelefonico: numeroTelefonico, immobileId: immobileId, offerPrice: offerPrice }, headers);
+  }
+
 annullaAccettazione(offertaId: number){
     const url =  `${this.url}/offerte/${offertaId}/revisionata`;
     const headers = this.getAuthHeaders();
