@@ -1,6 +1,11 @@
 <h2>Storico Annuale</h2>
 
+<!-- Grafico -->
+<div class="grafico-container">
+  <canvas id="graficoStorico"></canvas>
+</div>
 
+<!-- Statistiche -->
 <div class="statistiche-container">
   <div>
     <p>Immobili Totali</p>
@@ -22,15 +27,9 @@
     <p>Totale Visualizzazioni Immobili</p>
     <span>{{ totaleVisualizzazioni() }}</span>
   </div>
-  <div>
-    <p>Totale Prenotazioni Ricevute</p>
-    <span>eh niente</span>
-  </div>
 </div>
 
-
-
+<!-- Bottone di export -->
 <div class="exportCSV">
   <button (click)="export.exportCSV()">Esporta CSV</button>
 </div>
-

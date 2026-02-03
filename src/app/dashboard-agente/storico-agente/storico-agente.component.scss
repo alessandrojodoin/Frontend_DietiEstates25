@@ -1,48 +1,58 @@
-
 h2 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   color: #0b3b5a;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
+
+
+.grafico-container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 30px auto;
+  background: #f0f4f8;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
 
 .statistiche-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
-  background: #DDECFF; /* come le card degli immobili */
-  padding: 20px;
-  border-radius: 14px;
-  color: #08324d;
-  font-weight: 600;
+  margin: 20px 0;
 }
 
+/* Singola statistica */
 .statistiche-container div {
   background: #ffffff;
   border-radius: 12px;
-  padding: 12px;
+  padding: 16px;
   text-align: center;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .statistiche-container div:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
 
+/* Titolo statistica */
 .statistiche-container div p {
   margin: 0;
   font-size: 14px;
   color: #08324d;
 }
 
+/* Numero/statistica evidenziata */
 .statistiche-container div span {
   display: block;
-  margin-top: 4px;
-  font-size: 18px;
+  margin-top: 8px;
+  font-size: 20px;
   font-weight: 700;
-  color: #2490CA; /* evidenzia i numeri */
+  color: #2490CA;
 }
 
 
