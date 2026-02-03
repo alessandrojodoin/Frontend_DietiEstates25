@@ -259,8 +259,12 @@ onSubmit(immobileId: number){
 
     this.offerteService.createExternalOffer(immobileId, this.offertaForm.value.nome!, this.offertaForm.value.cognome!, 
                           this.offertaForm.value.email!, this.offertaForm.value.numeroTelefonico!, valoreOfferta).subscribe({
-      next: (data: any) => {
+      next: async (data: any) => {
         console.log('Offerta creata con successo:', data);
+        this.chiudiPopupOfferta();
+        this.loading = true;
+      await this.caricaOfferte();
+      this.loading = false;
       },
       error: (error: any) => {
         console.error('Errore nella creazione dell\'offerta:', error);
