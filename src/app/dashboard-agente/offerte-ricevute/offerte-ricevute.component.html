@@ -100,7 +100,8 @@
           }
 
         @for(offerta of immobile.offerte; track offerta) {
-
+          @if ((selected === 'attesa' && offerta.statoOfferta === 'InRevisione') ||
+                (selected === 'accettate' && offerta.statoOfferta === 'Accettata')) {
         
           <div class="offerta-card" [class.offerta-disabilitata]="
     selected === 'accettate' && offerta.statoOfferta !== 'Accettata'">
@@ -142,6 +143,7 @@
         </div>
 
           </div>
+        }
         }
       </div>
     </div>
