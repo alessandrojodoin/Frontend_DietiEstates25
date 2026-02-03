@@ -12,8 +12,8 @@ export class ExportReportService {
 
   exportCSV() {
     const rows = [
-      ["Immobili Totali", "Venduti", "Affittati", "Visualizzazioni Totali"],
-      [53, 12, 8, 1284]
+      ["Immobili Totali", "Immobili Venduti",  "Immobili Affittati", "Totale Offerte Ricevute", "Totale Visualizzazioni Immobili", "Totale Prenotazioni Ricevute"],
+      [53, 12, 8, 1284, 76, 32]
     ];
   
    let csvContent = rows.map(e => e.join(",")).join("\n");

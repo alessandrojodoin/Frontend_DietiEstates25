@@ -1,11 +1,17 @@
 <h2>Storico Annuale</h2>
 
 
+<div class="statistiche-container">
+Immobili Totali: {{ contrattiConclusi().totali }} 
+Immobili Venduti: {{ contrattiConclusi().venduti }}
+Immobili Affittati: {{ contrattiConclusi().affittati }}
+Totale Offerte Ricevute: {{ totaleOfferte() }}
+Totale Visualizzazioni Immobili: {{ totaleVisualizzazioni() }}
+Totale Prenotazioni Ricevute: eh niente
+</div>
+
 
 <div class="exportCSV">
   <button (click)="export.exportCSV()">Esporta CSV</button>
 </div>
 
-<!--<div class="exportPDF">
-  <button (click)="export.exportPDF()">Esporta PDF</button>
-</div>-->
