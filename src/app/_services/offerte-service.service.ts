@@ -79,6 +79,7 @@ annullaAccettazione(offertaId: number){
     return this.http.post<any>(url, {}, headers);
   }
 
+
   rifiutaOfferta(offertaId: number){
     const url = `${this.url}/offerte/${offertaId}/rifiutata`;
     const headers = this.getAuthHeaders();

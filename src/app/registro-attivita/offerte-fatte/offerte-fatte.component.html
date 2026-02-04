@@ -8,7 +8,11 @@
 }
 
 @for(offerta of OfferteList; track offerta){
+
+
+
   <div class="offerta-card">
+    
 
     <div class="offerta-header">
       <h3 class="indirizzo">{{ offerta.indirizzo }}</h3>
@@ -35,13 +39,44 @@
   </span>
 
   @if(offerta.statoOfferta === 'Rifiutata'){
-    <button class="btn-controproposta">
+    <button class="btn-controproposta" (click)="apriPopup()">
       Fai una controproposta
     </button>
   }
 
 </div>
 
-
+@if(offerta.statoOfferta === 'ContropropostaRicevuta'){
+  <button class="btn-accetta" (click)="acettaOfferta(offerta.offertaId)">Accetta</button>
+  <button class="btn-rifiuta" (click)="rifiutaOfferta(offerta.offertaId)">Rifiuta</button>
+}
   </div>
+
+  @if (mostraPopup) {
+  <div class="overlay">
+    <div class="popup">
+
+
+      @if (statoPopup === 'controproposta') {
+        <h3>Inserisci la controproposta</h3>
+        <input type="number" placeholder="Importo (€)" [(ngModel)]="controproposta" />
+        <div class="popup-actions">
+          <button class="btn-secondary" (click)="chiudiPopup()">Annulla</button>
+          <button class="btn-primary" [disabled]="controproposta <= 0" (click)="inviaControproposta(offerta.offertaId)">
+            Invia
+          </button>
+        </div>
+      }
+
+      @if (statoPopup === 'successo') {
+        <h3>✅ Controproposta inviata</h3>
+        <p>La controproposta è stata inviata con successo.</p>
+        <div class="popup-actions">
+          <button class="btn-primary" (click)="chiudiPopup()">OK</button>
+        </div>
+      }
+
+    </div>
+  </div>
+}
 }

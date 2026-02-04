@@ -3,11 +3,14 @@ import { Component, inject } from '@angular/core';
 import { OfferteServiceService } from '../../_services/offerte-service.service';
 import { ImmobiliService } from '../../_services/immobili.service';
 import { firstValueFrom } from 'rxjs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+type StatoPopup = 'controproposta' | 'successo';
 
 @Component({
   selector: 'app-offerte-fatte',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './offerte-fatte.component.html',
   styleUrl: './offerte-fatte.component.scss'
 })
@@ -16,6 +19,10 @@ export class OfferteFatteComponent {
   offerteService = inject(OfferteServiceService);
   immobileService = inject(ImmobiliService)
   OfferteList: any[] = [];
+
+  mostraPopup = false;
+  statoPopup: StatoPopup = 'controproposta';
+  controproposta = 0;
 
 
   ngOnInit() {
@@ -29,6 +36,7 @@ async conversioneBackToFront(offerteFromBack: any[]) {
   console.log("Offerte from back:", offerteFromBack);
 
   for (let offerta of offerteFromBack) {
+    let offertaId= offerta.id;
     let cifraOfferta= offerta.cifraInCentesimi;
     let statoOfferta= offerta.risultatoOfferta;
     let dataOfferta= offerta.dataOfferta;
@@ -39,7 +47,7 @@ async conversioneBackToFront(offerteFromBack: any[]) {
     let id= immobileData.id;
     let indirizzo= immobileData.nome;
 
-    OfferteConvertite.push({id, indirizzo, cifraOfferta, dataOfferta, statoOfferta});
+    OfferteConvertite.push({id, indirizzo, offertaId, cifraOfferta, dataOfferta, statoOfferta});
 
 
   }
@@ -52,5 +60,65 @@ async conversioneBackToFront(offerteFromBack: any[]) {
     });
   }
 
+
+  acettaOfferta(offertaId: number){
+this.offerteService.accettaOfferta(offertaId).subscribe({
+    next: async (response) => {
+      console.log('Offerta accettata');
+
+      // Ricarico 
+      
+      await this.caricaOfferte();
+      
+    },
+    error: (err) => {
+      console.error('Errore accettazione offerta', err);
+    }
+  });
+  }
+  
+  rifiutaOfferta(offertaId: number){
+console.log("rifiutando offerta: ", offertaId);
+  if (!offertaId) return;
+  
+
+  this.offerteService.rifiutaOfferta(offertaId).subscribe({
+    next: async () => {
+      console.log('Offerta rifiutata');
+      
+      
+      await this.caricaOfferte();
+      
+    },
+    error: err => console.error(err)
+  });
+  }
+
+
+  apriPopup(){
+    this.mostraPopup= true;
+    this.statoPopup = 'controproposta';
+  }
+
+chiudiPopup(){
+  this.mostraPopup= false;
+}  
+
+  inviaControproposta(offertaId: number){
+     if (!offertaId || this.controproposta <= 0) return;
+
+  console.log('Controproposta:', this.controproposta);
+
+  this.offerteService
+    .contropropostaOfferta(offertaId, this.controproposta)
+    .subscribe({
+      next: () => {
+        this.statoPopup = 'successo';
+      },
+      error: err => {
+        console.error('Errore invio controproposta', err);
+      }
+    });
+  }
 
 }
