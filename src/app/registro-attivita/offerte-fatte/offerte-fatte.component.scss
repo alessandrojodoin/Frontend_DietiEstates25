@@ -124,6 +124,11 @@
   color: #B03A2E;
   border: 1px solid #F5B7B1;
 }
+.stato-controproposta {
+  background: #FFE0B2;
+  color: #C2410C;
+  border: 1px solid #FFB74D;
+}
 
 
 .btn-controproposta {
@@ -193,6 +198,24 @@
 }
 
 
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.azioni {
+  grid-column: 1 / -1; 
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.5);
+}
+
 
 .btn-accetta {
   background: #2ecc71;
@@ -214,3 +237,12 @@
   cursor: pointer;
 }
 
+
+.btn-primary {
+  background-color: #1e88e5; // come "Accetta"
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #1565c0;
+}

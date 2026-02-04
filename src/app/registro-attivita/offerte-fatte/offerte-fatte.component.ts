@@ -20,13 +20,17 @@ export class OfferteFatteComponent {
   immobileService = inject(ImmobiliService)
   OfferteList: any[] = [];
 
+  loading = false;
   mostraPopup = false;
   statoPopup: StatoPopup = 'controproposta';
   controproposta = 0;
+  offertaSelezionataId: number | null = null;
 
 
   ngOnInit() {
+    this.loading = true;
     this.caricaOfferte();
+    this.loading = false;
     console.log(this.OfferteList);
   }
   
@@ -67,8 +71,9 @@ this.offerteService.accettaOfferta(offertaId).subscribe({
       console.log('Offerta accettata');
 
       // Ricarico 
-      
+      this.loading = true;
       await this.caricaOfferte();
+      this.loading = false;
       
     },
     error: (err) => {
@@ -86,8 +91,9 @@ console.log("rifiutando offerta: ", offertaId);
     next: async () => {
       console.log('Offerta rifiutata');
       
-      
+      this.loading = true;
       await this.caricaOfferte();
+      this.loading = false;
       
     },
     error: err => console.error(err)
@@ -95,22 +101,25 @@ console.log("rifiutando offerta: ", offertaId);
   }
 
 
-  apriPopup(){
-    this.mostraPopup= true;
+  apriPopup(offerta: any){
+    this.offertaSelezionataId = offerta;
     this.statoPopup = 'controproposta';
+    this.mostraPopup= true;
   }
 
 chiudiPopup(){
   this.mostraPopup= false;
+  this.offertaSelezionataId = null;
+  this.controproposta = 0;
 }  
 
-  inviaControproposta(offertaId: number){
-     if (!offertaId || this.controproposta <= 0) return;
+inviaControproposta() {
+  if (!this.offertaSelezionataId || this.controproposta <= 0) return;
 
   console.log('Controproposta:', this.controproposta);
 
   this.offerteService
-    .contropropostaOfferta(offertaId, this.controproposta)
+    .contropropostaOfferta(this.offertaSelezionataId, this.controproposta)
     .subscribe({
       next: () => {
         this.statoPopup = 'successo';
@@ -119,6 +128,8 @@ chiudiPopup(){
         console.error('Errore invio controproposta', err);
       }
     });
-  }
+}
+
+
 
 }
