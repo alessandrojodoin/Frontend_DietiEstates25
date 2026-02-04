@@ -28,6 +28,7 @@ export class OfferteRicevuteComponent {
   loading = false;
   mostraPopup = false;
   mostraPopupOfferte = false;
+  mostraPopupEsterne= false;
   offertaSelezionataId: number | null = null;
   controproposta = 0;
   
@@ -91,8 +92,9 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
         let emailOfferente= offerta.emailOfferente;
         let nomeOfferente= offerta.nome;
         let cognomeOfferente= offerta.cognome;
+        let tipoOfferta= offerta.offertaType;
 
-        offerte.push({offertaId, cifraOfferta, dataOfferta, statoOfferta, telefono, emailOfferente, nomeOfferente, cognomeOfferente});
+        offerte.push({offertaId, cifraOfferta, dataOfferta, statoOfferta, telefono, emailOfferente, nomeOfferente, cognomeOfferente, tipoOfferta});
       }
     ImmobiliConvertiti.push({id, indirizzo, nome, isVenduto, offerte});
   
@@ -133,6 +135,17 @@ offerteAccettate() {
   this.selected = 'accettate';
 }
 
+immobiliDaRevisionare(offerte: any[]){
+  let offerteFiltrate: any[] = [];
+  
+  for(let offerta of offerte){
+       
+      if(offerta.statoOfferta != "ContropropostaRicevuta" && offerta.statoOfferta != "Rifiutata"){
+          offerteFiltrate.push(offerta);
+      }
+    }
+  return offerteFiltrate;
+}
 
 public accetta(offertaId: number){
   this.offerteService.accettaOfferta(offertaId).subscribe({
@@ -193,13 +206,30 @@ chiudiPopupOfferta(){
    this.mostraPopupOfferte = false;
 }
 
+apriPopupEsterne(offertaId: number){
+ this.offertaSelezionataId = offertaId;
+ this.statoPopup = 'chiedi';
+ this.mostraPopupEsterne = true;
+}
+
+chiudiPopupEsterne(){
+   this.mostraPopupEsterne = false;
+   this.offertaSelezionataId = null;
+}
+
+
 confermaRifiuto() {
+  console.log("rifiutando offerta: ", this.offertaSelezionataId);
   if (!this.offertaSelezionataId) return;
+  
 
   this.offerteService.rifiutaOfferta(this.offertaSelezionataId).subscribe({
-    next: () => {
+    next: async () => {
       console.log('Offerta rifiutata');
       this.chiudiPopup();
+      this.loading = true;
+      await this.caricaOfferte();
+      this.loading = false;
     },
     error: err => console.error(err)
   });

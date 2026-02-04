@@ -21,170 +21,247 @@
 </div>
 
 @if (loading) {
+
   <div class="loader-container">
     <div class="spinner"></div>
     <p>Caricamento offerte in corso...</p>
   </div>
 
-  
 } @else {
-  @if(ImmobiliList.length === 0){
+
+  @if (ImmobiliList.length === 0) {
+
     <div class="empty-state">
       <p>Qui verranno mostrate le offerte ricevute</p>
     </div>
-  }@else{
-@for(immobile of ImmobiliList; track immobile) {
 
+  } @else {
 
+    @for (immobile of ImmobiliList; track immobile) {
 
-    @if((this.selected === 'attesa' && statoImmobile(immobile) === 'attesa' && !immobile.isVenduto) || (this.selected === 'accettate' && statoImmobile(immobile) === 'accettata' && !immobile.isVenduto)){
-        
-             @if (mostraPopupOfferte) {
+      @if (
+        (selected === 'attesa' && statoImmobile(immobile) === 'attesa' && !immobile.isVenduto) ||
+        (selected === 'accettate' && statoImmobile(immobile) === 'accettata' && !immobile.isVenduto)
+      ) {
+
+        @if (mostraPopupOfferte) {
   <div class="overlay">
     <div class="popup">
 
-        <h3>Aggiungi Offerta</h3>
+      <h3>Aggiungi Offerta</h3>
 
-        <form [formGroup]="offertaForm" (ngSubmit)="onSubmit(immobile.id)">
+      <form [formGroup]="offertaForm" (ngSubmit)="onSubmit(immobile.id)">
 
-          <label for="nomeOfferente">Nome Offerente*:</label>
-          <input id="nomeOfferente" type="text" formControlName="nome" />
+        <label for="nomeOfferente">Nome Offerente*:</label>
+        <input id="nomeOfferente" type="text" formControlName="nome" />
 
-          <label for="cognomeOfferente">Cognome Offerente*:</label>
-          <input id="cognomeOfferente" type="text" formControlName="cognome" />
+        <label for="cognomeOfferente">Cognome Offerente*:</label>
+        <input id="cognomeOfferente" type="text" formControlName="cognome" />
 
-          <label for="emailOfferente">Email Offerente*:</label>
-          <input id="emailOfferente" type="email" formControlName="email" />
+        <label for="emailOfferente">Email Offerente*:</label>
+        <input id="emailOfferente" type="email" formControlName="email" />
 
-          <label for="numeroTelefonico">Recapito Telefonico*:</label>
-          <input id="numeroTelefonico" type="text" formControlName="numeroTelefonico" />
+        <label for="numeroTelefonico">Recapito Telefonico*:</label>
+        <input id="numeroTelefonico" type="text" formControlName="numeroTelefonico" />
 
-          <label for="valoreOfferta">Valore Offerta*:</label>
-          <input id="valoreOfferta" formControlName="valoreOfferta" placeholder="Importo (€)" />
+        <label for="valoreOfferta">Valore Offerta*:</label>
+        <input id="valoreOfferta" formControlName="valoreOfferta" placeholder="Importo (€)" />
 
-          <div class="popup-actions">
-            <button type="button"
-                    class="btn-secondary"
-                    (click)="chiudiPopupOfferta()">
-              Indietro
-            </button>
+        <div class="popup-actions">
+          <button type="button" class="btn-secondary" (click)="chiudiPopupOfferta()">
+            Indietro
+          </button>
 
-            <button type="submit"
-                    class="btn-primary"
-                    [disabled]="offertaForm.invalid">
-              + Aggiungi
-            </button>
-          </div>
+          <button type="submit" class="btn-primary" [disabled]="offertaForm.invalid">
+            + Aggiungi
+          </button>
+        </div>
 
-        </form>
-
+      </form>
 
     </div>
   </div>
 }
-<div class="immobile-card">
+
+
+        <div class="immobile-card">
+
           <div class="immobile-header">
             <h2 class="indirizzo-immobile">
-              <a [routerLink]="['/dettagli-immobile', immobile.id]">{{ immobile.indirizzo.via }}, {{ immobile.indirizzo.citta }} ({{ immobile.indirizzo.provincia }})</a>
+              <a [routerLink]="['/dettagli-immobile', immobile.id]">
+                {{ immobile.indirizzo.via }},
+                {{ immobile.indirizzo.citta }}
+                ({{ immobile.indirizzo.provincia }})
+              </a>
             </h2>
 
-            <button class="aggiungi-offerta" (click)="apriPopupOfferta(); $event.stopPropagation()">+ Aggiungi Offerta</button>
+            <button
+              class="aggiungi-offerta"
+              (click)="apriPopupOfferta(); $event.stopPropagation()">
+              + Aggiungi Offerta
+            </button>
           </div>
-     
 
-      <div class="offerte-container">
-          @if(immobile.offerte.length === 0){
-            <div class="empty-state">
-              <p>Non hai ancora ricevuto offerte per questo immobile.</p>
-            </div>
-          }
+          <div class="offerte-container">
 
-        @for(offerta of immobile.offerte; track offerta) {
-          @if ((selected === 'attesa' && offerta.statoOfferta === 'InRevisione') ||
-                (selected === 'accettate' && offerta.statoOfferta === 'Accettata')) {
-        
-          <div class="offerta-card" [class.offerta-disabilitata]="
-    selected === 'accettate' && offerta.statoOfferta !== 'Accettata'">
-            <div class="offerta-inner">
-              <div class="offerta-info">
-                <p><strong>Nome:</strong> {{offerta.nomeOfferente}}</p>
-                <p><strong>Cognome:</strong> {{offerta.cognomeOfferente}}</p>
-                <p><strong>Telefono:</strong> {{offerta.telefono}}</p>
-                <p><strong>Email:</strong> {{offerta.emailOfferente}}</p>
+            @if (immobiliDaRevisionare(immobile.offerte).length === 0) {
+              <div class="empty-state">
+                <p>Non hai ancora ricevuto offerte per questo immobile.</p>
               </div>
+            }
 
-              <div class="offerta-body">
-                <div class="offerta-box">
-                  Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+            @for (offerta of immobile.offerte; track offerta) {
+
+              @if (
+                (selected === 'attesa' && offerta.statoOfferta === 'InRevisione') ||
+                (selected === 'accettate' && offerta.statoOfferta === 'Accettata')
+              ) {
+
+                <div
+                  class="offerta-card"
+                  [class.offerta-disabilitata]="
+                    selected === 'accettate' && offerta.statoOfferta !== 'Accettata'
+                  ">
+
+                  <div class="offerta-inner">
+
+                    <div class="offerta-info">
+                      <p><strong>Nome:</strong> {{ offerta.nomeOfferente }}</p>
+                      <p><strong>Cognome:</strong> {{ offerta.cognomeOfferente }}</p>
+                      <p><strong>Telefono:</strong> {{ offerta.telefono }}</p>
+                      <p><strong>Email:</strong> {{ offerta.emailOfferente }}</p>
+                    </div>
+
+                    <div class="offerta-body">
+                      <div class="offerta-box">
+                        Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+                      </div>
+                    </div>
+
+                    @if (offerta.tipoOfferta === 'offertaEsterna') {
+                      <p>(inserita manualmente)</p>
+                    }
+
+                  </div>
+
+                  <div class="data">
+                    📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}
+                  </div>
+
+                  <div class="azioni">
+
+                    @if (selected === 'attesa') {
+
+                      <button
+                        class="btn-accetta"
+                        (click)="accetta(offerta.offertaId); $event.stopPropagation()">
+                        Accetta
+                      </button>
+
+                      @if (offerta.tipoOfferta === 'offertaEsterna') {
+                        <button
+                          class="btn-rifiuta"
+                          (click)="apriPopupEsterne(offerta.offertaId); $event.stopPropagation()">
+                          Rifiuta
+                        </button>
+                      } @else {
+                        <button
+                          class="btn-rifiuta"
+                          (click)="apriPopupRifiuto(offerta.offertaId); $event.stopPropagation()">
+                          Controproposta
+                        </button>
+                      }
+
+                    }
+
+                    @if (selected === 'accettate' && offerta.statoOfferta === 'Accettata') {
+
+                      <button
+                        class="btn-primary"
+                        (click)="concludiContratto(immobile.id)">
+                        Concludi contratto
+                      </button>
+
+                      <button
+                        class="btn-secondary"
+                        (click)="annullaAccettazione(offerta.offertaId)">
+                        Annulla accettazione
+                      </button>
+
+                    }
+
+                  </div>
+
                 </div>
-              </div>
-            </div>
 
-            <div class="data">
-              📅 {{ offerta.dataOfferta | date:'dd/MM/yyyy HH:mm' }}
-            </div>
+              }
 
-          <div class="azioni">
+            }
 
-           <!-- STATO: IN ATTESA -->
-          @if (selected === 'attesa') {
-    
-            <button class="btn-accetta" (click)="accetta(offerta.offertaId); $event.stopPropagation()">Accetta</button>
-            <button class="btn-rifiuta" (click)="apriPopupRifiuto(offerta.offertaId); $event.stopPropagation()">Rifiuta</button>
-          }
-
-          <!-- STATO: ACCETTATA (solo quella vincente) -->
-          @if (selected === 'accettate' && offerta.statoOfferta === 'Accettata') {
-
-            <button class="btn-primary" (click)="concludiContratto(immobile.id)">Concludi contratto</button>
-            <button class="btn-secondary" (click)="annullaAccettazione(offerta.offertaId)">Annulla accettazione</button>
-          }
+          </div>
 
         </div>
 
-          </div>
-        }
-        }
-      </div>
-    </div>
+      }
+
     }
-    
+
   }
 
-  
-  @if (mostraPopup) {
-    <div class="overlay">
-      <div class="popup">
-        @if (statoPopup === 'chiedi') {
-          <h3>Vuoi fare una controproposta?</h3>
-          <div class="popup-actions">
-            <button class="btn-secondary" (click)="confermaRifiuto()">No</button>
-            <button class="btn-primary" (click)="vaiAControproposta()">Sì</button>
-          </div>
-        }
 
-        @if (statoPopup === 'controproposta') {
-          <h3>Inserisci la controproposta</h3>
-          <input type="number" placeholder="Importo (€)" [(ngModel)]="controproposta" />
-          <div class="popup-actions">
-            <button class="btn-secondary" (click)="tornaAllaDomanda()">Indietro</button>
-            <button class="btn-primary" [disabled]="controproposta <= 0" (click)="inviaControproposta()">Invia</button>
-          </div>
-        }
 
-        @if (statoPopup === 'successo') {
-          <h3>✅ Controproposta inviata</h3>
-          <p>La controproposta è stata inviata con successo.</p>
-          <div class="popup-actions">
-            <button class="btn-primary" (click)="chiudiPopup()">OK</button>
-          </div>
-        }
+<!-- ================= POPUP AGGIUNGI OFFERTA ================= -->
+
+
+<!-- ================= POPUP CONTROPROPOSTA ================= -->
+
+@if (mostraPopup) {
+  <div class="overlay">
+    <div class="popup">
+
+      @if (statoPopup === 'chiedi') {
+        <h3>Vuoi fare una controproposta?</h3>
+        <div class="popup-actions">
+          <button class="btn-secondary" (click)="confermaRifiuto()">No</button>
+          <button class="btn-primary" (click)="vaiAControproposta()">Sì</button>
+        </div>
+      }
+
+      @if (statoPopup === 'controproposta') {
+        <h3>Inserisci la controproposta</h3>
+        <input type="number" placeholder="Importo (€)" [(ngModel)]="controproposta" />
+        <div class="popup-actions">
+          <button class="btn-secondary" (click)="tornaAllaDomanda()">Indietro</button>
+          <button class="btn-primary" [disabled]="controproposta <= 0" (click)="inviaControproposta()">
+            Invia
+          </button>
+        </div>
+      }
+
+      @if (statoPopup === 'successo') {
+        <h3>✅ Controproposta inviata</h3>
+        <p>La controproposta è stata inviata con successo.</p>
+        <div class="popup-actions">
+          <button class="btn-primary" (click)="chiudiPopup()">OK</button>
+        </div>
+      }
+
+    </div>
+  </div>
+}
+
+<!-- ================= POPUP OFFERTE ESTERNE ================= -->
+
+@if (mostraPopupEsterne) {
+  <div class="overlay">
+    <div class="popup">
+      <h3>Sei sicuro di voler rifiutare definitivamente questa offerta?</h3>
+      <div class="popup-actions">
+        <button class="btn-secondary" (click)="confermaRifiuto()">Sì</button>
+        <button class="btn-primary" (click)="chiudiPopupEsterne()">No</button>
       </div>
     </div>
-  }
-
+  </div>
 }
 
-  
 }
-  
