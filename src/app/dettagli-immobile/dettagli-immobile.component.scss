@@ -54,6 +54,12 @@ $corner: 10px;
   position: relative;
 }
 
+.popup-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .offer-option {
   display: flex;
   flex-direction: column;
