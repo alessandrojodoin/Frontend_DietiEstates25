@@ -54,7 +54,7 @@
         @if (offerta.statoOfferta === 'Rifiutata') {
           <button
             class="btn-controproposta"
-            (click)="apriPopup(offerta)"
+            (click)="apriPopup(offerta.offertaId)"
           >
             Fai una controproposta
           </button>

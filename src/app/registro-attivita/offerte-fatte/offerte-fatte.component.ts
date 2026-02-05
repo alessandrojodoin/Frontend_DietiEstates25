@@ -101,10 +101,14 @@ console.log("rifiutando offerta: ", offertaId);
   }
 
 
-  apriPopup(offerta: any){
-    this.offertaSelezionataId = offerta;
+  apriPopup(offertaId: any){
+   // console.log("offerta: ", offerta);
+   // console.log("offertaId: ", offerta.id);
+    
+    this.offertaSelezionataId = offertaId;
     this.statoPopup = 'controproposta';
     this.mostraPopup= true;
+    
   }
 
 chiudiPopup(){

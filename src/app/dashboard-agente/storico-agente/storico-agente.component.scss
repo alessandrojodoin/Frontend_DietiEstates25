@@ -5,8 +5,14 @@ h2 {
   margin-bottom: 24px;
 }
 
+.storico-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
 
 .grafico-container {
+  flex: 1;
   width: 100%;
   max-width: 500px;
   margin: 0 auto 30px auto;
@@ -19,7 +25,8 @@ h2 {
 
 .statistiche-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  flex: 1;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin: 20px 0;
 }
