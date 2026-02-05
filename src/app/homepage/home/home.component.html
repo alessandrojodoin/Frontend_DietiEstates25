@@ -25,7 +25,25 @@
       Vai alla Dashboard 
     </button>
   </div>
-}
+  }
 
+   @if(auth.isUserAuthenticated() && auth.getUserType() === 'AmministratoreAgenzia'){
+  <div class="actions">
+    <button class="btn-crea-immobile" [routerLink]="['/crea-amministratore']">
+      Crea Account per Amministratore di Supporto +
+    </button>
+    <button class="btn-dashboard" [routerLink]="['/crea-agente']">
+      Crea Account per Agente Immobiliare +
+    </button>
+  </div>
+  }
+
+   @if(auth.isUserAuthenticated() && auth.getUserType() === 'AccountSupporto'){
+  <div class="actions">
+    <button class="btn-crea-immobile" [routerLink]="['/crea-agente']">
+      Crea Account per Agente Immobiliare +
+    </button>
+  </div>
+  }
   </div>
 </div>

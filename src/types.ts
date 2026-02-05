@@ -1,3 +1,3 @@
 
 
-export type UserType = "Cliente" | "AgenteImmobiliare" | "AmministratoreAgenzia" | "User"
+export type UserType = "Cliente" | "AgenteImmobiliare" | "AmministratoreAgenzia" | "User" | "AccountSupporto"
