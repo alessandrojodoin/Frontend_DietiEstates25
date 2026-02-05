@@ -1,0 +1,25 @@
+<form [formGroup]="signupAgenteForm" (ngSubmit)="onSubmit()">
+    <h1>Account Agente Immobiliare</h1>
+    <p class="subtitle">Inserisci i dati personali e di contatto dell’<b>agente immobiliare:</b></p>
+
+
+     <div class="label">
+        <label for="username">Username: </label>
+    </div>
+    <div class="field">
+        <input id="username" formControlName="username">
+    </div>
+
+       <div class="label">
+        <label for="agenzia">Agenzia Immobiliare: </label>
+    </div>
+    <div class="field">
+        <input id="agenzia" formControlName="agenzia">
+    </div>
+
+
+
+    <div class="button-row">
+    <button type="submit" class="btn btn-primary">Conferma ✓</button>
+    </div>
+</form>

@@ -1,0 +1,98 @@
+@import "../../../variables.scss";
+
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* FORM */
+form {
+  margin-top: 5%;
+  background-color: #f1f6fb;
+
+  width: 80%;
+  max-width: 900px;
+
+  display: grid;
+  grid-template-columns: 40% 60%;
+  row-gap: 1.2em;
+
+  padding: 2em;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* TITOLI */
+h1 {
+  grid-column: 1 / -1;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  grid-column: 1 / -1;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+/* LABEL */
+.label {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 16px;
+  font-size: 18px;
+}
+
+/* CAMPI */
+.field {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  width: 75%;
+  height: 36px;
+  padding: 4px 8px;
+  font-size: 16px;
+
+  border: 1px solid #aacbe8;
+  border-radius: 6px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2490CA;
+  box-shadow: 0 0 0 2px rgba(36, 144, 202, 0.2);
+}
+
+/* BOTTONE */
+.button-row {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.button-row button {
+  padding: 10px 40px;
+  font-size: 16px;
+  background-color: #2490CA;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  border: 3px solid #15638e;
+}
+
+.btn-primary {
+  box-shadow: 0 4px #2980b9;
+  transition: all 0.1s ease-in-out;
+}
+
+.btn-primary:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}

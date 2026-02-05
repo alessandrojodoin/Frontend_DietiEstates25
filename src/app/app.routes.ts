@@ -9,6 +9,8 @@ import { LogoutComponent } from './logout/logout.component';
 import { DashboardComponent } from './dashboard-agente/dashboard/dashboard.component';
 import { SummaryComponent } from './create-immobile/summary/summary.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { AmministratoreSupportoComponent } from './utenza-amministrazione/gestore/amministratore-supporto.component';
+import { CreaAgenteComponent } from './utenza-amministrazione/amministratore/crea-agente/crea-agente.component';
 
 
 export const routes: Routes = [
@@ -62,6 +64,16 @@ export const routes: Routes = [
         path: "dettagli-immobile/:id",
         title: "Dettagli Immobile",
         component: DettagliImmobileComponent
+    },
+    {
+        path: "crea-amministratore",
+        title: "Amministratore di supporto",
+        component: AmministratoreSupportoComponent
+    },
+    {
+        path: "crea-agente",
+        title: "Nuovo Agente Immobiliare",
+        component: CreaAgenteComponent
     },
 
     
