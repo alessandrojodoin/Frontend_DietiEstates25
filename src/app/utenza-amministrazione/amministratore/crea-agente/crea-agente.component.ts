@@ -24,21 +24,47 @@ export class CreaAgenteComponent {
         [Validators.required,
           Validators.minLength(1)]
       ),
+       nome: new FormControl('',
+        [Validators.required,
+          Validators.minLength(1)]
+      ),
+      cognome: new FormControl('',
+        [Validators.required,
+          Validators.minLength(1)]
+      ),
+      email: new FormControl('',
+        [Validators.required,
+          Validators.minLength(1)]
+      ),
+      numeroTelefonico: new FormControl('',
+        [Validators.required,
+          Validators.minLength(1)]
+      ),
+      password: new FormControl('',
+        [Validators.required,
+          Validators.minLength(1)]
+      ),
       agenzia: new FormControl('',
         [Validators.required,
           Validators.minLength(1)]
       ),
+
     })
   
     onSubmit(){
-      /*
+      
       if(this.signupAgenteForm.invalid){
         this.toastr.error("Please make sure you have filled all of the fields", "Error");
       }
       else{
-        this.rest.signup({
-          username: this.signupAgenteForm.value.username as string,
-          nome: this.signupAgenteForm.value.agenzia as string
+        this.rest.signupAgente({
+           username: this.signupAgenteForm.value.username as string,
+          email: this.signupAgenteForm.value.email as string,
+          nome: this.signupAgenteForm.value.nome as string,
+          cognome: this.signupAgenteForm.value.cognome as string,
+          password: this.signupAgenteForm.value.password as string,
+          numeroTelefonico: this.signupAgenteForm.value.numeroTelefonico as string,
+          agenziaImmobiliare: "AGENZIA PROVVISORIA" as string
         }).subscribe({
           error: (error) =>{
             if(error instanceof HttpErrorResponse){
@@ -49,9 +75,9 @@ export class CreaAgenteComponent {
             this.toastr.success("Signed up successfully!", "Success");
             this.router.navigate(["/login"]);
           }
-      });*/
+      });
       }
-  
+    }
   
    
 }

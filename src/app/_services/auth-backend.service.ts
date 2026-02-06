@@ -49,6 +49,11 @@ export class AuthRestService {
   }
 
 
+   signupAgente(signupCredentials: {username: string, password: string, email: string, nome: string,
+     cognome: string, numeroTelefonico: string, agenziaImmobiliare: string}){
+    const url = `${this.url}/auth/agente-immobiliare`;
+    return this.http.post<string>(url, signupCredentials, this.jsonHttpOptions);
+  }
 
 
 
