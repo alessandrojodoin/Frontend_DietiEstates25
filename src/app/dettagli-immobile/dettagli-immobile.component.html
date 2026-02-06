@@ -68,9 +68,12 @@
         <div><strong>Prezzo al m²:</strong> {{ (immobile.prezzo / immobile.quadratura) | number:'1.0-0' }}€</div>
         <div class="condo"><strong>Spese Condominiali:</strong> {{ immobile.speseCondominiali | number:'1.0-0'}}€</div>
       </div>
-      <div class="price-action">
-        <button class="btn-teal" (click)="showOffer = true">💳 Proponi Prezzo</button>
-      </div>
+      @if(auth.getUserType() === 'Cliente' && immobile.isVenduto === false){
+        <div class="price-action">
+          <button class="btn-teal" (click)="showOffer = true">💳 Proponi Prezzo</button>
+        </div>
+      }
+      
       <!--PROVA PROVA-->
     </div>
   </section>
@@ -118,7 +121,7 @@
       <div><strong>Numero di telefono:</strong> {{immobile.agenteImmobiliare.telefono}}</div>
       <div><strong>Email:</strong> {{ immobile.agenteImmobiliare.email }}</div>
     </div>
-@if(auth.getUserType() === 'Cliente'){
+@if(auth.getUserType() === 'Cliente' && immobile.isVenduto === false){
     <button class="btn-visit">📅 Prenota Visita</button>
 }
   </section>
