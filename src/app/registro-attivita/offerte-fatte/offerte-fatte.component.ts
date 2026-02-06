@@ -49,10 +49,11 @@ async conversioneBackToFront(offerteFromBack: any[]) {
       this.immobileService.getImmobile(offerta.idListino)
       
     );
+    let isVenduto = immobileData.isVenduto;
     let id= immobileData.id;
     let indirizzo= immobileData.nome;
 
-    OfferteConvertite.push({id, indirizzo, offertaId, cifraOfferta, dataOfferta, statoOfferta});
+    OfferteConvertite.push({isVenduto, id, indirizzo, offertaId, cifraOfferta, dataOfferta, statoOfferta});
 
 
   }
@@ -131,6 +132,7 @@ inviaControproposta() {
     .subscribe({
       next: async () => {
         this.statoPopup = 'successo';
+        this.deleteOfferta(this.offertaSelezionataId!);
         this.loading = true;
         await this.caricaOfferte();
         this.loading = false;
@@ -144,7 +146,7 @@ inviaControproposta() {
 
 deleteOfferta(offertaId: number){
   console.log("Eliminazione offerta: ", offertaId);
-  
+
   this.offerteService.deleteOfferta(offertaId).subscribe({
     next: async () =>{
       this.loading = true;

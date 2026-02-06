@@ -17,11 +17,15 @@
 
   @for (offerta of OfferteList; track offerta) {
 
-    <div class="offerta-card">
+    @if(offerta.isVenduto === false || offerta.statoOfferta === 'Accettata' ){
+        
+      <div class="offerta-card">
 
       <div class="offerta-header">
         <h3 class="indirizzo">{{ offerta.indirizzo }}</h3>
-        <button class="btn-annulla" (click)="deleteOfferta(offerta.offertaId)">- Annulla</button>
+        @if(offerta.statoOfferta != 'Accettata'){
+          <button class="btn-annulla" (click)="deleteOfferta(offerta.offertaId)">- Annulla</button>
+        }
       </div>
 
       <div class="offerta-body">
@@ -60,29 +64,28 @@
           </button>
         }
 
-      </div>
-
-      @if (offerta.statoOfferta === 'ContropropostaRicevuta') {
-        <div class="azioni">
-          <button
-            class="btn-accetta"
-            (click)="acettaOfferta(offerta.offertaId)"
-          >
-            Accetta
-          </button>
-
-          <button
-            class="btn-rifiuta"
-            (click)="rifiutaOfferta(offerta.offertaId)"
-          >
-            Rifiuta
-          </button>
         </div>
-      }
 
-    </div>
+        @if (offerta.statoOfferta === 'ContropropostaRicevuta') {
+          <div class="azioni">
+            <button
+              class="btn-accetta"
+              (click)="acettaOfferta(offerta.offertaId)"
+            >
+              Accetta
+            </button>
 
-    
+            <button
+              class="btn-rifiuta"
+              (click)="rifiutaOfferta(offerta.offertaId)"
+            >
+              Rifiuta
+            </button>
+          </div>
+        }
+
+      </div>
+    }
 
   }
 
