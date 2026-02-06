@@ -52,13 +52,14 @@ export class AmministratoreSupportoComponent {
         this.toastr.error("Please make sure you have filled all of the fields", "Error");
       }
       else{
-        this.rest.signup({
+        this.rest.signupAmministratore({
           username: this.signupAmministratoreForm.value.username as string,
           password: this.signupAmministratoreForm.value.password as string,
           email: this.signupAmministratoreForm.value.email as string,
           nome: this.signupAmministratoreForm.value.nome as string,
           cognome: this.signupAmministratoreForm.value.cognome as string,
-          numeroTelefonico: this.signupAmministratoreForm.value.numeroTelefonico as string
+          numeroTelefonico: this.signupAmministratoreForm.value.numeroTelefonico as string,
+          agenziaImmobiliare: "AGENZIA PROVVISORIA" as string
         }).subscribe({
           error: (error) =>{
             if(error instanceof HttpErrorResponse){

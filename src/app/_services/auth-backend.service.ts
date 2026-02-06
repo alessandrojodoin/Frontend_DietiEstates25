@@ -41,6 +41,17 @@ export class AuthRestService {
     return this.http.post<string>(url, signupCredentials, this.jsonHttpOptions);
   }
 
+
+   signupAmministratore(signupCredentials: {username: string, password: string, email: string, nome: string,
+     cognome: string, numeroTelefonico: string, agenziaImmobiliare: string}){
+    const url = `${this.url}/auth/accountSupporto`;
+    return this.http.post<string>(url, signupCredentials, this.jsonHttpOptions);
+  }
+
+
+
+
+
    login(loginCredentials: {username: string, password: string}){
     console.log("login http request")
     const url = `${this.url}/auth`;
