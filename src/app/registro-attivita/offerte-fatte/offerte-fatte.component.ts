@@ -25,6 +25,7 @@ export class OfferteFatteComponent {
   statoPopup: StatoPopup = 'controproposta';
   controproposta = 0;
   offertaSelezionataId: number | null = null;
+  listinoId: number |null = null;
 
 
   ngOnInit() {
@@ -101,10 +102,11 @@ console.log("rifiutando offerta: ", offertaId);
   }
 
 
-  apriPopup(offertaId: any){
+  apriPopup(offertaId: any, listinoId: any){
    // console.log("offerta: ", offerta);
    // console.log("offertaId: ", offerta.id);
     
+    this.listinoId = listinoId;
     this.offertaSelezionataId = offertaId;
     this.statoPopup = 'controproposta';
     this.mostraPopup= true;
@@ -113,20 +115,25 @@ console.log("rifiutando offerta: ", offertaId);
 
 chiudiPopup(){
   this.mostraPopup= false;
+  this.listinoId = null;
   this.offertaSelezionataId = null;
   this.controproposta = 0;
 }  
 
 inviaControproposta() {
   if (!this.offertaSelezionataId || this.controproposta <= 0) return;
+  if(!this.listinoId) return;
 
   console.log('Controproposta:', this.controproposta);
 
   this.offerteService
-    .contropropostaOfferta(this.offertaSelezionataId, this.controproposta)
+    .createOffer( this.listinoId, this.controproposta)
     .subscribe({
-      next: () => {
+      next: async () => {
         this.statoPopup = 'successo';
+        this.loading = true;
+        await this.caricaOfferte();
+        this.loading = false;
       },
       error: err => {
         console.error('Errore invio controproposta', err);
@@ -134,6 +141,25 @@ inviaControproposta() {
     });
 }
 
+
+deleteOfferta(offertaId: number){
+  console.log("Eliminazione offerta: ", offertaId);
+  
+  this.offerteService.deleteOfferta(offertaId).subscribe({
+    next: async () =>{
+      this.loading = true;
+        await this.caricaOfferte();
+        this.loading = false;
+    },
+      error: err => {
+        console.error('Errore eliminazione offerta', err);
+      }
+
+
+
+  });
+
+}
 
 
 }

@@ -36,6 +36,8 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
     price: null as number | null,
   };
 
+  immobileTrovato = false;
+
   immobile: Immobile =     {
       nome: "testName",
       id: 1,
@@ -82,7 +84,9 @@ offertaValueForm = new FormGroup({
       this.immobiliService.getImmobile(immobileID).subscribe({
         next: (data) => {
           console.log(data)
+
           this.immobile = this.immobiliService.convertRESTImmobile(data);
+          this.immobileTrovato = true;
           /*this.initMap().then(() => {
 
            this.updateMap();

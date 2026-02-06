@@ -96,5 +96,12 @@ annullaAccettazione(offertaId: number){
   return this.http.post<any>(url, body, this.getAuthHeaders());
 }
 
+deleteOfferta(offertaId: number){
+
+  const url = `${this.url}/offerte/${offertaId}`;
+  return this.http.delete(url);
+
+}
+
 
 }

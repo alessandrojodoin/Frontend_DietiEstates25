@@ -243,8 +243,11 @@ inviaControproposta() {
   this.offerteService
     .contropropostaOfferta(this.offertaSelezionataId, this.controproposta)
     .subscribe({
-      next: () => {
+      next: async () => {
         this.statoPopup = 'successo';
+        this.loading = true;
+        await this.caricaOfferte();
+        this.loading = false;
       },
       error: err => {
         console.error('Errore invio controproposta', err);

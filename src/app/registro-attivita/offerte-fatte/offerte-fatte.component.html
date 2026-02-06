@@ -21,7 +21,7 @@
 
       <div class="offerta-header">
         <h3 class="indirizzo">{{ offerta.indirizzo }}</h3>
-        <button class="btn-annulla">- Annulla</button>
+        <button class="btn-annulla" (click)="deleteOfferta(offerta.offertaId)">- Annulla</button>
       </div>
 
       <div class="offerta-body">
@@ -54,7 +54,7 @@
         @if (offerta.statoOfferta === 'Rifiutata') {
           <button
             class="btn-controproposta"
-            (click)="apriPopup(offerta.offertaId)"
+            (click)="apriPopup(offerta.offertaId, offerta.id)"
           >
             Fai una controproposta
           </button>
