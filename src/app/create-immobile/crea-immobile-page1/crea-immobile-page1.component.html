@@ -34,16 +34,19 @@
 
     <div class="form-group">
       <label for="province">Provincia:</label>
-      <select formControlName="provincia">
+      <!--<select formControlName="provincia">
         <option *ngFor="let p of provinceList" [value]="p.sigla">{{ p.nome }} ({{ p.sigla }})</option>
-      </select>
-      
+      </select>-->
+      <input type="text" list="provinceList" formControlName="provincia" placeholder="Scrivi o seleziona una provincia..." />
+      <datalist id="provinceList">
+        <option *ngFor="let p of provinceList" [value]="p.sigla">{{ p.nome }} ({{ p.sigla }})</option>
+      </datalist>
     </div>
 
     
     <div class="form-group">
       <label for="citta">Comune:</label>
-      <input type="text" list="comuniList" formControlName="citta" placeholder="Scrivi o seleziona un comune..." />
+      <input type="text" list="comuniList" formControlName="citta" placeholder="Scrivi o seleziona un comune..." (focus)="checkProvincia()"/>
       <datalist id="comuniList">
         <option *ngFor="let c of comuniList" [value]="c.nome"></option>
       </datalist>
