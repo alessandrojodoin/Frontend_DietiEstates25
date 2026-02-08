@@ -11,6 +11,11 @@
       @else if(auth.isUserAuthenticated() && auth.getUserType() === 'AgenteImmobiliare'){
         <h2 class="search-title">Da dove iniziamo?</h2>
       }
+
+      @else if(auth.isUserAuthenticated() && auth.getUserType() === 'AmministratoreAgenzia'){
+        <h2 class="search-title">Benvenuto, Amministratore!</h2>
+        <h2 class="search-title">Account appena creato? Cambia <a [routerLink]="['/adminUpdateCredentials']">qui</a> la password!</h2>
+      }
       
       <app-search-bar></app-search-bar>
       

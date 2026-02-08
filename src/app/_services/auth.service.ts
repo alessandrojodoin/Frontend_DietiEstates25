@@ -13,6 +13,7 @@ type AuthState = {
   numeroTelefonico: string | null,
   user: string | null,
   userType: UserType | null
+  agenziaImmobiliare: string | null,
   token: string | null,
   readonly isTokenValid: boolean
 }
@@ -33,6 +34,7 @@ export class AuthService {
     numeroTelefonico: null,
     user: null,
     userType: null,
+    agenziaImmobiliare: null,
     token: null,
     get isTokenValid(){
       try{
@@ -77,6 +79,7 @@ export class AuthService {
           this.authState.cognome = userData.cognome;
           this.authState.email = userData.email;
           this.authState.numeroTelefonico = userData.numeroTelefonico;
+          this.authState.agenziaImmobiliare = userData.agenziaImmobiliare;
       },
       error: (error: any) => {
         console.error('Error retrieving user data:', error);
@@ -122,6 +125,7 @@ export class AuthService {
               this.authState.cognome = userData.cognome;
               this.authState.email = userData.email;
               this.authState.numeroTelefonico = userData.numeroTelefonico;
+              this.authState.agenziaImmobiliare = userData.agenziaImmobiliare;
             },
             error: (error: any) => {
               console.error('Error retrieving user data:', error);

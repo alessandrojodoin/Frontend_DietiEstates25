@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { AuthRestService } from '../../../_services/auth-backend.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../../../_services/auth.service';
 
 @Component({
   selector: 'app-crea-agente',
@@ -17,6 +18,7 @@ export class CreaAgenteComponent {
   private rest = inject(AuthRestService);
   private toastr = inject(ToastrService);
   private router = inject(Router);
+  private authService = inject(AuthService);
 
 
   signupAgenteForm = new FormGroup({
@@ -44,10 +46,6 @@ export class CreaAgenteComponent {
         [Validators.required,
           Validators.minLength(1)]
       ),
-      agenzia: new FormControl('',
-        [Validators.required,
-          Validators.minLength(1)]
-      ),
 
     })
   
@@ -58,13 +56,13 @@ export class CreaAgenteComponent {
       }
       else{
         this.rest.signupAgente({
-           username: this.signupAgenteForm.value.username as string,
-          email: this.signupAgenteForm.value.email as string,
-          nome: this.signupAgenteForm.value.nome as string,
-          cognome: this.signupAgenteForm.value.cognome as string,
-          password: this.signupAgenteForm.value.password as string,
-          numeroTelefonico: this.signupAgenteForm.value.numeroTelefonico as string,
-          agenziaImmobiliare: "AGENZIA PROVVISORIA" as string
+            username: this.signupAgenteForm.value.username as string,
+            email: this.signupAgenteForm.value.email as string,
+            nome: this.signupAgenteForm.value.nome as string,
+            cognome: this.signupAgenteForm.value.cognome as string,
+            password: this.signupAgenteForm.value.password as string,
+            numeroTelefonico: this.signupAgenteForm.value.numeroTelefonico as string,
+            agenziaImmobiliare:  this.authService.authState.agenziaImmobiliare as string
         }).subscribe({
           error: (error) =>{
             if(error instanceof HttpErrorResponse){

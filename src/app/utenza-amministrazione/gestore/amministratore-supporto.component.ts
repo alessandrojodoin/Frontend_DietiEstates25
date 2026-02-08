@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthRestService } from '../../_services/auth-backend.service';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-amministratore-supporto',
@@ -17,6 +18,7 @@ export class AmministratoreSupportoComponent {
   private rest = inject(AuthRestService);
   private toastr = inject(ToastrService);
   private router = inject(Router);
+  private authService = inject(AuthService);
 
 
   signupAmministratoreForm = new FormGroup({
@@ -59,7 +61,7 @@ export class AmministratoreSupportoComponent {
           nome: this.signupAmministratoreForm.value.nome as string,
           cognome: this.signupAmministratoreForm.value.cognome as string,
           numeroTelefonico: this.signupAmministratoreForm.value.numeroTelefonico as string,
-          agenziaImmobiliare: "AGENZIA PROVVISORIA" as string
+          agenziaImmobiliare: this.authService.authState.agenziaImmobiliare as string
         }).subscribe({
           error: (error) =>{
             if(error instanceof HttpErrorResponse){
@@ -68,7 +70,7 @@ export class AmministratoreSupportoComponent {
           },
           next: ()=> {
             this.toastr.success("Signed up successfully!", "Success");
-            this.router.navigate(["/login"]);
+            this.router.navigate(["/"]);
           }
       });
       }
