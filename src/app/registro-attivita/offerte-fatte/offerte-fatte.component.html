@@ -30,7 +30,13 @@
 
       <div class="offerta-body">
         <div class="offerta-box">
-          Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+          @if(offerta.tipologiaContratto === 'Affitto'){
+              Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }} / mese
+          }
+          @else{
+            Offerta: €{{ offerta.cifraOfferta | number:'1.0-0' }}
+          }
+          
         </div>
       </div>
 

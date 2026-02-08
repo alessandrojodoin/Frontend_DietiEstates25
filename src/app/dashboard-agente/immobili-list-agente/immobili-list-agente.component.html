@@ -44,8 +44,8 @@
         </div>
 
         <div class="prezzo">
-          <ng-container *ngIf="immobile.tipologiaContratto === 'AFFITTO'; else vendita">
-            ${{ immobile.prezzo }}/mese
+          <ng-container *ngIf="immobile.tipologiaContratto === 'Affitto'; else vendita">
+            ${{ immobile.prezzo }} / mese
           </ng-container>
           <ng-template #vendita>
             ${{ immobile.prezzo }}

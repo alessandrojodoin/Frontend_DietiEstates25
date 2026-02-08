@@ -89,7 +89,13 @@
   <p><strong>Cognome:</strong> {{ riepilogoOfferta.cognome }}</p>
   <p><strong>Email:</strong> {{ riepilogoOfferta.email }}</p>
   <p><strong>Telefono:</strong> {{ riepilogoOfferta.numeroTelefonico }}</p>
-  <p><strong>Offerta:</strong> € {{ riepilogoOfferta.valoreOfferta }}</p>
+  @if(immobile.tipologiaContratto === 'Affitto'){
+      <p><strong>Offerta:</strong> € {{ riepilogoOfferta.valoreOfferta }} / mese</p>
+  }@else{
+    <p><strong>Offerta:</strong> € {{ riepilogoOfferta.valoreOfferta }}</p>
+  }
+  
+
 
   <div class="popup-actions">
     <button class="btn-secondary" (click)="statoPopupOfferta = 'inserimento'">

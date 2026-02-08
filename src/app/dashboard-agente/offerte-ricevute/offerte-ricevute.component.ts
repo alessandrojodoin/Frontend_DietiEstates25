@@ -85,6 +85,7 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
     let indirizzo= immobile.immobile.indirizzo;
     let nome= immobile.nome;
     let isVenduto= immobile.isVenduto;
+    let tipologiaContratto = immobile.tipologiaContratto;
     let offerte= [];
 
       for (let offerta of immobile.offerte) {
@@ -100,7 +101,7 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
 
         offerte.push({offertaId, cifraOfferta, dataOfferta, statoOfferta, telefono, emailOfferente, nomeOfferente, cognomeOfferente, tipoOfferta});
       }
-    ImmobiliConvertiti.push({id, indirizzo, nome, isVenduto, offerte});
+    ImmobiliConvertiti.push({id, indirizzo, nome, isVenduto, tipologiaContratto, offerte});
   
   }
 
