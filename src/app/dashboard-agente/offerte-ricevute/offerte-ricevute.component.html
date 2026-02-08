@@ -47,7 +47,7 @@
         @if (mostraPopupOfferte) {
   <div class="overlay">
     <div class="popup">
-
+    @if (statoPopupOfferta === 'inserimento') {
       <h3>Aggiungi Offerta</h3>
 
       <form [formGroup]="offertaForm" (ngSubmit)="onSubmit(immobile.id)">
@@ -78,7 +78,28 @@
         </div>
 
       </form>
+    }
+    @if (statoPopupOfferta === 'riepilogo') {
 
+  <h3>Riepilogo</h3>
+
+  <p><strong>Nome:</strong> {{ riepilogoOfferta.nome }}</p>
+  <p><strong>Cognome:</strong> {{ riepilogoOfferta.cognome }}</p>
+  <p><strong>Email:</strong> {{ riepilogoOfferta.email }}</p>
+  <p><strong>Telefono:</strong> {{ riepilogoOfferta.numeroTelefonico }}</p>
+  <p><strong>Offerta:</strong> € {{ riepilogoOfferta.valoreOfferta }}</p>
+
+  <div class="popup-actions">
+    <button class="btn-secondary" (click)="statoPopupOfferta = 'inserimento'">
+      Indietro
+    </button>
+
+    <button class="btn-primary" (click)="confermaInvio(immobile.id)">
+      Conferma
+    </button>
+  </div>
+
+}
     </div>
   </div>
 }

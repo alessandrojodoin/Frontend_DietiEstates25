@@ -34,6 +34,9 @@ export class OfferteRicevuteComponent {
   
   statoPopup: StatoPopup = 'chiedi';
   selected: 'attesa' | 'accettate' = 'attesa'; // default: "in attesa"
+  riepilogoOfferta: any = null;
+  statoPopupOfferta: 'inserimento' | 'riepilogo' = 'inserimento';
+
   
 
 offertaForm = new FormGroup({
@@ -204,6 +207,9 @@ chiudiPopup() {
 
 chiudiPopupOfferta(){
    this.mostraPopupOfferte = false;
+  this.riepilogoOfferta = null;
+  this.statoPopupOfferta = 'inserimento';
+  this.offertaForm.reset();
 }
 
 apriPopupEsterne(offertaId: number){
@@ -288,21 +294,29 @@ annullaAccettazione(offertaId: number) {
 }
 
 onSubmit(immobileId: number){
-  const valoreOfferta = Number(this.offertaForm.value.valoreOfferta);
+  
+if (this.offertaForm.invalid) return;
 
-    this.offerteService.createExternalOffer(immobileId, this.offertaForm.value.nome!, this.offertaForm.value.cognome!, 
-                          this.offertaForm.value.email!, this.offertaForm.value.numeroTelefonico!, valoreOfferta).subscribe({
-      next: async (data: any) => {
-        console.log('Offerta creata con successo:', data);
-        this.chiudiPopupOfferta();
-        this.loading = true;
+  this.riepilogoOfferta = this.offertaForm.value;
+  this.statoPopupOfferta = 'riepilogo';
+}
+
+
+confermaInvio(immobileId: number) {
+  const v = this.riepilogoOfferta;
+
+  this.offerteService.createExternalOffer(immobileId, v.nome, v.cognome, v.email, v.numeroTelefonico, Number(v.valoreOfferta)).subscribe({
+    next: async () => {
+      console.log('Offerta creata');
+      this.chiudiPopupOfferta();
+      this.loading = true;
       await this.caricaOfferte();
       this.loading = false;
-      },
-      error: (error: any) => {
-        console.error('Errore nella creazione dell\'offerta:', error);
-      }
-    });
+    },
+    error: err => console.error(err)
+  });
 }
+
+
 
 }
