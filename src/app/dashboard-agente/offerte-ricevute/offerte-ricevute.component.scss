@@ -22,6 +22,17 @@
   }
 }
 
+@keyframes lampeggioColore {
+  0%   { background-color: #0883c7; }
+  50%  { background-color: #FFC107; }
+  100% { background-color: #0883c7; }
+}
+
+.lampeggia {
+  animation: lampeggioColore 1s ease-in-out 3;
+}
+
+
 .popup form {
   display: flex;
   flex-direction: column;

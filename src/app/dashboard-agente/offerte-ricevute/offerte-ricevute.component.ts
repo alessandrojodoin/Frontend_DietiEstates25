@@ -36,6 +36,7 @@ export class OfferteRicevuteComponent {
   selected: 'attesa' | 'accettate' = 'attesa'; // default: "in attesa"
   riepilogoOfferta: any = null;
   statoPopupOfferta: 'inserimento' | 'riepilogo' = 'inserimento';
+  tabDaLampeggiare: 'attesa' | 'accettate' | null = null;
 
   
 
@@ -162,6 +163,12 @@ public accetta(offertaId: number){
 
       // seleziono automaticamente la tab "accettate" OPPURE METTERE UNA NOTIFICA
       //this.selected = 'accettate';
+      this.tabDaLampeggiare = 'accettate';
+
+      setTimeout(() => {
+        this.tabDaLampeggiare = null;
+      }, 3000); 
+
     },
     error: (err) => {
       console.error('Errore accettazione offerta', err);
@@ -291,6 +298,12 @@ annullaAccettazione(offertaId: number) {
   });
 
   //this.selected = 'attesa';
+  this.tabDaLampeggiare = 'attesa';
+
+  setTimeout(() => {
+    this.tabDaLampeggiare = null;
+  }, 3000);
+
 }
 
 onSubmit(immobileId: number){

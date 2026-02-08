@@ -5,7 +5,8 @@
     (click)="offerteInAttesa()"
     class="tab Attesa"
     [attr.aria-selected]="selected === 'attesa'"
-    [class.selected]="selected === 'attesa'">
+    [class.selected]="selected === 'attesa'"
+    [class.lampeggia]="tabDaLampeggiare === 'attesa'">
     Offerte In Attesa
   </button>
 
@@ -15,7 +16,8 @@
     (click)="offerteAccettate()"
     class="tab Accettate"
     [attr.aria-selected]="selected === 'accettate'"
-    [class.selected]="selected === 'accettate'">
+    [class.selected]="selected === 'accettate'"
+    [class.lampeggia]="tabDaLampeggiare === 'accettate'">
     Offerte Accettate
   </button>
 </div>
