@@ -5,6 +5,7 @@ import { map, catchError, EMPTY } from 'rxjs';
 import Instant from 'ts-time/Instant';
 import { AuthService } from './auth.service';
 import { RedirectCommand } from '@angular/router';
+import { AuthRestService } from './auth-backend.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { RedirectCommand } from '@angular/router';
 export class ImmobiliService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
+  private rest = inject(AuthRestService);
   private url = "http://localhost:8080/api/1.0";
 
   
@@ -195,6 +197,9 @@ const headers = this.getAuthHeaders();
 
   convertRESTImmobile(RESTImmobile: any){
     let immobile;
+    //let agente = await this.rest.getUserData(); getUser che prende id
+
+
     return immobile = {
       nome: RESTImmobile.nome,
       descrizione: RESTImmobile.descrizione,

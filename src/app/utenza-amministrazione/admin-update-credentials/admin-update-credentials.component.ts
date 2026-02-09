@@ -51,6 +51,9 @@ export class AdminUpdateCredentialsComponent {
             }
           },
           next: ()=> {
+
+            this.auth.login({username: this.updateAdminCredentialsForm.value.username as string,
+                            password: this.updateAdminCredentialsForm.value.password as string});
             this.toastr.success("Cambiamento dati avvenuto con successo!", "Success");
             this.router.navigate(["/"]);
           }
