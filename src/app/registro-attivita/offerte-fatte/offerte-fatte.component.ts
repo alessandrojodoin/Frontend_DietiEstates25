@@ -29,9 +29,8 @@ export class OfferteFatteComponent {
 
 
   ngOnInit() {
-    this.loading = true;
+    
     this.caricaOfferte();
-    this.loading = false;
     console.log(this.OfferteList);
   }
   
@@ -62,8 +61,11 @@ async conversioneBackToFront(offerteFromBack: any[]) {
 }
 
   public caricaOfferte() {
+    this.loading= true;
+
     this.offerteService.getOffersMadeByClient().subscribe(async (data: any[]) => {
       this.OfferteList= await this.conversioneBackToFront(data);
+      this.loading= false;
     });
   }
 
