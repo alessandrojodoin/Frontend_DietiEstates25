@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { catchError, EMPTY, map, shareReplay } from 'rxjs';
 import { response } from 'express';
+import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +11,8 @@ export class AuthRestService {
   //private auth = inject(AuthService);
   private http = inject(HttpClient);
   private url = "http://localhost:8080/api/1.0";
+
+  
 
   private jsonHttpOptions = {
     headers: new HttpHeaders({
@@ -55,6 +58,12 @@ export class AuthRestService {
     return this.http.post<string>(url, signupCredentials, this.jsonHttpOptions);
   }
 
+
+  modificaAmministratore(old_username: string, new_username: string, password: string, headers: any){
+    const url = `${this.url}/auth/amministratore/${old_username}`;
+    //const headers = this.getAuthHeaders();
+    return this.http.put(url, {new_username, password, headers});
+  }
 
 
    login(loginCredentials: {username: string, password: string}){

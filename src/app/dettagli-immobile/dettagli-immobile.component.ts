@@ -87,12 +87,12 @@ offertaValueForm = new FormGroup({
 
           this.immobile = this.immobiliService.convertRESTImmobile(data);
           this.immobileTrovato = true;
-          /*this.initMap().then(() => {
+          this.initMap().then(() => {
 
            this.updateMap();
 
   
-          })*/
+          })
          this.map?.setCenter({
           lat: this.immobile.latitudine,
           lng: this.immobile.longitudine
@@ -117,7 +117,9 @@ offertaValueForm = new FormGroup({
   }
 
     async ngAfterViewInit() {
-      await this.initMap();
+
+
+     // await this.initMap();
       this.updateMap;
       
   }
@@ -125,14 +127,15 @@ offertaValueForm = new FormGroup({
 
   async initMap() {
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+    const center = { lat: this.immobile.latitudine, lng: this.immobile.longitudine     }; 
 
     const mapEl = document.getElementById('map');
+    //console.log("Mappa id: ", document.getElementById('map'));
     if (!mapEl) {
       console.error('Map element not found!');
       return;
     }
 
-    const center = { lat: this.immobile.latitudine, lng: this.immobile.longitudine     }; 
 
     this.map = new Map(mapEl, {
       center,

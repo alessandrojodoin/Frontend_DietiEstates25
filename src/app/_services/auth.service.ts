@@ -2,7 +2,7 @@ import { inject, Injectable, Injector } from '@angular/core';
 import { AuthRestService } from './auth-backend.service';
 import { jwtDecode } from 'jwt-decode';
 import { catchError, EMPTY, lastValueFrom, throwError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { UserType } from '../../types';
 
 
@@ -52,10 +52,29 @@ export class AuthService {
       catch(error: any){
         return false;
       }
-    }
-
-    
+    } 
   }
+
+  public getAuthHeaders() {
+      const token = this.getToken();
+      if (token) {
+        return {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${token}`
+          }),
+          responseType: 'json' as const,
+        }
+      } else {
+        return {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'authorization': ``
+          }),
+          responseType: 'json' as const,
+        }
+      }
+    }
 
   constructor() {
   console.log("AuthService constructor called");

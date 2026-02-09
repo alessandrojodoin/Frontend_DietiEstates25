@@ -11,7 +11,7 @@ import { SummaryComponent } from './create-immobile/summary/summary.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { AmministratoreSupportoComponent } from './utenza-amministrazione/gestore/amministratore-supporto.component';
 import { CreaAgenteComponent } from './utenza-amministrazione/amministratore/crea-agente/crea-agente.component';
-import { AdminUpdateCredentialsComponent } from './admin-update-credentials/admin-update-credentials.component';
+import { AdminUpdateCredentialsComponent } from './utenza-amministrazione/admin-update-credentials/admin-update-credentials.component';
 
 
 export const routes: Routes = [

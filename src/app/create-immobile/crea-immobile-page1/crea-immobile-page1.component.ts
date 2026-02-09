@@ -48,9 +48,6 @@ export class CreaImmobilePage1Component {
 
   
   async initMap() {
-
-
-
     let fullAddress = `${this.locationForm.value.indirizzo} ${this.locationForm.value.citta} ${this.locationForm.value.provincia}`;
 
     
