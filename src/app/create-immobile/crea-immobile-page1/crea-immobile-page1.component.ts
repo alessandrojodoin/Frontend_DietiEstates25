@@ -25,6 +25,9 @@ export class CreaImmobilePage1Component {
   provinciaNonSelezionata = false;
   mostraFeedback = false;
   filteredComuni: string[] = [];
+  map: google.maps.Map | null = null;
+  geocoder: google.maps.Geocoder | null = null;
+
 
 
   creaImmobileService = inject(CreaImmobileService);
@@ -48,81 +51,110 @@ export class CreaImmobilePage1Component {
 
   
   async initMap() {
-    let fullAddress = `${this.locationForm.value.indirizzo} ${this.locationForm.value.citta} ${this.locationForm.value.provincia}`;
+  let fullAddress = `${this.locationForm.value.indirizzo} ${this.locationForm.value.citta} ${this.locationForm.value.provincia}`;
 
-    
-  // Request needed libraries.
-  //loader.load().then(async () => {
-    const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+  await google.maps.importLibrary("marker");
 
-    const myLatlng = { lat: 40.82852062332247, lng: 14.190889915493532  }; //NAAAAAAAAAAAAPOLIIIIIIIIIIIII
+  const myLatlng = { lat: 40.82852062332247, lng: 14.190889915493532 };
 
-
-    const map = new google.maps.Map(document.getElementById("map")!, {
-      zoom: 18,
-      center: myLatlng,
-      mapId: "7e09b66dcfaa788fb9c8f8bd",
-      zoomControl: true,
-    });
-
-
-    //google.maps.event.trigger(map, 'resize');
-    map.setClickableIcons(false);
-
-
-    // Create the initial InfoWindow.
-    let infoWindow = new google.maps.InfoWindow({
-      content: "Seleziona la posizione dell'immobile",
-      position: myLatlng,
-    });
-
-
-    infoWindow.open(map);
-
-
-    // Configure the click listener.
-    map.addListener("click", (mapsMouseEvent: any) => {
-      // Close the current InfoWindow.
-      infoWindow.close();
-
-      this.currentMarker?.setMap(null)
-      console.log(mapsMouseEvent.latLng.toJSON());
-     
-      this.currentMarker = new google.maps.Marker({
-          position: mapsMouseEvent.latLng,
-          map: map,
-      });
-      //this.currentMarker.setAnimation(google.maps.Animation.DROP);
-
-       // Create a new InfoWindow.
-
-
-    });
-
-    const geocoder = new google.maps.Geocoder();
-
-
-  geocoder.geocode({ address: fullAddress }, (results, status) => {
-    if (status === google.maps.GeocoderStatus.OK && results && results.length > 0) {
-
-      const location = results[0].geometry.location;
-
-      map.setCenter(location);
-
-      new google.maps.Marker({
-        position: location,
-        map: map
-      });
-
-    } else {
-      console.error("Indirizzo non trovato:", status);
-    }
+  this.map = new Map(document.getElementById("map")!, {
+    zoom: 18,
+    center: myLatlng,
+    mapId: "7e09b66dcfaa788fb9c8f8bd",
+    zoomControl: true,
   });
 
- }
+  this.map.setClickableIcons(false);
+
+  this.geocoder = new google.maps.Geocoder();
+
+  // Create the initial InfoWindow.
+  let infoWindow = new google.maps.InfoWindow({
+    content: "Seleziona la posizione dell'immobile",
+    position: myLatlng,
+  });
+
+  infoWindow.open(this.map);
+
+  // Configure the click listener.
+  this.map.addListener("click", (mapsMouseEvent: any) => {
+ // Close the current InfoWindow.
+    infoWindow.close();
+
+    const latLng = mapsMouseEvent.latLng;
+
+    this.placeMarker(latLng);
+    this.reverseGeocode(latLng);
+  });
+
+  //se i campi erano già riempiti, metti il marker di conseguenza
+  if (fullAddress.trim()) {
+    this.geocoder.geocode({ address: fullAddress }, (results, status) => {
+      if (status === "OK" && results && results.length > 0 && this.map) {
+        const location = results[0].geometry.location;
+
+        this.map.setCenter(location);
+        this.placeMarker(location);
+      }
+    });
+  }
 
   
+  this.locationForm.valueChanges.subscribe(val => {
+    if (!val.indirizzo || !val.citta || !val.provincia) return;
+
+    const address = `${val.indirizzo} ${val.citta} ${val.provincia}`;
+
+    this.geocoder?.geocode({ address }, (results, status) => {
+      if (status === "OK" && results && results.length > 0 && this.map) {
+        const pos = results[0].geometry.location;
+        this.map.setCenter(pos);
+        this.placeMarker(pos);
+      }
+    });
+  });
+}
+
+
+
+  placeMarker(latLng: google.maps.LatLng) {
+  if (!this.map) return;
+
+  this.currentMarker?.setMap(null);
+
+  this.currentMarker = new google.maps.Marker({
+    position: latLng,
+    map: this.map,
+  });
+}
+
+reverseGeocode(latLng: google.maps.LatLng) {
+  if (!this.geocoder) return;
+
+  this.geocoder.geocode({ location: latLng }, (results, status) => {
+    if (status === "OK" && results && results.length > 0) {
+      const r = results[0];
+
+      let indirizzo = "";
+      let citta = "";
+      let provincia = "";
+
+      for (const comp of r.address_components) {
+        if (comp.types.includes("route")) indirizzo = comp.long_name;
+        if (comp.types.includes("locality")) citta = comp.long_name;
+        if (comp.types.includes("administrative_area_level_2"))
+          provincia = comp.short_name;
+      }
+
+      this.locationForm.patchValue({
+        indirizzo,
+        citta,
+        provincia,
+      });
+    }
+  });
+}
 
 
   constructor(private router: Router){}
@@ -131,6 +163,20 @@ export class CreaImmobilePage1Component {
   ngAfterViewInit(){
     this.initMap();
 
+    this.locationForm.valueChanges.subscribe(val => {
+    if (!val.indirizzo || !val.citta || !val.provincia) return;
+
+    const full = `${val.indirizzo} ${val.citta} ${val.provincia}`;
+
+    this.geocoder?.geocode({ address: full }, (results, status) => {
+      if (status === "OK" && results && results.length > 0 && this.map) {
+        const pos = results[0].geometry.location;
+
+        this.map.setCenter(pos);
+        this.placeMarker(pos);
+      }
+    });
+    });
 
     this.locationForm.value.indirizzo = this.creaImmobileService.immobile.indirizzo?.nome;
     this.locationForm.value.indirizzo = this.creaImmobileService.immobile.indirizzo?.citta;
