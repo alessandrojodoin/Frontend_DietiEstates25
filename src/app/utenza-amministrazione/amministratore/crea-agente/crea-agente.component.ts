@@ -52,7 +52,7 @@ export class CreaAgenteComponent {
     onSubmit(){
       
       if(this.signupAgenteForm.invalid){
-        this.toastr.error("Please make sure you have filled all of the fields", "Error");
+        this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
       }
       else{
         this.rest.signupAgente({
@@ -66,11 +66,11 @@ export class CreaAgenteComponent {
         }).subscribe({
           error: (error) =>{
             if(error instanceof HttpErrorResponse){
-              this.toastr.error(error.error.message);
+              this.toastr.error(error.error, "Error", { positionClass: 'toast-center-center'});
             }
           },
           next: ()=> {
-            this.toastr.success("Signed up successfully!", "Success");
+            this.toastr.success("Signed up successfully!", "Success", { positionClass: 'toast-center-center'});
             this.router.navigate(["/login"]);
           }
       });
