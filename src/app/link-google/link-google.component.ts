@@ -3,6 +3,7 @@ import { AuthRestService } from '../_services/auth-backend.service';
 import { AuthService } from '../_services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { environment } from '../environment';
 
 declare const google: any;
 
@@ -27,7 +28,7 @@ export class LinkGoogleComponent {
 
   // Mostra il popup di login di Google
   google.accounts.id.initialize({
-    client_id: '365947512424-ge1lhump541oahtkc8bqtjs0r2ledgd2.apps.googleusercontent.com',
+    client_id: environment.GOOGLE_CLIENT_ID,
     callback: (response: any) => this.handleCredentialResponse(response)
   });
 
@@ -36,21 +37,26 @@ export class LinkGoogleComponent {
 
 handleCredentialResponse(response: any) {
   const idToken = response.credential;
+  console.log("Google response:", response);
+console.log("JWT in AuthService:", this.auth.getToken());
+  console.log("Google ID token:", response.credential);
 
-  this.rest.linkGoogleAccount(idToken).subscribe({
-    next: (resp: any) => {
-      console.log("Collegamento Google avvenuto con successo!");
-      this.auth.authState.googleLinked = true;
-      this.linking = false;
-      this.toastr.success("Logged in successfully!", "Success", { positionClass: 'toast-center-center'});
-      this.router.navigate(["/"]);
-    },
-    error: (err) => {
-      console.error("Errore durante il collegamento con Google:", err);
-      this.linking = false;
-    }
-  });
+  this.rest.linkGoogleAccount(idToken, this.auth.getAuthHeadersTextResponse()).subscribe({
+  next: (newJwt: string) => {
+    this.auth.updateTokenAfterGoogleLogin(newJwt); // Aggiorna token e googleLinked
+    this.linking = false;
+    this.toastr.success("Account Google collegato con successo!", "Success", { positionClass: 'toast-center-center'});
+    this.router.navigate(['/']); 
+  },
+  error: (err) => {
+    console.error("Errore durante il collegamento con Google:", err);
+    this.linking = false;
+    this.toastr.error("Errore durante il collegamento con Google", "Error", { positionClass: 'toast-center-center'});
+  }
+});
+
 }
+
 
 
 }

@@ -29,27 +29,39 @@ export class LoginComponent {
     ),
   })
 
-  onSubmit(){
-    if(this.loginForm.invalid){
-      this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
-    }
-     else{
-
-      this.authService.login({
-        username: this.loginForm.value.username as string,
-        password: this.loginForm.value.password as string
-      })
-      .then( () =>{
-        this.toastr.success("Logged in succesfully!", "Success", { positionClass: 'toast-center-center'});
-         this.router.navigate(["/"]);
-      })
-      .catch((error) => {
-        if(error instanceof HttpErrorResponse){
-            this.toastr.error(error.error, "Error", { positionClass: 'toast-center-center'});
-        }
-      })
-    }
+  onSubmit() {
+  if (this.loginForm.invalid) {
+    this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
+    return;
   }
+
+  const username = this.loginForm.value.username as string;
+  const password = this.loginForm.value.password as string;
+
+  this.authService.login({ username, password })
+    .then(() => {
+      this.toastr.success("Logged in successfully!", "Success", { positionClass: 'toast-center-center'});
+
+      // Reindirizza a Google link solo se necessario
+      if (this.authService.authState.userType === 'AgenteImmobiliare' && !this.authService.authState.googleLinked) {
+        this.router.navigate(['/link-google']);
+      } else {
+        this.router.navigate(['/']); // già collegato -> vai alla home
+      }
+    })
+    .catch((error) => {
+      if (error instanceof HttpErrorResponse) {
+        this.toastr.error(error.error, "Error", { positionClass: 'toast-center-center'});
+      } else {
+        this.toastr.error("Unexpected error", "Error", { positionClass: 'toast-center-center'});
+      }
+    });
+  }
+
+  
+
+
+  
 
 
     /* else{

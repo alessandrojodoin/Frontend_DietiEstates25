@@ -4,7 +4,6 @@ import { jwtDecode } from 'jwt-decode';
 import { catchError, EMPTY, lastValueFrom, throwError } from 'rxjs';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { UserType } from '../../types';
-import { Router } from '@angular/router';
 
 
 type AuthState = {
@@ -145,6 +144,9 @@ public getAuthHeadersTextResponse() {
 
   }
 
+  public updateTokenAfterGoogleLogin(newJwt: string) {
+    this.setToken(newJwt);
+  }
 
 
   getToken(): string | null{
@@ -161,13 +163,6 @@ public getAuthHeadersTextResponse() {
       request.subscribe({
         next: (token: any) => {
           this.setToken(token);
-
-          if (this.authState.userType === 'AgenteImmobiliare' && !this.authState.googleLinked) {
-            const router = this.injector.get(Router);
-            router.navigate(['/link-google']);
-            return;
-          }
-
 
           rest.getUserData(loginCredentials.username).subscribe({
             next: (userData: any) => {

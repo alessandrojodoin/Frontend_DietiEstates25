@@ -76,10 +76,14 @@ export class AuthRestService {
   }
 
   
-  linkGoogleAccount(idToken: string) {
-    const url = `${this.url}/auth/google-auth`;
-    return this.http.post(url, { idTokenString: idToken }, this.textHttpOptions);
-  }
+  linkGoogleAccount(idToken: string, headers: { headers: HttpHeaders, responseType: 'text' }) {
+  const url = `${this.url}/auth/google-auth`;
+  return this.http.post(url, { idTokenString: idToken }, { 
+    headers: headers.headers,
+    responseType: 'text' as const 
+  });
+}
+
 
 
 }
