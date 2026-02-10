@@ -121,12 +121,19 @@ getRiepilogoTags(): {nome: string, valore: any}[] {
   convertTag(tag: TagDescrittivo): any {
     if(tag.nome === 'aria condizionata' || tag.nome === 'camino' || tag.nome === 'wifi' || tag.nome === 'impianto d’allarme' 
       || tag.nome === 'videosorveglianza' ||tag.nome === 'veranda / portico' || tag.nome === 'posto auto' 
-      || tag.nome === 'garage' || tag.nome === 'arredata' || tag.nome === 'cucina a vista' || tag.nome === 'ascensore' 
-      || tag.nome === 'accesso disabili' || tag.nome === 'animali ammessi'){
+      || tag.nome === 'garage' || tag.nome === 'cucina a vista' || tag.nome === 'ascensore' 
+      || tag.nome === 'accesso disabili' || tag.nome === 'animali ammessi' || tag.nome === 'vicinanza a centro storico'){
       return {
         nome: tag.nome,
         type: 'Boolean',
         value: tag.valore === 'Sì' ? "true" : "false"
+      }
+    }
+    else if(tag.nome === 'giardino' || tag.nome === 'arredata'){
+      return {
+        nome: tag.nome,
+        type: 'String',
+        value: tag.valore
       }
     }
     else if(tag.nome === 'numero di balconi' || tag.nome === 'numero di terrazzi' || tag.nome === 'locali' || tag.nome === 'bagni' 

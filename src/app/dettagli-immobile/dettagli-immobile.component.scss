@@ -217,46 +217,53 @@ $corner: 10px;
   width: 100%;
 
   h2 {
-    width: 100%;
     margin-bottom: 12px;
   }
 
   .char-box {
-    margin: 0 auto;        // <<< centra il box
-    width: 100%;
-    max-width: 600px;      // controllo visivo
+    max-width: 600px;
+    margin: 0 auto;
     background: lighten($blue-soft, 2%);
     border-radius: 12px;
     padding: 18px;
     border: 1px solid darken($blue-soft, 6%);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   }
 
+  /* Griglia a due colonne */
   .char-grid {
     display: grid;
-    grid-template-columns: repeat(4, 120px);
-    justify-content: center;
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px 20px; /* verticale | orizzontale */
   }
 
-    .char-item {
-      background: transparent;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      .icon-square {
-        width: 28px;
-        height: 28px;
-        background: #fff;
-        border-radius: 4px;
-        margin-bottom: 8px;
-        box-shadow: 0 0 0 1px rgba(0,0,0,0.05) inset;
-      }
-      .char-title { font-size: 12px; color: #0b3b5a; margin-bottom: 6px; }
-      .char-value { font-weight: 700; font-size: 16px; color: #0b3b5a; }
+  .char-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #0b3b5a;
+
+    .char-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .char-title {
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .char-value {
+      font-weight: 700;
+      font-size: 16px;
+
+      .bool-yes { color: #27ae60; }
+      .bool-no { color: #c0392b; }
     }
   }
+}
+
 
 
 .prezzo-row {

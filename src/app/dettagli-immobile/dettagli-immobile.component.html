@@ -35,28 +35,53 @@
   <hr class="sep">
 
   <section class="caratteristiche">
-    <h2>Caratteristiche</h2><br>
-    <div class="char-box">
-      <div class="char-grid">
-          @for(tag of immobile.tagDescrizione; track tag){
-            <div class="char-item"></div>
-            <div class="icon-square"></div>
-            <div class="char-title">
-              
-                  {{ tag.nome | titlecase }}:   <!--compare qui la superficie-->
-                
-            </div>
-            @if(tag.type === 'Boolean' && tag.valore === "true"){
-              <div class="char-value">Sì</div>
-            } @else if(tag.type === 'Boolean' && tag.valore === "false"){
-              <div class="char-value">No</div>
-            } @else {
-              <div class="char-value">{{ tag.valore }}</div>
-            }
-          }
+  <h2>Caratteristiche</h2>
+  <div class="char-box">
+    <div class="char-grid">
+      <div *ngFor="let tag of immobile.tagDescrizione" class="char-item">
+        <!-- Icona -->
+        <span class="char-icon">
+          {{
+            tag.nome === 'aria condizionata' ? '❄️' :
+            tag.nome === 'impianto d’allarme' ? '🚨' :
+            tag.nome === 'numero di balconi' ? '🏢' :
+            tag.nome === 'numero di terrazzi' ? '🌇' :
+            tag.nome === 'giardino' ? '🌿' :
+            tag.nome === 'veranda / portico' ? '🏡' :
+            tag.nome === 'posto auto' ? '🅿️' :
+            tag.nome === 'garage' ? '🚗' :
+            tag.nome === 'vicinanza a centro storico' ? '🏛️' :
+            tag.nome === 'arredata' ? '🛋️' :
+            tag.nome === 'cucina a vista' ? '🍽️' :
+            tag.nome === 'accesso disabili' ? '♿' :
+            tag.nome === 'animali ammessi' ? '🐶' : ''
+          }}
+        </span>
+
+        <!-- Titolo e valore -->
+        <span class="char-title">{{ tag.nome | titlecase }}:</span>
+        <span 
+          [ngClass]="{
+            'bool-yes': ['camino','wifi','videosorveglianza','ascensore'].includes(tag.nome) && tag.valore==='true',
+            'bool-no': ['camino','wifi','videosorveglianza','ascensore'].includes(tag.nome) && tag.valore==='false'
+          }"
+          class="char-value"
+        >
+          {{
+            ['camino', 'wifi', 'videosorveglianza', 'ascensore'].includes(tag.nome) ?
+              (tag.valore === 'true' ? '✅' : '❌') :
+            tag.type === 'Boolean' ?
+              (tag.valore === 'true' ? 'Sì' : 'No') :
+              tag.valore
+          }}
+        </span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+
+
 
   <hr class="sep">
 @if(auth.getUserType() === 'Cliente'){
