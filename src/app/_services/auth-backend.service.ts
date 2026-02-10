@@ -62,7 +62,7 @@ export class AuthRestService {
   modificaAmministratore(old_username: string, new_username: string, password: string, headers: any){
     const url = `${this.url}/auth/amministratore/${old_username}`;
     //const headers = this.getAuthHeaders();
-    return this.http.put(url, {new_username, password, headers});
+    return this.http.put(url, {new_username, password}, headers);
   }
 
 
