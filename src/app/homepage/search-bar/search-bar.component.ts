@@ -25,7 +25,10 @@ export class SearchBarComponent {
     bathrooms: null as number | null,
     bedrooms: null as number | null,
     areaSize: null as number | null,
-    extraFeatures: ''
+    extraFeatures: '',
+    energyClass: null as string | null,
+    citta: '' as string | null,
+
   };
 
 
@@ -49,13 +52,15 @@ export class SearchBarComponent {
     this.SearchFiltersService.filters.bedrooms = this.tempFilters.bedrooms;
     this.SearchFiltersService.filters.areaSize = this.tempFilters.areaSize;
     this.SearchFiltersService.filters.extraFeatures = this.tempFilters.extraFeatures;
+    this.SearchFiltersService.filters.energyClass = this.tempFilters.energyClass;
+    this.SearchFiltersService.filters.citta = this.tempFilters.citta;
 
     this.filtersApplied = true;
   }
 
 
   startSearch() {
-    console.log("Penesrnellodisearch");   //DA TOGLIERE
+    console.log("PenesrnelloDiSearch");
    
   }
 

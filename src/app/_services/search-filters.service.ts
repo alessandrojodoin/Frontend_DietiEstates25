@@ -15,7 +15,9 @@ export class SearchFiltersService {
     bathrooms: null as number | null,
     bedrooms: null as number | null,
     areaSize: null as number | null,
-    extraFeatures: ''
+    extraFeatures: '',
+    energyClass: null as string | null,
+    citta: '' as string | null,
   };
 
 
