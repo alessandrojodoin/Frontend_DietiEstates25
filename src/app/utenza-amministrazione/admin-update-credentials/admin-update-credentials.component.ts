@@ -36,25 +36,24 @@ export class AdminUpdateCredentialsComponent {
   onSubmit(){
       
       if(this.updateAdminCredentialsForm.invalid){
-        this.toastr.error("Please make sure you have filled all of the fields", "Error");
+        this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
       }
       else{
         this.rest.modificaAmministratore(
           this.auth.getUsername(),
           this.updateAdminCredentialsForm.value.username as string,
           this.updateAdminCredentialsForm.value.password as string,
-          this.auth.getAuthHeaders()
+          this.auth.getAuthHeadersTextResponse()
         ).subscribe({
-          error: (error) =>{
-            if(error instanceof HttpErrorResponse){
-              this.toastr.error(error.error.message);
-            }
+          error: (error: HttpErrorResponse) =>{
+             const msg = error?.error || "Operazione non riuscita";
+              this.toastr.error(msg, "Errore", { positionClass: 'toast-center-center'});
           },
           next: ()=> {
 
             this.auth.login({username: this.updateAdminCredentialsForm.value.username as string,
                             password: this.updateAdminCredentialsForm.value.password as string});
-            this.toastr.success("Cambiamento dati avvenuto con successo!", "Success");
+            this.toastr.success("Cambiamento dati avvenuto con successo!", "Success", { positionClass: 'toast-center-center'});
             this.router.navigate(["/"]);
           }
       });
@@ -64,3 +63,5 @@ export class AdminUpdateCredentialsComponent {
    }
 
 }
+
+

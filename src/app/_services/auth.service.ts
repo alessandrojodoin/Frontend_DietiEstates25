@@ -76,6 +76,27 @@ export class AuthService {
       }
     }
 
+public getAuthHeadersTextResponse() {
+      const token = this.getToken();
+      if (token) {
+        return {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'authorization': `Bearer ${token}`
+          }),
+          responseType: 'text' as const,
+        }
+      } else {
+        return {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'authorization': ``
+          }),
+          responseType: 'text' as const,
+        }
+      }
+    }
+
   constructor() {
   console.log("AuthService constructor called");
   this.authState.token = this.getToken();

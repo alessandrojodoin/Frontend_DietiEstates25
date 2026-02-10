@@ -31,7 +31,7 @@ export class LoginComponent {
 
   onSubmit(){
     if(this.loginForm.invalid){
-      this.toastr.error("Please make sure you have filled all of the fields", "Error");
+      this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
     }
      else{
 
@@ -40,12 +40,12 @@ export class LoginComponent {
         password: this.loginForm.value.password as string
       })
       .then( () =>{
-        this.toastr.success("Logged in succesfully!", "Success");
+        this.toastr.success("Logged in succesfully!", "Success", { positionClass: 'toast-center-center'});
          this.router.navigate(["/"]);
       })
       .catch((error) => {
         if(error instanceof HttpErrorResponse){
-            this.toastr.error(error.error.message);
+            this.toastr.error(error.error, "Error", { positionClass: 'toast-center-center'});
         }
       })
     }
@@ -59,12 +59,12 @@ export class LoginComponent {
         password: this.loginForm.value.password as string
       })
       .then( () =>{
-        this.toastr.success("Logged in succesfully!", "Success");
+        this.toastr.success("Logged in succesfully!", "Success", { positionClass: 'toast-center-center'});
          this.router.navigate(["/"]);
       })
       .catch((error) => {
         if(error instanceof HttpErrorResponse){
-            this.toastr.error(error.error.message);
+            this.toastr.error(error.error.message, "Error", { positionClass: 'toast-center-center'});
         }
       })
     }*/
