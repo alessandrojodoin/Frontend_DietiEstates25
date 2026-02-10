@@ -4,6 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import { catchError, EMPTY, lastValueFrom, throwError } from 'rxjs';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { UserType } from '../../types';
+import { Router } from '@angular/router';
 
 
 type AuthState = {
@@ -15,6 +16,7 @@ type AuthState = {
   userType: UserType | null
   agenziaImmobiliare: string | null,
   token: string | null,
+  googleLinked: boolean,
   readonly isTokenValid: boolean
 }
 
@@ -36,6 +38,7 @@ export class AuthService {
     userType: null,
     agenziaImmobiliare: null,
     token: null,
+    googleLinked: false,
     get isTokenValid(){
       try{
         if(this.token === null){
@@ -136,8 +139,10 @@ public getAuthHeadersTextResponse() {
 
     this.authState.token = token;
     const decodedToken: any = jwtDecode(token);
-    this.authState.user = decodedToken.user as string;
-    this.authState.userType = decodedToken.userType as UserType
+    this.authState.user = decodedToken.username as string;
+    this.authState.userType = decodedToken.userType as UserType;
+    this.authState.googleLinked = decodedToken.googleLinked ?? false;
+
   }
 
 
@@ -156,6 +161,13 @@ public getAuthHeadersTextResponse() {
       request.subscribe({
         next: (token: any) => {
           this.setToken(token);
+
+          if (this.authState.userType === 'AgenteImmobiliare' && !this.authState.googleLinked) {
+            const router = this.injector.get(Router);
+            router.navigate(['/link-google']);
+            return;
+          }
+
 
           rest.getUserData(loginCredentials.username).subscribe({
             next: (userData: any) => {

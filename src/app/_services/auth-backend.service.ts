@@ -75,4 +75,11 @@ export class AuthRestService {
   });
   }
 
+  
+  linkGoogleAccount(idToken: string) {
+    const url = `${this.url}/auth/google-auth`;
+    return this.http.post(url, { idTokenString: idToken }, this.textHttpOptions);
+  }
+
+
 }

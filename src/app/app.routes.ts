@@ -12,6 +12,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { AmministratoreSupportoComponent } from './utenza-amministrazione/gestore/amministratore-supporto.component';
 import { CreaAgenteComponent } from './utenza-amministrazione/amministratore/crea-agente/crea-agente.component';
 import { AdminUpdateCredentialsComponent } from './utenza-amministrazione/admin-update-credentials/admin-update-credentials.component';
+import { LinkGoogleComponent } from './link-google/link-google.component';
 
 
 export const routes: Routes = [
@@ -81,7 +82,11 @@ export const routes: Routes = [
         title: "Aggiorna Credenziali",
         component: AdminUpdateCredentialsComponent
     },
-
+    {
+        path: "link-google",
+        title: "Credenziali Google",
+        component: LinkGoogleComponent
+    },
     
     
     
