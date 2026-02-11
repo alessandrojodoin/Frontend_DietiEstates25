@@ -63,7 +63,8 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
         email: "agente2@example.com",
         nome: "Luigi",
         cognome: "Verdi",
-        telefono: "0987654321"
+        telefono: "0987654321",
+        agenziaImmobiliare: "Sorrento Immobiliare"
       },
       isVenduto: false,
       istanteCreazione: Instant.now(),
@@ -82,10 +83,10 @@ offertaValueForm = new FormGroup({
     console.log(this.activatedRoute.snapshot.params['id']);
       const immobileID = this.activatedRoute.snapshot.params['id'];
       this.immobiliService.getImmobile(immobileID).subscribe({
-        next: (data) => {
+        next: async (data) => {
           console.log(data)
 
-          this.immobile = this.immobiliService.convertRESTImmobile(data);
+          this.immobile = await this.immobiliService.convertRESTImmobile(data);
           this.immobileTrovato = true;
           this.initMap().then(() => {
 

@@ -45,6 +45,7 @@ export type AgenteImmobiliare = {
     nome: string;
     cognome: string;
     telefono: string;
+    agenziaImmobiliare: string;
 }
 
 

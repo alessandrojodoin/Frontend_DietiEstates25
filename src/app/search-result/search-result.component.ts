@@ -39,7 +39,8 @@ export class SearchResultComponent {
         email: "pene",
         nome: "Mario",
         cognome: "Rossi",
-        telefono: "1234567890"
+        telefono: "1234567890",
+        agenziaImmobiliare: "Napoli Casa"
       },
       isVenduto: false,
       istanteCreazione: Instant.now(),
@@ -70,7 +71,8 @@ export class SearchResultComponent {
         email: "agente2@example.com",
         nome: "Luigi",
         cognome: "Verdi",
-        telefono: "0987654321"
+        telefono: "0987654321",
+        agenziaImmobiliare: "Sorrento Immobiliare"
       },
       isVenduto: false,
       istanteCreazione: Instant.now(),

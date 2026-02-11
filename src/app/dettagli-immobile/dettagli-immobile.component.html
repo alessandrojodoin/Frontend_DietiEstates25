@@ -145,6 +145,7 @@
       <div><strong>Nome:</strong> {{immobile.agenteImmobiliare.nome + " " + immobile.agenteImmobiliare.cognome }}</div>
       <div><strong>Numero di telefono:</strong> {{immobile.agenteImmobiliare.telefono}}</div>
       <div><strong>Email:</strong> {{ immobile.agenteImmobiliare.email }}</div>
+      <div><strong>Agenzia Immobiliare:</strong> {{ immobile.agenteImmobiliare.agenziaImmobiliare }}</div>
     </div>
 @if(auth.getUserType() === 'Cliente' && immobile.isVenduto === false){
     <button class="btn-visit">📅 Prenota Visita</button>

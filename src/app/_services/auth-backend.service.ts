@@ -34,7 +34,7 @@ export class AuthRestService {
 
   getUserData(username: string) {
     const url = `${this.url}/auth/users?username=${username}`;
-    return this.http.get<string>(url, {responseType: 'json'});
+    return this.http.get(url, {responseType: 'json'});
     
   }
 

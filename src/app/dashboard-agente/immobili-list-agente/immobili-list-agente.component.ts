@@ -25,10 +25,11 @@ export class ImmobiliListAgenteComponent {
     let immobiliListTemp;
     immobiliListTemp = await this.immobiliService.getImmobiliListByAgente(this.auth.getUsername()).toPromise();
 
-    this.immobiliList = immobiliListTemp!
-    .map(i => this.immobiliService.convertRESTImmobile(i))
-    .filter(i => !i.isVenduto);
+   const convertiti = await Promise.all(
+    immobiliListTemp!.map(i => this.immobiliService.convertRESTImmobile(i))
+  );
 
+  this.immobiliList = convertiti.filter(i => !i.isVenduto);
     
       for (let immobile of this.immobiliList) {
         this.immobiliService.getImageList(immobile.id).subscribe((imagesIds: Number[]) => {

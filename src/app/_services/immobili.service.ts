@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Immobile, Indirizzo } from '../../../data';
+import { AgenteImmobiliare, Immobile, Indirizzo } from '../../../data';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, catchError, EMPTY } from 'rxjs';
 import Instant from 'ts-time/Instant';
@@ -195,9 +195,10 @@ const headers = this.getAuthHeaders();
 }
 
 
-  convertRESTImmobile(RESTImmobile: any){
+
+  async convertRESTImmobile(RESTImmobile: any){
     let immobile;
-    //let agente = await this.rest.getUserData(); getUser che prende id
+    let agente = await this.rest.getUserData(RESTImmobile.creatore).toPromise();
 
 
     return immobile = {
@@ -223,13 +224,7 @@ const headers = this.getAuthHeaders();
       tagDescrizione: RESTImmobile.immobile.tags,
       offerte: [],
       immagini: [],
-      agenteImmobiliare: {
-        nome: "Ciao",
-        email: "prova@prova",
-        cognome: "oaiC",
-        username: "Palbo",
-        telefono: "333-333-333-333"
-      }
+      agenteImmobiliare: agente as AgenteImmobiliare
 
     }
   }
