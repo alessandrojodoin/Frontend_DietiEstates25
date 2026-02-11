@@ -150,4 +150,10 @@ export class StoricoAgenteComponent implements AfterViewInit {
     ];
     this.grafico.update();
   }
+
+  exportCSV() {
+    
+    const contratti = this.contrattiConclusi();
+    this.export.exportCSV(contratti.totali, contratti.venduti, contratti.affittati, this.totaleOfferte(), this.totaleVisualizzazioni());
+  }
 }
