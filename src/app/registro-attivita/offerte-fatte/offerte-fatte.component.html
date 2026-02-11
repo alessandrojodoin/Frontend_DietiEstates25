@@ -17,7 +17,7 @@
 
   @for (offerta of OfferteList; track offerta) {
 
-    @if(offerta.isVenduto === false || offerta.statoOfferta === 'Accettata' ){
+    @if((offerta.isVenduto === false || offerta.statoOfferta === 'Accettata') && !(offerta.statoOfferta === 'ContropropostaRicevuta' && offerta.esisteOffertaAccettata) ){
         
       <div class="offerta-card">
 

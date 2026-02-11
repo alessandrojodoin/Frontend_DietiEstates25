@@ -26,6 +26,7 @@ export type Immobile = {
     offerte: Offerte[];
     agenteImmobiliare: AgenteImmobiliare;
     isVenduto: boolean;
+    esisteOffertaAccettata?: boolean;
     istanteCreazione: Instant;
     immagini: string[];
 }

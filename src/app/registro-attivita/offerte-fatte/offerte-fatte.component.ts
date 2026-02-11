@@ -49,11 +49,12 @@ async conversioneBackToFront(offerteFromBack: any[]) {
       
     );
     let isVenduto = immobileData.isVenduto;
+    let esisteOffertaAccettata = immobileData.esisteOffertaAccettata;
     let id= immobileData.id;
     let indirizzo= immobileData.nome;
     let tipologiaContratto = immobileData.tipologiaContratto;
 
-    OfferteConvertite.push({isVenduto, id, indirizzo, tipologiaContratto, offertaId, cifraOfferta, dataOfferta, statoOfferta});
+    OfferteConvertite.push({isVenduto, esisteOffertaAccettata, id, indirizzo, tipologiaContratto, offertaId, cifraOfferta, dataOfferta, statoOfferta});
 
 
   }
