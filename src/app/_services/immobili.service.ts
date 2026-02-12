@@ -195,6 +195,32 @@ const headers = this.getAuthHeaders();
 }
 
 
+getImmobileListFiltri(
+            appliedFilters: boolean,
+            minPrice: number | null,
+            maxPrice: number | null,
+            propertyType: string | null,
+            bathrooms: number | null,
+            bedrooms: number | null,
+            areaSize: number | null,
+            energyClass: string | null,
+            citta: string | null,
+            Terrazzo: boolean | null,
+            Balcone: boolean | null,
+            Ascensore: boolean | null,
+            Garage: boolean | null,
+            Giardino: boolean | null,
+            PostoAuto: boolean | null,
+            AccessoDisabili: boolean | null
+    ) 
+    {
+      const url = `${this.url}/immobile?filters=${appliedFilters}&minPrice=${minPrice}&maxPrice=${maxPrice}&propertyType=${propertyType}&bathrooms=${bathrooms}&bedrooms=${bedrooms}&areaSize=${areaSize}&energyClass=${energyClass}&citta=${citta}&Terrazzo=${Terrazzo}&Balcone=${Balcone}&Ascensore=${Ascensore}&Garage=${Garage}&Giardino=${Giardino}&PostoAuto=${PostoAuto}&AccessoDisabili=${AccessoDisabili}`;
+      const headers = this.getAuthHeaders();
+
+      return this.http.get<Immobile[]>(url, headers);
+    }
+
+
 
   async convertRESTImmobile(RESTImmobile: any){
     let immobile;

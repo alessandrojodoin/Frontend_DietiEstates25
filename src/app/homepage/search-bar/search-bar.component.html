@@ -88,19 +88,45 @@
       <input type="number" min="10" max="1000" [(ngModel)]="tempFilters.areaSize">
     </div>
 
-    <div class="filter-option">
-      <label>Caratteristiche Aggiuntive:</label>
-      <select [(ngModel)]="tempFilters.extraFeatures">
-        <option value="">Nessuno</option>
-        <option value="Terrazzo">Terrazzo</option>
-        <option value="Balcone">Balcone</option>
-        <option value="Ascensore">Ascensore</option>
-        <option value="Garage">Garage</option>
-        <option value="Giardino">Giardino</option>
-        <option value="PostoAuto">Posto Auto</option>
-        <option value="AccessoDisabili">Accesso Disabili</option>
-      </select>
-    </div>
+<div class="filter-option">
+  <label>Caratteristiche Aggiuntive:</label>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="tempFilters.Terrazzo">
+    Terrazzo
+  </label>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="tempFilters.Balcone">
+    Balcone
+  </label>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="tempFilters.Ascensore">
+    Ascensore
+  </label>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="tempFilters.Garage">
+    Garage
+  </label>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="tempFilters.Giardino">
+    Giardino
+  </label>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="tempFilters.PostoAuto">
+    Posto Auto
+  </label>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="tempFilters.AccessoDisabili">
+    Accesso Disabili
+  </label>
+</div>
+
 
     <button class="ok-filter-btn" (click)="applyFilters()">OK</button>
   </div>
