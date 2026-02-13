@@ -1,5 +1,182 @@
+/*
 iframe {
   width: 100%;
   max-width: 900px;
   height: 600px;
+}*/
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  color: #555;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ddd;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.prenotazioni-card {
+  background: #DDECFF;
+  border: 1px solid #c3dbf5;
+  border-radius: 14px;
+  padding: 16px 18px 14px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.data-visita {
+  margin: 4px 0 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0b3b5a;
+}
+
+
+.prenotazioni-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.prenotazioni-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.immobile-info {
+  margin: 3px 0 0 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e88e5;
+}
+
+.indirizzo {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0b3b5a;
+}
+
+.prenotazioni-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.cliente-box,
+.agente-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #dbeafe;
+}
+
+.cliente-box h4,
+.agente-box h4 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #1e88e5;
+}
+
+.cliente-box p,
+.agente-box p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+/*
+.prenotazioni-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  font-size: small;
+}*/
+
+.stato {
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.stato-attesa {
+  background: #FFF3CD;
+  color: #B8860B;
+  border: 1px solid #FFE69C;
+}
+
+.stato-accettata {
+  background: #D1F2E5;
+  color: #1E7F4D;
+  border: 1px solid #A8E6CF;
+}
+
+.stato-rifiutata {
+  background: #FADBD8;
+  color: #B03A2E;
+  border: 1px solid #F5B7B1;
+}
+
+
+.prenotazioni-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* base = come le tab */
+.tab {
+  padding: 6px 18px;
+  background: #0883c7;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+}
+
+/* verde accetta */
+.action-accept {
+  background: #2ecc71;
+}
+
+/* rosso rifiuta */
+.action-reject {
+  background: #e74c3c;
+}
+
+/* hover */
+.action-accept:hover {
+  background: #27ae60;
+}
+
+.action-reject:hover {
+  background: #c0392b;
 }

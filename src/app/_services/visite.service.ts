@@ -55,13 +55,13 @@ return this.http.get<any>(url, headers);
 }
 
 putConfermaVisita(prenotazioneId: number){
-const url= `${this.url}/prenotazioni/${prenotazioneId}/confermata`;
+const url= `${this.url}/prenotazioni/${prenotazioneId}/conferma`;
 const headers = this.getAuthHeaders();
 return this.http.put<any>(url, {}, headers);
 }
 
 putRifiutaVisita(prenotazioneId: number){
-const url= `${this.url}/prenotazioni/${prenotazioneId}/rifiutata`;
+const url= `${this.url}/prenotazioni/${prenotazioneId}/rifiuta`;
 const headers = this.getAuthHeaders();
 return this.http.put<any>(url, {}, headers);
 }

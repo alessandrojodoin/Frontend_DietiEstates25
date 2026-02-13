@@ -1,5 +1,90 @@
 <h2>Calendario Prenotazioni</h2>
 
+@if (loading) {
+
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <p>Caricamento offerte in corso...</p>
+  </div>
+
+} @else {
+
+@for( prenotazione of this.PrenotazioniList; track prenotazione){
+
+  @if(  (prenotazione.stato === 'RICHIESTA' || prenotazione.stato === 'CONFERMATA') &&
+      isFutura(prenotazione.dataOra)) {
+<div class="prenotazioni-card">
+
+    <div class="prenotazioni-header">
+  <div>
+    
+    <a class="indirizzo" [routerLink]="['/dettagli-immobile', prenotazione.immobile?.id]">{{ prenotazione.immobile?.indirizzo.via }}, {{ prenotazione.immobile?.indirizzo.citta }}, {{ prenotazione.immobile?.indirizzo.provincia }}</a>
+    
+    <p class="data-visita">
+      📅 DATA VISITA:
+      {{ prenotazione.dataOra | date:'dd/MM/yyyy HH:mm' }}
+    </p>
+  </div>
+
+  <span
+    class="stato"
+    [ngClass]="{
+      'stato-attesa': prenotazione.stato === 'RICHIESTA',
+      'stato-accettata': prenotazione.stato === 'CONFERMATA',
+      'stato-rifiutata': prenotazione.stato === 'RIFIUTATA'
+    }"
+  >
+  {{ prenotazione.stato === 'RICHIESTA' ? 'In attesa di conferma' : prenotazione.stato }}
+
+  </span>
+</div>
+
+
+
+    <div class="prenotazioni-body">
+
+  <div class="cliente-box">
+    <h4>I tuoi contatti</h4>
+    <p>Email: {{ this.userData?.email }}</p>
+    <p>Telefono: {{ this.userData?.numeroTelefonico }}</p>
+  </div>
+
+  <div class="agente-box">
+    <h4>Contatti Cliente</h4>
+    <p>Nome e cognome </p>
+    <p>Email: </p>
+    <p>Telefono:</p>
+  </div>
+
+</div>
+
+    <div class="prenotazioni-footer">
+  <div class="data">
+    📅 Richiesta il: {{ prenotazione.creataIl | date:'dd/MM/yyyy HH:mm' }}
+  </div>
+
+  @if (prenotazione.stato === 'RICHIESTA') {
+    <div class="actions">
+      <button class="tab action-accept" (click)="accetta(prenotazione.id)">
+        Accetta
+      </button>
+
+      <button class="tab action-reject" (click)="rifiuta(prenotazione.id)">
+        Rifiuta
+      </button>
+    </div>
+  }
+</div>
+
+
+
+</div>
+  }
+    
+}
+
+}
+
 
 
 <!-- Mostra l'iframe del calendario 
