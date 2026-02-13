@@ -161,9 +161,15 @@
       @if (statoPopup === 'prenotazione') {
         <h3>Seleziona Data e Orario</h3>
         <form [formGroup]="visiteForm" (ngSubmit)="onSubmit()">
-          <input type="datetime-local" formControlName="dataVisita">
+          
+<input type="datetime-local"
+       formControlName="dataVisita"
+       [min]="minDate"
+       [max]="maxDate"
+       step="3600">
 
           <!--INSERIRE MODALITà VISITA-->
+
 
           <div class="popup-actions">
             <button type="button" class="btn-secondary" (click)="chiudiPopup()">Annulla</button>

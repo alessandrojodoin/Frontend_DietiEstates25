@@ -4,15 +4,16 @@ import { CommonModule } from '@angular/common';
 import { ImmobiliService } from '../../_services/immobili.service';
 import { AuthRestService } from '../../_services/auth-backend.service';
 import { AuthService } from '../../_services/auth.service';
+import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-prenotazioni-effettuate',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterModule],
   templateUrl: './prenotazioni-effettuate.component.html',
   styleUrl: './prenotazioni-effettuate.component.scss'
 })
-export class PrenotazioniEffettuateComponent {
+export class PrenotazioniEffettuateComponent { //IDEA LIBRERIA CALENDARIO INTERATTIVO: FullCalendar
 
   PrenotazioniList: any[] = [];
   loading: boolean = false;

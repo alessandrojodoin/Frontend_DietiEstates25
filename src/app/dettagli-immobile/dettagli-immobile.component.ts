@@ -7,8 +7,9 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { OfferteServiceService } from '../_services/offerte-service.service';
 import { AuthService } from '../_services/auth.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { VisiteService } from '../_services/visite.service';
+import { ToastrService } from 'ngx-toastr';
 
 type StatoPopup = 'prenotazione' | 'riepilogo' | 'acknowledgment';
 
@@ -30,12 +31,26 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   offerteService= inject(OfferteServiceService);
   auth = inject(AuthService);
   visiteService = inject(VisiteService);
+  toastr = inject(ToastrService);
 
   imageIds: number[] = [];
   currentlyDisplayedImageIndex: number = 0;
 
   mostraPopup: boolean = false;
   statoPopup: StatoPopup = 'prenotazione';
+  now: Date = new Date(); // oggi
+  twoWeeksLater: Date = new Date(new Date().setDate(new Date().getDate() + 14)); // oggi + 14 giorni
+  
+
+  
+  minDate = this.formatDateInput(new Date());
+maxDate = this.formatDateInput(new Date(new Date().setDate(new Date().getDate() + 14)));
+
+formatDateInput(d: Date) {
+  const pad = (n: number) => n.toString().padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T00:00`;
+}
+ 
 
   showOffer: boolean = false;
   applyOffer: boolean = false;
@@ -45,12 +60,8 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
 
   immobileTrovato = false;
 
-visiteForm = new FormGroup({
-  dataVisita: new FormControl('',
-    [Validators.required,
-    Validators.minLength(1)]
-  ),
-})
+visiteForm!: FormGroup;
+
 
 contattiForm = new FormGroup({
   telefono: new FormControl('',
@@ -106,6 +117,28 @@ offertaValueForm = new FormGroup({
 
 
   ngOnInit() {
+    this.now = new Date();
+    this.twoWeeksLater = new Date();
+    this.twoWeeksLater.setDate(this.now.getDate() + 14);
+
+     this.visiteForm = new FormGroup({
+    dataVisita: new FormControl(
+      this.formatDateInput(this.now), // valore di default
+      [
+        Validators.required,
+        this.dataDentroDueSettimane(this.now, this.twoWeeksLater),
+        this.orarioValido
+      ]
+    )
+  });
+
+   this.visiteForm.get('dataVisita')?.valueChanges.subscribe(val => {
+    const control = this.visiteForm.get('dataVisita');
+    if (control?.errors?.['orarioNonValido']) {
+      this.toastr.warning("Orario non valido. Fasce disponibili: 9-12, 15-19");
+    }
+  });
+  
     console.log(this.activatedRoute.snapshot.params['id']);
       const immobileID = this.activatedRoute.snapshot.params['id'];
       this.immobiliService.getImmobile(immobileID).subscribe({
@@ -234,26 +267,68 @@ offertaValueForm = new FormGroup({
   }
 
 
-  onSubmit(){
+  onSubmit() {
+  const control = this.visiteForm.get('dataVisita');
+  if (!control) return;
 
-    this.statoPopup = 'riepilogo';
+  if (control.errors) {
+    if (control.errors['fuoriRange']) { 
+      this.showErrorToast("La visita deve essere entro le prossime 2 settimane");
+    }
+    if (control.errors['orarioNonValido']) { 
+      this.showErrorToast("Orario non valido. Fasce disponibili: 9-12, 15-19");
+    }
+    return; // blocca il passaggio allo stato riepilogo
   }
+
+  this.statoPopup = 'riepilogo';
+}
+
+
 
 
   conferma(){
-    this.statoPopup = 'acknowledgment';
-    this.visiteService.postVisiteCliente(this.immobile.id, this.visiteForm.value.dataVisita!).subscribe({
-      next: (data: any) => {
-        console.log('Visita cliente registrata:', data);
-      },
-      error: (error: any) => {
-        console.error('Errore nella registrazione della visita cliente:', error);
-      }
-    });
-  }
+  this.visiteService.postVisiteCliente(this.immobile.id, this.visiteForm.value.dataVisita!).subscribe({
+     next: (data) => {
+       this.statoPopup = 'acknowledgment';
+     },
+     error: (err) => {
+       console.error(err);
+       this.statoPopup = 'prenotazione';
+       const msg = err.error?.message || "Errore nella prenotazione.";
+       this.showErrorToast(msg);
+     }
+  });
+}
+
 
   chiudiPopup(){
     this.mostraPopup = false;
     this.statoPopup = 'prenotazione';
   }
+
+  dataDentroDueSettimane = (min: Date, max: Date): ValidatorFn => {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const valore = new Date(control.value);
+    if (isNaN(valore.getTime())) return null;
+    if (valore < min || valore > max) return { fuoriRange: true };
+    return null;
+  };
+}
+
+orarioValido: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+  const data = new Date(control.value);
+  if (isNaN(data.getTime())) return null;
+  const ora = data.getHours();
+  if ((ora >= 9 && ora < 13) || (ora >= 15 && ora < 19)) {
+    return null;
+  }
+  return { orarioNonValido: true };
+};
+
+showErrorToast(message: string) {
+  this.toastr.error(message, 'Errore prenotazione', { positionClass: 'toast-center-center' });
+}
+
+
 }

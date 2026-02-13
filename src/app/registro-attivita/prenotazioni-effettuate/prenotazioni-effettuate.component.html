@@ -13,27 +13,53 @@
     <div class="prenotazioni-card">
 
     <div class="prenotazioni-header">
-        <h3 class="indirizzo">{{ prenotazione.indirizzo }}</h3>
-    </div>
+  <div>
+    
+    <a class="indirizzo" [routerLink]="['/dettagli-immobile', prenotazione.immobile?.id]">{{ prenotazione.immobile?.indirizzo.via }}, {{ prenotazione.immobile?.indirizzo.citta }}, {{ prenotazione.immobile?.indirizzo.provincia }}</a>
+    
+    <p class="data-visita">
+      📅 DATA VISITA:
+      {{ prenotazione.dataOra | date:'dd/MM/yyyy HH:mm' }}
+    </p>
+  </div>
+
+  <span
+    class="stato"
+    [ngClass]="{
+      'stato-attesa': prenotazione.stato === 'RICHIESTA',
+      'stato-accettata': prenotazione.stato === 'CONFERMATA',
+      'stato-rifiutata': prenotazione.stato === 'RIFIUTATA'
+    }"
+  >
+  {{ prenotazione.stato === 'RICHIESTA' ? 'In attesa di conferma' : prenotazione.stato }}
+
+  </span>
+</div>
+
+
 
     <div class="prenotazioni-body">
 
-        <p>Email: {{ this.userData.email }}</p>
-        <p>Telefono: {{ this.userData.numeroTelefonico }}</p>
-        <p>Data Visita: {{ prenotazione.dataOra | date:'dd/MM/yyyy HH:mm' }}</p>
+  <div class="cliente-box">
+    <h4>I tuoi contatti</h4>
+    <p>Email: {{ userData.email }}</p>
+    <p>Telefono: {{ userData.numeroTelefonico }}</p>
+  </div>
 
-        
-        <p>Nome Agente: {{ prenotazione.immobile.agenteImmobiliare.nome }}, Cognome Agente: {{ prenotazione.immobile.agenteImmobiliare.cognome }}</p>
-        <p>Email Agente: {{ prenotazione.immobile.agenteImmobiliare.email }}</p>
-        <p>Telefono Agente: {{ prenotazione.immobile.agenteImmobiliare.numeroTelefonico }}</p>
+  <div class="agente-box">
+    <h4>Agente immobiliare</h4>
+    <p>{{ prenotazione.immobile?.agenteImmobiliare?.nome }}
+       {{ prenotazione.immobile?.agenteImmobiliare?.cognome }}</p>
+    <p>Email: {{ prenotazione.immobile?.agenteImmobiliare?.email }}</p>
+    <p>Telefono: {{ prenotazione.immobile?.agenteImmobiliare?.numeroTelefonico }}</p>
+  </div>
 
-        <p>Stato: {{ prenotazione.stato }}</p>
-    </div>
+</div>
 
     <div class="prenotazioni-footer">
 
         <span class="data">
-          📅 {{ prenotazione.creataIl| date:'dd/MM/yyyy HH:mm' }}
+          Richiesta il: {{ prenotazione.creataIl| date:'dd/MM/yyyy HH:mm' }}
         </span>
     </div>
 

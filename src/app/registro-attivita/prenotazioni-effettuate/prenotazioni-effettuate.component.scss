@@ -34,6 +34,14 @@
   gap: 14px;
 }
 
+.data-visita {
+  margin: 4px 0 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0b3b5a;
+}
+
+
 .prenotazioni-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -45,9 +53,80 @@
   align-items: center;
 }
 
+.immobile-info {
+  margin: 3px 0 0 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: #1e88e5;
+}
+
 .indirizzo {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
   color: #0b3b5a;
+}
+
+.prenotazioni-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.cliente-box,
+.agente-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #dbeafe;
+}
+
+.cliente-box h4,
+.agente-box h4 {
+  margin: 0 0 8px 0;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #1e88e5;
+}
+
+.cliente-box p,
+.agente-box p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.prenotazioni-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  font-size: small;
+}
+
+.stato {
+  font-weight: 800;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.stato-attesa {
+  background: #FFF3CD;
+  color: #B8860B;
+  border: 1px solid #FFE69C;
+}
+
+.stato-accettata {
+  background: #D1F2E5;
+  color: #1E7F4D;
+  border: 1px solid #A8E6CF;
+}
+
+.stato-rifiutata {
+  background: #FADBD8;
+  color: #B03A2E;
+  border: 1px solid #F5B7B1;
 }
