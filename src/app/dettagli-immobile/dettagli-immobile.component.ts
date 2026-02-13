@@ -8,6 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 import { OfferteServiceService } from '../_services/offerte-service.service';
 import { AuthService } from '../_services/auth.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { VisiteService } from '../_services/visite.service';
+
+type StatoPopup = 'prenotazione' | 'riepilogo' | 'acknowledgment';
 
 @Component({
   selector: 'app-dettagli-immobile',
@@ -26,9 +29,13 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   activatedRoute = inject(ActivatedRoute);
   offerteService= inject(OfferteServiceService);
   auth = inject(AuthService);
+  visiteService = inject(VisiteService);
 
   imageIds: number[] = [];
   currentlyDisplayedImageIndex: number = 0;
+
+  mostraPopup: boolean = false;
+  statoPopup: StatoPopup = 'prenotazione';
 
   showOffer: boolean = false;
   applyOffer: boolean = false;
@@ -37,6 +44,25 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   };
 
   immobileTrovato = false;
+
+visiteForm = new FormGroup({
+  dataVisita: new FormControl('',
+    [Validators.required,
+    Validators.minLength(1)]
+  ),
+})
+
+contattiForm = new FormGroup({
+  telefono: new FormControl('',
+    [Validators.required,
+    Validators.minLength(1),
+    Validators.maxLength(10)]
+  ),
+  email: new FormControl('',
+    [Validators.required,
+    Validators.email]
+  )
+})
 
   immobile: Immobile =     {
       nome: "testName",
@@ -200,5 +226,34 @@ offertaValueForm = new FormGroup({
         console.error('Errore nella creazione dell\'offerta:', error);
       }
     });
+  }
+
+
+  tornaIndietro(){
+    this.statoPopup = 'prenotazione';
+  }
+
+
+  onSubmit(){
+
+    this.statoPopup = 'riepilogo';
+  }
+
+
+  conferma(){
+    this.statoPopup = 'acknowledgment';
+    this.visiteService.postVisiteCliente(this.immobile.id, this.visiteForm.value.dataVisita!).subscribe({
+      next: (data: any) => {
+        console.log('Visita cliente registrata:', data);
+      },
+      error: (error: any) => {
+        console.error('Errore nella registrazione della visita cliente:', error);
+      }
+    });
+  }
+
+  chiudiPopup(){
+    this.mostraPopup = false;
+    this.statoPopup = 'prenotazione';
   }
 }

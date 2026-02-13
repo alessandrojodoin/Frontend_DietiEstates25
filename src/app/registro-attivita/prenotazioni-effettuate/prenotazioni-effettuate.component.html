@@ -1,1 +1,44 @@
 <h2>Prenotazioni in programma</h2>
+
+@if (loading) {
+
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <p>Caricamento offerte in corso...</p>
+  </div>
+
+} @else {
+
+@for( prenotazione of this.PrenotazioniList; track prenotazione){
+    <div class="prenotazioni-card">
+
+    <div class="prenotazioni-header">
+        <h3 class="indirizzo">{{ prenotazione.indirizzo }}</h3>
+    </div>
+
+    <div class="prenotazioni-body">
+
+        <p>Email: {{ this.userData.email }}</p>
+        <p>Telefono: {{ this.userData.numeroTelefonico }}</p>
+        <p>Data Visita: {{ prenotazione.dataOra | date:'dd/MM/yyyy HH:mm' }}</p>
+
+        
+        <p>Nome Agente: {{ prenotazione.immobile.agenteImmobiliare.nome }}, Cognome Agente: {{ prenotazione.immobile.agenteImmobiliare.cognome }}</p>
+        <p>Email Agente: {{ prenotazione.immobile.agenteImmobiliare.email }}</p>
+        <p>Telefono Agente: {{ prenotazione.immobile.agenteImmobiliare.numeroTelefonico }}</p>
+
+        <p>Stato: {{ prenotazione.stato }}</p>
+    </div>
+
+    <div class="prenotazioni-footer">
+
+        <span class="data">
+          📅 {{ prenotazione.creataIl| date:'dd/MM/yyyy HH:mm' }}
+        </span>
+    </div>
+
+</div>
+}
+
+}
+

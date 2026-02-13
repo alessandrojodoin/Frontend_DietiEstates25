@@ -148,8 +148,53 @@
       <div><strong>Agenzia Immobiliare:</strong> {{ immobile.agenteImmobiliare.agenziaImmobiliare }}</div>
     </div>
 @if(auth.getUserType() === 'Cliente' && immobile.isVenduto === false){
-    <button class="btn-visit">📅 Prenota Visita</button>
+    <button class="btn-visit" (click)="mostraPopup = true">📅 Prenota Visita</button>
 }
   </section>
 </div>
+
+
+@if (mostraPopup) {
+  <div class="overlay">
+    <div class="popup">
+
+      @if (statoPopup === 'prenotazione') {
+        <h3>Seleziona Data e Orario</h3>
+        <form [formGroup]="visiteForm" (ngSubmit)="onSubmit()">
+          <input type="datetime-local" formControlName="dataVisita">
+
+          <!--INSERIRE MODALITà VISITA-->
+
+          <div class="popup-actions">
+            <button type="button" class="btn-secondary" (click)="chiudiPopup()">Annulla</button>
+            <button class="btn-primary" [disabled]="visiteForm.invalid" (click)="onSubmit()">Avanti</button>
+          </div>
+        </form>
+      
+      }
+
+      @if (statoPopup === 'riepilogo') {
+        <h3>Sicuro di voler confermare questa datae orario?</h3>
+        <p><strong>Data Visita:</strong> {{ visiteForm.value.dataVisita }}</p>
+
+        <div class="popup-actions">
+          <button class="btn-secondary" (click)="tornaIndietro()">Indietro</button>
+          <button class="btn-primary" (click)="conferma()">Conferma</button>
+        </div>
+      }
+      @if (statoPopup === 'acknowledgment') {
+        <h3>✅ Prenotazione effettuata</h3>
+        <p>La prenotazione è stata effettuata correttamente.</p>
+        <div class="popup-actions">
+          <button class="btn-primary" (click)="chiudiPopup()">OK</button>
+        </div>
+      }
+
+    </div>
+  </div>
+}
+
+
+
+
 }
