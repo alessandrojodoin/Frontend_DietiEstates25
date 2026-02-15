@@ -1,101 +1,80 @@
 <h2>Calendario Prenotazioni</h2>
 
 @if (loading) {
-
   <div class="loader-container">
     <div class="spinner"></div>
     <p>Caricamento offerte in corso...</p>
   </div>
-
 } @else {
 
-@for( prenotazione of this.PrenotazioniList; track prenotazione){
+  <!-- FullCalendar -->
+  <full-calendar [options]="calendarOptions"></full-calendar>
 
-  @if(  (prenotazione.stato === 'RICHIESTA' || prenotazione.stato === 'CONFERMATA') &&
-      isFutura(prenotazione.dataOra)) {
-<div class="prenotazioni-card">
+  <!-- Lista prenotazioni filtrate per il giorno selezionato -->
+  @if (selectedDate && selectedPrenotazioni.length > 0) {
+    <h3>Prenotazioni per il {{ selectedDate | date:'dd/MM/yyyy' }}</h3>
 
-    <div class="prenotazioni-header">
-  <div>
-    
-    <a class="indirizzo" [routerLink]="['/dettagli-immobile', prenotazione.immobile?.id]">{{ prenotazione.immobile?.indirizzo.via }}, {{ prenotazione.immobile?.indirizzo.citta }}, {{ prenotazione.immobile?.indirizzo.provincia }}</a>
-    
-    <p class="data-visita">
-      📅 DATA VISITA:
-      {{ prenotazione.dataOra | date:'dd/MM/yyyy HH:mm' }}
-    </p>
-  </div>
+    @for (prenotazione of selectedPrenotazioni; track prenotazione) {
+      <div class="prenotazioni-card">
 
-  <span
-    class="stato"
-    [ngClass]="{
-      'stato-attesa': prenotazione.stato === 'RICHIESTA',
-      'stato-accettata': prenotazione.stato === 'CONFERMATA',
-      'stato-rifiutata': prenotazione.stato === 'RIFIUTATA'
-    }"
-  >
-  {{ prenotazione.stato === 'RICHIESTA' ? 'In attesa di conferma' : prenotazione.stato }}
+        <div class="prenotazioni-header">
+          <div>
+            <a class="indirizzo" [routerLink]="['/dettagli-immobile', prenotazione?.immobile?.id]">
+              {{ prenotazione?.immobile?.indirizzo?.via }}, 
+              {{ prenotazione?.immobile?.indirizzo?.citta }}, 
+              {{ prenotazione?.immobile?.indirizzo?.provincia }}
+            </a>
 
-  </span>
-</div>
+            <p class="data-visita">
+              📅 ORARIO VISITA: {{ prenotazione?.dataOra | date:'HH:mm' }}
+            </p>
+          </div>
 
+          <span class="stato"
+                [ngClass]="{
+                  'stato-attesa': prenotazione?.stato === 'RICHIESTA',
+                  'stato-accettata': prenotazione?.stato === 'CONFERMATA'
+                }">
+            {{ prenotazione?.stato === 'RICHIESTA' ? 'In attesa di conferma' : prenotazione?.stato }}
+          </span>
+        </div>
 
+        <div class="prenotazioni-body">
+          <div class="cliente-box">
+            <h4>I tuoi contatti</h4>
+            <p>Email: {{ agenteData?.email }}</p>
+            <p>Telefono: {{ agenteData?.numeroTelefonico }}</p>
+          </div>
 
-    <div class="prenotazioni-body">
+          <div class="agente-box">
+            <h4>Contatti Cliente</h4>
+            <p>Nome e cognome: {{ prenotazione?.clienteData?.nome ?? '-' }}</p>
+            <p>Email: {{ prenotazione?.clienteData?.email ?? '-' }}</p>
+            <p>Telefono: {{ prenotazione?.clienteData?.numeroTelefonico ?? '-' }}</p>
+          </div>
+        </div>
 
-  <div class="cliente-box">
-    <h4>I tuoi contatti</h4>
-    <p>Email: {{ this.userData?.email }}</p>
-    <p>Telefono: {{ this.userData?.numeroTelefonico }}</p>
-  </div>
+        <div class="prenotazioni-footer">
+          <div class="data">
+            📅 Richiesta il: {{ prenotazione?.creataIl | date:'dd/MM/yyyy HH:mm' }}
+          </div>
 
-  <div class="agente-box">
-    <h4>Contatti Cliente</h4>
-    <p>Nome e cognome </p>
-    <p>Email: </p>
-    <p>Telefono:</p>
-  </div>
+          @if (prenotazione?.stato === 'RICHIESTA') {
+            <div class="actions">
+              <button class="tab action-accept" (click)="accetta(prenotazione?.id)">
+                Accetta
+              </button>
 
-</div>
+              <button class="tab action-reject" (click)="rifiuta(prenotazione?.id)">
+                Rifiuta
+              </button>
+            </div>
+          }
+        </div>
 
-    <div class="prenotazioni-footer">
-  <div class="data">
-    📅 Richiesta il: {{ prenotazione.creataIl | date:'dd/MM/yyyy HH:mm' }}
-  </div>
-
-  @if (prenotazione.stato === 'RICHIESTA') {
-    <div class="actions">
-      <button class="tab action-accept" (click)="accetta(prenotazione.id)">
-        Accetta
-      </button>
-
-      <button class="tab action-reject" (click)="rifiuta(prenotazione.id)">
-        Rifiuta
-      </button>
-    </div>
+      </div>
+    }
+  } @else if (selectedDate && selectedPrenotazioni.length === 0) {
+    <p>Nessuna prenotazione per questo giorno.</p>
   }
-</div>
-
-
-
-</div>
-  }
-    
 }
-
-}
-
-
-
-<!-- Mostra l'iframe del calendario 
-<div *ngIf="calendarUrl">
-  <iframe
-    [src]="calendarUrl"
-    style="border: 0"
-    width="800"
-    height="600"
-    frameborder="0"
-    scrolling="no">
-  </iframe>
-</div>
--->

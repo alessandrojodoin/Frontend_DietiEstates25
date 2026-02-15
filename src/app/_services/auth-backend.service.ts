@@ -38,6 +38,11 @@ export class AuthRestService {
     
   }
 
+  getUsername(utenteId: number) {
+    const url = `${this.url}/auth/users/${utenteId}`;
+    return this.http.get(url, {responseType: 'text'});  
+  }
+
    signup(signupCredentials: {username: string, password: string, email: string, nome: string,
      cognome: string, numeroTelefonico: string}){
     const url = `${this.url}/auth/cliente`;
