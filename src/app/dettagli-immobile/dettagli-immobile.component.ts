@@ -44,7 +44,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
 
   
   minDate = this.formatDateInput(new Date());
-maxDate = this.formatDateInput(new Date(new Date().setDate(new Date().getDate() + 14)));
+  maxDate = this.formatDateInput(new Date(new Date().setDate(new Date().getDate() + 14)));
 
 formatDateInput(d: Date) {
   const pad = (n: number) => n.toString().padStart(2, '0');
@@ -128,16 +128,21 @@ offertaValueForm = new FormGroup({
         Validators.required,
         this.dataDentroDueSettimane(this.now, this.twoWeeksLater),
         this.orarioValido
+        
       ]
     )
   });
+const control = this.visiteForm.get('dataVisita');
 
-   this.visiteForm.get('dataVisita')?.valueChanges.subscribe(val => {
-    const control = this.visiteForm.get('dataVisita');
-    if (control?.errors?.['orarioNonValido']) {
-      this.toastr.warning("Orario non valido. Fasce disponibili: 9-12, 15-19");
-    }
-  });
+control?.valueChanges.subscribe(() => {
+  control.updateValueAndValidity({ emitEvent: false });
+
+  if (control.errors?.['orarioNonValido']) {
+    this.toastr.warning("Orario non valido. Fasce disponibili: 9-12, 15-19");
+  }
+});
+
+   
   
     console.log(this.activatedRoute.snapshot.params['id']);
       const immobileID = this.activatedRoute.snapshot.params['id'];
@@ -190,7 +195,7 @@ offertaValueForm = new FormGroup({
     const center = { lat: this.immobile.latitudine, lng: this.immobile.longitudine     }; 
 
     const mapEl = document.getElementById('map');
-    //console.log("Mappa id: ", document.getElementById('map'));
+    
     if (!mapEl) {
       console.error('Map element not found!');
       return;
@@ -294,8 +299,18 @@ offertaValueForm = new FormGroup({
      },
      error: (err) => {
        console.error(err);
-       this.statoPopup = 'prenotazione';
-       const msg = err.error?.message || "Errore nella prenotazione.";
+    
+
+        const msg = err.error?.message;
+
+  if (msg?.includes("Slot")) {
+    this.showErrorToast("Lo slot selezionato è già occupato");
+  } else {
+    this.showErrorToast(msg || "Errore nella prenotazione.");
+  }
+
+  this.statoPopup = 'prenotazione';
+       
        this.showErrorToast(msg);
      }
   });
