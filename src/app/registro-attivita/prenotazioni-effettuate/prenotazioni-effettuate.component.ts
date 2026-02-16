@@ -29,7 +29,9 @@ export class PrenotazioniEffettuateComponent { //IDEA LIBRERIA CALENDARIO INTERA
     this.visiteService.getVisiteCliente().subscribe({
       next: async (response) => {
         console.log('Visite cliente recuperate:', response);
-        this.PrenotazioniList = response;
+        this.PrenotazioniList = response
+        .filter((p: any) => this.isFutura(p.dataOra));
+        this.ordinaPrenotazioni();
         this.informazioniAgentePerVisita();
         this.userData = await this.rest.getUserData(this.auth.getUsername()).toPromise();
         console.log('Dati utente:', this.userData);
@@ -56,6 +58,14 @@ export class PrenotazioniEffettuateComponent { //IDEA LIBRERIA CALENDARIO INTERA
           }
           });
       }
+  }
+
+  isFutura(data: string | Date): boolean {
+    return new Date(data) >= new Date();
+  }
+
+  ordinaPrenotazioni(){
+    this.PrenotazioniList.sort((a, b) => new Date(a.dataOra).getTime() - new Date(b.dataOra).getTime());
   }
 
 }
