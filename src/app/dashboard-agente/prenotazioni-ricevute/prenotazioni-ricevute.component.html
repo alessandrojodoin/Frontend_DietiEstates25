@@ -15,7 +15,7 @@
     <h3>Prenotazioni per il {{ selectedDate | date:'dd/MM/yyyy' }}</h3>
 
     @for (prenotazione of selectedPrenotazioni; track prenotazione) {
-      <div class="prenotazioni-card">
+      <div #listaPrenotazioni class="prenotazioni-card">
 
         <div class="prenotazioni-header">
           <div>
