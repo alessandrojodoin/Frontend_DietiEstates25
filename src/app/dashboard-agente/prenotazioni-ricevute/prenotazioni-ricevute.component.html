@@ -59,6 +59,15 @@
             📅 Richiesta il: {{ prenotazione?.creataIl | date:'dd/MM/yyyy HH:mm' }}
           </div>
 
+          @if (prenotazione?.stato === 'CONFERMATA') {
+            <div class="actions">
+              <button class="tab action-reject" (click)="rifiuta(prenotazione?.id)">
+                Rifiuta
+              </button>
+            </div>
+          }
+
+
           @if (prenotazione?.stato === 'RICHIESTA') {
             <div class="actions">
               <button class="tab action-accept" (click)="accetta(prenotazione?.id)">
