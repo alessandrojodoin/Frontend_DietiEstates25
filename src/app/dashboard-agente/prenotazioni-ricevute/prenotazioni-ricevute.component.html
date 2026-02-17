@@ -12,7 +12,7 @@
 
   <!-- Lista prenotazioni filtrate per il giorno selezionato -->
   @if (selectedDate && selectedPrenotazioni.length > 0) {
-    <h3>Prenotazioni per il {{ selectedDate | date:'dd/MM/yyyy' }}</h3>
+    <h3 class="title">Prenotazioni per il {{ selectedDate | date:'dd/MM/yyyy' }}</h3>
 
     @for (prenotazione of selectedPrenotazioni; track prenotazione) {
       <div #listaPrenotazioni class="prenotazioni-card">
@@ -26,7 +26,7 @@
             </a>
 
             <p class="data-visita">
-              📅 ORARIO VISITA: {{ prenotazione?.dataOra | date:'HH:mm' }}
+              📅 ORARIO VISITA: {{ prenotazione?.dataOra | date:'HH:mm' }} <span class="modeVisita"> {{prenotazione?.modeVisita}}</span>
             </p>
           </div>
 
@@ -56,7 +56,7 @@
 
         <div class="prenotazioni-footer">
           <div class="data">
-            📅 Richiesta il: {{ prenotazione?.creataIl | date:'dd/MM/yyyy HH:mm' }}
+             Richiesta il: {{ prenotazione?.creataIl | date:'dd/MM/yyyy HH:mm' }}
           </div>
 
           @if (prenotazione?.stato === 'CONFERMATA') {

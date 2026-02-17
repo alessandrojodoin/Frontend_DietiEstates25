@@ -5,6 +5,11 @@ iframe {
   height: 600px;
 }*/
 
+.title{
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
 .loader-container {
   display: flex;
   flex-direction: column;
@@ -72,6 +77,10 @@ iframe {
   font-size: 16px;
   font-weight: 700;
   color: #0b3b5a;
+}
+
+.modeVisita{
+  color: #B8860B;
 }
 
 .prenotazioni-body {
