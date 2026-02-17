@@ -88,45 +88,46 @@
       <input type="number" min="10" max="1000" [(ngModel)]="tempFilters.areaSize">
     </div>
 
-<div class="filter-option">
-  <label>Caratteristiche Aggiuntive:</label>
+    <p>Caratteristiche Aggiuntive:</p>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="tempFilters.Terrazzo">
-    Terrazzo
+<div class="filter-checkboxes">
+  
+  <label class="checkbox-item">
+    <input type="checkbox" [(ngModel)]="tempFilters.terrazzo">
+    <span>Terrazzo</span>
   </label>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="tempFilters.Balcone">
-    Balcone
+  <label class="checkbox-item">
+    <input type="checkbox" [(ngModel)]="tempFilters.balcone">
+    <span>Balcone</span>
   </label>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="tempFilters.Ascensore">
-    Ascensore
+  <label class="checkbox-item">
+    <input type="checkbox" [(ngModel)]="tempFilters.ascensore">
+    <span>Ascensore</span>
   </label>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="tempFilters.Garage">
-    Garage
+  <label class="checkbox-item">
+    <input type="checkbox" [(ngModel)]="tempFilters.garage">
+    <span>Garage</span>
   </label>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="tempFilters.Giardino">
-    Giardino
+  <label class="checkbox-item">
+    <input type="checkbox" [(ngModel)]="tempFilters.giardino">
+    <span>Giardino</span>
   </label>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="tempFilters.PostoAuto">
-    Posto Auto
+  <label class="checkbox-item">
+    <input type="checkbox" [(ngModel)]="tempFilters.postoAuto">
+    <span>Posto Auto</span>
   </label>
 
-  <label>
-    <input type="checkbox" [(ngModel)]="tempFilters.AccessoDisabili">
-    Accesso Disabili
+  <label class="checkbox-item">
+    <input type="checkbox" [(ngModel)]="tempFilters.accessoDisabili">
+    <span>Accesso Disabili</span>
   </label>
+
 </div>
-
 
     <button class="ok-filter-btn" (click)="applyFilters()">OK</button>
   </div>

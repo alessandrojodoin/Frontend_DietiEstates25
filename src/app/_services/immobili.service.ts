@@ -205,19 +205,39 @@ getImmobileListFiltri(
             areaSize: number | null,
             energyClass: string | null,
             citta: string | null,
-            Terrazzo: boolean | null,
-            Balcone: boolean | null,
-            Ascensore: boolean | null,
-            Garage: boolean | null,
-            Giardino: boolean | null,
-            PostoAuto: boolean | null,
-            AccessoDisabili: boolean | null
+            terrazzo: boolean | null,
+            balcone: boolean | null,
+            ascensore: boolean | null,
+            garage: boolean | null,
+            giardino: boolean | null,
+            postoAuto: boolean | null,
+            accessoDisabili: boolean | null
     ) 
     {
-      const url = `${this.url}/immobile?filters=${appliedFilters}&minPrice=${minPrice}&maxPrice=${maxPrice}&propertyType=${propertyType}&bathrooms=${bathrooms}&bedrooms=${bedrooms}&areaSize=${areaSize}&energyClass=${energyClass}&citta=${citta}&Terrazzo=${Terrazzo}&Balcone=${Balcone}&Ascensore=${Ascensore}&Garage=${Garage}&Giardino=${Giardino}&PostoAuto=${PostoAuto}&AccessoDisabili=${AccessoDisabili}`;
-      const headers = this.getAuthHeaders();
+ let params = new HttpParams();
 
-      return this.http.get<Immobile[]>(url, headers);
+  if (appliedFilters != null) params = params.set('filters', appliedFilters.toString());
+  if (minPrice != null) params = params.set('minPrice', minPrice.toString());
+  if (maxPrice != null) params = params.set('maxPrice', maxPrice.toString());
+  if (propertyType) params = params.set('propertyType', propertyType);
+  if (bathrooms != null) params = params.set('bathrooms', bathrooms.toString());
+  if (bedrooms != null) params = params.set('bedrooms', bedrooms.toString());
+  if (areaSize != null) params = params.set('areaSize', areaSize.toString());
+  if (energyClass) params = params.set('energyClass', energyClass);
+  if (citta) params = params.set('citta', citta);
+  if (terrazzo != null) params = params.set('terrazzo', terrazzo.toString());
+  if (balcone != null) params = params.set('balcone', balcone.toString());
+  if (ascensore != null) params = params.set('ascensore', ascensore.toString());
+  if (garage != null) params = params.set('garage', garage.toString());
+  if (giardino != null) params = params.set('giardino', giardino.toString());
+  if (postoAuto != null) params = params.set('postoAuto', postoAuto.toString());
+  if (accessoDisabili != null) params = params.set('accessoDisabili', accessoDisabili.toString());
+
+  return this.http.get<Immobile[]>(`${this.url}/immobile`, {
+    ...this.getAuthHeaders(),
+    params
+  });
+
     }
 
 

@@ -28,13 +28,13 @@ export class SearchBarComponent {
     bathrooms: null as number | null,
     bedrooms: null as number | null,
     areaSize: null as number | null,
-    Terrazzo: null as boolean | null,
-    Balcone: null as boolean | null,
-    Ascensore: null as boolean | null,
-    Garage: null as boolean | null,
-    Giardino: null as boolean | null,
-    PostoAuto: null as boolean | null,
-    AccessoDisabili: null as boolean | null,
+    terrazzo: null as boolean | null,
+    balcone: null as boolean | null,
+    ascensore: null as boolean | null,
+    garage: null as boolean | null,
+    giardino: null as boolean | null,
+    postoAuto: null as boolean | null,
+    accessoDisabili: null as boolean | null,
     energyClass: null as string | null,
     citta: '' as string | null,
 
@@ -60,13 +60,13 @@ export class SearchBarComponent {
     this.SearchFiltersService.filters.bathrooms = this.tempFilters.bathrooms;
     this.SearchFiltersService.filters.bedrooms = this.tempFilters.bedrooms;
     this.SearchFiltersService.filters.areaSize = this.tempFilters.areaSize;
-    this.SearchFiltersService.filters.Terrazzo = this.tempFilters.Terrazzo;
-    this.SearchFiltersService.filters.Balcone = this.tempFilters.Balcone;
-    this.SearchFiltersService.filters.Ascensore = this.tempFilters.Ascensore;
-    this.SearchFiltersService.filters.Garage = this.tempFilters.Garage;
-    this.SearchFiltersService.filters.Giardino = this.tempFilters.Giardino;
-    this.SearchFiltersService.filters.PostoAuto = this.tempFilters.PostoAuto;
-    this.SearchFiltersService.filters.AccessoDisabili = this.tempFilters.AccessoDisabili;
+    this.SearchFiltersService.filters.terrazzo = this.tempFilters.terrazzo;
+    this.SearchFiltersService.filters.balcone = this.tempFilters.balcone;
+    this.SearchFiltersService.filters.ascensore = this.tempFilters.ascensore;
+    this.SearchFiltersService.filters.garage = this.tempFilters.garage;
+    this.SearchFiltersService.filters.giardino = this.tempFilters.giardino;
+    this.SearchFiltersService.filters.postoAuto = this.tempFilters.postoAuto;
+    this.SearchFiltersService.filters.accessoDisabili = this.tempFilters.accessoDisabili;
     this.SearchFiltersService.filters.energyClass = this.tempFilters.energyClass;
     this.SearchFiltersService.filters.citta = this.tempFilters.citta;
     this.SearchFiltersService.filters.filtersApplied = true;
@@ -89,10 +89,10 @@ export class SearchBarComponent {
         this.SearchFiltersService.filters.propertyType === null && this.SearchFiltersService.filters.bathrooms === null && 
         this.SearchFiltersService.filters.bedrooms === null && this.SearchFiltersService.filters.areaSize === null && 
         this.SearchFiltersService.filters.energyClass === null && this.SearchFiltersService.filters.citta === null && 
-        this.SearchFiltersService.filters.Terrazzo === null && this.SearchFiltersService.filters.Balcone === null && 
-        this.SearchFiltersService.filters.Ascensore === null && this.SearchFiltersService.filters.Garage === null && 
-        this.SearchFiltersService.filters.Giardino === null && this.SearchFiltersService.filters.PostoAuto === null && 
-        this.SearchFiltersService.filters.AccessoDisabili === null) {
+        this.SearchFiltersService.filters.terrazzo === null && this.SearchFiltersService.filters.balcone === null && 
+        this.SearchFiltersService.filters.ascensore === null && this.SearchFiltersService.filters.garage === null && 
+        this.SearchFiltersService.filters.giardino === null && this.SearchFiltersService.filters.postoAuto === null && 
+        this.SearchFiltersService.filters.accessoDisabili === null) {
           
           this.filtersApplied = false;
         }
@@ -107,13 +107,13 @@ export class SearchBarComponent {
       this.SearchFiltersService.filters.areaSize,
       this.SearchFiltersService.filters.energyClass,
       this.SearchFiltersService.filters.citta,
-      this.SearchFiltersService.filters.Terrazzo,
-      this.SearchFiltersService.filters.Balcone,
-      this.SearchFiltersService.filters.Ascensore,
-      this.SearchFiltersService.filters.Garage,
-      this.SearchFiltersService.filters.Giardino,
-      this.SearchFiltersService.filters.PostoAuto,
-      this.SearchFiltersService.filters.AccessoDisabili)
+      this.SearchFiltersService.filters.terrazzo,
+      this.SearchFiltersService.filters.balcone,
+      this.SearchFiltersService.filters.ascensore,
+      this.SearchFiltersService.filters.garage,
+      this.SearchFiltersService.filters.giardino,
+      this.SearchFiltersService.filters.postoAuto,
+      this.SearchFiltersService.filters.accessoDisabili)
       .subscribe(immobili => {
         console.log("Immobili trovati:", immobili);
       });

@@ -89,6 +89,8 @@ button.selected{
   border-radius: 10px;
   width: 400px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+   max-height: 90vh;  
+  overflow-y: auto; 
 }
 
 .popup-content .filter-option {
@@ -103,6 +105,25 @@ button.selected{
   font-size: 0.95rem;
   color: #222;
 }
+
+.filter-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.checkbox-item input {
+  width: auto;
+  margin: 0;
+}
+
 
 /* Input e Select uniformi */
 .popup-content .filter-option input,
