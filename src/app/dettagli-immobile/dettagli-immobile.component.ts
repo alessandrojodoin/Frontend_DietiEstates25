@@ -22,6 +22,7 @@ type StatoPopup = 'prenotazione' | 'riepilogo' | 'acknowledgment';
 })
 export class DettagliImmobileComponent implements OnInit, AfterViewInit{
 
+  loading: boolean = false;
   map: google.maps.Map | null = null;
   markers: any[] = [];
   currentMarker: any = null;
@@ -130,7 +131,8 @@ offertaValueForm = new FormGroup({
         this.orarioValido
         
       ]
-    )
+    ),
+    modeVisita: new FormControl('In Presenza', Validators.required)
   });
 const control = this.visiteForm.get('dataVisita');
 
@@ -293,9 +295,11 @@ control?.valueChanges.subscribe(() => {
 
 
   conferma(){
-  this.visiteService.postVisiteCliente(this.immobile.id, this.visiteForm.value.dataVisita!).subscribe({
+  this.loading = true;
+  this.visiteService.postVisiteCliente(this.immobile.id, this.visiteForm.value.dataVisita!, this.visiteForm.value.modeVisita).subscribe({
      next: (data) => {
        this.statoPopup = 'acknowledgment';
+       this.loading = false;
      },
      error: (err) => {
        console.error(err);

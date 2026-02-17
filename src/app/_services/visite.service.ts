@@ -42,10 +42,10 @@ return this.http.get<any>(url, headers);
 }
 
 
-postVisiteCliente(immobileId: number, dataOra: string){
+postVisiteCliente(immobileId: number, dataOra: string, modeVisita: string){
 const url= `${this.url}/prenotazioni`;
 const headers = this.getAuthHeaders();
-return this.http.post<any>(url, {immobileId, dataOra}, headers);
+return this.http.post<any>(url, {immobileId, dataOra, modeVisita}, headers);
 }
 
 getVisiteAgente(){
