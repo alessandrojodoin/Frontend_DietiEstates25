@@ -75,7 +75,7 @@ export class SearchBarComponent {
 
 
   startSearch() {
-    console.log("PenesrnelloDiSearch");
+    console.log("Search Started...");
 
     if (this.SearchFiltersService.filters.citta === ''){
       this.SearchFiltersService.filters.citta = null;

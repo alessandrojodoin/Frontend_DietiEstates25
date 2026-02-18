@@ -5,7 +5,6 @@ import { OfferteServiceService } from '../../_services/offerte-service.service';
 import { AuthService } from '../../_services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Immobile } from '../../../../data';
 import { RouterLink } from '@angular/router';
 
 type StatoPopup = 'chiedi' | 'controproposta' | 'successo';

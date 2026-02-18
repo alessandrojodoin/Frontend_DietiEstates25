@@ -307,13 +307,13 @@ control?.valueChanges.subscribe(() => {
 
         const msg = err.error?.message;
 
-  if (msg?.includes("Slot")) {
-    this.showErrorToast("Lo slot selezionato è già occupato");
-  } else {
-    this.showErrorToast(msg || "Errore nella prenotazione.");
-  }
+        if (msg?.includes("Slot")) {
+          this.showErrorToast("Lo slot selezionato è già occupato");
+        } else {
+          this.showErrorToast("Errore nella prenotazione.");
+        }
 
-  this.statoPopup = 'prenotazione';
+        this.statoPopup = 'prenotazione';
        
        this.showErrorToast(msg);
      }

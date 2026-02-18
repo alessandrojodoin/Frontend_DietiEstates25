@@ -145,6 +145,9 @@ async clientePerVisita() {
       next: () => {
         const p = this.PrenotazioniList.find(x => x.id === id);
         if (p) p.stato = 'RIFIUTATA';
+        this.loading = true;
+        this.ngOnInit();
+        this.loading = false;
       },
       error: (err) => console.error(err)
     });
