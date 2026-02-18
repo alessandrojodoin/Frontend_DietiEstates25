@@ -20,15 +20,17 @@
         [attr.aria-selected]="selected === 'affitta'"
         [class.selected]="selected === 'affitta'"
       >Affitta</button>
-    </div>
 
-
+      
     <button
       type="button"
       (click)="openFilters()"
       class="filter-btn"
        [ngStyle]="{'background-color': filtersApplied ? '#66afe9' : '#f5f5f5'}"
     >⚙️ Filtri</button>
+
+    </div>
+
 
     <div class="popup-overlay" *ngIf="showFilters" (click)="closeFilters()">
   <div class="popup-content" (click)="$event.stopPropagation()">
@@ -134,27 +136,24 @@
 </div>
 
 
-    <button
-      type="button"
-      (click)="startSearch()"
-      class="search-btn"
-    >🔍 Cerca</button>
 
     </div>
+    
+
+
+
+ <form class="search-bar-form" [formGroup]="cityForm" (ngSubmit)="startSearch()">
+      <div class="search-bar-row">
+        <span class="search-icon">🔎︎</span>
+        <input
+          type="text"
+          placeholder="Comune: ******"
+          class="search-input"
+        />
+        <button type="submit" class="search-btn">🔍 Cerca</button>
+      </div>
+    </form>
+
     </div>
+  </div>
 
-
-
-
-
-    </div>
-    <div class="search-bar-row">
-      <span class="search-icon">🔎︎</span>
-      <input
-        type="text"
-        placeholder="Comune: ******"
-        aria-label="Search"
-        class="search-input"
-      />
-    </div>
-  

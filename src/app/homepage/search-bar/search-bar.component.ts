@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SearchFiltersService } from '../../_services/search-filters.service';
 import { ImmobiliService } from '../../_services/immobili.service';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
@@ -39,6 +39,13 @@ export class SearchBarComponent {
     citta: '' as string | null,
 
   };
+
+  cityForm = new FormGroup({
+    citta: new FormControl('',
+      [Validators.required,
+      Validators.minLength(1)]
+    )
+  });
 
 
   homelessBuys() { this.selected = 'compra'; }
@@ -77,9 +84,6 @@ export class SearchBarComponent {
   startSearch() {
     console.log("Search Started...");
 
-    if (this.SearchFiltersService.filters.citta === ''){
-      this.SearchFiltersService.filters.citta = null;
-    }
 
     if (this.SearchFiltersService.filters.propertyType === ''){
       this.SearchFiltersService.filters.propertyType = null;
@@ -106,7 +110,7 @@ export class SearchBarComponent {
       this.SearchFiltersService.filters.bedrooms,
       this.SearchFiltersService.filters.areaSize,
       this.SearchFiltersService.filters.energyClass,
-      this.SearchFiltersService.filters.citta,
+      this.cityForm.value.citta as string,
       this.SearchFiltersService.filters.terrazzo,
       this.SearchFiltersService.filters.balcone,
       this.SearchFiltersService.filters.ascensore,

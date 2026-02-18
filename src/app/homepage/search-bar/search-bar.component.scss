@@ -10,6 +10,21 @@
   border: 2px solid #222;
   display: flex;
   flex-direction: column;
+  border-radius: 0; /* rettangolo perfetto */
+  overflow: hidden; /* evita sbordamenti */
+}
+
+.search-btn {
+  background: #2490CA;
+  color: white;
+  border: none;
+  padding: 15px 3px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.search-btn:hover {
+  background: #1c7ab0;
 }
 
 .search-bar-tabs {
@@ -41,6 +56,7 @@
   background: #ffff;
   border-top: 1px solid #222;
   padding: 0;
+  width: 100%;
 }
 
 .search-icon {
@@ -54,8 +70,8 @@
   border: none;
   outline: none;
   font-size: 1rem;
-  padding: 8px 12px;
-  background: #ffff;
+  padding: 10px;
+  //background: #ffff;
   border-radius: 0;
 }
 
