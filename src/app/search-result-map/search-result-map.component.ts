@@ -14,7 +14,18 @@ export class SearchResultMapComponent implements AfterViewInit {
   markers: any[] = [];
   currentMarker: any = null;
 
-  @Input() immobili: Immobile[] = [];
+  @Input()
+set immobili(value: Immobile[]) {
+  this._immobili = value;
+  if (this.map) {
+    this.updateMap();
+  }
+}
+get immobili(): Immobile[] {
+  return this._immobili;
+}
+private _immobili: Immobile[] = [];
+
 
   async ngAfterViewInit() {
     await this.initMap();

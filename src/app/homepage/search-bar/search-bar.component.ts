@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SearchFiltersService } from '../../_services/search-filters.service';
 import { ImmobiliService } from '../../_services/immobili.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -18,6 +19,7 @@ export class SearchBarComponent {
   showFilters = false;
   SearchFiltersService = inject(SearchFiltersService);
   immobiliService = inject(ImmobiliService);
+  router = inject(Router);
 
   // Stato dei filtri temporaneo
   tempFilters = {
@@ -118,7 +120,10 @@ export class SearchBarComponent {
       this.selected)
       .subscribe(immobili => {
         console.log("Immobili trovati:", immobili);
+        this.SearchFiltersService.arrayImmobili = immobili;
+        this.router.navigate(['/search-result'], { queryParams: { type: this.selected.toLowerCase() }});
       });
   }
+
 
 }
