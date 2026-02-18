@@ -13,7 +13,7 @@ import { ImmobiliService } from '../../_services/immobili.service';
 })
 export class SearchBarComponent {
 
-  selected: 'compra' | 'affitta' = 'compra';
+  selected: 'Compra' | 'Affitto' = 'Compra';
   filtersApplied = false;
   showFilters = false;
   SearchFiltersService = inject(SearchFiltersService);
@@ -24,7 +24,7 @@ export class SearchBarComponent {
     filtersApplied: false as boolean,
     minPrice: null as number | null,
     maxPrice: null as number | null,
-    propertyType: '', 
+    
     bathrooms: null as number | null,
     bedrooms: null as number | null,
     areaSize: null as number | null,
@@ -48,8 +48,8 @@ export class SearchBarComponent {
   });
 
 
-  homelessBuys() { this.selected = 'compra'; }
-  homelessRents() { this.selected = 'affitta'; }
+  homelessBuys() { this.selected = 'Compra'; }
+  homelessRents() { this.selected = 'Affitto'; }
 
 
   openFilters() { this.showFilters = true; }
@@ -63,7 +63,7 @@ export class SearchBarComponent {
 
     this.SearchFiltersService.filters.minPrice = this.tempFilters.minPrice;
     this.SearchFiltersService.filters.maxPrice = this.tempFilters.maxPrice;
-    this.SearchFiltersService.filters.propertyType = this.tempFilters.propertyType;
+    
     this.SearchFiltersService.filters.bathrooms = this.tempFilters.bathrooms;
     this.SearchFiltersService.filters.bedrooms = this.tempFilters.bedrooms;
     this.SearchFiltersService.filters.areaSize = this.tempFilters.areaSize;
@@ -85,12 +85,9 @@ export class SearchBarComponent {
     console.log("Search Started...");
 
 
-    if (this.SearchFiltersService.filters.propertyType === ''){
-      this.SearchFiltersService.filters.propertyType = null;
-    }
 
     if (this.SearchFiltersService.filters.minPrice === null && this.SearchFiltersService.filters.maxPrice === null && 
-        this.SearchFiltersService.filters.propertyType === null && this.SearchFiltersService.filters.bathrooms === null && 
+        
         this.SearchFiltersService.filters.bedrooms === null && this.SearchFiltersService.filters.areaSize === null && 
         this.SearchFiltersService.filters.energyClass === null && this.SearchFiltersService.filters.citta === null && 
         this.SearchFiltersService.filters.terrazzo === null && this.SearchFiltersService.filters.balcone === null && 
@@ -105,7 +102,7 @@ export class SearchBarComponent {
       this.SearchFiltersService.filters.filtersApplied,
       this.SearchFiltersService.filters.minPrice,
       this.SearchFiltersService.filters.maxPrice,
-      this.SearchFiltersService.filters.propertyType,
+      
       this.SearchFiltersService.filters.bathrooms,
       this.SearchFiltersService.filters.bedrooms,
       this.SearchFiltersService.filters.areaSize,
@@ -117,7 +114,8 @@ export class SearchBarComponent {
       this.SearchFiltersService.filters.garage,
       this.SearchFiltersService.filters.giardino,
       this.SearchFiltersService.filters.postoAuto,
-      this.SearchFiltersService.filters.accessoDisabili)
+      this.SearchFiltersService.filters.accessoDisabili,
+      this.selected)
       .subscribe(immobili => {
         console.log("Immobili trovati:", immobili);
       });

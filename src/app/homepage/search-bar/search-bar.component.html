@@ -7,8 +7,8 @@
         type="button"
         (click)="homelessBuys()"
         class="tab Compra"
-        [attr.aria-selected]="selected === 'compra'"
-        [class.selected]="selected === 'compra'"
+        [attr.aria-selected]="selected === 'Compra'"
+        [class.selected]="selected === 'Compra'"
       >Compra</button>
 
 
@@ -17,8 +17,8 @@
         type="button"
         (click)="homelessRents()"
         class="tab Affitta"
-        [attr.aria-selected]="selected === 'affitta'"
-        [class.selected]="selected === 'affitta'"
+        [attr.aria-selected]="selected === 'Affitto'"
+        [class.selected]="selected === 'Affitto'"
       >Affitta</button>
 
       
@@ -54,23 +54,6 @@
         <option>A4</option><option>A3</option><option>A2</option><option>A1</option>
         <option>B</option><option>C</option><option>D</option>
         <option>E</option><option>F</option><option>G</option>
-      </select>
-    </div>
-
-
-    <div class="filter-option">
-      <label>Città</label> 
-      <input type="text" placeholder="Es. Roma" [(ngModel)]="tempFilters.citta">
-    </div>
-
-
-    <div class="filter-option">
-      <label>Tipo di Proprietà:</label>
-      <select [(ngModel)]="tempFilters.propertyType">
-        <option value="">Tutti</option>
-        <option value="apartment">Appartamento</option>
-        <option value="house">Casa</option>
-        <option value="studio">Monolocale</option>
       </select>
     </div>
 

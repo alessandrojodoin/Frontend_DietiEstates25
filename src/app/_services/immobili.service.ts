@@ -199,7 +199,6 @@ getImmobileListFiltri(
             appliedFilters: boolean,
             minPrice: number | null,
             maxPrice: number | null,
-            propertyType: string | null,
             bathrooms: number | null,
             bedrooms: number | null,
             areaSize: number | null,
@@ -211,7 +210,8 @@ getImmobileListFiltri(
             garage: boolean | null,
             giardino: boolean | null,
             postoAuto: boolean | null,
-            accessoDisabili: boolean | null
+            accessoDisabili: boolean | null,
+            tipologiaContratto: string | null
     ) 
     {
  let params = new HttpParams();
@@ -219,7 +219,7 @@ getImmobileListFiltri(
   if (appliedFilters != null) params = params.set('filters', appliedFilters.toString());
   if (minPrice != null) params = params.set('minPrice', minPrice.toString());
   if (maxPrice != null) params = params.set('maxPrice', maxPrice.toString());
-  if (propertyType) params = params.set('propertyType', propertyType);
+  
   if (bathrooms != null) params = params.set('bathrooms', bathrooms.toString());
   if (bedrooms != null) params = params.set('bedrooms', bedrooms.toString());
   if (areaSize != null) params = params.set('areaSize', areaSize.toString());
@@ -232,6 +232,7 @@ getImmobileListFiltri(
   if (giardino != null) params = params.set('giardino', giardino.toString());
   if (postoAuto != null) params = params.set('postoAuto', postoAuto.toString());
   if (accessoDisabili != null) params = params.set('accessoDisabili', accessoDisabili.toString());
+  if (tipologiaContratto) params = params.set('tipologiaContratto', tipologiaContratto);
 
   return this.http.get<Immobile[]>(`${this.url}/immobile`, {
     ...this.getAuthHeaders(),

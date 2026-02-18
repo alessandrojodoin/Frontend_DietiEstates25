@@ -9,10 +9,10 @@ export class SearchFiltersService {
 
 
   filters = {
-    filtersApplied: false as boolean,
+    filtersApplied: true as boolean,
     minPrice: null as number | null,
     maxPrice: null as number | null,
-    propertyType: '' as string | null,
+    
     bathrooms: null as number | null,
     bedrooms: null as number | null,
     areaSize: null as number | null,
