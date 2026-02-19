@@ -9,13 +9,17 @@
   <h5>🏠 Dettagli</h5>
   <!--<p>Titolo: {{immobile.nome}}</p>-->
   <p>Descrizione: {{ immobile.descrizione }}</p>
-  <p>Superficie: {{ immobile.quadratura }} m²</p><!--Risulta UNDEFINED-->
+  
+      <p>Superficie: {{ superficie }} m²</p>
+  
   
 
   <h5>✨Riepilogo Tag</h5>
 <ul>
   <li *ngFor="let tag of riepilogoTags">
-    {{ tag.nome | titlecase }}: {{ tag.valore }}  <!--compare qui la superficie-->
+    @if(tag.nome !='superficie'){
+      {{ tag.nome | titlecase }}: {{ tag.valore }}  
+    }
   </li>
 </ul>
 

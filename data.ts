@@ -19,7 +19,6 @@ export type Immobile = {
     descrizione: string;
     tagDescrizione: any[];
     prezzo: number;
-    quadratura: number;
     numeroVisualizzazioni: number;
     tipologiaContratto: string;
     speseCondominiali: number; 
@@ -27,8 +26,17 @@ export type Immobile = {
     agenteImmobiliare: AgenteImmobiliare;
     isVenduto: boolean;
     esisteOffertaAccettata?: boolean;
+    superficie?: number | null;
     istanteCreazione: Instant;
     immagini: string[];
+}
+
+export function getSuperficie(immobile: any): number | null {
+  const tag = immobile.tagDescrizione?.find(
+    (t: any) => t.nome === 'superficie'
+  );
+
+  return tag ? Number(tag.valore) : null;
 }
 
 

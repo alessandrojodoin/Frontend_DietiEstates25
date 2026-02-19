@@ -32,7 +32,6 @@ export class CreaImmobileService {
    descrizione: string | undefined;
    tagDescrizione: TagDescrittivo[] ;
    prezzo: number | undefined;
-   quadratura: number | undefined;
    tipologiaContratto: string | undefined;
    speseCondominiali: number | undefined;
    immagini: any[];
@@ -45,7 +44,6 @@ export class CreaImmobileService {
    descrizione: undefined,
    tagDescrizione: [],
    prezzo: undefined,
-   quadratura: undefined,
    tipologiaContratto: undefined,
    speseCondominiali: undefined,
    immagini: [],
@@ -62,7 +60,6 @@ reset() {
     descrizione: undefined,
     tagDescrizione: [],
     prezzo: undefined,
-    quadratura: undefined,
     tipologiaContratto: undefined,
     speseCondominiali: undefined,
     immagini: [],

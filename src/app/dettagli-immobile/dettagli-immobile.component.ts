@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
-import { Immobile } from '../../../data';
+import { getSuperficie, Immobile } from '../../../data';
 import { ImmobiliService } from '../_services/immobili.service';
 
 import Instant from 'ts-time/Instant';
@@ -26,6 +26,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   map: google.maps.Map | null = null;
   markers: any[] = [];
   currentMarker: any = null;
+  superficie: any = null;
   
   immobiliService = inject(ImmobiliService);
   activatedRoute = inject(ActivatedRoute);
@@ -91,7 +92,6 @@ contattiForm = new FormGroup({
       descrizione: "Appartamento luminoso con vista mare, dotato di ampio terrazzo e finiture moderne.",
       tagDescrizione: ["terrazzo", "vista mare", "luminoso", "moderno", "arredato", "climatizzato"],
       prezzo: 400000,
-      quadratura: 90,
       numeroVisualizzazioni: 80,
       tipologiaContratto: "Vendita",
       speseCondominiali: 30,
@@ -135,6 +135,7 @@ offertaValueForm = new FormGroup({
     modeVisita: new FormControl('In Presenza', Validators.required)
   });
 const control = this.visiteForm.get('dataVisita');
+  this.superficie= getSuperficie(this.immobile);
 
 control?.valueChanges.subscribe(() => {
   control.updateValueAndValidity({ emitEvent: false });

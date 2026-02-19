@@ -4,6 +4,7 @@ import { Modal } from 'bootstrap';
 import { Subscription } from 'rxjs';
 import { CreaImmobileService } from '../../_services/crea-immobile.service';
 import { CommonModule } from '@angular/common';
+import { getSuperficie } from '../../../../data';
 
 @Component({
   selector: 'app-summary',
@@ -21,6 +22,7 @@ export class SummaryComponent implements OnDestroy {
 
   immobile = this.creaImmobileService.immobile;
   riepilogoTags = this.creaImmobileService.getRiepilogoTags();
+  superficie= getSuperficie(this.immobile);
 
 
   modalInstance?: Modal;
@@ -43,6 +45,7 @@ export class SummaryComponent implements OnDestroy {
       .subscribe({
         next: (id) => {
           // upload immagini
+          
           this.creaImmobileService['immobiliService']
             .caricaFoto(this.immobile.immagini, Number(id));
 

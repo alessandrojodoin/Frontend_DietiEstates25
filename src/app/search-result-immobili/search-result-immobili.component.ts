@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Immobile } from '../../../data';
+import { getSuperficie, Immobile } from '../../../data';
 import Instant from 'ts-time/Instant';
 import { CommonModule } from '@angular/common'; 
 
@@ -11,8 +11,28 @@ import { CommonModule } from '@angular/common';
   styleUrl: './search-result-immobili.component.scss'
 })
 export class SearchResultImmobiliComponent {
+
     immobiliArray: Immobile[] = [];
 
-  @Input() immobili: Immobile[] = [];
+    estraiSuperficie() {
+      for(let immobile of this.immobiliArray){
+        
+        immobile.superficie = getSuperficie(immobile);
+        
+        
+      }
+    
+    }
+
+  @Input()
+set immobili(value: Immobile[]) {
+  this._immobili = value;
+  this.estraiSuperficie();
+}
+get immobili(): Immobile[] {
+  return this._immobili;
+}
+private _immobili: Immobile[] = [];
+
 
 }
