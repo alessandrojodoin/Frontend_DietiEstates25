@@ -39,26 +39,24 @@ export class ImmobiliService {
     "prezzo": 2000
   }
 
-  private getAuthHeaders() {
-    const token = this.authService.getToken();
-    if (token) {
-      return {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'authorization': `Bearer ${token}`
-        }),
-        responseType: 'json' as const,
-      }
-    } else {
-      return {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'authorization': ``
-        }),
-        responseType: 'json' as const,
-      }
-    }
+private getAuthHeaders(isMultipart: boolean = false) {
+  const token = this.authService.getToken();
+
+  let headersConfig: any = {
+    authorization: token ? `Bearer ${token}` : ''
+  };
+
+  
+  if (!isMultipart) {
+    headersConfig['Content-Type'] = 'application/json';
   }
+
+  return {
+    headers: new HttpHeaders(headersConfig),
+    responseType: 'json' as const
+  };
+}
+
 
 
   private jsonHttpOptions = {
@@ -110,22 +108,24 @@ export class ImmobiliService {
   }
 
 
-  caricaFoto(immagini: { file: File }[], immobileId: number) {
-    const url = `${this.url}/immobile/${immobileId}/image`;
-    const headers = this.getAuthHeaders().headers; 
+caricaFoto(immagini: { file: File }[], immobileId: number) {
+  const url = `${this.url}/immobile/${immobileId}/image`;
 
-    for (const imageObj of immagini) {
-      const file: File = imageObj.file;
+  for (const imageObj of immagini) {
+    const formData = new FormData();
+    formData.append('file', imageObj.file);
 
-      this.http.post(url, file, {
-        headers,
-        responseType: 'text'
-      }).subscribe({
-        next: () => console.log('Upload OK'),
-        error: err => console.error(err)
-      });
-    }
+    this.http.post(url, formData, {
+  headers: this.getAuthHeaders(true).headers
+   
+  
+})
+.subscribe({
+      next: () => console.log('Upload OK'),
+      error: err => console.error(err)
+    });
   }
+}
 
 
   getFotoImmobile(immobileId: number, imageId: number) {

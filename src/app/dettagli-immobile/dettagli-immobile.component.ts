@@ -39,7 +39,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
 
   mostraPopup: boolean = false;
   statoPopup: StatoPopup = 'prenotazione';
-  now: Date = new Date(); // oggi
+  now: Date = new Date();
   twoWeeksLater: Date = new Date(new Date().setDate(new Date().getDate() + 14)); // oggi + 14 giorni
   
 
@@ -175,12 +175,15 @@ control?.valueChanges.subscribe(() => {
         }
       });
 
-  this.immobiliService.postVisualizzazione(immobileID).subscribe({
-     next: (data: any) => {
-        console.log("postVisualizzazione: ", data);
-    }
-  })
+      if(this.auth.getUserType() === 'cliente'){
+        this.immobiliService.postVisualizzazione(immobileID).subscribe({
+        next: (data: any) => {
+          console.log("postVisualizzazione: ", data);
+        }
+        });
 
+      }
+  
   }
 
     async ngAfterViewInit() {
