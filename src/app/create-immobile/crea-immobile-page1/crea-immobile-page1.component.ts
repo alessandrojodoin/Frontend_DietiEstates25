@@ -273,6 +273,8 @@ checkProvincia() {
     this.creaImmobileService.immobile.latitudine = this.currentMarker?.getPosition()?.lat();
     this.creaImmobileService.immobile.longitudine = this.currentMarker?.getPosition()?.lng();
  
+    console.log("LAT: ", this.creaImmobileService.immobile.latitudine);
+    console.log("LNG: ", this.creaImmobileService.immobile.longitudine);
   }
 
 

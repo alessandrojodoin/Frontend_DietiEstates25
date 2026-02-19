@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class SearchBarComponent {
 
-  selected: 'Compra' | 'Affitto' = 'Compra';
+  selected: 'vendita' | 'Affitto' = 'vendita';
   filtersApplied = false;
   showFilters = false;
   SearchFiltersService = inject(SearchFiltersService);
@@ -50,7 +50,7 @@ export class SearchBarComponent {
   });
 
 
-  homelessBuys() { this.selected = 'Compra'; }
+  homelessBuys() { this.selected = 'vendita'; }
   homelessRents() { this.selected = 'Affitto'; }
 
 

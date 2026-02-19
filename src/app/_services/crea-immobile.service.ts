@@ -51,32 +51,7 @@ export class CreaImmobileService {
    immagini: [],
  }; 
 
-  /*passaDatiImmobile() {
-    this.immobiliService.createImmobile({
-      tipoImmobile: this.immobile.tipoImmobile!,
-      latitudine: '40.82852062332247',
-      longitudine: '14.190889915493532',
-      indirizzo: `${this.immobile.indirizzo?.via}, ${this.immobile.indirizzo?.citta}, ${this.immobile.indirizzo?.provincia}`,
-      citta: this.immobile.indirizzo!.citta,
-      provincia: this.immobile.indirizzo!.provincia,
-      tags: this.immobile.tagDescrizione.map(tag => {
-        return this.convertTag(tag);
-      }),
-      tipologiaContratto: this.immobile.tipologiaContratto!,
-      speseCondominiali: this.immobile.speseCondominiali!,
-      prezzo: this.immobile.prezzo!
-    }).subscribe({
-      next: (response) => {
-        console.log("Immobile creato con successo. ID:", response);
-        this.immobiliService.caricaFoto(this.immobile.immagini, Number(response))
-      },
-      error: (error) => {
-        console.error("Errore durante la creazione dell'immobile:", error);
-      }
-    });
-
-  }
-*/
+  
 reset() {
   this.immobile = {
     nome: undefined,
@@ -99,8 +74,8 @@ reset() {
     nome: this.immobile.nome!,
     descrizione: this.immobile.descrizione!,
     tipoImmobile: this.immobile.tipoImmobile!,
-    latitudine: '40.82852062332247',
-    longitudine: '14.190889915493532',
+    latitudine: String(this.immobile.latitudine!),
+    longitudine: String(this.immobile.longitudine!),
     via: this.immobile.indirizzo!.via,
     citta: this.immobile.indirizzo!.citta,
     provincia: this.immobile.indirizzo!.provincia,

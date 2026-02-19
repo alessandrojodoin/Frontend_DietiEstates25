@@ -16,6 +16,7 @@ export class SearchResultMapComponent implements AfterViewInit {
 
   @Input()
 set immobili(value: Immobile[]) {
+  console.log("Aggiornamento immobili per la mappa:", value);
   this._immobili = value;
   if (this.map) {
     this.updateMap();
@@ -64,6 +65,7 @@ private _immobili: Immobile[] = [];
         title: immobile.indirizzo.nome
       });
 
+      console.log(`Aggiunto marker per immobile: ${immobile.nome} (${immobile.latitudine}, ${immobile.longitudine})`);
       marker.addListener("click", () => {
         new google.maps.InfoWindow({
           content: `
