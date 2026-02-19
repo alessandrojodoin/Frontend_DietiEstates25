@@ -1,16 +1,28 @@
-    // fallback defaults (in case variables.scss doesn't define them)
+// fallback defaults (in case variables.scss doesn't define them)
 $card-padding: 18px !default;
-$thumb-w: 260px !default;
-$thumb-h: 96px !default;
 $gap: 18px !default;
-/* increased radius for more rounded look */
 $card-radius: 18px !default;
-$bg: #eaf6ff !default; /* pale blue like screenshot */
-$thumb-color: #9de0f6 !default; /* blue block */
+$bg: #eaf6ff !default; /* pale blue */
 $border-color: #bfcbd6 !default;
 $text-muted: #666 !default;
 $title-color: #0b3b5a !default;
 
+// No immobili placeholder
+.no-immobili {
+  margin-top: 20px;
+  padding: 24px;
+  border: 1px dashed #b5beb9;
+  border-radius: 12px;
+  text-align: center;
+  color: #4b5563;
+
+  p {
+    margin-bottom: 12px;
+    font-size: 1rem;
+  }
+}
+
+// Container cards
 .immobili {
   display: flex;
   flex-direction: column;
@@ -18,50 +30,40 @@ $title-color: #0b3b5a !default;
   padding: 16px;
 }
 
-/* Each card: rounded pale-blue rectangle with left thumbnail and right text */
+// Each card: image + details
 .immobile-card {
-  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: $card-padding;
+  border-radius: $card-radius;
   background: $bg;
   border: 1px solid $border-color;
-  border-radius: $card-radius;
-  padding: $card-padding;
-  padding-left: calc(#{$thumb-w} + #{$gap} + #{$card-padding}); /* reserve space for thumb */
   box-shadow: 0 2px 0 rgba(0,0,0,0.03) inset;
-  min-height: max(#{$thumb-h}, 120px);
-  display: block;
+  min-height: 120px;
   overflow: hidden;
-
-  /* add vertical spacing between cards (works even when cards are not inside .immobili) */
   margin-bottom: 18px;
 
-  /* ensure last card doesn't add extra space */
   &:last-child {
     margin-bottom: 0;
   }
 
-  /* left thumbnail drawn by pseudo-element so no HTML changes needed */
-  &::before{
-    content: "";
-    position: absolute;
-    left: $card-padding;
-    top: 50%;
-    transform: translateY(-50%);
-    width: $thumb-w;
-    height: $thumb-h;
-    background: linear-gradient(180deg, $thumb-color 0%, lighten($thumb-color,6%) 100%);
-    /* match the increased card rounding but slightly smaller so it sits nicely inside */
-    border-radius: ( $card-radius - 8px );
-    box-shadow: 0 0 0 6px rgba(255,255,255,0.25) inset, 0 1px 0 rgba(0,0,0,0.03);
+  // Thumbnail image
+  .immobile-thumb {
+    width: 120px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 12px;
+    flex-shrink: 0; // non si rimpicciolisce
   }
 
-  .immobile-details{
-    /* text sits to the right of the thumbnail (padding-left above) */
+  // Details
+  .immobile-details {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    flex: 1; // occupa lo spazio rimanente
 
-    .immobile-title{
+    .immobile-title {
       margin: 0 0 6px 0;
       font-size: 15px;
       color: $title-color;
@@ -74,7 +76,7 @@ $title-color: #0b3b5a !default;
       text-overflow: ellipsis;
     }
 
-    .immobile-description{
+    .immobile-description {
       margin: 0 0 8px 0;
       font-size: 13px;
       color: $text-muted;
@@ -98,23 +100,20 @@ $title-color: #0b3b5a !default;
   }
 }
 
-/* responsive: stack thumb on narrow screens */
+// Responsive: stack image on top
 @media (max-width: 680px) {
-  .immobile-card{
-    padding-left: $card-padding;
+  .immobile-card {
+    flex-direction: column;
     min-height: auto;
-    &::before {
-      position: relative;
-      left: 0;
-      top: 0;
-      transform: none;
+
+    .immobile-thumb {
+      width: 100%;
+      height: 200px;
       margin-bottom: $gap;
-      display: block;
-      border-radius: 8px; /* keep mobile thumb rounded */
     }
 
     .immobile-details {
-      margin-top: $gap;
+      margin-top: 0;
     }
   }
 }

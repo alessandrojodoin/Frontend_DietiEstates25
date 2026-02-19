@@ -1,35 +1,41 @@
-.results-layout { 
-    display: flex; 
-    width: 100%; 
-    height: 100vh; 
-    margin: 0; 
-    padding: 0; 
-    overflow: hidden; 
-} 
-
-
-.list-section { 
-    width: 40%; 
-    overflow-y: auto; 
-    background: #f6f9fc; 
-} 
-
-
-.map-section {
-  width: 60%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  border: none;
-
-  display: flex;
-  flex-direction: column;
+/* Importantissimo per evitare sforamenti */
+* {
+  box-sizing: border-box;
 }
 
+.results-layout { 
+  display: flex; 
+  width: 100%; 
+  height: 100dvh; /* meglio di 100vh */
+  margin: 0; 
+  padding: 0; 
+  overflow: hidden; 
+}
+
+/* Evita che flex items sforino */
+.list-section,
+.map-section {
+  min-width: 0;
+  min-height: 0;
+}
+
+.list-section { 
+  flex: 0 0 40%; /* meglio di width */
+  overflow-y: auto; 
+  background: #f6f9fc; 
+  margin-left: 20px;
+}
+
+.map-section {
+  flex: 1; /* prende tutto lo spazio restante */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 
 .map-section app-search-result-map {
-  flex: 1 1 auto;
-  height: 100%;
+  flex: 1;
   width: 100%;
+  height: 100%;
   display: block;
 }

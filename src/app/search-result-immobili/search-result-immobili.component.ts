@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { getSuperficie, Immobile } from '../../../data';
 import Instant from 'ts-time/Instant';
 import { CommonModule } from '@angular/common'; 
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-search-result-immobili',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, RouterLink],
   templateUrl: './search-result-immobili.component.html',
   styleUrl: './search-result-immobili.component.scss'
 })

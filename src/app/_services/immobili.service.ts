@@ -267,7 +267,6 @@ getImmobileListFiltri(
         provincia: RESTImmobile.immobile.indirizzo.provincia,
         nome: ""
       },
-      quadratura: RESTImmobile.quadratura,
       tagDescrizione: RESTImmobile.immobile.tags,
       offerte: [],
       immagini: [],

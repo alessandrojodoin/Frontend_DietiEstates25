@@ -1,16 +1,20 @@
-<div class="immobili">
-    <div *ngIf="immobili.length === 0" class="no-immobili">
-      <p>Nessun immobile trovato.</p>
-    </div>
-</div>
-
-
 <div *ngFor="let immobile of immobili" class="immobile-card">
-    <div class="immobile-details">
-        <h3 class="immobile-title">{{ immobile.indirizzo.nome }}</h3>
-        <p class="immobile-description">{{ immobile.descrizione }}</p>
-        <p class="immobile-price">Prezzo: €{{ immobile.prezzo | number }}</p>
-        <p class="immobile-location">Località: {{ immobile.indirizzo.citta }}</p>
-        <p class="immobile-type">Tipo: {{ immobile.tipoImmobile }}</p>
-        <p class="immobile-superficie">Superficie: {{ immobile.superficie }} m²</p>
-    </div>
+  <img
+    *ngIf="immobile && immobile.immagini.length > 0"
+    [src]="immobile.immagini[0]"
+    alt="Foto immobile"
+    class="immobile-thumb"
+  />
+
+  <div class="immobile-details">
+    <a class="immobile-title" [routerLink]="['/dettagli-immobile', immobile.id]">
+      {{ immobile.nome }}
+    </a>
+    <p class="immobile-description">{{ immobile.descrizione }}</p>
+    <p class="immobile-price">Prezzo: €{{ immobile.prezzo | number:'1.0-0' }}</p>
+    <p class="immobile-location">Località: {{ immobile.indirizzo?.citta }}</p>
+    <p class="immobile-type">Tipo: {{ immobile.tipoImmobile }}</p>
+    <p class="immobile-superficie">Superficie: {{ immobile.superficie || 0 }} m²</p>
+    
+  </div>
+</div>
