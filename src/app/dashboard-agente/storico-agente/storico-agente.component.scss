@@ -64,13 +64,13 @@ h2 {
 
 
 //TASTO PER ESPORTARE
-.exportCSV {
+.btn-export {
   display: flex;
   justify-content: flex-end; /* allineato a destra */
   margin: 20px 0;
 }
 
-.exportCSV button {
+.btn-export button {
   background: #ffffff;
   color: #2490CA;
   border: 2px solid #2490CA;
@@ -85,11 +85,15 @@ h2 {
   transition: all 0.2s ease;
 }
 
-.exportCSV button:hover {
+.btn-export button + button {
+  margin-left: 10px; /* distanza tra i due bottoni */
+}
+
+.btn-export button:hover {
   background: #2490CA;
   color: #ffffff;
 }
 
-.exportCSV button:active {
+.btn-export button:active {
   transform: scale(0.96);
 }

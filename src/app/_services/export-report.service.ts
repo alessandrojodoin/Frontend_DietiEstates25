@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import { AuthService } from './auth.service';
 
-//(pdfMake as any).vfs = (pdfFonts as any).vfs;
+(pdfMake as any).default.vfs = (pdfFonts as any).default.vfs;
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExportReportService {
+  authService= inject(AuthService);
 
   exportCSV(totContratti: number, totVenduti: number, totAffittati: number, totOfferte: number, totVisualizzazioni: number, totPrenotazioni: number) {
     const rows = [
@@ -28,30 +30,58 @@ export class ExportReportService {
     URL.revokeObjectURL(url);
 }
 
+exportPDF(
+  totContratti: number,
+  totVenduti: number,
+  totAffittati: number,
+  totOfferte: number,
+  totVisualizzazioni: number,
+  totPrenotazioni: number
+) {
 
-/*exportPDF() {
-  const docDefinition = {
+  const docDefinition: any = {
     content: [
-      { text: 'Report Immobiliare', style: 'header' },
-      { text: 'Statistiche generali', style: 'subheader' },
+      { text: `Report Immobiliare Agente ${this.authService.getUsername()}`, style: 'header' },
+      { text: 'Statistiche Generali', style: 'subheader' },
       {
         table: {
+          widths: ['*','*','*','*','*','*'],
           body: [
-            ['Immobili Totali', 'Venduti', 'Affittati', 'Visualizzazioni Totali'],
-            ['53', '12', '8', '1284']
+            [
+              'Immobili Totali',
+              'Venduti',
+              'Affittati',
+              'Totale Offerte',
+              'Totale Visualizzazioni',
+              'Totale Prenotazioni'
+            ],
+            [
+              totContratti,
+              totVenduti,
+              totAffittati,
+              totOfferte,
+              totVisualizzazioni,
+              totPrenotazioni
+            ]
           ]
         }
       }
     ],
     styles: {
-      header: { fontSize: 20, bold: true },
-      subheader: { fontSize: 14, margin: [0, 10, 0, 5] }
+      header: {
+        fontSize: 20,
+        bold: true,
+        margin: [0, 0, 0, 10]
+      },
+      subheader: {
+        fontSize: 14,
+        margin: [0, 10, 0, 5]
+      }
     }
   };
 
-  pdfMake.createPdf(docDefinition).download('report_immobiliare.pdf');
-}*/
-
+  (pdfMake as any).createPdf(docDefinition).download('report-immobiliare.pdf');
+}
 
 
 }

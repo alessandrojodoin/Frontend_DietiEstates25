@@ -172,4 +172,17 @@ export class StoricoAgenteComponent implements AfterViewInit {
     const contratti = this.contrattiConclusi();
     this.export.exportCSV(contratti.totali, contratti.venduti, contratti.affittati, this.totaleOfferte(), this.totaleVisualizzazioni(), this.totalePrenotazioni());
   }
+
+  exportPDF() {
+  const contratti = this.contrattiConclusi();
+
+  this.export.exportPDF(
+    contratti.totali,
+    contratti.venduti,
+    contratti.affittati,
+    this.totaleOfferte(),
+    this.totaleVisualizzazioni(),
+    this.totalePrenotazioni()
+  );
+}
 }
