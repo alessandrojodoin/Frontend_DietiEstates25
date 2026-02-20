@@ -28,7 +28,7 @@ export class SearchFiltersService {
 
 
 arrayImmobili: any[] = [];
-
+ricercaFatta: boolean = false;
 
 
 

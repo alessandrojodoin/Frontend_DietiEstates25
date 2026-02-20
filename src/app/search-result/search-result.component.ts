@@ -26,11 +26,15 @@ export class SearchResultComponent {
     const nuoviImmobili: Immobile[] = [];
 
     // fallback se arrayImmobili è vuoto
-    const array = this.SearchFiltersService.arrayImmobili ?? [];
-
-    for (let immobile of array) {
-      nuoviImmobili.push(await this.immobileService.convertRESTImmobile(immobile));
+    if(this.SearchFiltersService.ricercaFatta === true){
+      const array = this.SearchFiltersService.arrayImmobili ?? [];
+      
+      for (let immobile of array) {
+        nuoviImmobili.push(await this.immobileService.convertRESTImmobile(immobile));
+      }
     }
+    
+
 
     this.immobili = nuoviImmobili;
     this.loading = false;

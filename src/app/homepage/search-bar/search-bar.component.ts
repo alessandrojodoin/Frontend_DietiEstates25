@@ -120,6 +120,7 @@ export class SearchBarComponent {
       this.selected)
       .subscribe(immobili => {
         console.log("Immobili trovati:", immobili);
+        this.SearchFiltersService.ricercaFatta = true;
         this.SearchFiltersService.arrayImmobili = immobili;
         this.router.navigate(['/search-result'], { queryParams: { type: this.selected.toLowerCase() }});
       });

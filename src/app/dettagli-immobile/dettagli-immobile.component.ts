@@ -77,37 +77,7 @@ contattiForm = new FormGroup({
   )
 })
 
-  immobile: Immobile =     {
-      nome: "testName",
-      id: 1,
-      tipoImmobile: "Appartamento",
-      longitudine: 14.3759,
-      latitudine: 40.6279,
-      indirizzo: {
-        nome: "Corso Italia 25, Sorrento",
-        via: "Corso Italia 25",
-        citta: "Sorrento",
-        provincia: "Napoli",
-      },
-      descrizione: "Appartamento luminoso con vista mare, dotato di ampio terrazzo e finiture moderne.",
-      tagDescrizione: ["terrazzo", "vista mare", "luminoso", "moderno", "arredato", "climatizzato"],
-      prezzo: 400000,
-      numeroVisualizzazioni: 80,
-      tipologiaContratto: "Vendita",
-      speseCondominiali: 30,
-      offerte: [],
-      agenteImmobiliare: {
-        username: "agente2",
-        email: "agente2@example.com",
-        nome: "Luigi",
-        cognome: "Verdi",
-        telefono: "0987654321",
-        agenziaImmobiliare: "Sorrento Immobiliare"
-      },
-      isVenduto: false,
-      istanteCreazione: Instant.now(),
-      immagini: ["img1.jpg", "img2.jpg"]
-    }
+  immobile: Immobile = {} as Immobile;
 
 offertaValueForm = new FormGroup({
       value: new FormControl('',

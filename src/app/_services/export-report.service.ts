@@ -10,10 +10,10 @@ import * as pdfFonts from "pdfmake/build/vfs_fonts";
 })
 export class ExportReportService {
 
-  exportCSV(totContratti: number, totVenduti: number, totAffittati: number, totOfferte: number, totVisualizzazioni: number) {
+  exportCSV(totContratti: number, totVenduti: number, totAffittati: number, totOfferte: number, totVisualizzazioni: number, totPrenotazioni: number) {
     const rows = [
-      ["Immobili Totali", "Immobili Venduti",  "Immobili Affittati", "Totale Offerte Ricevute", "Totale Visualizzazioni Immobili", "Totale Prenotazioni Ricevute"],
-      [totContratti, totVenduti, totAffittati, totOfferte, totVisualizzazioni, 0]
+      ["Immobili_Totali", "Immobili_Venduti",  "Immobili_Affittati", "Totale_Offerte_Ricevute", "Totale_Visualizzazioni_Immobili", "Totale_Prenotazioni_Ricevute"],
+      [totContratti, totVenduti, totAffittati, totOfferte, totVisualizzazioni, totPrenotazioni]
     ];
   
    let csvContent = rows.map(e => e.join(",")).join("\n");

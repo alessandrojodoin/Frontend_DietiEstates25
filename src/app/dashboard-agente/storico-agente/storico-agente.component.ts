@@ -5,6 +5,7 @@ import { AuthService } from '../../_services/auth.service';
 import { OfferteServiceService } from '../../_services/offerte-service.service';
 import { firstValueFrom } from 'rxjs';
 import { Chart, registerables } from 'chart.js';
+import { VisiteService } from '../../_services/visite.service';
 Chart.register(...registerables);
 
 @Component({
@@ -20,6 +21,7 @@ export class StoricoAgenteComponent implements AfterViewInit {
   immobileService = inject(ImmobiliService);
   offerteService = inject(OfferteServiceService);
   authService = inject(AuthService);
+  visiteService = inject(VisiteService);
   ImmobiliList: any[] = [];
 
   // riferimento al grafico
@@ -117,6 +119,20 @@ export class StoricoAgenteComponent implements AfterViewInit {
     return totalVisualizzazioni;
   }
 
+  public totalePrenotazioni() {
+  let totalPrenotazioni = 0;
+  for (let immobile of this.ImmobiliList) { 
+    this.visiteService.getVisiteAgente().subscribe(visite => {
+      for(let visita of visite){
+        if(visita.immobileId === immobile.id){
+          totalPrenotazioni++;
+        }
+      }
+    });
+  }
+  return totalPrenotazioni;
+}
+
   // ---------------- Grafico ----------------
 
   private inizializzaGrafico() {
@@ -154,6 +170,6 @@ export class StoricoAgenteComponent implements AfterViewInit {
   exportCSV() {
     
     const contratti = this.contrattiConclusi();
-    this.export.exportCSV(contratti.totali, contratti.venduti, contratti.affittati, this.totaleOfferte(), this.totaleVisualizzazioni());
+    this.export.exportCSV(contratti.totali, contratti.venduti, contratti.affittati, this.totaleOfferte(), this.totaleVisualizzazioni(), this.totalePrenotazioni());
   }
 }
