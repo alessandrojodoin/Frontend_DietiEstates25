@@ -17,6 +17,7 @@ export class SearchResultComponent {
   SearchFiltersService = inject(SearchFiltersService);
   immobileService = inject(ImmobiliService);
 
+
   immobili: Immobile[] = [];
   loading = true;
 
@@ -31,6 +32,14 @@ export class SearchResultComponent {
       
       for (let immobile of array) {
         nuoviImmobili.push(await this.immobileService.convertRESTImmobile(immobile));
+      }
+    }else{
+      const immobili = localStorage.getItem('immobili');
+      if (immobili) {
+        const parsedImmobili = JSON.parse(immobili);
+        for (let immobile of parsedImmobili) {
+          nuoviImmobili.push(await this.immobileService.convertRESTImmobile(immobile));
+        }
       }
     }
     

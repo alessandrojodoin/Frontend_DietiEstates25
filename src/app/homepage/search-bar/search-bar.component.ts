@@ -122,6 +122,7 @@ export class SearchBarComponent {
         console.log("Immobili trovati:", immobili);
         this.SearchFiltersService.ricercaFatta = true;
         this.SearchFiltersService.arrayImmobili = immobili;
+        localStorage.setItem('immobili', JSON.stringify(immobili));
         this.router.navigate(['/search-result'], { queryParams: { type: this.selected.toLowerCase() }});
       });
   }
