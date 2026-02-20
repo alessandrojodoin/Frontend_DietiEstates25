@@ -1,15 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { SearchResultImmobiliComponent } from '../search-result-immobili/search-result-immobili.component';
 import { SearchResultMapComponent } from '../search-result-map/search-result-map.component';
-import Instant from 'ts-time/Instant';
 import { Immobile } from '../../../data';
 import { SearchFiltersService } from '../_services/search-filters.service';
 import { ImmobiliService } from '../_services/immobili.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search-result',
   standalone: true,
-  imports: [SearchResultImmobiliComponent, SearchResultMapComponent],
+  imports: [SearchResultImmobiliComponent, SearchResultMapComponent, CommonModule],
   templateUrl: './search-result.component.html',
   styleUrl: './search-result.component.scss'
 })
@@ -17,20 +17,22 @@ export class SearchResultComponent {
   SearchFiltersService = inject(SearchFiltersService);
   immobileService = inject(ImmobiliService);
 
-  immobili: any[] = []; 
+  immobili: Immobile[] = [];
+  loading = true;
 
   async ngOnInit() {
-    
-    console.log("Immobili da visualizzare:", this.SearchFiltersService.arrayImmobili);
+    this.loading = true;
+
     const nuoviImmobili: Immobile[] = [];
 
-    for (let immobile of this.SearchFiltersService.arrayImmobili) {
-      nuoviImmobili.push( await this.immobileService.convertRESTImmobile(immobile));
+    // fallback se arrayImmobili è vuoto
+    const array = this.SearchFiltersService.arrayImmobili ?? [];
+
+    for (let immobile of array) {
+      nuoviImmobili.push(await this.immobileService.convertRESTImmobile(immobile));
     }
 
-    this.immobili = [...this.immobili, ...nuoviImmobili];
-
-}
-  
-
+    this.immobili = nuoviImmobili;
+    this.loading = false;
+  }
 }

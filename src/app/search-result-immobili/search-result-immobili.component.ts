@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { getSuperficie, Immobile } from '../../../data';
 import Instant from 'ts-time/Instant';
 import { CommonModule } from '@angular/common'; 
 import { RouterLink, RouterModule } from '@angular/router';
+import { ImmobiliService } from '../_services/immobili.service';
 
 @Component({
   selector: 'app-search-result-immobili',
@@ -14,21 +15,24 @@ import { RouterLink, RouterModule } from '@angular/router';
 export class SearchResultImmobiliComponent {
 
     immobiliArray: Immobile[] = [];
+    immobiliService = inject(ImmobiliService);
 
     estraiSuperficie() {
-      for(let immobile of this.immobiliArray){
-        
-        immobile.superficie = getSuperficie(immobile);
-        
-        
+      for(let immobile of this.immobili){
+        immobile.superficie = getSuperficie(immobile);     
       }
-    
     }
 
-  @Input()
+@Input()
 set immobili(value: Immobile[]) {
   this._immobili = value;
   this.estraiSuperficie();
+   for (let immobile of this.immobili) {
+        this.immobiliService.getImageList(immobile.id).subscribe((imagesIds: Number[]) => {
+          immobile.immagini = imagesIds;
+        });
+    };
+    console.log(this.immobili);
 }
 get immobili(): Immobile[] {
   return this._immobili;

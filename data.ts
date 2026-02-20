@@ -28,7 +28,7 @@ export type Immobile = {
     esisteOffertaAccettata?: boolean;
     superficie?: number | null;
     istanteCreazione: Instant;
-    immagini: string[];
+    immagini: any[];
 }
 
 export function getSuperficie(immobile: any): number | null {

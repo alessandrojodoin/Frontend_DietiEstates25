@@ -1,7 +1,7 @@
 <div *ngFor="let immobile of immobili" class="immobile-card">
   <img
     *ngIf="immobile && immobile.immagini.length > 0"
-    [src]="immobile.immagini[0]"
+    [src]="'http://localhost:8080/api/1.0/immobile/' + immobile.id + '/image/' + immobile.immagini[0]"
     alt="Foto immobile"
     class="immobile-thumb"
   />

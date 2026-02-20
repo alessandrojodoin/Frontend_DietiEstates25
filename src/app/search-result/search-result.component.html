@@ -1,4 +1,12 @@
-<div class="results-layout">
+<div *ngIf="loading" class="loader">
+  <p>Caricamento immobili...</p>
+</div>
+
+<div *ngIf="!loading && immobili.length === 0" class="empty-state">
+  <p>Nessun immobile trovato.</p>
+</div>
+
+<div class="results-layout" *ngIf="!loading && immobili.length > 0">
   <div class="list-section">
     <app-search-result-immobili [immobili]="immobili"></app-search-result-immobili>
   </div>

@@ -22,7 +22,7 @@ export class SummaryComponent implements OnDestroy {
 
   immobile = this.creaImmobileService.immobile;
   riepilogoTags = this.creaImmobileService.getRiepilogoTags();
-  superficie= getSuperficie(this.immobile);
+    superficie: any;
 
 
   modalInstance?: Modal;
@@ -30,6 +30,10 @@ export class SummaryComponent implements OnDestroy {
 
   isSubmitting = false;
   error?: string;
+
+  ngOnInit() {
+    this.superficie= getSuperficie(this.immobile);
+  }
 
   onAnnulla() {
     this.goToPage.emit(4);

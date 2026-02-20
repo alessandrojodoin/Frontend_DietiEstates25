@@ -135,7 +135,6 @@ offertaValueForm = new FormGroup({
     modeVisita: new FormControl('In Presenza', Validators.required)
   });
 const control = this.visiteForm.get('dataVisita');
-  this.superficie= getSuperficie(this.immobile);
 
 control?.valueChanges.subscribe(() => {
   control.updateValueAndValidity({ emitEvent: false });
@@ -155,6 +154,7 @@ control?.valueChanges.subscribe(() => {
 
           this.immobile = await this.immobiliService.convertRESTImmobile(data);
           this.immobileTrovato = true;
+          this.superficie= getSuperficie(this.immobile);
           this.initMap().then(() => {
 
            this.updateMap();
@@ -168,6 +168,7 @@ control?.valueChanges.subscribe(() => {
          this.updateMap();
         }
       });
+
 
       this.immobiliService.getImageList(immobileID).subscribe({
         next: (imageIds) => {
