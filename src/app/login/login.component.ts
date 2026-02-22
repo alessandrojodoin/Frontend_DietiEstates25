@@ -40,14 +40,10 @@ export class LoginComponent {
 
   this.authService.login({ username, password })
     .then(() => {
-      this.toastr.success("Logged in successfully!", "Success", { positionClass: 'toast-center-center'});
-
-      // Reindirizza a Google link solo se necessario
-      if (this.authService.authState.userType === 'AgenteImmobiliare' && !this.authService.authState.googleLinked) {
-        this.router.navigate(['/link-google']);
-      } else {
-        this.router.navigate(['/']); // già collegato -> vai alla home
-      }
+      this.toastr.success("Logged in successfully!", "Success", { positionClass: 'toast-center-center'});  
+      
+        this.router.navigate(['/']); 
+      
     })
     .catch((error) => {
       if (error instanceof HttpErrorResponse) {
@@ -60,7 +56,9 @@ export class LoginComponent {
 
   
 
-
+googleAccess() {
+  this.router.navigate(['/link-google']);
+}
   
 
 
