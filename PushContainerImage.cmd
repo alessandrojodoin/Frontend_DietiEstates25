@@ -1,0 +1,3 @@
+docker image build -t frontend_dietiestates25 .
+docker tag frontend_dietiestates25 dietiestatesrestapi.azurecr.io/frontend_dietiestates25
+docker push dietiestatesrestapi.azurecr.io/frontend_dietiestates25
