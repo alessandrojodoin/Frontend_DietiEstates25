@@ -1,16 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environment';
 
-import { catchError, EMPTY, map, shareReplay } from 'rxjs';
-import { response } from 'express';
-import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthRestService {
   //private auth = inject(AuthService);
   private http = inject(HttpClient);
-  private url = "http://localhost:8080/api/1.0";
+  private url = environment.URL_BACKEND;
 
   
 

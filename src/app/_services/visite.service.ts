@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class VisiteService {
 
   private http = inject(HttpClient);
   private authService = inject(AuthService);
-  private url = "http://localhost:8080/api/1.0";
+  private url = environment.URL_BACKEND;
 
   constructor() { }
 

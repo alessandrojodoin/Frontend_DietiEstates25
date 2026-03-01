@@ -1,10 +1,8 @@
 import { Injectable, inject } from '@angular/core';
-import { AgenteImmobiliare, Immobile, Indirizzo } from '../../../data';
+import { AgenteImmobiliare, Immobile } from '../../../data';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { map, catchError, EMPTY } from 'rxjs';
-import Instant from 'ts-time/Instant';
+import { environment } from '../environment';
 import { AuthService } from './auth.service';
-import { RedirectCommand } from '@angular/router';
 import { AuthRestService } from './auth-backend.service';
 
 @Injectable({
@@ -14,7 +12,7 @@ export class ImmobiliService {
   private http = inject(HttpClient);
   private authService = inject(AuthService);
   private rest = inject(AuthRestService);
-  private url = "http://localhost:8080/api/1.0";
+  private url = environment.URL_BACKEND;
 
   
 
