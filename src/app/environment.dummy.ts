@@ -3,5 +3,6 @@
 export const environment = {
   googleMapsApiKey: "Inserire chiave API di Google Maps qui dentro",
   production: false,
-  GOOGLE_CLIENT_ID: 'Inserire Client ID qui dentro'
+  GOOGLE_CLIENT_ID: 'Inserire Client ID qui dentro',
+  URL_BACKEND: 'http://localhost:8080/api/1.0'
 };
