@@ -33,10 +33,18 @@ export class ImmobiliListUtenteComponent {
           immobile.immagini = imagesIds;
         });
     };
+    this.sortImmobili();
    
   }
 
-
+ sortImmobili(){
+  this.immobiliList.sort((a, b) => {
+    const dateA = new Date(a.istanteVisualizzazione);
+    const dateB = new Date(b.istanteVisualizzazione);
+    return dateB.getTime() - dateA.getTime();
+  }
+  );
+ }
 
 ngOnInit(){
 
