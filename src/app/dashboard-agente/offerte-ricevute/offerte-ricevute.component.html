@@ -208,7 +208,7 @@
 
                       <button
                         class="btn-primary"
-                        (click)="concludiContratto(immobile.id)">
+                        (click)="apriPopupConcludiContratto(immobile.id); $event.stopPropagation()">
                         Concludi contratto
                       </button>
 
@@ -286,6 +286,19 @@
       <div class="popup-actions">
         <button class="btn-secondary" (click)="confermaRifiuto()">Sì</button>
         <button class="btn-primary" (click)="chiudiPopupEsterne()">No</button>
+      </div>
+    </div>
+  </div>
+}
+<!-- ================= POPUP CONCLUDI CONTRATTO ================= -->
+
+@if (mostraPopupConcludiContratto) {
+  <div class="overlay">
+    <div class="popup">
+      <h3>Sei sicuro di voler concludere definitivamente questo contratto? <br> L'immobile sarà poi mostrato nella sezione "Vendite"</h3>
+      <div class="popup-actions">
+        <button class="btn-secondary" (click)="confermaConcludiContratto()">Sì</button>
+        <button class="btn-primary" (click)="chiudiPopupConcludiContratto()">No</button>
       </div>
     </div>
   </div>

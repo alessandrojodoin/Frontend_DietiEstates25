@@ -28,8 +28,10 @@ export class OfferteRicevuteComponent {
   mostraPopup = false;
   mostraPopupOfferte = false;
   mostraPopupEsterne= false;
+  mostraPopupConcludiContratto = false;
   offertaSelezionataId: number | null = null;
   controproposta = 0;
+  immobileSelezionatoId: number | null = null;
   
   statoPopup: StatoPopup = 'chiedi';
   selected: 'attesa' | 'accettate' = 'attesa'; // default: "in attesa"
@@ -331,5 +333,19 @@ confermaInvio(immobileId: number) {
 }
 
 
+apriPopupConcludiContratto(immobileId: number){
+ this.immobileSelezionatoId = immobileId;
+ this.mostraPopupConcludiContratto = true;
+}
+
+chiudiPopupConcludiContratto(){
+  this.mostraPopupConcludiContratto = false;
+  this.offertaSelezionataId = null;
+}
+
+confermaConcludiContratto(){
+  this.concludiContratto(this.immobileSelezionatoId!);
+  this.chiudiPopupConcludiContratto();
+}
 
 }
