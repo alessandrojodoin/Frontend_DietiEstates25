@@ -143,14 +143,14 @@
             @for (offerta of immobile.offerte; track offerta) {
 
               @if (
-                (selected === 'attesa' && offerta.statoOfferta === 'InRevisione') ||
-                (selected === 'accettate' && (offerta.statoOfferta === 'Accettata' || offerta.statoOfferta === 'InRevisione') )
+                (selected === 'attesa' && offerta.statoOfferta === 'IN_REVISIONE') ||
+                (selected === 'accettate' && (offerta.statoOfferta === 'ACCETTATA' || offerta.statoOfferta === 'IN_REVISIONE') )
               ) {
 
                 <div
                   class="offerta-card"
                   [class.offerta-disabilitata]="
-                    selected === 'accettate' && offerta.statoOfferta !== 'Accettata'
+                    selected === 'accettate' && offerta.statoOfferta !== 'ACCETTATA'
                   ">
 
                   <div class="offerta-inner">
