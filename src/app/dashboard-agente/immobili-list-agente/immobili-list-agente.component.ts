@@ -3,6 +3,7 @@ import { ImmobiliService } from '../../_services/immobili.service';
 import { AuthService } from '../../_services/auth.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../environment';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class ImmobiliListAgenteComponent {
   auth = inject(AuthService);
   immobiliList: any[] = [];
   loading= false;
+  url = environment.URL_BACKEND;
 
 
   

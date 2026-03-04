@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { ImmobiliService } from '../../_services/immobili.service';
 import { AuthService } from '../../_services/auth.service';
 import { RouterLink } from '@angular/router';
+import { environment } from '../../environment';
 
 @Component({
   selector: 'app-immobili-list-utente',
@@ -14,7 +15,7 @@ import { RouterLink } from '@angular/router';
 export class ImmobiliListUtenteComponent {
   immobiliService= inject(ImmobiliService);
   auth= inject(AuthService)
-
+  url = environment.URL_BACKEND
   
   immobiliList: any[] = [];
   

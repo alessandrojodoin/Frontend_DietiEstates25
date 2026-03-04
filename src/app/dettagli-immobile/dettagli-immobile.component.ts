@@ -10,6 +10,7 @@ import { AuthService } from '../_services/auth.service';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { VisiteService } from '../_services/visite.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../environment';
 
 type StatoPopup = 'prenotazione' | 'riepilogo' | 'acknowledgment';
 
@@ -27,6 +28,7 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   markers: any[] = [];
   currentMarker: any = null;
   superficie: any = null;
+  url = environment.URL_BACKEND;
   
   immobiliService = inject(ImmobiliService);
   activatedRoute = inject(ActivatedRoute);

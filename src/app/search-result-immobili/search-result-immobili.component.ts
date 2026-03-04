@@ -4,6 +4,7 @@ import Instant from 'ts-time/Instant';
 import { CommonModule } from '@angular/common'; 
 import { RouterLink, RouterModule } from '@angular/router';
 import { ImmobiliService } from '../_services/immobili.service';
+import { environment } from '../environment';
 
 @Component({
   selector: 'app-search-result-immobili',
@@ -16,6 +17,7 @@ export class SearchResultImmobiliComponent {
 
     immobiliArray: Immobile[] = [];
     immobiliService = inject(ImmobiliService);
+    url = environment.URL_BACKEND
 
     estraiSuperficie() {
       for(let immobile of this.immobili){
