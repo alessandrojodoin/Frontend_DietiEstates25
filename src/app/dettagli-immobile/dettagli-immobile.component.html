@@ -11,11 +11,11 @@
   <section class="gallery-row">
 
     <div class="thumb left-thumb" aria-hidden="true">
-      <img [src]="'url + /immobile/' + this.immobile.id + '/image/' + imageIds[((currentlyDisplayedImageIndex - 1 + this.imageIds.length) % this.imageIds.length)]" >
+      <img [src]="url + '/immobile/' + this.immobile.id + '/image/' + imageIds[((currentlyDisplayedImageIndex - 1 + this.imageIds.length) % this.imageIds.length)]" >
     </div>
 
     <div class="main-image">
-      <img [src]="'url + /immobile/' + this.immobile.id + '/image/' + imageIds[currentlyDisplayedImageIndex]" >
+      <img [src]="url + '/immobile/' + this.immobile.id + '/image/' + imageIds[currentlyDisplayedImageIndex]" >
 
       <button class="nav prev"  (click)="previousImage()"  aria-hidden="true">‹</button>
       <button class="nav next" (click)="nextImage()" aria-hidden="true">›</button>
