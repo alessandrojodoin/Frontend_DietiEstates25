@@ -65,7 +65,7 @@ $title-color: #0b3b5a !default;
 
     .immobile-title {
       margin: 0 0 6px 0;
-      font-size: 15px;
+      font-size: 16px;
       color: $title-color;
       font-weight: 700;
       text-decoration: underline;
@@ -78,7 +78,7 @@ $title-color: #0b3b5a !default;
 
     .immobile-description {
       margin: 0 0 8px 0;
-      font-size: 13px;
+      font-size: 16px;
       color: $text-muted;
       max-height: 2.6em;
       overflow: hidden;
@@ -89,7 +89,7 @@ $title-color: #0b3b5a !default;
     .immobile-type,
     .immobile-superficie {
       margin: 2px 0;
-      font-size: 13px;
+      font-size: 16px;
       color: $text-muted;
     }
 
