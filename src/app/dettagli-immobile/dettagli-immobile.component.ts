@@ -149,7 +149,8 @@ control?.valueChanges.subscribe(() => {
         }
       });
 
-      if(this.auth.getUserType() === 'cliente'){
+
+      if(this.auth.getUserType() === 'Cliente'){
         this.immobiliService.postVisualizzazione(immobileID).subscribe({
         next: (data: any) => {
           console.log("postVisualizzazione: ", data);

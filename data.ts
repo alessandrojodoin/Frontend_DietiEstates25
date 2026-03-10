@@ -53,7 +53,7 @@ export type AgenteImmobiliare = {
     email: string;
     nome: string;
     cognome: string;
-    telefono: string;
+    numeroTelefonico: string;
     agenziaImmobiliare: string;
 }
 
