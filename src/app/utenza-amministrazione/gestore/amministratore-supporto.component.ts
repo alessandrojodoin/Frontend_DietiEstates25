@@ -54,6 +54,7 @@ export class AmministratoreSupportoComponent {
         this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
       }
       else{
+        console.log(this.authService.authState)
         this.rest.signupAmministratore({
           username: this.signupAmministratoreForm.value.username as string,
           password: this.signupAmministratoreForm.value.password as string,

@@ -29,6 +29,9 @@ export class SearchFiltersService {
 
 arrayImmobili: any[] = [];
 ricercaFatta: boolean = false;
+lastSelectedContractType: 'affitto' | 'vendita' = 'vendita';
+
+haveFiltersBeenSelected: boolean = false;
 
 
 

@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class SearchBarComponent {
 
-  selected: 'vendita' | 'Affitto' = 'vendita';
+  selected: 'vendita' | 'affitto' = 'vendita';
   filtersApplied = false;
   showFilters = false;
   SearchFiltersService = inject(SearchFiltersService);
@@ -49,9 +49,31 @@ export class SearchBarComponent {
     )
   });
 
+  ngOnInit(){
+    if(this.SearchFiltersService.haveFiltersBeenSelected){
+      this.selected = this.SearchFiltersService.lastSelectedContractType;
 
-  homelessBuys() { this.selected = 'vendita'; }
-  homelessRents() { this.selected = 'Affitto'; }
+      this.tempFilters.minPrice = this.SearchFiltersService.filters.minPrice;
+      this.tempFilters.maxPrice = this.SearchFiltersService.filters.maxPrice;
+      this.tempFilters.accessoDisabili = this.SearchFiltersService.filters.accessoDisabili
+      this.tempFilters.areaSize = this.SearchFiltersService.filters.areaSize
+      this.tempFilters.ascensore = this.SearchFiltersService.filters.ascensore
+      this.tempFilters.balcone = this.SearchFiltersService.filters.balcone
+      this.tempFilters.bathrooms = this.SearchFiltersService.filters.bathrooms
+      this.tempFilters.bedrooms = this.SearchFiltersService.filters.bedrooms
+      this.tempFilters.citta = this.SearchFiltersService.filters.citta
+      this.tempFilters.energyClass = this.SearchFiltersService.filters.energyClass
+      this.tempFilters.filtersApplied = this.SearchFiltersService.filters.filtersApplied
+      this.tempFilters.garage = this.SearchFiltersService.filters.garage
+      this.tempFilters.giardino = this.SearchFiltersService.filters.giardino
+      this.tempFilters.postoAuto = this.SearchFiltersService.filters.postoAuto
+      this.tempFilters.terrazzo = this.SearchFiltersService.filters.terrazzo
+
+    }
+  }
+
+  cliccaPulsanteVendita() { this.selected = 'vendita'; }
+  cliccaPulsanteAffitta() { this.selected = 'affitto'; }
 
 
   openFilters() { this.showFilters = true; }
@@ -80,11 +102,15 @@ export class SearchBarComponent {
     this.SearchFiltersService.filters.citta = this.tempFilters.citta;
     this.SearchFiltersService.filters.filtersApplied = true;
 
+    this.SearchFiltersService.haveFiltersBeenSelected = true;
+
   }
 
 
   startSearch() {
     console.log("Search Started...");
+    this.SearchFiltersService.haveFiltersBeenSelected = true;
+    this.SearchFiltersService.lastSelectedContractType = this.selected;
 
 
 

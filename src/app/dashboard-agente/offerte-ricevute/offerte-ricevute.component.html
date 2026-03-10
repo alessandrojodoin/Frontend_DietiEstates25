@@ -90,7 +90,7 @@
   <p><strong>Cognome:</strong> {{ riepilogoOfferta.cognome }}</p>
   <p><strong>Email:</strong> {{ riepilogoOfferta.email }}</p>
   <p><strong>Telefono:</strong> {{ riepilogoOfferta.numeroTelefonico }}</p>
-  @if(immobile.tipologiaContratto === 'Affitto'){
+  @if(immobile.tipologiaContratto === 'affitto'){
       <p><strong>Offerta:</strong> € {{ riepilogoOfferta.valoreOfferta }} / mese</p>
   }@else{
     <p><strong>Offerta:</strong> € {{ riepilogoOfferta.valoreOfferta }}</p>

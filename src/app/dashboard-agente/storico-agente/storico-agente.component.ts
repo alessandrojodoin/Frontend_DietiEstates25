@@ -100,8 +100,8 @@ export class StoricoAgenteComponent implements AfterViewInit {
     let immobiliTotali = this.ImmobiliList.length;
 
     for (let immobile of this.ImmobiliList) {
-      if (immobile.isVenduto === true && immobile.tipologiaContratto === 'Vendita') countVenduti++;
-      if (immobile.isVenduto === true && immobile.tipologiaContratto === 'Affitto') countAffittati++;
+      if (immobile.isVenduto === true && immobile.tipologiaContratto === 'vendita') countVenduti++;
+      if (immobile.isVenduto === true && immobile.tipologiaContratto === 'affitto') countAffittati++;
     }
 
     return { venduti: countVenduti, affittati: countAffittati, totali: immobiliTotali };

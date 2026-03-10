@@ -32,7 +32,7 @@ export class ImmobiliService {
             }
         ]
     },
-    "tipologiaContratto": "Affitto",
+    "tipologiaContratto": "affitto",
     "speseCondominiali": 320,
     "prezzo": 2000
   }
