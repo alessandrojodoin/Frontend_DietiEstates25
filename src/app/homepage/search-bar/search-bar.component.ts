@@ -122,6 +122,8 @@ export class SearchBarComponent {
           this.filtersApplied = false;
         }
 
+      console.log(this.cityForm.value.citta)
+
     this.immobiliService.getImmobileListFiltri(
       this.SearchFiltersService.filters.filtersApplied,
       this.SearchFiltersService.filters.minPrice,
