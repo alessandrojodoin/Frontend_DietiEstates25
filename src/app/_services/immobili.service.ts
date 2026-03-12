@@ -206,7 +206,6 @@ getImmobileListFiltri(
             balcone: number | null,
             ascensore: boolean | null,
             garage: boolean | null,
-            giardino: boolean | null,
             postoAuto: boolean | null,
             accessoDisabili: boolean | null,
             tipologiaContratto: string | null
@@ -227,7 +226,6 @@ getImmobileListFiltri(
   if (balcone != null) params = params.set('balcone', balcone.toString());
   if (ascensore != null) params = params.set('ascensore', ascensore.toString());
   if (garage != null) params = params.set('garage', garage.toString());
-  if (giardino != null) params = params.set('giardino', giardino.toString());
   if (postoAuto != null) params = params.set('postoAuto', postoAuto.toString());
   if (accessoDisabili != null) params = params.set('accessoDisabili', accessoDisabili.toString());
   if (tipologiaContratto) params = params.set('tipologiaContratto', tipologiaContratto);
