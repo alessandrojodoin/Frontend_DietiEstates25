@@ -30,8 +30,8 @@ export class SearchBarComponent {
     bathrooms: null as number | null,
     bedrooms: null as number | null,
     areaSize: null as number | null,
-    terrazzo: null as boolean | null,
-    balcone: null as boolean | null,
+    terrazzo: null as number | null,
+    balcone: null as number | null,
     ascensore: null as boolean | null,
     garage: null as boolean | null,
     giardino: null as boolean | null,
@@ -91,8 +91,8 @@ export class SearchBarComponent {
     this.SearchFiltersService.filters.bathrooms = this.tempFilters.bathrooms;
     this.SearchFiltersService.filters.bedrooms = this.tempFilters.bedrooms;
     this.SearchFiltersService.filters.areaSize = this.tempFilters.areaSize;
-    this.SearchFiltersService.filters.terrazzo = this.tempFilters.terrazzo ? true : null;
-    this.SearchFiltersService.filters.balcone = this.tempFilters.balcone ? true : null;
+    this.SearchFiltersService.filters.terrazzo = this.tempFilters.terrazzo;
+    this.SearchFiltersService.filters.balcone = this.tempFilters.balcone;
     this.SearchFiltersService.filters.ascensore = this.tempFilters.ascensore ? true : null;
     this.SearchFiltersService.filters.garage = this.tempFilters.garage ? true : null;
     this.SearchFiltersService.filters.giardino = this.tempFilters.giardino ? true : null;
