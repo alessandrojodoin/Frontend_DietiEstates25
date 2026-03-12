@@ -257,6 +257,7 @@ getImmobileListFiltri(
       tipoImmobile: RESTImmobile.immobile.tipoImmobile,
       longitudine: Number(RESTImmobile.immobile.longitudine),
       latitudine: Number(RESTImmobile.immobile.latitudine),
+      istanteVisualizzazione: RESTImmobile.immobile.istanteVisualizzazione,
       indirizzo: {
         via: RESTImmobile.immobile.indirizzo.via,
         citta: RESTImmobile.immobile.indirizzo.citta,
