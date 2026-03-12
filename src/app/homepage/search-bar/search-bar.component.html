@@ -63,6 +63,17 @@
       <input type="number" min="1" max="10" [(ngModel)]="tempFilters.bathrooms">
     </div>
 
+
+    <div class="filter-option">
+      <label>Numero di Terrazzi:</label>
+      <input type="number" min="1" max="10" [(ngModel)]="tempFilters.terrazzi">
+    </div>
+
+     <div class="filter-option">
+      <label>Numero di Balconi:</label>
+      <input type="number" min="1" max="10" [(ngModel)]="tempFilters.balcone">
+    </div>
+
     <div class="filter-option">
       <label>Numero di Camere da Letto:</label>
       <input type="number" min="1" max="10" [(ngModel)]="tempFilters.bedrooms">
@@ -77,15 +88,6 @@
 
 <div class="filter-checkboxes">
   
-  <label class="checkbox-item">
-    <input type="checkbox" [(ngModel)]="tempFilters.terrazzo">
-    <span>Terrazzo</span>
-  </label>
-
-  <label class="checkbox-item">
-    <input type="checkbox" [(ngModel)]="tempFilters.balcone">
-    <span>Balcone</span>
-  </label>
 
   <label class="checkbox-item">
     <input type="checkbox" [(ngModel)]="tempFilters.ascensore">
@@ -97,10 +99,6 @@
     <span>Garage</span>
   </label>
 
-  <label class="checkbox-item">
-    <input type="checkbox" [(ngModel)]="tempFilters.giardino">
-    <span>Giardino</span>
-  </label>
 
   <label class="checkbox-item">
     <input type="checkbox" [(ngModel)]="tempFilters.postoAuto">
@@ -114,7 +112,7 @@
 
 </div>
 
-    <button class="ok-filter-btn" (click)="applyFilters()">OK</button>
+    <button class="ok-filter-btn" (click)="applyFilters()">Applica</button>
   </div>
 </div>
 
