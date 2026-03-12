@@ -131,6 +131,7 @@ public async caricaOfferte() {
   );
 
   this.ImmobiliList = await this.ImmobiliListBackToFront(immobili);
+
 }
 
 offerteInAttesa() {
@@ -181,7 +182,7 @@ public accetta(offertaId: number){
 
 public statoImmobile(immobile: any){
   for(const offerta of immobile.offerte){
-    if(offerta.statoOfferta === 'Accettata'){
+    if(offerta.statoOfferta === 'ACCETTATA'){
       return 'accettata';
     }
   }

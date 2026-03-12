@@ -88,7 +88,7 @@ async ImmobiliListBackToFront(immobiliFromBack: any[]) {
     );
 
     for (let immobile of immobili) {
-      immobile.offerte = immobile.offerte.filter((offerta: any) => offerta.risultatoOfferta === 'Accettata');
+      immobile.offerte = immobile.offerte.filter((offerta: any) => offerta.risultatoOfferta === 'ACCETTATA');
     }
 
     this.ImmobiliList = await this.ImmobiliListBackToFront(immobili);

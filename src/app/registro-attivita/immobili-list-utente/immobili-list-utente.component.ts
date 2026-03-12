@@ -26,7 +26,7 @@ export class ImmobiliListUtenteComponent {
     immobiliListTemp = await this.immobiliService.getImmobiliVisualizzati().toPromise();
 
       for (let immobile of immobiliListTemp!) {
-        this.immobiliList.push(this.immobiliService.convertRESTImmobile(immobile));
+        this.immobiliList.push(await this.immobiliService.convertRESTImmobile(immobile));
       }
       
       for (let immobile of this.immobiliList) {
@@ -47,10 +47,9 @@ export class ImmobiliListUtenteComponent {
   );
  }
 
-ngOnInit(){
+async ngOnInit(){
 
-  this.caricaImmobili();
-
+  await this.caricaImmobili();
 }
 
 

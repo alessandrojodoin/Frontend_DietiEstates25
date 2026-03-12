@@ -42,6 +42,7 @@ async conversioneBackToFront(offerteFromBack: any[]) {
   for (let offerta of offerteFromBack) {
     let offertaId= offerta.id;
     let cifraOfferta= offerta.cifraInCentesimi;
+    let cifraControproposta= offerta.cifraContropropostaInCentesimi;
     let statoOfferta= offerta.risultatoOfferta;
     let dataOfferta= offerta.dataOfferta;
     const immobileData = await firstValueFrom(
@@ -54,7 +55,7 @@ async conversioneBackToFront(offerteFromBack: any[]) {
     let indirizzo= immobileData.nome;
     let tipologiaContratto = immobileData.tipologiaContratto;
 
-    OfferteConvertite.push({isVenduto, esisteOffertaAccettata, id, indirizzo, tipologiaContratto, offertaId, cifraOfferta, dataOfferta, statoOfferta});
+    OfferteConvertite.push({isVenduto, esisteOffertaAccettata, id, indirizzo, tipologiaContratto, offertaId, cifraOfferta, cifraControproposta, dataOfferta, statoOfferta});
 
 
   }
