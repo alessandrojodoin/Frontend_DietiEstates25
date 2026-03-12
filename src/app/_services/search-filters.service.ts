@@ -19,7 +19,6 @@ export class SearchFiltersService {
     balcone: null as number | null, 
     ascensore: null as boolean | null, 
     garage: null as boolean | null, 
-    giardino: null as boolean | null, 
     postoAuto: null as boolean | null, 
     accessoDisabili: null as boolean | null,
     energyClass: null as string | null,

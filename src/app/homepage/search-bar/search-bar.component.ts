@@ -34,7 +34,6 @@ export class SearchBarComponent {
     balcone: null as number | null,
     ascensore: null as boolean | null,
     garage: null as boolean | null,
-    giardino: null as boolean | null,
     postoAuto: null as boolean | null,
     accessoDisabili: null as boolean | null,
     energyClass: null as string | null,
@@ -65,7 +64,6 @@ export class SearchBarComponent {
       this.tempFilters.energyClass = this.SearchFiltersService.filters.energyClass
       this.tempFilters.filtersApplied = this.SearchFiltersService.filters.filtersApplied
       this.tempFilters.garage = this.SearchFiltersService.filters.garage
-      this.tempFilters.giardino = this.SearchFiltersService.filters.giardino
       this.tempFilters.postoAuto = this.SearchFiltersService.filters.postoAuto
       this.tempFilters.terrazzo = this.SearchFiltersService.filters.terrazzo
 
@@ -95,7 +93,6 @@ export class SearchBarComponent {
     this.SearchFiltersService.filters.balcone = this.tempFilters.balcone;
     this.SearchFiltersService.filters.ascensore = this.tempFilters.ascensore ? true : null;
     this.SearchFiltersService.filters.garage = this.tempFilters.garage ? true : null;
-    this.SearchFiltersService.filters.giardino = this.tempFilters.giardino ? true : null;
     this.SearchFiltersService.filters.postoAuto = this.tempFilters.postoAuto ? true : null;
     this.SearchFiltersService.filters.accessoDisabili = this.tempFilters.accessoDisabili ? true : null;
     this.SearchFiltersService.filters.energyClass = this.tempFilters.energyClass;
@@ -120,7 +117,6 @@ export class SearchBarComponent {
         this.SearchFiltersService.filters.energyClass === null && this.SearchFiltersService.filters.citta === null && 
         this.SearchFiltersService.filters.terrazzo === null && this.SearchFiltersService.filters.balcone === null && 
         this.SearchFiltersService.filters.ascensore === null && this.SearchFiltersService.filters.garage === null && 
-        this.SearchFiltersService.filters.giardino === null && this.SearchFiltersService.filters.postoAuto === null && 
         this.SearchFiltersService.filters.accessoDisabili === null) {
           
           this.filtersApplied = false;
@@ -140,7 +136,6 @@ export class SearchBarComponent {
       this.SearchFiltersService.filters.balcone,
       this.SearchFiltersService.filters.ascensore,
       this.SearchFiltersService.filters.garage,
-      this.SearchFiltersService.filters.giardino,
       this.SearchFiltersService.filters.postoAuto,
       this.SearchFiltersService.filters.accessoDisabili,
       this.selected)
