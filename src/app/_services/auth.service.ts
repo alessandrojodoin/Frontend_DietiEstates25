@@ -155,7 +155,7 @@ public getAuthHeadersTextResponse() {
 
   login(loginCredentials: {username: string, password: string}){
 
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const rest = this.injector.get(AuthRestService);
       const request = rest.login(loginCredentials);
 
@@ -183,6 +183,7 @@ public getAuthHeadersTextResponse() {
           resolve(null);
         },
         error: (error: any) => {
+          reject(error)
         },
         complete: () => {}
 

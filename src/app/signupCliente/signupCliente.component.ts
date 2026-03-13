@@ -59,7 +59,7 @@ export class SignupClienteComponent {
       }).subscribe({
         error: (error) =>{
           if(error instanceof HttpErrorResponse){
-            this.toastr.error(error.error, "Error", { positionClass: 'toast-center-center'});
+            this.toastr.error("Lo username o l'E-Mail inserite potrebbero già essere in utilizzo.", "Username o E-Mail non disponibili", { positionClass: 'toast-center-center'});
           }
         },
         next: ()=> {

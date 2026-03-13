@@ -40,11 +40,11 @@
   <div class="char-box">
     <div class="char-grid">
       <div *ngFor="let tag of immobile.tagDescrizione" class="char-item">
-        @if(ta.nome == superficie){
+        @if(tag.nome == 'superficie'){
           <span class="char-title">{{ tag.nome | titlecase }}:</span>
-          <span>{{ tag.valore }} m²</span>
+          <span class="char-value">{{ tag.valore }} m²</span>
         }
-        @if(tag.nome != superficie){
+        @if(tag.nome != 'superficie'){
         <!-- Icona -->
         <span class="char-icon">
           {{

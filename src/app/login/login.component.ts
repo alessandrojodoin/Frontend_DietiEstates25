@@ -46,8 +46,11 @@ export class LoginComponent {
       
     })
     .catch((error) => {
-      if (error instanceof HttpErrorResponse) {
-        this.toastr.error(error.error, "Error", { positionClass: 'toast-center-center'});
+      if(error.status === 401){
+        this.toastr.error("Le credenziali inserite potrebbero non essere corrette.", "Credenziali Errate", { positionClass: 'toast-center-center'});
+      }
+      else if (error instanceof HttpErrorResponse) {
+        this.toastr.error("Non è stato possibile raggiungere il server.", "Error", { positionClass: 'toast-center-center'});
       } else {
         this.toastr.error("Unexpected error", "Error", { positionClass: 'toast-center-center'});
       }
