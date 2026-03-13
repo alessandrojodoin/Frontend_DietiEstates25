@@ -40,7 +40,7 @@
   <div class="char-box">
     <div class="char-grid">
       <div *ngFor="let tag of immobile.tagDescrizione" class="char-item">
-        @if(ta.nome == superficie){
+        @if(tag.nome == 'superficie'){
           <span class="char-title">{{ tag.nome | titlecase }}:</span>
           <span>{{ tag.valore }} m²</span>
         }
@@ -209,7 +209,7 @@
   <div class="popup-overlay">
     <div class="popup-content">
 
-      @if(StatoOfferta === 'chiedi'){
+      @if(statoOfferta === 'chiedi'){
          <button class="close-popup" (click)="closeOfferta()">X</button>
       <h2>Offerta</h2>
 
@@ -223,7 +223,7 @@
         <button class="ok-offer-btn" (click)="applyOfferta()">Invia Offerta</button>
       </form>
       }
-     @if(StatoOfferta === 'applica'){
+     @if(statoOfferta === 'applica'){
       <div class="loader-container">
         <div class="spinner"></div>
           <h3>Invio offerta...</h3>
