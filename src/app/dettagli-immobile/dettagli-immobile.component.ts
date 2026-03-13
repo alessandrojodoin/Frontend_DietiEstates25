@@ -233,12 +233,13 @@ control?.valueChanges.subscribe(() => {
 
     applyOfferta(){
 
-    this.showOffer = false;
+    this.showOffer = true;
     this.offerteService.createOffer(this.immobile.id, Number(this.offertaValueForm.value.value!)).subscribe({
       next: (data: any) => {
         console.log('Offerta creata con successo:', data);
 
     //    this.applyOffer = true;
+      this.statoOfferta = "applica"
       },
       error: (error: any) => {
         console.error('Errore nella creazione dell\'offerta:', error);

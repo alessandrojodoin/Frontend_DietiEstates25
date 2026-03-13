@@ -209,7 +209,7 @@
   <div class="popup-overlay">
     <div class="popup-content">
 
-      @if(statoOfferta === 'chiedi'){
+      @if(this.statoOfferta === 'chiedi'){
          <button class="close-popup" (click)="closeOfferta()">X</button>
       <h2>Offerta</h2>
 
@@ -223,14 +223,10 @@
         <button class="ok-offer-btn" (click)="applyOfferta()">Invia Offerta</button>
       </form>
       }
-     @if(statoOfferta === 'applica'){
-      <div class="loader-container">
-        <div class="spinner"></div>
-          <h3>Invio offerta...</h3>
-          <p>Attendere prego.</p>
-        </div>
+     @if(this.statoOfferta === 'applica'){
 
-        <p>L'offerta è stata inviata con successo!</p>
+
+        <h1>✅ L'offerta è stata inviata con successo!</h1>
         <div class="popup-actions">
           <button class="btn-primary" (click)="closeOfferta()">OK</button>
         </div>
