@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 30px; /* spazio ai lati su schermi piccoli */
+  padding: 0 20px; /* spazio ai lati su schermi piccoli */
   max-width: 1000px;   
   min-width: 1000px;  
 }
@@ -108,7 +108,7 @@ button.selected{
   background: white;
   padding: 20px;
   border-radius: 10px;
-  width: 800px;
+  width: 400px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
    max-height: 90vh;  
   overflow-y: auto; 
@@ -230,5 +230,5 @@ button.selected{
   justify-content: space-between;
   padding: 10px 10px;
   align-items: center;
-  margin-left: 89%;
+  margin-left: 90%;
 }
