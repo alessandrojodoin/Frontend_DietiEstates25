@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { environment } from '../environment';
 
 type StatoPopup = 'prenotazione' | 'riepilogo' | 'acknowledgment';
+type StatoOfferta = 'chiedi' | 'applica';
 
 @Component({
   selector: 'app-dettagli-immobile',
@@ -44,7 +45,6 @@ export class DettagliImmobileComponent implements OnInit, AfterViewInit{
   statoPopup: StatoPopup = 'prenotazione';
   now: Date = new Date();
   twoWeeksLater: Date = new Date(new Date().setDate(new Date().getDate() + 14)); // oggi + 14 giorni
-  
 
   
   minDate = this.formatDateInput(new Date());
@@ -55,7 +55,7 @@ formatDateInput(d: Date) {
   return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T00:00`;
 }
  
-
+statoOfferta: StatoOfferta = 'chiedi';
   showOffer: boolean = false;
   applyOffer: boolean = false;
   tempOffers = {
@@ -245,7 +245,7 @@ control?.valueChanges.subscribe(() => {
       }
     });
   }
-
+ 
 
   tornaIndietro(){
     this.statoPopup = 'prenotazione';

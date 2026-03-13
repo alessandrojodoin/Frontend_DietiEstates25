@@ -117,23 +117,7 @@
     </div>
   </section>
 
-    <div class="popup-overlay" *ngIf="showOffer" (click)="closeOfferta()">
-  <div class="popup-content" (click)="$event.stopPropagation()">
-    <button class="close-popup" (click)="closeOfferta()">X</button>
-    <h2>Offerta</h2>
-
-<form [formGroup]="offertaValueForm">
-    <div class="offer-option">
-      <label for="value">Fai qui la tua offerta:</label>
-      <div class="offer-price">
-        <input id="value" formControlName="value" placeholder="Fai un'offerta...">
-      </div>
-    </div>
-    <button class="ok-offer-btn" (click)="applyOfferta()">Invia Offerta</button>
-</form>
-</div>
-    
-  </div>
+  
 
 
 }
@@ -219,8 +203,47 @@
     </div>
   </div>
 }
+@if (showOffer) {
 
 
+  <div class="popup-overlay">
+    <div class="popup-content">
+
+      @if(StatoOfferta === 'chiedi'){
+         <button class="close-popup" (click)="closeOfferta()">X</button>
+      <h2>Offerta</h2>
+
+      <form [formGroup]="offertaValueForm">
+        <div class="offer-option">
+          <label for="value">Fai qui la tua offerta:</label>
+          <div class="offer-price">
+            <input id="value" formControlName="value" placeholder="Fai un'offerta...">
+          </div>
+        </div>
+        <button class="ok-offer-btn" (click)="applyOfferta()">Invia Offerta</button>
+      </form>
+      }
+     @if(StatoOfferta === 'applica'){
+      <div class="loader-container">
+        <div class="spinner"></div>
+          <h3>Invio offerta...</h3>
+          <p>Attendere prego.</p>
+        </div>
+
+        <p>L'offerta è stata inviata con successo!</p>
+        <div class="popup-actions">
+          <button class="btn-primary" (click)="closeOfferta()">OK</button>
+        </div>
+
+     }
+
+
+  </div>
+
+</div>
+
+
+}
 
 
 }
