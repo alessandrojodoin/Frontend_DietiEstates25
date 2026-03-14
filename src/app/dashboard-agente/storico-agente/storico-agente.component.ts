@@ -27,9 +27,16 @@ export class StoricoAgenteComponent implements AfterViewInit {
   // riferimento al grafico
   grafico: any;
 
-  ngOnInit() {
-    this.caricaOfferte();
-  }
+  totPrenotazioni = 0;
+
+
+
+
+
+ngOnInit() {
+  this.caricaOfferte();
+  this.caricaPrenotazioni();
+}
 
   ngAfterViewInit() {
     // inizializza il grafico vuoto, sarà aggiornato quando ImmobiliList è caricata
@@ -122,6 +129,7 @@ export class StoricoAgenteComponent implements AfterViewInit {
   public totalePrenotazioni() {
   let totalPrenotazioni = 0;
   for (let immobile of this.ImmobiliList) { 
+    console.log("test");
     this.visiteService.getVisiteAgente().subscribe(visite => {
       for(let visita of visite){
         if(visita.immobileId === immobile.id){
@@ -131,6 +139,23 @@ export class StoricoAgenteComponent implements AfterViewInit {
     });
   }
   return totalPrenotazioni;
+}
+
+caricaPrenotazioni() {
+  this.visiteService.getVisiteAgente().subscribe(visite => {
+
+    let count = 0;
+
+    for (let immobile of this.ImmobiliList) {
+      for (let visita of visite) {
+        if (visita.immobileId === immobile.id) {
+          count++;
+        }
+      }
+    }
+
+    this.totPrenotazioni = count;
+  });
 }
 
   // ---------------- Grafico ----------------
