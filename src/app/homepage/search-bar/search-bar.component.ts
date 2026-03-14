@@ -82,6 +82,7 @@ export class SearchBarComponent {
   applyFilters() {
 
     this.showFilters = false;
+    
 
     this.SearchFiltersService.filters.minPrice = this.tempFilters.minPrice;
     this.SearchFiltersService.filters.maxPrice = this.tempFilters.maxPrice;
@@ -98,6 +99,7 @@ export class SearchBarComponent {
     this.SearchFiltersService.filters.energyClass = this.tempFilters.energyClass;
     this.SearchFiltersService.filters.citta = this.tempFilters.citta;
     this.SearchFiltersService.filters.filtersApplied = true;
+    this.filtersApplied= true;
 
     this.SearchFiltersService.haveFiltersBeenSelected = true;
 
