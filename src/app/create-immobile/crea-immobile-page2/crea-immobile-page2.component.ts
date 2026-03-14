@@ -45,6 +45,7 @@ export class CreaImmobilePage2Component implements OnInit {
   ];
 
   ImmobileForm!: FormGroup;
+  tagDaLampeggiare: string = '';
 
   constructor(private router: Router) {}
 
@@ -145,6 +146,13 @@ export class CreaImmobilePage2Component implements OnInit {
     tag.nome,
     new FormControl(valoreSalvato ?? defaultValue, validators)
   );
+  this.tagDaLampeggiare = tag.nome;
+  console.log(this.tagDaLampeggiare)
+  console.log(tag)
+
+  setTimeout(() => {
+    this.tagDaLampeggiare = '';
+  }, 3000);
 }
 
 

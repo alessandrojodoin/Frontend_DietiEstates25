@@ -4,5 +4,7 @@ export const environment = {
   googleMapsApiKey: "Inserire chiave API di Google Maps qui dentro",
   production: false,
   GOOGLE_CLIENT_ID: 'Inserire Client ID qui dentro',
-  URL_BACKEND: 'http://localhost:8080/api/1.0'
+  URL_BACKEND: 'http://localhost:8080/api/1.0',
+  //Da sostituire eventualmente a URL_BACKEND
+  URL_BACKEND_CLOUD: 'https://rest-dietiestates25.grayflower-35da6a14.uaenorth.azurecontainerapps.io/api/1.0'
 };

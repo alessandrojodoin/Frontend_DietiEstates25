@@ -58,7 +58,7 @@ export class SignupClienteComponent {
         numeroTelefonico: this.signupForm.value.numeroTelefonico as string
       }).subscribe({
         error: (error) =>{
-          if(error.status = 500){
+          if(error.status == 500){
             this.toastr.error("Lo username o l'E-Mail inserite potrebbero già essere in utilizzo.", "Username o E-Mail non disponibili", { positionClass: 'toast-center-center'});
           }
           else if (error instanceof HttpErrorResponse) {

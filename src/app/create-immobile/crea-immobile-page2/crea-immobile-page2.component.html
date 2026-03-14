@@ -71,7 +71,7 @@
 
 <!--TAG SELEZIONATI-->
 <div class="selected-tags" >
-  <div class="tag-box selected" *ngFor="let tag of selectedTags" [class.lampeggia]="tabDaLampeggiare === 'attesa'">
+  <div class="tag-box selected" *ngFor="let tag of selectedTags" [class.lampeggia]="tagDaLampeggiare === tag.nome">
     <label>{{ tag.nome | titlecase }}</label>
 
     <!--l'input viene mostrato solo nei tag selezionati -->
