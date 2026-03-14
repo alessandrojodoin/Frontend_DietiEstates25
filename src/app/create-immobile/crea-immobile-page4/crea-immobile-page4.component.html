@@ -18,6 +18,13 @@
 
 
 <form [formGroup]="ContrattoForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">   
+      <label for="Tipologia Contratto">Tipologia Contratto:</label>
+      <select id="TipologiaContratto" formControlName="TipologiaContratto">
+        <option value="affitto">Affitto</option>
+        <option value="vendita">Vendita</option>
+      </select>
+    </div>
 
     <div class="form-group">
       <label for="Prezzo">Prezzo:</label>
@@ -29,13 +36,7 @@
       <input id="Spese Aggiuntive" formControlName="SpeseAggiuntive" />
     </div>
 
-    <div class="form-group">   
-      <label for="Tipologia Contratto">Tipologia Contratto:</label>
-      <select id="TipologiaContratto" formControlName="TipologiaContratto">
-        <option value="affitto">Affitto</option>
-        <option value="vendita">Vendita</option>
-      </select>
-    </div>
+  
 
   <div class="button-row">
     <button type= "button" (click)="onAnnulla()" class="btn btn-secondary"><span class="flip-arrow">&#10140;</span> Indietro</button> 

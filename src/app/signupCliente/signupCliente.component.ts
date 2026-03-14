@@ -58,9 +58,14 @@ export class SignupClienteComponent {
         numeroTelefonico: this.signupForm.value.numeroTelefonico as string
       }).subscribe({
         error: (error) =>{
-          if(error instanceof HttpErrorResponse){
+          if(error.status = 500){
             this.toastr.error("Lo username o l'E-Mail inserite potrebbero già essere in utilizzo.", "Username o E-Mail non disponibili", { positionClass: 'toast-center-center'});
           }
+          else if (error instanceof HttpErrorResponse) {
+            this.toastr.error("Non è stato possibile raggiungere il server.", "Error", { positionClass: 'toast-center-center'});
+          } else {
+          this.toastr.error("Unexpected error", "Error", { positionClass: 'toast-center-center'});
+        }
         },
         next: ()=> {
           this.toastr.success("Signed up successfully!", "Success", { positionClass: 'toast-center-center'});
