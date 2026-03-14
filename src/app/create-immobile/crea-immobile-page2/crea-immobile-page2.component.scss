@@ -178,6 +178,16 @@ h2.section-title {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+@keyframes lampeggioColore {
+  0%   { background-color: #e0f0ff; }
+  50%  { background-color: #FFC107; }
+  100% { background-color: #e0f0ff; }
+}
+
+.lampeggia {
+  animation: lampeggioColore 1s ease-in-out 3;
+}
+
 .tag-box label {
   display: block;
   font-weight: bold;
