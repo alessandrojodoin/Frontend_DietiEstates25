@@ -21,13 +21,7 @@
         [class.selected]="selected === 'affitto'"
       >Affitta</button>
 
-      
-    <button
-      type="button"
-      (click)="openFilters()"
-      class="filter-btn"
-       [ngStyle]="{'background-color': filtersApplied ? '#66afe9' : '#f5f5f5'}"
-    >⚙️ Filtri</button>
+   
 
     </div>
 
@@ -132,6 +126,13 @@
           placeholder="Comune: ******"
           class="search-input"
         />
+           
+    <button
+      type="button"
+      (click)="openFilters()"
+      class="filter-btn"
+       [ngStyle]="{'background-color': filtersApplied ? '#66afe9' : '#f5f5f5'}"
+    >⚙️ Filtri</button>
         <button type="submit" class="search-btn">🔍 Cerca</button>
       </div>
     </form>
