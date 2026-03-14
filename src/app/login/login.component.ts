@@ -31,7 +31,7 @@ export class LoginComponent {
 
   onSubmit() {
   if (this.loginForm.invalid) {
-    this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
+    this.toastr.error("Assicurati di aver riempito tutti i campi", "Error", { positionClass: 'toast-center-center'});
     return;
   }
 
