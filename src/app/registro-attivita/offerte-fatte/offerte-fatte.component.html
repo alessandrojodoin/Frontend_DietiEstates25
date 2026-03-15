@@ -24,7 +24,7 @@
       <div class="offerta-header">
         <h3 class="indirizzo">{{ offerta.indirizzo }}</h3>
         @if(offerta.statoOfferta != 'ACCETTATA'){
-          <button class="btn-annulla" (click)="deleteOfferta(offerta.offertaId)">- Annulla</button>
+          <button class="btn-annulla" (click)="apriPopupAnnulla(offerta.offertaId)">- Annulla</button>
         }
       </div>
 
@@ -95,6 +95,18 @@
 
   }
 
+  @if (mostraPopupAnnulla) {
+        <div class="overlay">
+            <div class="popup">
+                <h3>Sei sicuro di voler annullare l'offerta fatta?</h3>
+                <div class="popup-actions">
+                    <button class="btn-secondary" (click)="annullaAzione()">No</button>
+                    <button class="btn-primary" (click)="deleteOfferta()">Si</button>
+                </div>
+            </div>
+        </div>
+    }
+ 
   @if (mostraPopup) {
       <div class="overlay">
         <div class="popup">
@@ -140,4 +152,6 @@
       </div>
     }
 
+
+    
 }

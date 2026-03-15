@@ -27,6 +27,8 @@ export class OfferteFatteComponent {
   offertaSelezionataId: number | null = null;
   listinoId: number |null = null;
 
+  mostraPopupAnnulla= false;
+
 
   ngOnInit() {
     
@@ -107,6 +109,16 @@ console.log("rifiutando offerta: ", offertaId);
   });
   }
 
+apriPopupAnnulla(offertaId: any){
+  
+  this.offertaSelezionataId = offertaId;
+  this.mostraPopupAnnulla = true;
+
+}
+
+annullaAzione(){
+  this.mostraPopupAnnulla= false;
+}
 
   apriPopup(offertaId: any, listinoId: any){
    // console.log("offerta: ", offerta);
@@ -137,7 +149,7 @@ inviaControproposta() {
     .subscribe({
       next: async () => {
         this.statoPopup = 'successo';
-        this.deleteOfferta(this.offertaSelezionataId!);
+        this.deleteOfferta();
         this.loading = true;
         await this.caricaOfferte();
         this.loading = false;
@@ -149,8 +161,10 @@ inviaControproposta() {
 }
 
 
-deleteOfferta(offertaId: number){
-  console.log("Eliminazione offerta: ", offertaId);
+deleteOfferta(){
+  console.log("Eliminazione offerta: ", this.offertaSelezionataId);
+  this.mostraPopupAnnulla= false;
+  let offertaId: any = this.offertaSelezionataId;
 
   this.offerteService.deleteOfferta(offertaId).subscribe({
     next: async () =>{
