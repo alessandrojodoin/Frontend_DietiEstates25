@@ -1,10 +1,13 @@
 import { Component, AfterViewInit, Input } from '@angular/core';
 import { Immobile } from '../../../data';
 import Instant from 'ts-time/Instant';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-search-result-map',
   standalone: true,
+  imports: [CommonModule, RouterModule, RouterLink],
   templateUrl: './search-result-map.component.html',
   styleUrl: './search-result-map.component.scss'
 })
@@ -71,7 +74,9 @@ private _immobili: Immobile[] = [];
           content: `
             <div>
               <b>${immobile.tipoImmobile}</b><br>
-              ${immobile.indirizzo.nome}<br>
+               <a class="immobile-title" href="/dettagli-immobile/${immobile.id}">
+                ${immobile.nome}
+                </a><br>
               Prezzo: €${immobile.prezzo.toLocaleString()}
             </div>
           `

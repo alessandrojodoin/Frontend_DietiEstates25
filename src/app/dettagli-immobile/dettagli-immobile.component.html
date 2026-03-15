@@ -157,7 +157,8 @@
     <div class="popup">
 
       @if (statoPopup === 'prenotazione') {
-        <h3>Seleziona Data e Orario</h3>
+        <h3>Data e Orario</h3>
+        <h5>Selezionare una data <u>entro le prossime 2 settimane</u></h5>
         <form [formGroup]="visiteForm" (ngSubmit)="onSubmit()">
           
         <input type="datetime-local" formControlName="dataVisita" [min]="minDate" [max]="maxDate" step="3600">
