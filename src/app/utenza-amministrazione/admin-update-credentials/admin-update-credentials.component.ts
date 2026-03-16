@@ -36,7 +36,7 @@ export class AdminUpdateCredentialsComponent {
   onSubmit(){
       
       if(this.updateAdminCredentialsForm.invalid){
-        this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
+        this.toastr.error("Assicurati di aver riempito tutti i campi.", "Error", { positionClass: 'toast-center-center'});
       }
       else{
         this.rest.modificaAmministratore(

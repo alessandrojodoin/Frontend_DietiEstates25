@@ -46,7 +46,7 @@ export class SignupClienteComponent {
   onSubmit(){
     
     if(this.signupForm.invalid){
-      this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
+      this.toastr.error("Assicurati di aver riempito tutti i campi.", "Error", { positionClass: 'toast-center-center'});
     }
     else{
       this.rest.signup({
@@ -59,7 +59,7 @@ export class SignupClienteComponent {
       }).subscribe({
         error: (error) =>{
           if(error.status == 500){
-            this.toastr.error("Lo username o l'E-Mail inserite potrebbero già essere in utilizzo.", "Username o E-Mail non disponibili", { positionClass: 'toast-center-center'});
+            this.toastr.error("Lo username o l'e-mail inserite potrebbero già essere in utilizzo.", "Username o E-Mail non disponibili", { positionClass: 'toast-center-center'});
           }
           else if (error instanceof HttpErrorResponse) {
             this.toastr.error("Non è stato possibile raggiungere il server.", "Error", { positionClass: 'toast-center-center'});

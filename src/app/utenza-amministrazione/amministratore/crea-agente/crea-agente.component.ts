@@ -52,7 +52,7 @@ export class CreaAgenteComponent {
     onSubmit(){
       
       if(this.signupAgenteForm.invalid){
-        this.toastr.error("Please make sure you have filled all of the fields", "Error", { positionClass: 'toast-center-center'});
+        this.toastr.error("Assicurati di aver riempito tutti i campi.", "Error", { positionClass: 'toast-center-center'});
       }
       else{
         this.rest.signupAgente({
@@ -65,13 +65,18 @@ export class CreaAgenteComponent {
             agenziaImmobiliare:  this.authService.authState.agenziaImmobiliare as string
         }).subscribe({
           error: (error) =>{
-            if(error instanceof HttpErrorResponse){
-              this.toastr.error(error.error, "Error", { positionClass: 'toast-center-center'});
-            }
+            if(error.status == 500){
+            this.toastr.error("Lo username o l'e-mail inserite potrebbero già essere in utilizzo.", "Username o E-Mail non disponibili", { positionClass: 'toast-center-center'});
+          }
+          else if (error instanceof HttpErrorResponse) {
+            this.toastr.error("Non è stato possibile raggiungere il server.", "Error", { positionClass: 'toast-center-center'});
+          } else {
+          this.toastr.error("Unexpected error", "Error", { positionClass: 'toast-center-center'});
+        }
           },
           next: ()=> {
             this.toastr.success("Signed up successfully!", "Success", { positionClass: 'toast-center-center'});
-            this.router.navigate(["/login"]);
+            this.router.navigate(["/"]);
           }
       });
       }
