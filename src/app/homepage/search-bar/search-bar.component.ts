@@ -66,6 +66,12 @@ export class SearchBarComponent {
       this.tempFilters.garage = this.SearchFiltersService.filters.garage
       this.tempFilters.postoAuto = this.SearchFiltersService.filters.postoAuto
       this.tempFilters.terrazzo = this.SearchFiltersService.filters.terrazzo
+      this.cityForm.value.citta = this.SearchFiltersService.filters.citta
+      console.log(this.cityForm.value.citta)
+
+      this.cityForm.patchValue({
+        citta: this.SearchFiltersService.filters.citta
+      })
 
     }
   }
@@ -125,6 +131,7 @@ export class SearchBarComponent {
         }
 
       console.log(this.cityForm.value.citta)
+      this.SearchFiltersService.filters.citta = this.cityForm.value.citta as string;
 
     this.immobiliService.getImmobileListFiltri(
       this.SearchFiltersService.filters.filtersApplied,
