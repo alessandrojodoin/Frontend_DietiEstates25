@@ -100,22 +100,17 @@ public getAuthHeadersTextResponse() {
     }
 
   constructor() {
-  console.log("AuthService constructor called");
   this.authState.token = this.getToken();
 
   
   if (this.authState.token !== null) {
-    console.log("Token found in localStorage:", this.authState.token);
     const decodedToken: any = jwtDecode(this.authState.token);
     this.authState.user = decodedToken.username as string;
     this.authState.userType = decodedToken.userType as UserType;
 
-    console.log("Decoded token:", decodedToken);
-
     const rest = this.injector.get(AuthRestService);
     rest.getUserData(this.getUsername()).subscribe({
       next: (userData: any) => {
-          console.log('User data retrieved:', userData);
           this.authState.user = userData.username;
           this.authState.nome = userData.nome;
           this.authState.cognome = userData.cognome;

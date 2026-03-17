@@ -67,7 +67,7 @@ export class SearchBarComponent {
       this.tempFilters.postoAuto = this.SearchFiltersService.filters.postoAuto
       this.tempFilters.terrazzo = this.SearchFiltersService.filters.terrazzo
       this.cityForm.value.citta = this.SearchFiltersService.filters.citta
-      console.log(this.cityForm.value.citta)
+      
 
       this.cityForm.patchValue({
         citta: this.SearchFiltersService.filters.citta
@@ -130,7 +130,7 @@ export class SearchBarComponent {
           this.filtersApplied = false;
         }
 
-      console.log(this.cityForm.value.citta)
+      
       this.SearchFiltersService.filters.citta = this.cityForm.value.citta as string;
 
     this.immobiliService.getImmobileListFiltri(
@@ -151,7 +151,7 @@ export class SearchBarComponent {
       this.SearchFiltersService.filters.accessoDisabili,
       this.selected)
       .subscribe(immobili => {
-        console.log("Immobili trovati:", immobili);
+        
         this.SearchFiltersService.ricercaFatta = true;
         this.SearchFiltersService.arrayImmobili = immobili;
         localStorage.setItem('immobili', JSON.stringify(immobili));

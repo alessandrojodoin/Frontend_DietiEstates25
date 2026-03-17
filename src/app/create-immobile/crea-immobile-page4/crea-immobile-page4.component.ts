@@ -32,12 +32,12 @@ export class CreaImmobilePage4Component {
       TipologiaContratto: this.creaImmobileService.immobile?.tipologiaContratto ?? ''
     })
 
-   console.log(this.creaImmobileService.immobile); 
+   
   }
 
   onSubmit(): void {
     if (this.ContrattoForm.valid) {
-      console.log(this.ContrattoForm.value);
+      
       this.updateImmobile();
       this.goToPage.emit(5);
     }

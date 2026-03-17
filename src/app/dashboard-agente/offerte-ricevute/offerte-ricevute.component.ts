@@ -72,7 +72,7 @@ offertaForm = new FormGroup({
 
    await this.caricaOfferte();
      this.loading = false;
-    console.log(this.ImmobiliList);
+    
   }
   
 
@@ -235,7 +235,7 @@ chiudiPopupEsterne(){
 
 
 confermaRifiuto() {
-  console.log("rifiutando offerta: ", this.offertaSelezionataId);
+  
   if (!this.offertaSelezionataId) return;
   
 
@@ -254,7 +254,7 @@ confermaRifiuto() {
 inviaControproposta() {
   if (!this.offertaSelezionataId || this.controproposta <= 0) return;
 
-  console.log('Controproposta:', this.controproposta);
+  
 
   this.offerteService
     .contropropostaOfferta(this.offertaSelezionataId, this.controproposta)
@@ -272,7 +272,7 @@ inviaControproposta() {
 }
 
 concludiContratto(immobileId: number) {
-  console.log('Concludi contratto per immobile:', immobileId);
+  
   this.immobileService.postImmobileVenduto(immobileId).subscribe({
     next: async (response) => {
       console.log('Immobile venduto');

@@ -44,7 +44,7 @@ export class PrenotazioniRicevuteComponent { //AGGIUNGI SCROLL AUTOMATICO ALLA L
   eventClick: (info: any) => {
     const p = info.event.extendedProps.prenotazione;
     this.onDateSelect(new Date(p.dataOra)); // forza selezione giorno
-    console.log(p);
+    
   },
   events: this.PrenotazioniList
     .filter(p => this.isFutura(p.dataOra))
@@ -119,7 +119,7 @@ async clientePerVisita() {
         const cliente = await this.rest.getUsername(visita.clienteId).toPromise() as string;
         clienteData = await this.rest.getUserData(cliente).toPromise();
         visita.clienteData = clienteData;
-        console.log('Dati cliente per visita recuperati:', visita.clienteData);
+        
       } catch (error) {
         console.error('Errore nel recupero dell\'immobile per la visita:', error);
       }

@@ -34,7 +34,7 @@ set immobili(value: Immobile[]) {
           immobile.immagini = imagesIds;
         });
     };
-    console.log(this.immobili);
+    
 }
 get immobili(): Immobile[] {
   return this._immobili;

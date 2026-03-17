@@ -119,7 +119,6 @@ caricaFoto(immagini: { file: File }[], immobileId: number) {
   
 })
 .subscribe({
-      next: () => console.log('Upload OK'),
       error: err => console.error(err)
     });
   }
@@ -151,7 +150,6 @@ caricaFoto(immagini: { file: File }[], immobileId: number) {
   }
 
   getImmobile(immobileId: number){
-    console.log("getImmobile http request")
     const url = `${this.url}/immobile/${immobileId}`;
     return this.http.get<Immobile>(url, {
       responseType: 'json'

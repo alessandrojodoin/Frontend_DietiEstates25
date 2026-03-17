@@ -29,7 +29,7 @@ export class VenditeEffettuateAgenteComponent {
 
    await this.caricaOfferteAccettate();
      this.loading = false;
-    console.log(this.ImmobiliList);
+    
   }
   
 

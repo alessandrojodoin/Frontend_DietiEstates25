@@ -15,7 +15,7 @@ export class SidebarDashboardComponent {
   
     ngOnInit(): void {
       this.route.fragment.subscribe(fragment => {
-        console.log('Fragment is:', fragment);
+        
   
         if (fragment === 'Immobili') {
           this.onImmobiliVisuClick();

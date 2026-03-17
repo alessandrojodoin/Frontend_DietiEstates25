@@ -34,8 +34,7 @@ export class ImmobiliListUtenteComponent {
           immobile.immagini = imagesIds;
         });
     };
-    console.log(this.immobiliList[0].istanteVisualizzazione);
-    console.log(this.immobiliList)
+    
     this.sortImmobili();
    
   }

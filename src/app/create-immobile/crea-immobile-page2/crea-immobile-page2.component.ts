@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } 
 import { Router } from '@angular/router';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { CreaImmobileService } from '../../_services/crea-immobile.service';
+import { ToastrService } from 'ngx-toastr';
 
 interface TagOption {
   nome: string;
@@ -20,7 +21,8 @@ interface TagOption {
 })
 export class CreaImmobilePage2Component implements OnInit {
 
-  creaImmobileService = inject(CreaImmobileService)
+  creaImmobileService = inject(CreaImmobileService);
+  private toastr = inject(ToastrService);
   tagSearch = new FormControl('');
   selectedTags: TagOption[] = [];
 
@@ -66,7 +68,7 @@ export class CreaImmobilePage2Component implements OnInit {
 
 
 
-    this.ImmobileForm.value.NomeImmobile = this.creaImmobileService.immobile.indirizzo?.nome; //NOME QUI È UN INDIRIZZO. DA CAMBIARE
+    this.ImmobileForm.value.NomeImmobile = this.creaImmobileService.immobile.indirizzo?.nome; 
     this.ImmobileForm.value.descrizione = this.creaImmobileService.immobile.descrizione;
     this.ImmobileForm.value.locali = this.creaImmobileService.findTag("locali")?.valore;
     this.ImmobileForm.value.bagni = this.creaImmobileService.findTag("bagni")?.valore;
@@ -76,7 +78,7 @@ export class CreaImmobilePage2Component implements OnInit {
 
 
     this.ImmobileForm.patchValue({
-      NomeImmobile: this.creaImmobileService.immobile.indirizzo?.nome,  //DA CAMBIARE NOME
+      NomeImmobile: this.creaImmobileService.immobile.indirizzo?.nome,  
       Descrizione: this.creaImmobileService.immobile.descrizione,
       locali: this.creaImmobileService.findTag("locali")?.valore ?? "",
       bagni: this.creaImmobileService.findTag("bagni")?.valore ?? "",
@@ -147,8 +149,7 @@ export class CreaImmobilePage2Component implements OnInit {
     new FormControl(valoreSalvato ?? defaultValue, validators)
   );
   this.tagDaLampeggiare = tag.nome;
-  console.log(this.tagDaLampeggiare)
-  console.log(tag)
+  
 
   setTimeout(() => {
     this.tagDaLampeggiare = '';
@@ -173,11 +174,14 @@ export class CreaImmobilePage2Component implements OnInit {
 
 
   onSubmit(): void {
+
     if (this.ImmobileForm.valid) {
-      console.log('Dati immobile:', this.ImmobileForm.value);
+      
       this.updateImmobile();
       //this.router.navigate(['/create-immobile-page3']);
       this.goToPage.emit(3);
+    }else{
+          this.toastr.error("Controlla di aver inserito tutti i campi dell'inserzione.", "Error", { positionClass: 'toast-center-center'}); 
     }
     
   }
@@ -240,7 +244,7 @@ export class CreaImmobilePage2Component implements OnInit {
   }
       
     });
-    console.log(this.creaImmobileService.immobile);
+    
     
   }
 

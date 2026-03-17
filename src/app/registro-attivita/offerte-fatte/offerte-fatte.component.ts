@@ -33,13 +33,13 @@ export class OfferteFatteComponent {
   ngOnInit() {
     
     this.caricaOfferte();
-    console.log(this.OfferteList);
+    
   }
   
 
 async conversioneBackToFront(offerteFromBack: any[]) {
   let OfferteConvertite: any[] = [];
-  console.log("Offerte from back:", offerteFromBack);
+  
 
   for (let offerta of offerteFromBack) {
     let offertaId= offerta.id;
@@ -92,7 +92,7 @@ this.offerteService.accettaOfferta(offertaId).subscribe({
   }
   
   rifiutaOfferta(offertaId: number){
-console.log("rifiutando offerta: ", offertaId);
+
   if (!offertaId) return;
   
 
@@ -142,7 +142,7 @@ inviaControproposta() {
   if (!this.offertaSelezionataId || this.controproposta <= 0) return;
   if(!this.listinoId) return;
 
-  console.log('Controproposta:', this.controproposta);
+  
 
   this.offerteService
     .createOffer( this.listinoId, this.controproposta)
@@ -162,7 +162,7 @@ inviaControproposta() {
 
 
 deleteOfferta(){
-  console.log("Eliminazione offerta: ", this.offertaSelezionataId);
+  
   this.mostraPopupAnnulla= false;
   let offertaId: any = this.offertaSelezionataId;
 

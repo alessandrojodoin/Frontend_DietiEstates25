@@ -181,7 +181,7 @@ reverseGeocode(latLng: google.maps.LatLng) {
     this.locationForm.value.indirizzo = this.creaImmobileService.immobile.indirizzo?.nome;
     this.locationForm.value.indirizzo = this.creaImmobileService.immobile.indirizzo?.citta;
     this.locationForm.value.indirizzo = this.creaImmobileService.immobile.indirizzo?.provincia;
-    //posizione mappa DA AGGIUNGERE???
+   
     
     this.locationForm.patchValue({
       indirizzo: this.creaImmobileService.immobile.indirizzo?.nome,
@@ -190,8 +190,6 @@ reverseGeocode(latLng: google.maps.LatLng) {
     });
 
 
-
-    console.log(this.creaImmobileService.immobile);
 
   this.locationForm.patchValue({
     indirizzo: this.creaImmobileService.immobile.indirizzo?.nome,
@@ -273,8 +271,7 @@ checkProvincia() {
     this.creaImmobileService.immobile.latitudine = this.currentMarker?.getPosition()?.lat();
     this.creaImmobileService.immobile.longitudine = this.currentMarker?.getPosition()?.lng();
  
-    console.log("LAT: ", this.creaImmobileService.immobile.latitudine);
-    console.log("LNG: ", this.creaImmobileService.immobile.longitudine);
+    
   }
 
 

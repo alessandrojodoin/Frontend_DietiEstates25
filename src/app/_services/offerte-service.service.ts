@@ -62,7 +62,6 @@ annullaAccettazione(offertaId: number){
 
 
   getOffersMadeByClient() {
-    console.log("Getting offers made by client:", this.authService.getUsername());
     const url = `${this.url}/offerte?username=${this.authService.getUsername()}`;
     const headers = this.getAuthHeaders();
     return this.http.get<any[]>(url, headers);

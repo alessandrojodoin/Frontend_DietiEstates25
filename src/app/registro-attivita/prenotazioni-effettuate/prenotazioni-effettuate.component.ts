@@ -28,13 +28,13 @@ export class PrenotazioniEffettuateComponent { //IDEA LIBRERIA CALENDARIO INTERA
     this.loading = true;
     this.visiteService.getVisiteCliente().subscribe({
       next: async (response) => {
-        console.log('Visite cliente recuperate:', response);
+        
         this.PrenotazioniList = response
         .filter((p: any) => this.isFutura(p.dataOra));
         this.ordinaPrenotazioni();
         this.informazioniAgentePerVisita();
         this.userData = await this.rest.getUserData(this.auth.getUsername()).toPromise();
-        console.log('Dati utente:', this.userData);
+        
         
         this.loading = false;
       },
@@ -51,7 +51,7 @@ export class PrenotazioniEffettuateComponent { //IDEA LIBRERIA CALENDARIO INTERA
           next: async (response) => {
             const immobile = response;
             visita.immobile = await this.immobiliService.convertRESTImmobile(immobile);
-            console.log('Immobile per visita recuperato:', visita.immobile);
+            
           },
           error: (error) => {
             console.error('Errore nel recupero dell\'immobile per la visita:', error);

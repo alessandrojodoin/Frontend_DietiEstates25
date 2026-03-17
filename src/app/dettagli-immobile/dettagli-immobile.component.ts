@@ -118,11 +118,11 @@ control?.valueChanges.subscribe(() => {
 
    
   
-    console.log(this.activatedRoute.snapshot.params['id']);
+    
       const immobileID = this.activatedRoute.snapshot.params['id'];
       this.immobiliService.getImmobile(immobileID).subscribe({
         next: async (data) => {
-          console.log(data)
+          
 
           this.immobile = await this.immobiliService.convertRESTImmobile(data);
           this.immobileTrovato = true;
@@ -236,7 +236,7 @@ control?.valueChanges.subscribe(() => {
     this.showOffer = true;
     this.offerteService.createOffer(this.immobile.id, Number(this.offertaValueForm.value.value!)).subscribe({
       next: (data: any) => {
-        console.log('Offerta creata con successo:', data);
+        
 
     //    this.applyOffer = true;
       this.statoOfferta = "applica"

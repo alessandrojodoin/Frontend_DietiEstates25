@@ -70,7 +70,6 @@ export class AuthRestService {
 
 
    login(loginCredentials: {username: string, password: string}){
-    console.log("login http request")
     const url = `${this.url}/auth`;
     return this.http.post(url, loginCredentials, {
     headers: { 'Content-Type': 'application/json' },
